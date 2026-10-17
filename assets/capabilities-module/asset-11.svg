@@ -1,0 +1,18 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="68.2964" height="68.2964" viewBox="0 0 68.2964 68.2964" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 2147226074">
+<circle id="Ellipse 469" cx="34.1482" cy="34.1482" r="33.6482" fill="white" fill-opacity="0.11" stroke="url(#paint1_linear_0_16)" stroke-width="1"/>
+<g id="Message / Linear">
+<path id="Message / Linear_2" d="M26.8452 29.468H41.4514M26.8452 35.9597H36.5826M24.4108 22.1649H43.8857C47.1316 22.1649 48.7545 23.7878 48.7545 27.0336V38.394C48.7545 41.6399 47.1316 43.2628 43.8857 43.2628H30.091L22.7879 48.1315V43.2628C20.624 42.7218 19.542 41.0989 19.542 38.394V27.0336C19.542 23.7878 21.165 22.1649 24.4108 22.1649Z" stroke="white" stroke-width="2.67781" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_16" x1="12" y1="6.16232" x2="48" y2="64.1623" gradientUnits="userSpaceOnUse">
+<stop stop-color="#1C1D43"/>
+<stop offset="1" stop-color="#020312"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_16" x1="12" y1="7.66232" x2="50.5" y2="63.6623" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0.74"/>
+<stop offset="1" stop-color="white" stop-opacity="0.07"/>
+</linearGradient>
+</defs>
+</svg>

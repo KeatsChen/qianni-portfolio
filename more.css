@@ -1,0 +1,24 @@
+:root { color-scheme: dark; --bg: #01010b; --text: #fff; }
+* { box-sizing: border-box; }
+html { background: var(--bg); scroll-behavior: smooth; }
+body { margin: 0; color: var(--text); background: var(--bg); font-family: "PingFang SC", "Helvetica Neue", Arial, sans-serif; }
+.back-button { position: fixed; z-index: 10; left: 48px; top: 48px; width: 51px; height: 51px; display: block; border-radius: 50%; transition: transform .45s cubic-bezier(.22,1,.36,1); }
+.back-button:hover { transform: translateX(-3px); }
+.back-button img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.back-button .back-arrow { inset: auto; left: 50%; top: 50%; width: 14.37px; height: 14.37px; transform: translate(-50%,-50%); }
+.more-header { width: min(1440px, calc(100% - 192px)); margin: 0 auto; min-height: 50vh; padding: 76px 0 64px; display: flex; flex-direction: column; justify-content: flex-end; border-bottom: 1px solid rgba(255,255,255,.14); }
+.more-header p, .more-header span { margin: 0; color: rgba(255,255,255,.5); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+.more-header h1 { margin: 22px 0 34px; font-family: Georgia, "Songti SC", serif; font-size: clamp(66px, 10vw, 148px); font-weight: 400; line-height: .92; letter-spacing: -.055em; }
+.more-gallery { width: min(1440px, calc(100% - 192px)); margin: 64px auto 120px; display: grid; gap: 28px; }
+.more-gallery figure { position: relative; margin: 0; overflow: hidden; background: #111; opacity: 0; filter: blur(6px); transform: translateY(36px); transition: opacity .9s cubic-bezier(.22,1,.36,1), filter .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1); }
+.more-gallery figure.visible { opacity: 1; filter: blur(0); transform: translateY(0); }
+.more-gallery img { width: 100%; height: auto; display: block; transition: transform 1s cubic-bezier(.16,1,.3,1); }
+.more-gallery figure:hover img { transform: scale(1.012); }
+.more-gallery figcaption { position: absolute; right: 16px; bottom: 14px; padding: 6px 10px; color: #fff; background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.18); border-radius: 999px; font-size: 10px; letter-spacing: .08em; backdrop-filter: blur(10px); }
+@media (max-width: 760px) {
+  .back-button { left: 20px; top: 22px; }
+  .more-header, .more-gallery { width: calc(100% - 32px); }
+  .more-header { min-height: 42vh; padding-bottom: 36px; }
+  .more-gallery { margin-top: 24px; gap: 14px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .more-gallery figure { opacity: 1; filter: none; transform: none; transition: none; } }

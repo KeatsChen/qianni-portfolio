@@ -1,0 +1,54 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="2374.88" height="359.567" viewBox="0 0 2374.88 359.567" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 2147226080">
+<g id="Vector 14" filter="url(#filter0_f_0_34)">
+<path d="M841.84 95.0778C804.243 133.036 530.302 291.145 232.548 301.989L2229.34 232.078C2010.8 232.078 1308.6 60.164 1273.84 57.5778C1277.34 70.1182 1207.91 123.289 1125.66 148.34C1053.42 170.342 854.779 82.0149 841.84 95.0778Z" fill="#0216AB"/>
+</g>
+<g id="Vector 15" filter="url(#filter1_f_0_34)">
+<path d="M848.841 148.078C811.137 186.143 601.069 243.54 302.34 253.578L1790.34 224.078C1759.92 189.264 1334.1 96.164 1299.34 93.5778C1302.84 106.118 1253.09 165.027 1170.84 180.078C1088.09 195.219 861.779 135.015 848.841 148.078Z" fill="#69E1F3"/>
+</g>
+<g id="Vector 13" filter="url(#filter2_f_0_34)">
+<path d="M888.84 161.578C851.137 199.643 653.635 251.847 354.906 261.885L1829.84 246.578C1799.42 211.764 1364.1 120.164 1329.34 117.578C1332.84 130.118 1332.79 180.181 1250.54 195.232C1167.79 210.373 901.779 148.515 888.84 161.578Z" fill="#F1C1FF"/>
+</g>
+<g id="Vector 10" filter="url(#filter3_f_0_34)">
+<path d="M942.985 197.66C905.281 235.725 677.793 239.873 379.065 249.911L1789.34 272.578C1758.92 237.764 1420.1 160.164 1385.34 157.578C1388.84 170.118 1356.95 201.701 1274.7 216.752C1191.95 231.893 955.924 184.597 942.985 197.66Z" fill="#B942F9"/>
+</g>
+<g id="Vector 12" filter="url(#filter4_f_0_34)">
+<path d="M1245.43 265.653L1435.34 182.701L1601.34 204.578L1799.34 249.078L1245.43 265.653Z" fill="#6724E4"/>
+</g>
+<g id="Vector 16" filter="url(#filter5_f_0_34)">
+<path d="M1342.34 282.215L1460.01 208.976L1611.34 231.078L1722.34 282.215L1342.34 282.215Z" fill="white"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_f_0_34" x="149.448" y="-25.5222" width="2162.99" height="410.612" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="41.55" result="effect1_foregroundBlur_0_34"/>
+</filter>
+<filter id="filter1_f_0_34" x="219.24" y="10.4778" width="1654.2" height="326.2" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="41.55" result="effect1_foregroundBlur_0_34"/>
+</filter>
+<filter id="filter2_f_0_34" x="271.806" y="34.4778" width="1641.13" height="310.507" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="41.55" result="effect1_foregroundBlur_0_34"/>
+</filter>
+<filter id="filter3_f_0_34" x="295.965" y="74.4778" width="1576.48" height="281.2" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="41.55" result="effect1_foregroundBlur_0_34"/>
+</filter>
+<filter id="filter4_f_0_34" x="1162.33" y="99.6008" width="720.107" height="249.152" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="41.55" result="effect1_foregroundBlur_0_34"/>
+</filter>
+<filter id="filter5_f_0_34" x="1271.54" y="138.176" width="521.601" height="214.839" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feGaussianBlur stdDeviation="35.4" result="effect1_foregroundBlur_0_34"/>
+</filter>
+</defs>
+</svg>

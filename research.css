@@ -1,0 +1,102 @@
+:root{color-scheme:light;--ink:#14140d;--paper:#faf2e7;--mist:#e8edf9;--orange:#eb5c02;--blue:#0c1191}*{box-sizing:border-box}html{scroll-behavior:smooth;background:var(--paper)}body{margin:0;color:var(--ink);background:var(--paper);font-family:Inter,"Helvetica Neue",Arial,sans-serif}img{display:block;width:100%}a{color:inherit}.research-page .site-nav{mix-blend-mode:normal}main{overflow:hidden}.case-overview,.web-interface,.mobile-interface,.case-closing{position:relative;width:min(1440px,100%);margin:0 auto}.case-overview{height:3318px;background:var(--paper)}.mountain-wash{position:absolute;left:0;top:5px;width:561px;height:561px;object-fit:cover;opacity:.1}.case-heading{position:absolute;z-index:2;top:157px;left:48px;right:50px;height:52px;display:flex;align-items:center}.case-back{width:51px;height:51px;display:grid;place-items:center;border:1px solid rgba(4,4,4,.12);border-radius:50%;background:rgba(255,255,255,.22);transition:transform .35s cubic-bezier(.22,1,.36,1),background .25s}.case-back img{width:15px;filter:brightness(0)}.case-back:hover{transform:translateX(-4px);background:#fff}.case-heading h1{margin:0 0 0 20px;font:500 30px/48px "Test Signifier",Georgia,serif;letter-spacing:-.6px}.heading-meta{position:absolute;right:0;top:0;width:365px;margin:0;padding-top:16px;border-top:1px solid rgba(4,4,4,.4);display:grid;gap:14px;font:500 14px/14px "PingFang SC",Inter,sans-serif;letter-spacing:-.28px}.heading-meta div{display:flex;justify-content:space-between}.heading-meta dt,.heading-meta dd{margin:0}.heading-meta dd{opacity:.5}.case-statement{position:absolute;top:246px;left:119px;width:820px;margin:0;font:400 48px/64px "PingFang SC",Inter,sans-serif;letter-spacing:-.96px}.case-statement span{color:#8c8c8c}.case-facts{position:absolute;top:478px;left:119px;margin:0;display:flex;gap:160px;font:500 14px/20px "PingFang SC",Inter,sans-serif}.case-facts div{min-width:138px}.case-facts dt{color:#8c8c8c}.case-facts dd{margin:0}.desktop-pair{position:absolute;left:104px;right:104px;top:620px;height:2072px;display:grid;grid-template-columns:760px 375px;gap:64px;align-items:start}.desktop-pair figure{margin:0;overflow:hidden;border-radius:8px;background:#fff;box-shadow:3px 4px 81px rgba(20,32,71,.04)}.desktop-main{height:2072px}.desktop-detail{height:1912px;margin-top:28px!important}.desktop-pair img{height:100%;object-fit:cover;object-position:top}.design-system{position:absolute;left:129px;right:129px;top:2829px}.design-system h2{margin:0 0 49px;font:400 58px/1 "Test Signifier",Georgia,serif;letter-spacing:-1.16px}.system-grid{display:grid;grid-template-columns:1fr 1fr;gap:98px}.system-grid h3{margin:0 0 30px;font:500 20px/30px Roboto,Inter,sans-serif;color:#2a2639}.swatches{display:grid;grid-template-columns:112px 112px;gap:24px 15px}.swatches span{height:60px;padding:20px 0;text-align:center;border:.75px solid #000;background:var(--swatch);font-size:14px}.swatches span.dark{color:#fff}.type-block{display:grid;grid-template-columns:1fr 1fr;gap:28px 70px}.type-block h3{grid-column:1/-1;margin-bottom:0}.type-block strong{display:block;margin-bottom:12px;font:300 20px/30px Roboto,Inter,sans-serif;color:#4c475f}.type-block p{margin:0 0 11px;font:300 16px/30px Roboto,Inter,sans-serif;color:#4c475f}.type-block .medium{font-weight:500}.type-block .bold{font-weight:700}.web-interface{height:2868px;background:var(--mist)}.section-heading{position:absolute;top:80px;left:50%;width:627px;text-align:center;transform:translateX(-50%)}.section-heading h2{margin:0;font:400 58px/1.18 "Test Signifier",Georgia,serif;letter-spacing:-1.16px}.section-heading p{margin:14px 0 0;font:400 18px/1.4 "PingFang SC",Inter,sans-serif;letter-spacing:-.36px}.web-grid{position:absolute;inset:310px 0 0}.web-shot{position:absolute;margin:0;overflow:hidden;border-radius:8px;background:#fff;box-shadow:3px 4px 81px rgba(20,32,71,.04)}.web-shot img{height:100%;object-fit:cover;object-position:top}.web-shot:nth-child(1){left:104px;top:0;width:575.38px;height:1095.15px}.web-shot:nth-child(2){left:744px;top:0;width:575.38px;height:1335.27px}.web-shot:nth-child(3){left:104px;top:1133px;width:575.38px;height:1221.75px}.web-shot:nth-child(4){left:744px;top:1373px;width:575.38px;height:1065.44px}.mobile-interface{height:1839px;background:var(--paper)}.mobile-interface>h2{position:absolute;left:96px;top:101px;width:414px;margin:0;color:#103a7b;font:500 50px/70px "Test Signifier",Georgia,serif;letter-spacing:-1px}.phone-mockup{position:absolute;left:96px;top:304px;width:353px;height:702px;margin:0}.phone-mockup img{height:100%;object-fit:contain}.mobile-columns{position:absolute;left:510px;right:-21px;top:54px;height:1744px;display:flex;gap:9px;align-items:flex-start}.mobile-strip{width:183px;margin:0;overflow:hidden;background:#fff}.mobile-strip:nth-child(even){margin-top:46px}.mobile-strip img{width:100%;height:auto}.case-closing{height:350px;background:var(--mist);padding:67px 70px}.closing-eyebrow{margin:0 0 24px;font-size:12px;font-weight:600;line-height:1.2;opacity:.8}.case-closing h2{margin:0;font:400 58px/.98 "Test Signifier",Georgia,serif}.closing-tags{position:absolute;left:70px;bottom:66px;display:flex;gap:64px;font-size:15px;opacity:.6}.case-closing time{position:absolute;right:70px;bottom:66px;font-size:12px;font-weight:600;opacity:.8}
+@media(max-width:900px){.case-overview,.web-interface,.mobile-interface,.case-closing{width:100%;height:auto}.case-overview{padding:130px 20px 88px}.mountain-wash{width:360px;height:360px}.case-heading,.case-statement,.case-facts,.desktop-pair,.design-system,.section-heading,.web-grid,.mobile-interface>h2,.phone-mockup,.mobile-columns{position:relative;inset:auto}.case-heading{height:auto;align-items:center;flex-wrap:wrap}.case-heading h1{flex:1;font-size:clamp(24px,6vw,32px);line-height:1.08}.heading-meta{position:relative;flex-basis:100%;width:100%;margin:30px 0 0 71px}.case-statement{width:auto;margin-top:56px;font-size:clamp(34px,8vw,48px);line-height:1.3}.case-statement br{display:none}.case-facts{margin-top:52px;display:grid;gap:20px}.case-facts div{display:grid;grid-template-columns:120px 1fr}.desktop-pair{height:auto;margin-top:76px;display:grid;grid-template-columns:1.35fr .65fr;gap:16px}.desktop-main,.desktop-detail{height:auto;margin-top:0!important}.desktop-pair img{height:auto}.design-system{margin:80px 0 0}.design-system h2{font-size:46px}.system-grid{grid-template-columns:1fr;gap:56px}.web-interface{padding:76px 20px 90px}.section-heading{width:min(627px,100%);transform:none}.section-heading h2{font-size:46px}.section-heading p br{display:none}.web-grid{margin-top:60px;display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}.web-shot{position:relative!important;inset:auto!important;width:auto!important;height:auto!important}.web-shot img{height:auto}.mobile-interface{padding:72px 20px 92px}.mobile-interface>h2{width:auto;font-size:44px;line-height:1.1}.phone-mockup{width:min(353px,72vw);height:auto;margin:42px auto 0}.mobile-columns{height:auto;margin-top:50px;display:flex;gap:12px;overflow:hidden}.mobile-strip{flex:0 0 31%;width:auto}.mobile-strip:nth-child(even){margin-top:26px}.case-closing{height:350px;padding:67px 20px}.case-closing h2{font-size:48px}.closing-tags{left:20px;gap:28px}.case-closing time{right:20px}}
+@media(max-width:600px){.desktop-pair{grid-template-columns:1fr}.desktop-detail{display:none}.web-grid{grid-template-columns:1fr}.system-grid{gap:44px}.type-block{grid-template-columns:1fr}.type-block h3{grid-column:auto}.swatches{grid-template-columns:1fr 1fr}.case-closing h2{font-size:42px}.closing-tags{gap:18px;font-size:13px}}
+
+/* Figma 2-2: exact Mobile Interface Design artboard layout. */
+@media(min-width:901px){.mobile-columns{right:auto;width:951px;display:grid;grid-template-columns:repeat(5,183px);gap:9px;align-items:start}.mobile-column{width:183px;display:flex;flex-direction:column;gap:10px}.mobile-columns>.mobile-strip:nth-child(even){margin-top:0}.mobile-offset{margin-top:46px}.mobile-column .mobile-strip{margin-top:0}}
+@media(max-width:900px){.mobile-columns{width:calc(100vw - 20px)}.mobile-column,.mobile-strip{flex:0 0 31%;width:auto}.mobile-column{display:flex;flex-direction:column;gap:10px}.mobile-column .mobile-strip{width:100%;margin-top:0}.mobile-offset{margin-top:26px}}
+
+/* Figma 2-2: simplified closing panel. */
+.case-closing{height:350px;padding:78px 70px;background:#e8edf9}.closing-eyebrow{margin:0 0 31px;font-size:10px;font-weight:500;line-height:1.2;opacity:1}.case-closing h2{font-size:58px;line-height:1;margin:0}.case-closing time{right:70px;top:146px;bottom:auto;font-size:10px;font-weight:500;opacity:1}
+@media(max-width:900px){.case-closing{height:260px;padding:56px 20px}.closing-eyebrow{margin-bottom:25px}.case-closing time{right:20px;top:124px}}
+
+/* Figma 2-2: updated design system and desktop interface presentation. */
+@media(min-width:901px){
+  .design-system{top:2853px;left:129px;right:129px}
+  .design-system h2{margin-bottom:49px}
+  .system-grid{grid-template-columns:567px 1fr;gap:98px}
+  .web-interface{height:1058px}
+  .section-heading{top:88px}
+  .web-grid{inset:284px auto auto 50%;width:1332px;height:721px;display:flex;gap:30px;align-items:flex-start;transform:translateX(-50%)}
+  .web-shot:nth-child(n){position:relative;inset:auto;width:310.526px;margin:0;flex:0 0 310.526px}
+  .web-shot:nth-child(1){height:591.039px}
+  .web-shot:nth-child(2){height:720.632px}
+  .web-shot:nth-child(3){height:659.365px}
+  .web-shot:nth-child(4){height:575.007px}
+  .web-shot img{height:100%;object-fit:cover;object-position:top}
+  .case-closing{height:231px;padding:55px 70px}
+  .closing-eyebrow{margin-bottom:25px;font-size:12px;font-weight:600;opacity:.8}
+  .case-closing time{top:auto;right:70px;bottom:60px;font-size:12px;font-weight:600;opacity:.8}
+}
+
+/* Figma 2-2: resized mobile interface presentation. */
+@media(min-width:901px){
+  .case-overview{background:linear-gradient(to bottom,var(--paper) 0 2785px,#fff 2785px 100%)}
+  .mobile-interface{height:1682px}
+  .mobile-interface>h2{left:136px;top:95px}
+  .phone-mockup{left:136px;top:281px;width:309.45px;height:616px}
+  .phone-mockup{overflow:visible;border-radius:0;background:transparent}
+  .phone-mockup img.phone-mockup-image{position:absolute;left:-49.3px;top:0;display:block;width:394.15px;max-width:none;height:auto;object-fit:initial;transform:none}
+  .mobile-columns{left:554px;top:95px;width:837.6px;height:1491px;grid-template-columns:156.424px repeat(4,156.294px);gap:14px}
+  .mobile-column{width:156.294px;gap:8.549px}
+  .mobile-column:first-child{width:156.424px}
+  .mobile-strip{width:156.294px}
+  .mobile-column:first-child .mobile-strip{width:100%}
+  .mobile-offset{margin-top:0}
+}
+@media(prefers-reduced-motion:no-preference){.research-motion .reveal-item{opacity:0;filter:blur(7px);transform:translate3d(0,34px,0);transition:opacity 1s cubic-bezier(.22,1,.36,1),filter 1.05s cubic-bezier(.22,1,.36,1),transform 1.05s cubic-bezier(.22,1,.36,1);transition-delay:var(--reveal-delay,0ms);will-change:opacity,filter,transform}.research-motion .reveal-item.is-visible{opacity:1;filter:blur(0);transform:translate3d(0,0,0)}.research-motion .section-heading.reveal-item{transform:translate3d(-50%,34px,0)}.research-motion .section-heading.reveal-item.is-visible{transform:translate3d(-50%,0,0)}}
+@media(max-width:900px) and (prefers-reduced-motion:no-preference){.research-motion .section-heading.reveal-item{transform:translate3d(0,34px,0)}.research-motion .section-heading.reveal-item.is-visible{transform:translate3d(0,0,0)}}
+@media(prefers-reduced-motion:reduce){.reveal-item{opacity:1!important;filter:none!important;transform:none!important}}
+.case-statement .statement-primary{color:inherit}
+.swatches span{border:0}
+
+/* Section 1 mobile composition — Figma node 4757:2822. */
+@media(min-width:901px){
+  .desktop-pair{left:119px;right:auto;top:595px;height:2093px;grid-template-columns:765.092px 375px;gap:50.908px}
+  .desktop-main{height:2092px}
+}
+.mobile-case-preview{position:relative;width:375px;height:2093px;overflow:visible;border:0;border-radius:0;background:none;box-shadow:none;color:#4c475f;font-family:Roboto,Inter,Arial,sans-serif}
+.desktop-pair figure.mobile-case-preview{border:0;border-radius:0;background:none;box-shadow:none}
+.mobile-case-preview>img.mobile-case-image{display:block;width:100%;height:100%;object-fit:cover;object-position:top;background:none}
+.mobile-case-preview img{height:auto;object-fit:initial}
+.mobile-browser{position:relative;height:90px;padding:18px 15px 0;color:#040404;font-size:13px}
+.mobile-browser b{position:absolute;left:16px;top:17px}.mobile-browser span{display:block;height:36px;margin-top:18px;padding:10px 42px;border-radius:20px;background:#edf0f3;text-align:center}.mobile-browser i{position:absolute;right:17px;top:45px;font-style:normal}
+.mobile-site-head{height:67px;padding:9px 15px;display:flex;align-items:center}.mobile-site-head img{width:153px}.mobile-site-head span{margin-left:auto;color:#040404;font-size:13px}.mobile-site-head b{margin-left:10px;color:#040404;font-size:18px}
+.mobile-hero-pattern{height:132px;padding-top:7px;overflow:hidden;color:rgba(255,255,255,.56);background:#f0f4fd;font:600 86px/.9 "PingFang SC",sans-serif;white-space:nowrap;letter-spacing:.3px}
+.mobile-case-preview>h2{position:absolute;left:30px;top:232px;margin:0;color:#2a2639;font:400 31.8px/33.7px Roboto,Inter,sans-serif;border-bottom:19px solid #faeee7}
+.mobile-lead{margin:22px 24px 0!important;color:#4c475f;font:300 20px/34px Roboto,Inter,sans-serif!important;text-transform:capitalize;letter-spacing:.35px}
+.mobile-case-preview>hr{width:327px;margin:23px auto;border:0;border-top:.5px solid #d9dce2}
+.mobile-case-preview>p:not(.mobile-lead):not(.mobile-axis-intro){margin:0 24px;font:400 14px/1.7 Roboto,Inter,sans-serif;letter-spacing:.05px;opacity:.8}
+.mobile-building{width:326px!important;height:426px!important;margin:26px auto 18px;object-fit:cover!important;object-position:center!important}
+.mobile-axis-intro{margin:0 24px 20px;font:500 14px/1.7 Roboto,Inter,sans-serif;opacity:.8}
+.mobile-axis-list{display:grid;gap:21px;padding:0 29px}.mobile-axis-list section{padding:26px 23px 20px;border:.5px solid #d1d1d1;background:#fff}.mobile-axis-list h3{margin:0 0 15px;padding-bottom:15px;border-bottom:.5px solid #d0d0d0;color:#4c475f;font:400 18px/22.5px Roboto,Inter,sans-serif}.mobile-axis-list h3 span{float:right}.mobile-axis-list p{margin:0;font:400 14px/1.52 Roboto,Inter,sans-serif;opacity:.8}
+@media(max-width:900px){.desktop-pair{grid-template-columns:1fr;justify-items:center}.mobile-case-preview{max-width:100%}}
+
+@media(max-width:900px){.phone-mockup img.phone-mockup-image{position:relative;width:100%;height:auto;object-fit:contain}}
+
+/* Keep the typography specimens on one line, matching the design system board. */
+@media(min-width:901px){.type-block{grid-template-columns:minmax(300px,1fr) auto}.type-block strong,.type-block p{white-space:nowrap}}
+
+/* Figma 2-2 — 2026-10-17 layout update. */
+.footer-injection-guard{display:none!important}
+@media(min-width:901px){
+  .case-overview{height:2931px;background:linear-gradient(to bottom,var(--paper) 0 2360px,#fff 2360px 100%)}
+  .desktop-pair{left:246.18px;right:auto;top:595px;height:1646px;grid-template-columns:601.692px 294.937px;gap:40px}
+  .desktop-main,.mobile-case-preview{width:100%;height:1645.214px}
+  .mobile-case-preview{height:1645.86px}
+  .desktop-pair img,.mobile-case-preview>img.mobile-case-image{width:100%;height:100%;object-fit:cover;object-position:top}
+  .design-system{top:2466px;left:129px;right:129px}
+  .design-system h2{margin-bottom:80px}
+  .system-grid{grid-template-columns:567px 1fr;gap:98px}
+  .web-interface{height:1104px}
+  .section-heading{top:88px}
+  .web-grid{inset:284px auto auto 50%;width:1332px;height:721px;display:flex;gap:30px;align-items:flex-start;transform:translateX(-50%)}
+  .web-shot:nth-child(n){position:relative;inset:auto;width:310.526px;margin:0;flex:0 0 310.526px}
+  .web-shot:nth-child(1){height:591.039px}.web-shot:nth-child(2){height:720.632px}.web-shot:nth-child(3){height:659.365px}.web-shot:nth-child(4){height:575.007px}
+  .mobile-interface{height:1682px}
+  .mobile-interface>h2{left:136px;top:95px}
+  .phone-mockup{left:136px;top:281px;width:309.45px;height:616px}
+  .mobile-columns{left:554px;top:95px;width:837.6px;height:1491px;grid-template-columns:156.424px repeat(4,156.294px);gap:14px}
+  .mobile-column{width:156.294px;gap:8.549px}.mobile-column:first-child{width:156.424px}.mobile-strip{width:156.294px}.mobile-column:first-child .mobile-strip{width:100%}.mobile-offset{margin-top:0}
+  .case-closing{height:231px;margin-top:-5px;padding:55px 70px}
+}

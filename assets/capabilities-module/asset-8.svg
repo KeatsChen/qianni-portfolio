@@ -1,0 +1,19 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="68.2965" height="68.2964" viewBox="0 0 68.2965 68.2964" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 2147226073">
+<circle id="Ellipse 469" cx="34.1483" cy="34.1482" r="33.6482" fill="white" fill-opacity="0.11" stroke="url(#paint1_linear_0_11)" stroke-width="1"/>
+<g id="Camera / Linear">
+<path id="Vector" d="M21.7626 25.1623H26.3876L29.4709 20.6623H38.7209L41.8042 25.1623H46.4292C47.247 25.1623 48.0312 25.4784 48.6095 26.041C49.1877 26.6036 49.5126 27.3667 49.5126 28.1623V44.6623C49.5126 45.458 49.1877 46.221 48.6095 46.7836C48.0312 47.3462 47.247 47.6623 46.4292 47.6623H21.7626C20.9448 47.6623 20.1605 47.3462 19.5823 46.7836C19.0041 46.221 18.6792 45.458 18.6792 44.6623V28.1623C18.6792 27.3667 19.0041 26.6036 19.5823 26.041C20.1605 25.4784 20.9448 25.1623 21.7626 25.1623Z" stroke="white" stroke-width="2.95854" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M34.0959 41.6623C37.5016 41.6623 40.2626 38.976 40.2626 35.6623C40.2626 32.3486 37.5016 29.6623 34.0959 29.6623C30.6901 29.6623 27.9292 32.3486 27.9292 35.6623C27.9292 38.976 30.6901 41.6623 34.0959 41.6623Z" stroke="white" stroke-width="2.95854" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_11" x1="12.0001" y1="6.16232" x2="48.0001" y2="64.1623" gradientUnits="userSpaceOnUse">
+<stop stop-color="#1C1D43"/>
+<stop offset="1" stop-color="#020312"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_11" x1="12.0001" y1="7.66232" x2="50.5001" y2="63.6623" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0.74"/>
+<stop offset="1" stop-color="white" stop-opacity="0.07"/>
+</linearGradient>
+</defs>
+</svg>

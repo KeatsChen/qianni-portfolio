@@ -1,0 +1,22 @@
+:root { --secondary-entry-ease: cubic-bezier(.22,1,.36,1); }
+
+body.secondary-entry .project-index,
+body.secondary-entry .project-info,
+body.secondary-entry .construction-page,
+body.secondary-entry .more-header,
+body.secondary-entry .more-gallery > :first-child {
+  animation: secondary-first-screen-reveal 1.55s var(--secondary-entry-ease) .08s both;
+}
+
+@keyframes secondary-first-screen-reveal {
+  from { opacity: 0; filter: blur(12px); transform: translateY(38px); }
+  to { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.secondary-entry .project-index,
+  body.secondary-entry .project-info,
+  body.secondary-entry .construction-page,
+  body.secondary-entry .more-header,
+  body.secondary-entry .more-gallery > :first-child { animation: none; }
+}

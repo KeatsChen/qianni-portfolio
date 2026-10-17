@@ -1,0 +1,19 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="68.2964" height="68.2964" viewBox="0 0 68.2964 68.2964" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 2147226071">
+<circle id="Ellipse 468" cx="34.1482" cy="34.1482" r="33.6482" fill="white" fill-opacity="0.11" stroke="url(#paint1_linear_0_26)" stroke-width="1"/>
+<g id="Compass / Linear">
+<path id="Vector" d="M33.9354 49.1623C42.2197 49.1623 48.9354 42.4466 48.9354 34.1623C48.9354 25.878 42.2197 19.1623 33.9354 19.1623C25.6511 19.1623 18.9354 25.878 18.9354 34.1623C18.9354 42.4466 25.6511 49.1623 33.9354 49.1623Z" stroke="white" stroke-width="2.95854" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_2" d="M39.9354 28.1623L36.1854 36.4123L27.9354 40.1623L31.6854 31.9123L39.9354 28.1623Z" stroke="white" stroke-width="2.95854" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_26" x1="12" y1="6.16232" x2="48" y2="64.1623" gradientUnits="userSpaceOnUse">
+<stop stop-color="#1C1D43"/>
+<stop offset="1" stop-color="#020312"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_26" x1="12" y1="7.66232" x2="50.5" y2="63.6623" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0.74"/>
+<stop offset="1" stop-color="white" stop-opacity="0.07"/>
+</linearGradient>
+</defs>
+</svg>
