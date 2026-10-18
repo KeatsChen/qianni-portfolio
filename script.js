@@ -165,24 +165,37 @@ initTiltedCapabilitiesCard();
 // Home always paints at its first screen. Temporarily disable CSS smooth
 // scrolling so a restored browser position never visibly animates upward.
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-const forceHomeToTop = () => {
+let homeBootReleased = false;
+const pinHomeToTop = () => {
   const root = document.documentElement;
   root.classList.add('home-booting');
   root.style.scrollBehavior = 'auto';
   window.scrollTo(0, 0);
+};
+const releaseHomeAtTop = () => {
+  if (homeBootReleased) return;
+  homeBootReleased = true;
+  pinHomeToTop();
   window.requestAnimationFrame(() => {
     window.scrollTo(0, 0);
     window.requestAnimationFrame(() => {
       window.scrollTo(0, 0);
-      root.style.removeProperty('scroll-behavior');
-      root.classList.remove('home-booting');
+      document.documentElement.style.removeProperty('scroll-behavior');
+      document.documentElement.classList.remove('home-booting');
     });
   });
 };
-forceHomeToTop();
-window.addEventListener('pageshow', forceHomeToTop);
-window.addEventListener('load', forceHomeToTop, { once: true });
+pinHomeToTop();
+window.addEventListener('pageshow', (event) => {
+  pinHomeToTop();
+  if (event.persisted || document.readyState === 'complete') releaseHomeAtTop();
+});
+window.addEventListener('load', () => {
+  const fontsReady = document.fonts?.ready || Promise.resolve();
+  fontsReady.then(releaseHomeAtTop);
+}, { once: true });
 const concealHomeBeforeLeaving = () => {
+  homeBootReleased = false;
   const root = document.documentElement;
   root.classList.add('home-booting');
   root.style.scrollBehavior = 'auto';
