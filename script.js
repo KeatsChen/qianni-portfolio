@@ -167,12 +167,15 @@ initTiltedCapabilitiesCard();
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 const forceHomeToTop = () => {
   const root = document.documentElement;
+  root.classList.add('home-booting');
   root.style.scrollBehavior = 'auto';
   window.scrollTo(0, 0);
   window.requestAnimationFrame(() => {
     window.scrollTo(0, 0);
     window.requestAnimationFrame(() => {
+      window.scrollTo(0, 0);
       root.style.removeProperty('scroll-behavior');
+      root.classList.remove('home-booting');
     });
   });
 };
