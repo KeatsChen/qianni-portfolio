@@ -288,6 +288,14 @@ window.closePortfolioPageWithHomeEntrance = () => {
   overlay?.remove();
 };
 
+// Keep the overlay close route in the homepage script so the back button does
+// not depend on the optional music/navigation script or its cached version.
+window.addEventListener('message', (event) => {
+  if (event.origin !== location.origin || event.data?.type !== 'close-portfolio-page') return;
+  event.stopImmediatePropagation();
+  window.closePortfolioPageWithHomeEntrance();
+});
+
 function initializeProjectDeck() {
   const deck = document.querySelector('.project-deck');
   if (!deck) return;

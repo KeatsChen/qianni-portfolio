@@ -17,19 +17,9 @@ document.addEventListener('click', (event) => {
   // close behavior is only needed when the portfolio is opened in an iframe.
   if (window.self === window.top) return;
   event.preventDefault();
-
-  try {
-    if (typeof window.parent.closePortfolioPageWithHomeEntrance === 'function') {
-      window.parent.closePortfolioPageWithHomeEntrance();
-      return;
-    }
-    window.parent.replayHomeEntranceMotion?.();
-    window.parent.document.body.classList.remove('site-page-open', 'directory-page-open');
-    (window.frameElement || window.parent.document.querySelector('.site-page-overlay'))?.remove();
-  } catch (_) {
-    const targetOrigin = location.origin === 'null' ? '*' : location.origin;
-    window.parent.postMessage({ type: 'close-portfolio-page' }, targetOrigin);
-  }
+  event.stopImmediatePropagation();
+  const targetOrigin = location.origin === 'null' ? '*' : location.origin;
+  window.parent.postMessage({ type: 'close-portfolio-page' }, targetOrigin);
 }, true);
 
 document.addEventListener('click', (event) => {
