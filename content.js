@@ -414,11 +414,13 @@ const setupGallery = () => {
     const onClick = (event) => { const card = event.target.closest('.illustration-card'); if (card) openPreview(card); };
     const onKeydown = (event) => { if (event.key === 'Escape') closePreview(); };
     wall.addEventListener('click', onClick);
+    preview.addEventListener('click', closePreview);
     lightbox.querySelector('.graphic-lightbox-backdrop').addEventListener('click', closePreview);
     window.addEventListener('keydown', onKeydown);
     activeCleanup = () => {
       document.body.classList.remove('graphic-lightbox-open');
       wall.removeEventListener('click', onClick);
+      preview.removeEventListener('click', closePreview);
       lightbox.querySelector('.graphic-lightbox-backdrop').removeEventListener('click', closePreview);
       window.removeEventListener('keydown', onKeydown);
     };

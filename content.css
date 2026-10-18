@@ -605,6 +605,7 @@ body.graphic-lightbox-open { overflow:hidden; }
 .graphic-lightbox figure { position:relative; z-index:1; max-width:min(64vw,520px); max-height:calc(100vh - 158px); margin:0; transform:translate3d(0,22px,0) scale(.96); transition:transform .55s cubic-bezier(.22,1,.36,1); box-shadow:0 32px 100px rgba(0,0,0,.5); }
 .graphic-lightbox.is-open figure { transform:translate3d(0,0,0) scale(1); }
 .graphic-lightbox figure img { display:block; max-width:100%; max-height:calc(100vh - 158px); width:auto; height:auto; object-fit:contain; }
+.illustration-lightbox figure img { cursor:zoom-out; }
 @media(max-width:900px) and (min-width:761px){.graphic-statement{width:42vw}.graphic-loop-wall{left:auto;right:32px;width:46vw}}
 @media(max-width:760px){.content-page.graphic-view{min-height:720px}.content-page.graphic-view .project-index{top:132px;left:20px;width:auto;margin:0}.content-page.graphic-view .project-gallery{height:100svh;margin:0}.graphic-loop-layout{min-height:720px}.graphic-statement{top:212px;left:20px;width:calc(100% - 40px);font-size:clamp(25px,7vw,34px);line-height:1.3;letter-spacing:-.7px}.graphic-loop-wall{top:390px;left:20px;right:20px;bottom:0;width:auto;gap:10px}.graphic-loop-set{gap:10px;padding-bottom:10px}.graphic-lightbox{padding:126px 20px 28px}.graphic-lightbox figure{max-width:min(calc(100vw - 72px),420px);max-height:calc(100vh - 174px)}.graphic-lightbox figure img{max-height:calc(100vh - 174px)}}
 @media(prefers-reduced-motion:reduce){.graphic-lightbox,.graphic-lightbox figure,.graphic-loop-poster img{transition:none}}
