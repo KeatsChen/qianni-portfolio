@@ -3,6 +3,49 @@ const localized = document.querySelectorAll('[data-en][data-zh]');
 const portfolioLanguageKey = 'qianni-portfolio-language';
 const portfolioLanguageSessionKey = 'qianni-portfolio-language-initialized';
 
+function initDownloadMenu() {
+  const download = document.querySelector('.nav-download');
+  if (!download) return;
+  const trigger = download.querySelector('.nav-download-trigger');
+  const menu = download.querySelector('.nav-download-menu');
+  const items = [...menu.querySelectorAll('[role="menuitem"]')];
+
+  const setOpen = (open, focusFirst = false) => {
+    download.classList.toggle('is-open', open);
+    trigger.setAttribute('aria-expanded', String(open));
+    menu.setAttribute('aria-hidden', String(!open));
+    if (open && focusFirst) items[0]?.focus();
+  };
+
+  trigger.addEventListener('click', (event) => {
+    event.stopPropagation();
+    setOpen(!download.classList.contains('is-open'));
+  });
+  trigger.addEventListener('keydown', (event) => {
+    if (event.key !== 'ArrowDown') return;
+    event.preventDefault();
+    setOpen(true, true);
+  });
+  menu.addEventListener('keydown', (event) => {
+    const index = items.indexOf(document.activeElement);
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      setOpen(false);
+      trigger.focus();
+    } else if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      const step = event.key === 'ArrowDown' ? 1 : -1;
+      items[(index + step + items.length) % items.length]?.focus();
+    }
+  });
+  document.addEventListener('click', (event) => {
+    if (!download.contains(event.target)) setOpen(false);
+  });
+  window.addEventListener('blur', () => setOpen(false));
+}
+
+initDownloadMenu();
+
 function initTiltedWorkCards() {
   if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 

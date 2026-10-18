@@ -7,13 +7,12 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta name="description" content="Qianni Zhong — UI/UX designer portfolio" />
     <title>Qianni Zhong — UI/UX Designer</title>
-  <link rel="stylesheet" href="styles.css?v=86" />
+  <link rel="stylesheet" href="styles.css?v=87" />
   <link rel="stylesheet" href="back-to-top.css?v=11" />
   </head>
   <body class="home-page">
     <main>
       <section class="hero" id="portfolio-intro" aria-labelledby="intro-title">
-        <audio class="music-player" src="assets/navigation-music-trimmed.m4a?v=1" preload="metadata" playsinline></audio>
         <nav class="hero-nav" aria-label="Portfolio navigation">
             <a href="#engagements"><span data-en="Recent engagements" data-zh="近期经历">Recent engagements</span><img src="assets/nav-arrow.svg?v=2" alt="" /></a>
             <a href="content.html?v=127&amp;from=nav"><span data-en="My Works" data-zh="我的作品">My Works</span><img src="assets/nav-arrow.svg?v=2" alt="" /></a>
@@ -22,9 +21,22 @@
               <button type="button" data-lang="zh">中</button>
               <button type="button" class="active" data-lang="en">En</button>
             </div>
-            <button class="music-note nav-music" type="button" aria-label="播放背景音乐" aria-pressed="false">
-              <img src="assets/nav-music.svg?v=1" alt="" />
-            </button>
+            <div class="nav-download">
+              <button class="nav-download-trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="nav-download-menu">
+                <img src="assets/navigation/download.svg" alt="" />
+                <span data-en="Download" data-zh="下载">Download</span>
+              </button>
+              <div class="nav-download-menu" id="nav-download-menu" role="menu" aria-hidden="true">
+                <a href="assets/downloads/Qianni-Zhong-Resume-2026.pdf" download="Qianni-Zhong-Resume-2026.pdf" role="menuitem">
+                  <img src="assets/navigation/resume.svg" alt="" />
+                  <span data-en="Resume" data-zh="简历">Resume</span>
+                </a>
+                <a href="assets/downloads/Qianni-Zhong-Portfolio-2026.pdf" download="Qianni-Zhong-Portfolio-2026.pdf" role="menuitem">
+                  <img src="assets/navigation/portfolio.svg" alt="" />
+                  <span data-en="Portfolio" data-zh="作品集">Portfolio</span>
+                </a>
+              </div>
+            </div>
         </nav>
         <div class="hero-inner">
 
@@ -162,7 +174,7 @@
       </section>
     </div>
     <button class="back-to-top" type="button" aria-label="回到顶部"><img src="assets/back-to-top.svg?v=2" alt="" /></button>
-  <script src="script.js?v=56"></script>
+  <script src="script.js?v=57"></script>
     <script src="soft-aurora.js?v=3"></script>
     <script src="back-to-top.js?v=6"></script>
     <script src="music.js?v=19"></script>
