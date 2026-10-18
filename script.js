@@ -162,13 +162,23 @@ function initTiltedCapabilitiesCard() {
 
 initTiltedCapabilitiesCard();
 
-// Home always starts from its first screen, including reloads after scrolling.
+// Home always paints at its first screen. Temporarily disable CSS smooth
+// scrolling so a restored browser position never visibly animates upward.
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-window.scrollTo(0, 0);
-window.addEventListener('pageshow', () => window.scrollTo(0, 0));
-window.addEventListener('load', () => {
-  window.requestAnimationFrame(() => window.scrollTo(0, 0));
-}, { once: true });
+const forceHomeToTop = () => {
+  const root = document.documentElement;
+  root.style.scrollBehavior = 'auto';
+  window.scrollTo(0, 0);
+  window.requestAnimationFrame(() => {
+    window.scrollTo(0, 0);
+    window.requestAnimationFrame(() => {
+      root.style.removeProperty('scroll-behavior');
+    });
+  });
+};
+forceHomeToTop();
+window.addEventListener('pageshow', forceHomeToTop);
+window.addEventListener('load', forceHomeToTop, { once: true });
 
 if (sessionStorage.getItem(portfolioLanguageSessionKey) !== '1') {
   localStorage.setItem(portfolioLanguageKey, 'en');
