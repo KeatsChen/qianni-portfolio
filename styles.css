@@ -596,11 +596,11 @@ body.home-return-reveal .hero-inner {
   right: 0;
   width: 117px;
   height: 102px;
-  padding: 12px 3px;
+  padding: 12px 5px;
   display: grid;
   gap: 6px;
   border: 0;
-  border-radius: 8px;
+  border-radius: 10px;
   background: #1e1d26;
   box-shadow: 0 14px 35px rgba(0,0,0,.32);
   -webkit-backdrop-filter: blur(18px);
@@ -616,10 +616,10 @@ body.home-return-reveal .hero-inner {
   width: 100%;
   min-width: 0;
   height: 36px;
-  padding: 0 17px;
+  padding: 0 15px;
   gap: 8px;
   color: #fff;
-  border-radius: 5px;
+  border-radius: 8px;
   background: transparent;
   font: 500 14px/14px "PingFang SC", Inter, sans-serif;
   letter-spacing: -.28px;
