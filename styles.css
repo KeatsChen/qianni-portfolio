@@ -628,6 +628,11 @@ body.home-return-reveal .hero-inner {
   visibility: visible;
   transform: translate(-50%, 0);
 }
+.nav-download.is-open .nav-download-tooltip {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 4px);
+}
 .nav-download-menu {
   position: absolute;
   top: 46px;
