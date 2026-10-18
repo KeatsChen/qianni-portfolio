@@ -9,6 +9,9 @@ const uiuxGalleryHTML = projectGallery.innerHTML;
 const languageKey = 'qianni-portfolio-language';
 const languageSessionKey = 'qianni-portfolio-language-initialized';
 
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
+
 document.addEventListener('click', (event) => {
   const backButton = event.target.closest('.back-button');
   if (!backButton) return;
@@ -674,3 +677,10 @@ const switchTab = (tab, updateHistory = true) => {
 
 tabButtons.forEach((button) => button.addEventListener('click', () => { if (button.dataset.workTab !== currentTab) switchTab(button.dataset.workTab); }));
 switchTab(new URLSearchParams(location.search).get('tab') || 'uiux', false);
+window.requestAnimationFrame(() => {
+  window.scrollTo(0, 0);
+  window.requestAnimationFrame(() => {
+    window.scrollTo(0, 0);
+    document.documentElement.style.removeProperty('scroll-behavior');
+  });
+});
