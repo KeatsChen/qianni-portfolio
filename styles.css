@@ -623,7 +623,7 @@ body.home-return-reveal .hero-inner {
   transform: translateX(-50%);
 }
 .nav-download:hover .nav-download-tooltip,
-.nav-download:focus-within .nav-download-tooltip {
+.nav-download-trigger:focus-visible + .nav-download-tooltip {
   opacity: 1;
   visibility: visible;
   transform: translate(-50%, 0);
