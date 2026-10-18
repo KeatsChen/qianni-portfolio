@@ -10,6 +10,11 @@
         background: #01010b;
       }
       html.home-booting body { visibility: hidden; }
+      html.home-booting body *,
+      html.home-booting body *::before,
+      html.home-booting body *::after {
+        animation-play-state: paused !important;
+      }
       html.home-booting::after {
         content: "";
         position: fixed;
