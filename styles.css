@@ -463,10 +463,10 @@ body.theme-light .portfolio-strings .theme-lamp {
   --nav-hide-progress: 0;
   position: fixed;
   z-index: 1000;
-  top: 0;
+  top: 44px;
   left: 0;
   right: 0;
-  height: 72px;
+  height: 36px;
   display: grid;
   grid-template-columns: 256fr 446fr 258fr 99fr 117fr;
   gap: 16px;
@@ -592,38 +592,42 @@ body.home-return-reveal .hero-inner {
 .nav-download.is-open .nav-download-trigger { transform: translateY(-1px); filter: brightness(1.08); box-shadow: 0 10px 28px rgba(255,16,142,.3); outline: none; }
 .nav-download-menu {
   position: absolute;
-  top: 52px;
+  top: 46px;
   right: 0;
   width: 117px;
-  padding: 6px;
+  height: 102px;
+  padding: 12px 3px;
   display: grid;
-  gap: 2px;
-  border: 1px solid rgba(255,255,255,.1);
+  gap: 6px;
+  border: 0;
   border-radius: 8px;
-  background: rgba(30,29,38,.96);
+  background: #1e1d26;
   box-shadow: 0 14px 35px rgba(0,0,0,.32);
   -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-8px) scale(.98);
+  transform: translateY(-5px) scale(.98);
   transform-origin: top right;
   transition: opacity .22s ease, visibility .22s ease, transform .32s cubic-bezier(.22,1,.36,1);
 }
 .nav-download.is-open .nav-download-menu { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
 .hero-nav .nav-download-menu a {
-  height: 40px;
-  padding: 0 9px;
+  width: 100%;
+  min-width: 0;
+  height: 36px;
+  padding: 0 17px;
   gap: 8px;
   color: #fff;
   border-radius: 5px;
   background: transparent;
   font: 500 14px/14px "PingFang SC", Inter, sans-serif;
   letter-spacing: -.28px;
+  transition: background-color .22s ease;
 }
 .hero-nav .nav-download-menu a > img { position: static; width: 16px; height: 16px; opacity: 1; transform: none; filter: none; }
 .hero-nav .nav-download-menu a:hover,
-.hero-nav .nav-download-menu a:focus-visible { color: #fff; background: rgba(255,255,255,.1); }
+.hero-nav .nav-download-menu a:focus-visible { color: #fff; background: #0a0a12; }
 .hero-nav .nav-download-menu a:hover > img,
 .hero-nav .nav-download-menu a:focus-visible > img { filter: none; transform: none; }
 .hero-nav a > img {
@@ -699,7 +703,7 @@ body.home-return-reveal .hero-inner {
 @media (max-width: 700px) {
   .hero { padding: 20px 0 56px; }
   .hero-inner { width: calc(100% - 32px); padding-top: 0; }
-  .hero-nav { height: 60px; padding: 0 18px; grid-template-columns: minmax(0, 1fr) 99px 44px; gap: 6px; }
+  .hero-nav { top: 0; height: 60px; padding: 0 18px; grid-template-columns: minmax(0, 1fr) 99px 44px; gap: 6px; }
   .hero-nav::before { inset: 7px 10px; border-radius: 14px; }
   .hero-nav > a:first-child,
   .hero-nav > a:nth-child(3),
