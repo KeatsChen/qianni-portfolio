@@ -4,8 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
-      html.home-booting { overflow: hidden; scroll-behavior: auto !important; }
+      html.home-booting {
+        overflow: hidden;
+        scroll-behavior: auto !important;
+        background: #01010b;
+      }
       html.home-booting body { visibility: hidden; }
+      html.home-booting::after {
+        content: "";
+        position: fixed;
+        z-index: 2147483647;
+        inset: 0;
+        background: #01010b;
+      }
     </style>
     <script>
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -184,7 +195,7 @@
       </section>
     </div>
     <button class="back-to-top" type="button" aria-label="回到顶部"><img src="assets/back-to-top.svg?v=2" alt="" /></button>
-  <script src="script.js?v=60"></script>
+  <script src="script.js?v=61"></script>
     <script src="soft-aurora.js?v=3"></script>
     <script src="back-to-top.js?v=6"></script>
     <script src="music.js?v=19"></script>

@@ -182,6 +182,14 @@ const forceHomeToTop = () => {
 forceHomeToTop();
 window.addEventListener('pageshow', forceHomeToTop);
 window.addEventListener('load', forceHomeToTop, { once: true });
+const concealHomeBeforeLeaving = () => {
+  const root = document.documentElement;
+  root.classList.add('home-booting');
+  root.style.scrollBehavior = 'auto';
+  window.scrollTo(0, 0);
+};
+window.addEventListener('pagehide', concealHomeBeforeLeaving);
+window.addEventListener('beforeunload', concealHomeBeforeLeaving);
 
 if (sessionStorage.getItem(portfolioLanguageSessionKey) !== '1') {
   localStorage.setItem(portfolioLanguageKey, 'en');
