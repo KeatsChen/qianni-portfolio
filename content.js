@@ -9,7 +9,6 @@ const uiuxGalleryHTML = projectGallery.innerHTML;
 const languageKey = 'qianni-portfolio-language';
 const languageSessionKey = 'qianni-portfolio-language-initialized';
 const projectTransition = document.querySelector('.project-transition');
-const projectTransitionTitle = document.querySelector('.project-transition-title');
 let projectNavigationStarted = false;
 
 const resetProjectTransition = () => {
@@ -66,16 +65,6 @@ document.addEventListener('click', (event) => {
   event.stopImmediatePropagation();
   if (projectNavigationStarted) return;
   projectNavigationStarted = true;
-  const language = document.documentElement.lang === 'zh-CN' ? 'zh' : 'en';
-  const matchingLabel = projectCard.id
-    ? projectIndex.querySelector(`.project-row[href="#${CSS.escape(projectCard.id)}"] span`)
-    : null;
-  const imageAlt = projectCard.querySelector('img')?.alt || '';
-  const projectName = matchingLabel?.dataset[language] || matchingLabel?.textContent.trim() || imageAlt
-    .replace(/\s*项目封面\s*$/u, '')
-    .replace(/\s*project cover\s*$/iu, '')
-    .trim();
-  if (projectTransitionTitle) projectTransitionTitle.textContent = projectName;
   projectTransition?.classList.add('is-active');
   projectTransition?.setAttribute('aria-hidden', 'false');
   window.requestAnimationFrame(() => {
