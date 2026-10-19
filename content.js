@@ -8,6 +8,29 @@ const uiuxIndexHTML = projectIndex.innerHTML;
 const uiuxGalleryHTML = projectGallery.innerHTML;
 const languageKey = 'qianni-portfolio-language';
 const languageSessionKey = 'qianni-portfolio-language-initialized';
+let deferredImageObserver = null;
+
+const loadDeferredGalleryImages = () => {
+  deferredImageObserver?.disconnect();
+  const images = [...projectGallery.querySelectorAll('img[data-src]')];
+  if (!images.length) return;
+  const load = (image) => {
+    image.src = image.dataset.src;
+    image.removeAttribute('data-src');
+  };
+  if (!('IntersectionObserver' in window)) {
+    images.forEach(load);
+    return;
+  }
+  deferredImageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      load(entry.target);
+      observer.unobserve(entry.target);
+    });
+  }, { rootMargin: '100px 0px' });
+  images.forEach((image) => deferredImageObserver.observe(image));
+};
 
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 window.scrollTo(0, 0);
@@ -29,6 +52,7 @@ document.addEventListener('click', (event) => {
   const projectCard = event.target.closest('.gallery-card[href]');
   if (!projectCard) return;
   event.preventDefault();
+  event.stopImmediatePropagation();
   window.location.assign(projectCard.href);
 });
 
@@ -666,6 +690,7 @@ const switchTab = (tab, updateHistory = true) => {
     tabAnimationTimer = window.setTimeout(() => contentPage.classList.remove('tab-changing'), 760);
   }
   applyPortfolioLanguage(localStorage.getItem(languageKey) || 'en');
+  loadDeferredGalleryImages();
   setupGallery();
   window.scrollTo({ top: 0, behavior: 'auto' });
   if (updateHistory) {
