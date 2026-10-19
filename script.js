@@ -182,6 +182,7 @@ const releaseHomeAtTop = () => {
       window.scrollTo(0, 0);
       document.documentElement.style.removeProperty('scroll-behavior');
       document.documentElement.classList.remove('home-booting');
+      window.dispatchEvent(new Event('homebootready'));
     });
   });
 };
@@ -203,6 +204,14 @@ const concealHomeBeforeLeaving = () => {
 };
 window.addEventListener('pagehide', concealHomeBeforeLeaving);
 window.addEventListener('beforeunload', concealHomeBeforeLeaving);
+
+const runAfterHomeBoot = (callback) => {
+  if (!document.documentElement.classList.contains('home-booting')) {
+    callback();
+    return;
+  }
+  window.addEventListener('homebootready', callback, { once: true });
+};
 
 if (sessionStorage.getItem(portfolioLanguageSessionKey) !== '1') {
   localStorage.setItem(portfolioLanguageKey, 'en');
@@ -454,7 +463,7 @@ function initializeProjectDeck() {
   visibilityObserver.observe(deck);
 }
 
-initializeProjectDeck();
+runAfterHomeBoot(initializeProjectDeck);
 
 const worksBlurObserver = 'IntersectionObserver' in window ? new IntersectionObserver((entries, observer) => {
   entries.forEach((entry) => {
@@ -487,7 +496,7 @@ function prepareWorksBlurText() {
     if (worksBlurObserver) worksBlurObserver.unobserve(element);
     element.classList.remove('is-blur-visible');
     element.replaceChildren(fragment);
-    if (worksBlurObserver) worksBlurObserver.observe(element);
+    if (worksBlurObserver) runAfterHomeBoot(() => worksBlurObserver.observe(element));
     else element.classList.add('is-blur-visible');
   });
 }
@@ -733,7 +742,7 @@ if (capabilitiesShowcase) {
         observer.unobserve(entry.target);
       });
     }, { threshold: .5, rootMargin: '0px' });
-    capabilitiesObserver.observe(capabilitiesShowcase);
+    runAfterHomeBoot(() => capabilitiesObserver.observe(capabilitiesShowcase));
   } else {
     capabilitiesShowcase.classList.add('is-dropping');
   }
@@ -769,9 +778,11 @@ if ('IntersectionObserver' in window) {
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
 
-  window.requestAnimationFrame(() => {
+  runAfterHomeBoot(() => {
     window.requestAnimationFrame(() => {
-      revealItems.forEach((element) => revealObserver.observe(element));
+      window.requestAnimationFrame(() => {
+        revealItems.forEach((element) => revealObserver.observe(element));
+      });
     });
   });
 } else {
