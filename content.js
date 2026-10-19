@@ -15,12 +15,6 @@ const resetProjectTransition = () => {
   projectNavigationStarted = false;
   projectTransition?.classList.remove('is-active');
   projectTransition?.setAttribute('aria-hidden', 'true');
-  if (projectTransition) {
-    projectTransition.style.transition = 'none';
-    window.requestAnimationFrame(() => {
-      projectTransition.style.removeProperty('transition');
-    });
-  }
 };
 window.addEventListener('pagehide', resetProjectTransition);
 window.addEventListener('pageshow', resetProjectTransition);
@@ -75,17 +69,7 @@ document.addEventListener('click', (event) => {
   projectTransition?.setAttribute('aria-hidden', 'false');
   window.requestAnimationFrame(() => {
     window.requestAnimationFrame(() => {
-      window.setTimeout(() => {
-        // Keep the painted loader on screen during forward navigation, but
-        // store an uncovered Work List in the back-forward cache. Otherwise
-        // the loader is briefly restored when returning from a detail page.
-        if (projectTransition) {
-          projectTransition.style.transition = 'none';
-          projectTransition.classList.remove('is-active');
-          projectTransition.setAttribute('aria-hidden', 'true');
-        }
-        window.location.assign(projectCard.href);
-      }, 120);
+      window.setTimeout(() => window.location.assign(projectCard.href), 120);
     });
   });
 });

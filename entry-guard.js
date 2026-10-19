@@ -19,6 +19,10 @@ if (window.self !== window.top && !location.pathname.endsWith('/content.html')) 
     if (!cameFromWorkList) return;
     event.preventDefault();
     event.stopImmediatePropagation();
+    // A detail page can still be fetching its large case-study images when
+    // the user goes back. Cancel those requests so history traversal is not
+    // held up waiting for the current document to finish loading.
+    window.stop();
     history.back();
   }, true);
 }
