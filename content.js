@@ -12,6 +12,8 @@ const projectTransition = document.querySelector('.project-transition');
 const listSkeleton = document.querySelector('.list-skeleton');
 const listSkeletonSessionKey = 'qianni-work-list-skeleton-seen';
 let projectNavigationStarted = false;
+let projectDetailFrame = null;
+let activeProjectCard = null;
 
 const hideListSkeleton = () => {
   if (!listSkeleton || listSkeleton.classList.contains('is-hidden')) return;
@@ -95,13 +97,37 @@ document.addEventListener('click', (event) => {
   event.stopImmediatePropagation();
   if (projectNavigationStarted) return;
   projectNavigationStarted = true;
+  activeProjectCard = projectCard;
   projectTransition?.classList.add('is-active');
   projectTransition?.setAttribute('aria-hidden', 'false');
   window.requestAnimationFrame(() => {
     window.requestAnimationFrame(() => {
-      window.setTimeout(() => window.location.assign(projectCard.href), 120);
+      window.setTimeout(() => {
+        projectDetailFrame = document.createElement('iframe');
+        projectDetailFrame.className = 'project-detail-frame';
+        projectDetailFrame.title = projectCard.getAttribute('aria-label') || '项目详情';
+        projectDetailFrame.src = projectCard.href;
+        document.body.appendChild(projectDetailFrame);
+      }, 120);
     });
   });
+});
+
+window.addEventListener('message', (event) => {
+  if (event.origin !== location.origin || !projectDetailFrame || event.source !== projectDetailFrame.contentWindow) return;
+  if (event.data?.type === 'portfolio-page-context' && event.data.page === 'detail') {
+    projectDetailFrame.classList.add('is-visible');
+    resetProjectTransition();
+    return;
+  }
+  if (event.data?.type !== 'close-project-detail') return;
+  const frame = projectDetailFrame;
+  projectDetailFrame = null;
+  try { frame.contentWindow.stop(); } catch (_) {}
+  frame.remove();
+  resetProjectTransition();
+  activeProjectCard?.focus({ preventScroll: true });
+  activeProjectCard = null;
 });
 
 if (sessionStorage.getItem(languageSessionKey) !== '1') {

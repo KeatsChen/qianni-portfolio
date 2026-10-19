@@ -12,6 +12,13 @@ if (window.self !== window.top && !location.pathname.endsWith('/content.html')) 
   document.addEventListener('click', (event) => {
     const backLink = event.target.closest('.back-button, .case-back');
     if (!backLink) return;
+    if (window.frameElement?.classList.contains('project-detail-frame')) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      window.stop();
+      window.parent.postMessage({ type: 'close-project-detail' }, location.origin);
+      return;
+    }
     let cameFromWorkList = false;
     try {
       cameFromWorkList = new URL(document.referrer).pathname.endsWith('/content.html');
