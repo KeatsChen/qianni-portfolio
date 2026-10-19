@@ -11,6 +11,14 @@ const languageSessionKey = 'qianni-portfolio-language-initialized';
 const projectTransition = document.querySelector('.project-transition');
 const projectTransitionTitle = document.querySelector('.project-transition-title');
 let projectNavigationStarted = false;
+
+const resetProjectTransition = () => {
+  projectNavigationStarted = false;
+  projectTransition?.classList.remove('is-active');
+  projectTransition?.setAttribute('aria-hidden', 'true');
+};
+window.addEventListener('pagehide', resetProjectTransition);
+window.addEventListener('pageshow', resetProjectTransition);
 let deferredImageObserver = null;
 
 const loadDeferredGalleryImages = () => {
