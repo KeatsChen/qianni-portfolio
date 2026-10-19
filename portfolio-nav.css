@@ -8,7 +8,7 @@
   right: 0;
   height: 72px;
   display: grid;
-  grid-template-columns: 282fr 489fr 282fr 99fr 24fr;
+  grid-template-columns: 292fr 499fr 292fr 109fr;
   gap: 16px;
   align-items: center;
   padding: 0 100px;

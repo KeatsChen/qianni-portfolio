@@ -21,7 +21,8 @@ let musicNoteButton = document.querySelector('.music-note');
 if (
   !musicNoteButton &&
   !document.body.classList.contains('home-page') &&
-  !document.body.classList.contains('no-music-control')
+  !document.body.classList.contains('no-music-control') &&
+  !document.body.classList.contains('has-site-nav')
 ) {
   const standaloneStyle = document.createElement('style');
   standaloneStyle.textContent = `
