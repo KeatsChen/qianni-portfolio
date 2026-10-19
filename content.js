@@ -9,7 +9,37 @@ const uiuxGalleryHTML = projectGallery.innerHTML;
 const languageKey = 'qianni-portfolio-language';
 const languageSessionKey = 'qianni-portfolio-language-initialized';
 const projectTransition = document.querySelector('.project-transition');
+const listSkeleton = document.querySelector('.list-skeleton');
+const listSkeletonSessionKey = 'qianni-work-list-skeleton-seen';
 let projectNavigationStarted = false;
+
+const hideListSkeleton = () => {
+  if (!listSkeleton || listSkeleton.classList.contains('is-hidden')) return;
+  listSkeleton.classList.add('is-hidden');
+  listSkeleton.setAttribute('aria-hidden', 'true');
+  try { sessionStorage.setItem(listSkeletonSessionKey, '1'); } catch (_) {}
+};
+
+let listSkeletonSeen = false;
+try { listSkeletonSeen = sessionStorage.getItem(listSkeletonSessionKey) === '1'; } catch (_) {}
+if (listSkeletonSeen) {
+  listSkeleton?.setAttribute('aria-hidden', 'true');
+} else if (listSkeleton) {
+  const skeletonStartedAt = performance.now();
+  const eagerCovers = [...document.querySelectorAll('.project-gallery img[src]')].slice(0, 2);
+  const coverReady = eagerCovers.map((image) => {
+    if (image.complete && image.naturalWidth > 0) return Promise.resolve();
+    return new Promise((resolve) => {
+      image.addEventListener('load', resolve, { once: true });
+      image.addEventListener('error', resolve, { once: true });
+    });
+  });
+  Promise.all(coverReady).then(() => {
+    const remaining = Math.max(0, 420 - (performance.now() - skeletonStartedAt));
+    window.setTimeout(hideListSkeleton, remaining);
+  });
+  window.setTimeout(hideListSkeleton, 1800);
+}
 
 const resetProjectTransition = () => {
   projectNavigationStarted = false;

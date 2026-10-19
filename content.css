@@ -3,6 +3,17 @@
 html { scroll-behavior: smooth; background: var(--bg); }
 body { margin: 0; color: #fff; background: var(--bg); font-family: "PingFang SC", "Helvetica Neue", Arial, sans-serif; }
 a { color: inherit; }
+.list-skeleton { position:fixed; z-index:900; inset:98px 0 0; display:grid; grid-template-columns:minmax(420px,40.28vw) minmax(0,1fr); overflow:hidden; background:var(--bg); opacity:1; visibility:visible; transition:opacity .32s ease,visibility .32s ease; }
+.list-skeleton-seen .list-skeleton { display:none; }
+.list-skeleton.is-hidden { opacity:0; visibility:hidden; pointer-events:none; }
+.list-skeleton-index { position:relative; height:312px; margin-top:30px; }
+.list-skeleton-back { position:absolute; left:48px; top:0; width:51px; height:51px; border-radius:50%; background:rgba(255,255,255,.1); }
+.list-skeleton-rows { position:absolute; left:116px; top:0; width:410px; padding-top:27px; border-top:1px solid var(--line); }
+.list-skeleton-rows i { position:relative; display:block; height:24px; margin-bottom:24px; overflow:hidden; border-radius:43px; background:rgba(255,255,255,.08); }
+.list-skeleton-gallery { width:calc(100% - 44px); max-width:816px; margin:30px 44px 0 0; display:flex; flex-direction:column; align-items:flex-end; gap:31.5px; }
+.list-skeleton-gallery i { position:relative; display:block; width:100%; aspect-ratio:816/447; overflow:hidden; border-radius:2px; background:rgba(255,255,255,.08); }
+.list-skeleton-back::after,.list-skeleton-rows i::after,.list-skeleton-gallery i::after { content:""; position:absolute; inset:0; background:linear-gradient(105deg,transparent 25%,rgba(255,255,255,.11) 42%,rgba(255,255,255,.2) 50%,rgba(255,255,255,.11) 58%,transparent 75%); transform:translateX(-100%); animation:list-skeleton-shimmer 1.35s ease-in-out infinite; }
+@keyframes list-skeleton-shimmer { to { transform:translateX(100%); } }
 .project-transition { position: fixed; z-index: 10000; inset: 0; display: grid; place-items: center; padding: 32px; visibility: hidden; opacity: 0; pointer-events: none; background: #01010b; transition: opacity .28s ease, visibility .28s ease; }
 .project-transition.is-active { visibility: visible; opacity: 1; pointer-events: auto; }
 .project-transition-inner { display: grid; place-items: center; }
@@ -351,6 +362,10 @@ body.secondary-entry.tab-has-switched .content-page.tab-changing .project-index 
   .work-type-tabs { gap: 8px; }
   .work-type-tabs button { padding-inline: 7px; font-size: 12px; letter-spacing: -.18px; white-space: nowrap; }
   .content-page { grid-template-columns: 370px minmax(0,1fr); }
+  .list-skeleton { grid-template-columns:370px minmax(0,1fr); }
+  .list-skeleton-back { left:28px; }
+  .list-skeleton-rows { left:92px; width:250px; }
+  .list-skeleton-gallery { width:calc(100% - 28px); margin-right:28px; }
   .back-button { left: 28px; }
   .project-nav { left: 92px; width: 250px; }
   .project-row { font-size: 14px; grid-template-columns: 44px 1fr; padding-left: 9px; }
@@ -371,6 +386,12 @@ body.secondary-entry.tab-has-switched .content-page.tab-changing .project-index 
   .work-type-language { grid-column: 2; grid-row: 1; width: 82px; padding-inline: 7px; }
   .work-type-music { justify-self: end; }
   .content-page { display: block; }
+  .list-skeleton { inset:56px 0 0; display:block; overflow-y:auto; }
+  .list-skeleton-index { height:310px; margin-top:20px; padding:28px 20px 0; }
+  .list-skeleton-back { left:20px; top:28px; }
+  .list-skeleton-rows { left:88px; top:28px; width:calc(100% - 108px); padding-top:12px; }
+  .list-skeleton-rows i:nth-child(n+5) { display:none; }
+  .list-skeleton-gallery { width:calc(100% - 32px); margin:16px auto 46px; gap:28px; }
   .project-index { position: relative; top: auto; height: auto; min-height: 310px; margin-top: 76px; padding: 28px 20px 0; }
   .back-button { position: absolute; left: 20px; top: 28px; }
   .project-nav { position: relative; left: 68px; top: 28px; width: calc(100% - 68px); padding-top: 12px; }
@@ -403,6 +424,7 @@ body.secondary-entry.tab-has-switched .content-page.tab-changing .project-index 
   .illustration-drift-plane { margin-top: 26px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .work-type-header, .work-type-header > * { transition: none; animation: none; } .gallery-card.reveal, .gallery-card.reveal.deferred-reveal { visibility: visible; opacity: 1; transform: none; transition: none; } .illustration-drift-plane,.illustration-drift-track { will-change: auto; } }
+@media (prefers-reduced-motion: reduce) { .list-skeleton-back::after,.list-skeleton-rows i::after,.list-skeleton-gallery i::after { animation:none; } }
 @media (prefers-reduced-motion: reduce) { .project-transition { transition: none; } .project-transition-grid i { animation: none; opacity: .65; transform: none; } }
 
 /* Graphic Design — Figma 1-6, two-screen stepped reveal */

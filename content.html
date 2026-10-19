@@ -7,11 +7,16 @@
       if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
       document.documentElement.style.scrollBehavior = 'auto';
       window.scrollTo(0, 0);
+      try {
+        if (sessionStorage.getItem('qianni-work-list-skeleton-seen') === '1') {
+          document.documentElement.classList.add('list-skeleton-seen');
+        }
+      } catch (_) {}
     </script>
     <script src="entry-guard.js?v=4"></script>
     <meta name="description" content="钟倩妮的 UI/UX 设计作品目录" />
     <title>UI/UX Design — Qianni Zhong</title>
-  <link rel="stylesheet" href="content.css?v=128" />
+  <link rel="stylesheet" href="content.css?v=130" />
     <link rel="stylesheet" href="back-to-top.css?v=11" />
     <link rel="stylesheet" href="secondary-entry.css?v=2" />
   </head>
@@ -26,6 +31,17 @@
       </div>
       <div class="work-type-language" role="group" aria-label="Language"><button type="button" data-lang="zh">中</button><button type="button" data-lang="en">En</button></div>
     </nav>
+    <div class="list-skeleton" role="status" aria-label="正在加载作品列表">
+      <div class="list-skeleton-index" aria-hidden="true">
+        <span class="list-skeleton-back"></span>
+        <div class="list-skeleton-rows">
+          <i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </div>
+      <div class="list-skeleton-gallery" aria-hidden="true">
+        <i></i><i></i>
+      </div>
+    </div>
     <main class="content-page">
       <aside class="project-index">
         <a class="back-button" href="index.html?v=251&amp;from=list" aria-label="返回作品集首页首屏">
@@ -78,7 +94,7 @@
     </div>
     <button class="back-to-top" type="button" aria-label="回到顶部"><img src="assets/back-to-top.svg?v=2" alt="" /></button>
     <script src="back-to-top.js?v=6"></script>
-    <script src="content.js?v=134"></script>
+    <script src="content.js?v=136"></script>
     <script src="music.js?v=19"></script>
   </body>
 </html>
