@@ -13,19 +13,6 @@ if (isEmbeddedPortfolioPage) {
       event.preventDefault();
       window.parent.postMessage({ type: 'close-portfolio-page' }, portfolioMessageOrigin);
     });
-  } else {
-    document.addEventListener('click', (event) => {
-      const backLink = event.target.closest('.back-button, .case-back');
-      if (!backLink) return;
-      let cameFromWorkList = false;
-      try {
-        cameFromWorkList = new URL(document.referrer).pathname.endsWith('/content.html');
-      } catch (_) {}
-      if (!cameFromWorkList) return;
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      history.back();
-    }, true);
   }
 } else {
 const musicStateKey = 'qianni-portfolio-music';
