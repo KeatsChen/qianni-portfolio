@@ -131,10 +131,10 @@ a { color: inherit; }
 .project-nav { position: absolute; z-index: 4; top: 0; left: 116px; width: 410px; padding-top: 27px; border-top: 1px solid var(--line); isolation: isolate; scrollbar-width: none; }
 .project-nav::-webkit-scrollbar { display: none; }
 .project-selection { display: none; }
-.project-row { position: relative; z-index: 1; height: 24px; margin-bottom: 24px; display: grid; grid-template-columns: 62px minmax(0, 1fr); align-items: center; padding: 0 10px; color: #fff; border-radius: 43px; background: rgba(255,255,255,.1); text-decoration: none; font-size: 14px; line-height: 16px; letter-spacing: -.28px; transition: color .25s cubic-bezier(.55,0,.2,1), background-color .25s cubic-bezier(.55,0,.2,1); }
+.project-row { position: relative; z-index: 1; height: 24px; margin-bottom: 24px; display: grid; grid-template-columns: 62px minmax(0, 1fr); align-items: center; overflow: hidden; padding: 0 10px; color: #fff; border-radius: 43px; background: rgba(255,255,255,.1); text-decoration: none; font-size: 14px; line-height: 16px; letter-spacing: -.28px; transition: color .25s cubic-bezier(.55,0,.2,1), background-color .25s cubic-bezier(.55,0,.2,1); }
 .project-row:last-child { margin-bottom: 0; }
 .project-row time { color: #838390; letter-spacing: .14px; transition: color .25s cubic-bezier(.55,0,.2,1); }
-.project-row span { justify-self: end; white-space: nowrap; transition: transform .5s cubic-bezier(.22,1,.36,1); }
+.project-row span { min-width: 0; max-width: 100%; justify-self: end; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; transition: transform .5s cubic-bezier(.22,1,.36,1); }
 .project-arrow { position: absolute; right: 6px; top: 50%; width: 14px; height: 14px; display: block; opacity: 0; transform: translate(-5px,-50%); transition: opacity .35s cubic-bezier(.22,1,.36,1), transform .5s cubic-bezier(.22,1,.36,1), filter .25s cubic-bezier(.55,0,.2,1); }
 .project-row.selected { color: #01010b; background: #f1f1f1; }
 .project-row.selected time { color: rgba(1,1,11,.55); }
@@ -156,6 +156,14 @@ a { color: inherit; }
   .project-row:hover .project-arrow { opacity: 1; filter: brightness(0); transform: translate(0,-50%); }
 }
 .project-gallery { position: relative; z-index: 6; width: calc(100% - 44px); max-width: 816px; margin: 128px 44px 0 0; padding-bottom: max(74px, calc(100vh - 607px)); display: flex; flex-direction: column; align-items: flex-end; gap: 31.5px; pointer-events: auto; }
+@media (min-width: 1101px) and (max-width: 1366px) {
+  .content-page {
+    grid-template-columns: 560px minmax(0, 1fr);
+  }
+  .list-skeleton {
+    grid-template-columns: 560px minmax(0, 1fr);
+  }
+}
 .content-page.category-view .project-index,
 .content-page.category-view .project-gallery { margin-top: 148px; }
 .content-page.category-view .project-gallery { gap: 29px; }
@@ -380,6 +388,37 @@ body.secondary-entry.tab-has-switched .content-page.tab-changing .project-index 
   .content-page.motion-view .project-index,
   .content-page.motion-view .project-gallery { width: calc(100% - 56px); }
 }
+@media (min-width: 761px) and (max-width: 1100px) {
+  .content-page:not(.category-view) {
+    display: block;
+  }
+  .content-page:not(.category-view) .project-index {
+    position: relative;
+    top: auto;
+    width: 100%;
+    height: auto;
+    margin-top: 112px;
+    padding: 0 28px 40px;
+  }
+  .content-page:not(.category-view) .project-nav {
+    position: relative;
+    top: 0;
+    left: 64px;
+    right: auto;
+    width: calc(100% - 64px);
+  }
+  .content-page:not(.category-view) .project-gallery {
+    width: calc(100% - 56px);
+    max-width: none;
+    margin: 28px auto 64px;
+    padding-bottom: 0;
+    align-items: stretch;
+  }
+  .content-page:not(.category-view) .gallery-card {
+    width: 100%;
+    opacity: 1;
+  }
+}
 @media (max-width: 760px) {
   .work-type-header { top: 12px; left: 12px; right: 12px; height: 32px; grid-template-columns: minmax(0,1fr) 82px; gap: 8px; }
   .work-type-tabs { grid-column: 1; grid-row: 1; grid-template-columns: repeat(5, minmax(112px,1fr)); gap: 6px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; }
@@ -394,10 +433,10 @@ body.secondary-entry.tab-has-switched .content-page.tab-changing .project-index 
   .list-skeleton-rows { left:88px; top:28px; width:calc(100% - 108px); padding-top:12px; }
   .list-skeleton-rows i:nth-child(n+5) { display:none; }
   .list-skeleton-gallery { width:calc(100% - 32px); margin:16px auto 46px; gap:28px; }
-  .project-index { position: relative; top: auto; height: auto; min-height: 310px; margin-top: 76px; padding: 28px 20px 0; }
+  .project-index { position: relative; top: auto; height: auto; min-height: 0; margin-top: 76px; padding: 28px 20px 40px; }
   .back-button { position: absolute; left: 20px; top: 28px; }
   .project-nav { position: relative; left: 68px; top: 28px; width: calc(100% - 68px); padding-top: 12px; }
-  .project-row:nth-child(n+5) { display: none; }
+  .project-row:nth-child(n+5) { display: grid; }
   .project-row { font-size: 10px; }
   .project-gallery { width: calc(100% - 32px); margin: 16px auto 46px; padding-bottom: 0; gap: 28px; }
   .content-page.category-view .project-index { margin-top: 92px; }
@@ -1250,4 +1289,59 @@ body:has(.content-page.illustration-view) { overflow-x:hidden; overflow-y:auto; 
 @media(prefers-reduced-motion:reduce){
   .personal-tutorial-card::before,
   .personal-tutorial-card::after { transition:none; }
+}
+
+/* Tablet layout for the three visual-work tabs. Keep all copy and media in one
+   responsive content rail so the fixed category title never overlaps them. */
+@media (min-width: 761px) and (max-width: 1366px) {
+  .graphic-editorial-layout,
+  .illustration-editorial-layout {
+    padding: 230px 0 96px;
+  }
+
+  .graphic-editorial-copy,
+  .illustration-editorial-copy,
+  .graphic-scroll-region,
+  .illustration-scroll-region {
+    position: relative;
+    inset: auto;
+    width: 52.5%;
+    max-width: none;
+    margin-right: 0;
+    margin-left: 42.5%;
+  }
+
+  .graphic-editorial-copy,
+  .illustration-editorial-copy {
+    height: auto;
+    min-height: 161px;
+  }
+
+  .graphic-poster-grid,
+  .illustration-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(14px, 2.2vw, 28px);
+  }
+
+  .motion-showcase {
+    padding: 230px 0 96px;
+  }
+
+  .motion-intro,
+  .motion-showcase-list {
+    position: relative;
+    inset: auto;
+    width: 52.5%;
+    max-width: none;
+    margin-right: 0;
+    margin-left: 42.5%;
+    transform: none;
+  }
+
+  .motion-intro {
+    height: auto;
+    min-height: 0;
+    margin-bottom: 44px;
+    padding: 0;
+  }
 }

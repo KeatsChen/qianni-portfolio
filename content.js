@@ -668,7 +668,7 @@ const setupGallery = () => {
   let ticking = false;
   const update = () => {
     ticking = false;
-    if (!matchMedia('(min-width: 761px)').matches) { cards.forEach((card) => card.style.removeProperty('--gallery-scale')); return; }
+    if (!matchMedia('(min-width: 1101px)').matches) { cards.forEach((card) => card.style.removeProperty('--gallery-scale')); return; }
     const focusLine = innerHeight * .2;
     let nearest = null;
     let nearestDistance = Infinity;
@@ -688,7 +688,11 @@ const setupGallery = () => {
   const requestUpdate = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
   const ensureSecondCardPeek = () => {
     const secondCard = cards[1];
-    if (!secondCard || !matchMedia('(min-width: 761px)').matches) return;
+    if (!secondCard) return;
+    if (!matchMedia('(min-width: 1101px)').matches) {
+      secondCard.style.marginTop = '0px';
+      return;
+    }
     secondCard.style.marginTop = '0px';
     const desiredTop = innerHeight - 28;
     const naturalTop = secondCard.getBoundingClientRect().top;
