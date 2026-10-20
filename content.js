@@ -271,7 +271,9 @@ const illustrationWorks = [
   { file: 8, credit: '临摹自ins@leimelendres' }
 ].map((work, index) => ({
   ...work,
-  src: `assets/illustration/direct/illustration-${String(work.file).padStart(2, '0')}.png?v=2`,
+  src: index < 2
+    ? `assets/illustration/direct/illustration-${String(work.file).padStart(2, '0')}.png?v=2`
+    : `assets/illustration/custom/illustration-${String(index + 1).padStart(2, '0')}.png?v=1`,
   alt: `Illustration work ${index + 1}`
 }));
 const illustrationGrid = () => `<section class="illustration-editorial-layout" aria-label="Illustration works"><aside class="illustration-editorial-copy"><p data-en="Playful characters and visual stories shaped through line, form, and imagination." data-zh="以线条、形态与想象，描绘有趣的角色和视觉故事。">Playful characters and visual stories shaped through line, form, and imagination.</p><dl><div><dt data-en="Illustration" data-zh="插画">Illustration</dt></div><div><dt data-en="Visual Storytelling" data-zh="视觉叙事">Visual Storytelling</dt></div><div class="category-date"><span aria-hidden="true">/</span><dt>2026</dt></div></dl></aside><div class="illustration-scroll-region" tabindex="0" aria-label="Scrollable Illustration gallery"><div class="illustration-gallery">${illustrationWorks.map(({ src, alt, credit }) => `<button class="illustration-card" type="button" data-poster-src="${src}" aria-label="View ${alt}"><img src="${src}" alt="${alt}" /><span>${credit}</span></button>`).join('')}</div><footer class="illustration-scroll-copyright" aria-hidden="true">© 2026 Designed by Qianni Zhong. All Rights Reserved.</footer></div></section><div class="graphic-lightbox illustration-lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Illustration preview"><button class="graphic-lightbox-backdrop" type="button" aria-label="Close illustration preview"></button><figure><img src="" alt="Selected illustration" /></figure></div>`;

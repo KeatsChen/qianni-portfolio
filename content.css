@@ -1038,6 +1038,50 @@ body:has(.content-page.illustration-view) { overflow-x:hidden; overflow-y:auto; 
   .illustration-card { border-radius:6px; }
 }
 
+/* Illustration — exact desktop geometry from Figma frame 1-8 (4526:1807). */
+@media(min-width:1001px){
+  .illustration-editorial-layout{
+    min-height:3071px;
+    padding:156px 0 116px;
+  }
+  .illustration-editorial-copy{
+    position:fixed;
+    z-index:53;
+    top:220px;
+    left:max(126px,calc((100vw - 1440px)/2 + 126px));
+    width:405px;
+    height:auto;
+    margin:0;
+  }
+  .illustration-editorial-copy>p{
+    font-size:20px;
+    font-weight:500;
+    line-height:29px;
+    letter-spacing:-.4px;
+  }
+  .illustration-editorial-copy dl{
+    margin-top:31px;
+    grid-template-columns:164px 143px 54px auto;
+    font-size:14px;
+    line-height:29px;
+    letter-spacing:-.28px;
+  }
+  .illustration-scroll-region{
+    width:656.591px;
+    margin:0 0 0 max(638.705px,calc((100% - 1440px)/2 + 638.705px));
+  }
+  .illustration-gallery{
+    grid-template-columns:repeat(2,312.761px);
+    column-gap:31.069px;
+    row-gap:31.069px;
+  }
+  .illustration-card{
+    width:312.761px;
+    height:424.609px;
+    aspect-ratio:auto;
+  }
+}
+
 /* Personal Space — Figma 1-9, frame 4587:3472 */
 .content-page.personal-view .project-index { display:none; }
 .content-page.personal-view .project-gallery { width:100%; max-width:none; margin:0; padding:0; }
