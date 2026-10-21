@@ -227,12 +227,14 @@ html[lang="zh-CN"] .intro p > span + span { margin-top: 8px; }
   .card-five:hover .personal-layer:nth-child(6) { animation-delay: .2s; animation-duration: 4.2s; }
 }
 .profile-details { width: min(1240px, calc(100% - 72px)); margin: 0 auto; padding: 136px 0 0; color: #fff; background: var(--ink); }
-.detail-row { display: grid; grid-template-columns: 356px 1fr; column-gap: 35px; border-top: 1px solid var(--home-divider); }
+.detail-row { display: grid; grid-template-columns: 260px 1fr; column-gap: 35px; border-top: 1px solid var(--home-divider); }
 .detail-row h2 { margin: 0; padding-top: 26px; color: #fff; font-size: 28px; letter-spacing: -.56px; }
-.experience-list article { height: 87px; display: grid; grid-template-columns: minmax(0, 1fr) 110px 90px; align-items: center; gap: 0; border-bottom: 1px solid var(--home-divider); }
+.experience-list article { height: 87px; display: grid; grid-template-columns: minmax(0, 1fr) max-content 90px; align-items: center; column-gap: 32px; border-bottom: 1px solid var(--home-divider); }
 .experience-list article:last-child { border-bottom: 0; }
 .experience-list p { margin: 0; padding-right: 20px; color: #fff; font-size: 16px; line-height: 1.4; letter-spacing: -.32px; }
 .experience-list span, .experience-list time { color: #696973; font-size: 16px; font-weight: 500; line-height: 1.4; letter-spacing: -.32px; }
+.experience-list span { white-space: nowrap; }
+.experience-list time { text-align: right; }
 .compact-row { min-height: 117px; }
 .compact-row > p { margin: 0; align-self: center; color: #fff; font-size: 16px; line-height: 1.4; letter-spacing: -.32px; }
 .connect-row { min-height: 147px; align-items: center; }
