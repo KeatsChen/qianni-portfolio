@@ -57,7 +57,8 @@ const loadDeferredGalleryImages = () => {
   const images = [...projectGallery.querySelectorAll('img[data-src]')];
   if (!images.length) return;
   const load = (image) => {
-    image.src = image.dataset.src;
+    const useMobileAsset = matchMedia('(max-width: 560px)').matches && image.dataset.mobileSrc;
+    image.src = useMobileAsset || image.dataset.src;
     image.removeAttribute('data-src');
   };
   if (!('IntersectionObserver' in window)) {

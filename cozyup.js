@@ -28,4 +28,10 @@
   }, { threshold: 0.09, rootMargin: '0px 0px -7% 0px' });
 
   observedItems.forEach((item) => observer.observe(item));
+
+  // Mobile browsers may delay the hero image or its observer callback.
+  // Keep the reveal, but never leave the image permanently transparent.
+  if (matchMedia('(max-width: 560px)').matches) {
+    window.setTimeout(showHeroImage, 2200);
+  }
 })();

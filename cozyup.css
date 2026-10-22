@@ -16,11 +16,11 @@
   .case-heading h1{position:absolute;left:31px;top:0;margin:0;font-size:20px;line-height:28px;letter-spacing:-.4px;white-space:nowrap}
   .heading-meta{display:none}
   .case-statement{position:absolute;left:15px;top:116px;width:344px;margin:0;font-size:20.137px;line-height:26.849px;letter-spacing:-.4px}
-  .case-facts{position:absolute;left:16px;top:217px;margin:0;display:flex;gap:50px;font-size:12px;line-height:17px;letter-spacing:0}
-  .case-facts div{min-width:0;width:auto}
-  .case-facts div:nth-child(2){width:91px}
-  .case-facts div:nth-child(3){width:105px}
+  .case-facts{position:absolute;left:16px;top:217px;width:343px;margin:0;display:grid;grid-template-columns:74px 91px 1fr;gap:21px;font-size:12px;line-height:17px;letter-spacing:0}
+  .case-facts div,.case-facts div:nth-child(2),.case-facts div:nth-child(3){min-width:0;width:auto;display:block}
+  .case-facts dt,.case-facts dd{overflow-wrap:anywhere}
   .landing-page{position:absolute;left:16px;top:296px;width:343px;height:881.385px;margin:0;border-radius:4.245px;transform:none!important}
+  .landing-page picture{display:block;width:100%;height:100%}
   .landing-page img{width:100%;height:100%;object-fit:cover}
 
   .design-guidelines{position:relative;height:626px;padding:0;background:#fff}
