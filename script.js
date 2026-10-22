@@ -56,20 +56,22 @@ function initMobileNavigation() {
   const mobileQuery = window.matchMedia('(max-width: 560px)');
   navigation.inert = true;
 
-  const setOpen = (open, restoreFocus = false) => {
+  const setOpen = (open, restoreFocus = false, focusClose = false) => {
     navigation.classList.toggle('is-open', open);
     navigation.setAttribute('aria-hidden', String(!open));
     trigger.setAttribute('aria-expanded', String(open));
     document.body.classList.toggle('mobile-navigation-open', open);
     navigation.inert = !open;
-    if (open) closeButton?.focus();
+    if (open && focusClose) closeButton?.focus();
     else if (restoreFocus) trigger.focus();
   };
 
   trigger.addEventListener('click', (event) => {
     if (!mobileQuery.matches) return;
     event.preventDefault();
-    setOpen(true);
+    // Touch browsers can draw a large focus rectangle around programmatically
+    // focused buttons. Only move focus for keyboard activation.
+    setOpen(true, false, event.detail === 0);
   });
   closeButton?.addEventListener('click', () => setOpen(false, true));
   links.forEach((link) => link.addEventListener('click', () => setOpen(false)));

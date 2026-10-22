@@ -1418,6 +1418,50 @@ body:has(.content-page.illustration-view) { overflow-x:hidden; overflow-y:auto; 
     gap: 4px;
   }
 
+  .content-page.graphic-view .project-index,
+  .content-page.illustration-view .project-index {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 183px;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    transform: none;
+  }
+  .content-page.graphic-view .back-button,
+  .content-page.illustration-view .back-button {
+    position: absolute;
+    left: 16px;
+    top: 62.5px;
+    width: 24px;
+    height: 24px;
+    transform: none;
+  }
+  .content-page.graphic-view .back-button:hover,
+  .content-page.illustration-view .back-button:hover {
+    transform: none;
+  }
+  .content-page.graphic-view .back-button img,
+  .content-page.illustration-view .back-button img {
+    width: 24px;
+    height: 24px;
+  }
+  .content-page.graphic-view .back-button .back-arrow,
+  .content-page.illustration-view .back-button .back-arrow {
+    width: 7px;
+    height: 7px;
+  }
+  .content-page.graphic-view .category-summary,
+  .content-page.illustration-view .category-summary {
+    position: absolute;
+    left: 16px;
+    top: 117px;
+    width: calc(100% - 32px);
+    max-width: none;
+    transform: none;
+  }
+
   .content-page,
   .content-page.category-view,
   .content-page.motion-view {
