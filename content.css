@@ -1530,6 +1530,22 @@ body:has(.content-page.illustration-view) { overflow-x:hidden; overflow-y:auto; 
     width: calc(100% - 32px);
     margin: 60px auto 13px;
   }
+  body.work-list-page:has(.content-page.category-view:not(.motion-view):not(.personal-view)) {
+    min-height: 100svh;
+    height: auto;
+  }
+  .content-page.category-view:not(.motion-view):not(.personal-view) {
+    min-height: 0;
+    height: auto;
+  }
+  .content-page.category-view:not(.motion-view):not(.personal-view) + .work-mobile-footer {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: calc(100% - 32px);
+    margin: 60px auto 13px;
+  }
 
   .work-mobile-footer {
     position: absolute;
@@ -1926,4 +1942,92 @@ body:has(.content-page.illustration-view) { overflow-x:hidden; overflow-y:auto; 
     aspect-ratio: 343 / 234.551;
     border-radius: 4px;
   }
+
+  /* Figma app、Motion Design — updated mobile navigation and title rail. */
+  .work-type-header {
+    top: 66px;
+    left: 56px;
+    width: calc(100% - 56px);
+    height: 24px;
+  }
+  .work-type-tabs button {
+    height: 24px;
+    font-size: 12px;
+    line-height: 12px;
+    letter-spacing: -.24px;
+  }
+
+  .content-page.graphic-view .project-index,
+  .content-page.illustration-view .project-index,
+  .content-page.motion-view .project-index {
+    position: absolute;
+    z-index: 20;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 166px;
+    margin: 0;
+  }
+  .content-page.graphic-view .back-button,
+  .content-page.illustration-view .back-button,
+  .content-page.motion-view .back-button {
+    left: 16px;
+    top: 62px;
+    width: 32px;
+    height: 32px;
+  }
+  .content-page.graphic-view .back-button .back-circle,
+  .content-page.illustration-view .back-button .back-circle,
+  .content-page.motion-view .back-button .back-circle {
+    width: 32px;
+    height: 32px;
+  }
+  .content-page.graphic-view .back-button .back-arrow,
+  .content-page.illustration-view .back-button .back-arrow,
+  .content-page.motion-view .back-button .back-arrow {
+    width: 9px;
+    height: 9px;
+  }
+  .content-page.graphic-view .category-summary,
+  .content-page.illustration-view .category-summary,
+  .content-page.motion-view .category-summary {
+    left: 16px;
+    top: 117px;
+    width: calc(100% - 32px);
+  }
+  .content-page.graphic-view .category-summary h1,
+  .content-page.illustration-view .category-summary h1,
+  .content-page.motion-view .category-summary h1 {
+    margin: 0;
+    font-size: 28px;
+    line-height: 42px;
+    letter-spacing: -.56px;
+  }
+
+  .graphic-editorial-layout,
+  .illustration-editorial-layout {
+    padding: 175px 16px 84px;
+  }
+  .graphic-editorial-copy,
+  .illustration-editorial-copy {
+    padding-bottom: 45px;
+  }
+  .graphic-editorial-copy > p,
+  .illustration-editorial-copy > p,
+  .motion-intro p {
+    width: 343px;
+    max-width: 100%;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -.24px;
+  }
+  .graphic-editorial-copy dl,
+  .illustration-editorial-copy dl,
+  .motion-intro dl {
+    margin-top: 18px;
+    font-size: 12px;
+    line-height: 12px;
+    letter-spacing: -.24px;
+  }
+  .motion-showcase { padding-top: 175px; }
+  .motion-showcase-list { margin-top: 45px; }
 }
