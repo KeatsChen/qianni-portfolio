@@ -46,6 +46,43 @@ function initDownloadMenu() {
 
 initDownloadMenu();
 
+function initMobileNavigation() {
+  const trigger = document.querySelector('#mobile-nav-trigger');
+  const navigation = document.querySelector('#mobile-navigation');
+  if (!trigger || !navigation) return;
+
+  const closeButton = navigation.querySelector('.mobile-navigation-close');
+  const links = [...navigation.querySelectorAll('a')];
+  const mobileQuery = window.matchMedia('(max-width: 560px)');
+  navigation.inert = true;
+
+  const setOpen = (open, restoreFocus = false) => {
+    navigation.classList.toggle('is-open', open);
+    navigation.setAttribute('aria-hidden', String(!open));
+    trigger.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('mobile-navigation-open', open);
+    navigation.inert = !open;
+    if (open) closeButton?.focus();
+    else if (restoreFocus) trigger.focus();
+  };
+
+  trigger.addEventListener('click', (event) => {
+    if (!mobileQuery.matches) return;
+    event.preventDefault();
+    setOpen(true);
+  });
+  closeButton?.addEventListener('click', () => setOpen(false, true));
+  links.forEach((link) => link.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && navigation.classList.contains('is-open')) setOpen(false, true);
+  });
+  mobileQuery.addEventListener('change', (event) => {
+    if (!event.matches) setOpen(false);
+  });
+}
+
+initMobileNavigation();
+
 function initTiltedWorkCards() {
   if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
@@ -273,7 +310,9 @@ if (homeNav) {
 }
 
 const entryParams = new URLSearchParams(window.location.search);
-if (entryParams.get('from') === 'list' || entryParams.get('first') === '1') {
+const isHomeReturnEntry = entryParams.get('from') === 'list' || entryParams.get('first') === '1';
+let suppressNextIntroTextMotion = isHomeReturnEntry;
+if (isHomeReturnEntry) {
   history.scrollRestoration = 'manual';
   window.scrollTo(0, 0);
   history.replaceState(null, '', 'index.html');
@@ -282,6 +321,14 @@ if (entryParams.get('from') === 'list' || entryParams.get('first') === '1') {
 function prepareIntroTextMotion() {
   const intro = document.querySelector('.intro');
   if (!intro) return;
+
+  // A full-page return already uses the single home content reveal. Running
+  // the word reveal as well makes the restored page appear to flash twice.
+  if (suppressNextIntroTextMotion) {
+    suppressNextIntroTextMotion = false;
+    intro.classList.add('intro-motion-visible');
+    return;
+  }
 
   intro.classList.remove('intro-motion-visible');
   intro.querySelectorAll(':scope > h1, :scope > p').forEach((block) => {
@@ -317,7 +364,10 @@ window.replayHomeEntranceMotion = () => {
   document.body.classList.remove('home-return-reveal');
   void document.body.offsetWidth;
   document.body.classList.add('home-return-reveal');
-  prepareIntroTextMotion();
+  // The intro words already completed their own entrance on first load.
+  // Rebuilding them here stacks a second reveal on top of the page reveal
+  // and produces a visible double flash when an overlay is closed.
+  document.querySelector('.intro')?.classList.add('intro-motion-visible');
   window.clearTimeout(homeReturnRevealTimer);
   homeReturnRevealTimer = window.setTimeout(() => {
     document.body.classList.remove('home-return-reveal');
@@ -751,7 +801,7 @@ if (capabilitiesShowcase) {
 const revealGroups = [
   ['.hero-nav a', 70],
   ['.feature-card', 90],
-  ['.work-card', 180, 720],
+  ['.work-card, .capabilities-showcase', 180, 900],
   ['.detail-row h2', 80],
   ['.experience-list article', 90],
   ['.compact-row > p, .social-links', 90],

@@ -34,14 +34,14 @@
     <meta http-equiv="Pragma" content="no-cache" />
     <meta name="description" content="Qianni Zhong — UI/UX designer portfolio" />
     <title>Qianni Zhong — UI/UX Designer</title>
-  <link rel="stylesheet" href="styles.css?v=102" />
-  <link rel="stylesheet" href="back-to-top.css?v=11" />
+  <link rel="stylesheet" href="styles.css?v=107" />
+  <link rel="stylesheet" href="back-to-top.css?v=12" />
   </head>
   <body class="home-page">
     <main>
       <section class="hero" id="portfolio-intro" aria-labelledby="intro-title">
         <nav class="hero-nav" aria-label="Portfolio navigation">
-            <a href="#engagements"><span data-en="Recent engagements" data-zh="近期经历">Recent engagements</span><img src="assets/nav-arrow.svg?v=2" alt="" /></a>
+            <a id="mobile-nav-trigger" href="#engagements" aria-controls="mobile-navigation" aria-expanded="false"><span data-en="Recent engagements" data-zh="近期经历">Recent engagements</span><img src="assets/nav-arrow.svg?v=2" alt="" /></a>
             <a href="content.html?v=140&amp;from=nav"><span data-en="My Works" data-zh="我的作品">My Works</span><img src="assets/nav-arrow.svg?v=2" alt="" /></a>
             <a href="#connect"><span data-en="Contact me" data-zh="联系我">Contact me</span><img src="assets/nav-arrow.svg?v=2" alt="" /></a>
             <div class="hero-language" role="group" aria-label="Language">
@@ -189,6 +189,14 @@
       </section>
 
     </main>
+    <aside class="mobile-navigation" id="mobile-navigation" aria-hidden="true" aria-label="Mobile navigation">
+      <button class="mobile-navigation-close" type="button" aria-label="关闭导航"><img src="assets/navigation/mobile-close.svg" alt="" /></button>
+      <nav class="mobile-navigation-menu" aria-label="Mobile portfolio navigation">
+        <a href="#engagements" data-en="Recent engagements" data-zh="近期经历">Recent engagements</a>
+        <a href="content.html?v=140&amp;from=nav" data-en="My Works" data-zh="我的作品">My Works</a>
+        <a href="#connect" data-en="Contact me" data-zh="联系我">Contact me</a>
+      </nav>
+    </aside>
     <div class="contact-dialog-layer" id="contact-dialog" aria-hidden="true">
       <section class="contact-dialog" role="dialog" aria-modal="false" aria-labelledby="contact-dialog-title" tabindex="-1">
         <p class="contact-dialog-title" id="contact-dialog-title">微信</p>
@@ -198,7 +206,7 @@
       </section>
     </div>
     <button class="back-to-top" type="button" aria-label="回到顶部"><img src="assets/back-to-top.svg?v=2" alt="" /></button>
-  <script src="script.js?v=63"></script>
+  <script src="script.js?v=66"></script>
     <script src="soft-aurora.js?v=3"></script>
     <script src="back-to-top.js?v=6"></script>
     <script src="music.js?v=19"></script>

@@ -143,6 +143,14 @@ html body .site-copyright--motion .site-footer-nav a {
   .site-footer-nav { gap: 16px; font-size: 10px; }
 }
 
+/* Pages with a dedicated mobile footer must not also show the injected one. */
+@media (max-width: 560px) {
+  body.work-list-page > .site-copyright,
+  body.project1-page > .site-copyright {
+    display: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .back-to-top { transition: opacity .2s ease, visibility .2s ease; }
 }

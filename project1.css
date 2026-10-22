@@ -58,6 +58,8 @@ h1 {
   gap: 20px;
 }
 .project-gallery img { display: block; width: 100%; height: auto; background: #0b031a; }
+.project-gallery-mobile,
+.project-mobile-footer { display: none; }
 .project-info.reveal,
 .project-gallery img.reveal {
   opacity: 0;
@@ -80,6 +82,80 @@ h1 {
   .project-rule { width: calc(100% - 61px); margin: 34px 0 0 61px; }
   .project-meta { width: calc(100% - 61px); margin: 18px 0 0 61px; }
   .project-gallery { width: calc(100% - 44px); margin-top: 48px; gap: 16px; }
+}
+@media (max-width: 560px) {
+  .project1-page .site-nav { display: none; }
+  .project-page { padding: 62px 0 0; }
+  .project-info { width: calc(100% - 32px); max-width: 343px; }
+  .project-title-row {
+    grid-template-columns: 24px minmax(0, 235px);
+    gap: 7px;
+    align-items: start;
+  }
+  .back-button,
+  .back-circle { width: 24px; height: 24px; }
+  .back-arrow { width: 7px; height: 7px; }
+  h1 {
+    max-width: 235px;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -.4px;
+  }
+  .project-rule {
+    width: 100%;
+    margin: 29px 0 0;
+  }
+  .project-meta {
+    width: 100%;
+    margin: 6px 0 0;
+  }
+  .project-meta > div { min-height: 28px; }
+  .project-meta dt,
+  .project-meta dd {
+    font-size: 13px;
+    line-height: 18px;
+    letter-spacing: -.26px;
+  }
+  .project-gallery-desktop { display: none; }
+  .project-gallery-mobile {
+    display: flex;
+    width: calc(100% - 32px);
+    max-width: 343px;
+    margin-top: 31px;
+    gap: 5.532px;
+  }
+  .project-mobile-footer {
+    display: block;
+    width: calc(100% - 32px);
+    max-width: 343px;
+    margin: 78px auto 0;
+    padding: 0 0 23px;
+    color: rgba(255,255,255,.34);
+    text-align: center;
+  }
+  .project-mobile-footer nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    white-space: nowrap;
+  }
+  .project-mobile-footer nav a {
+    color: inherit;
+    font-size: 11px;
+    line-height: 15px;
+    text-decoration: none;
+  }
+  .project-mobile-footer nav span {
+    width: 1px;
+    height: 10px;
+    background: rgba(255,255,255,.23);
+  }
+  .project-mobile-footer p {
+    margin: 17px 0 0;
+    font-size: 10px;
+    line-height: 14px;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

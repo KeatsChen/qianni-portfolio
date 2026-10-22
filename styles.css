@@ -311,6 +311,7 @@ body.theme-light .experience-list span, body.theme-light .experience-list time {
 body.theme-light .social-icon-image { filter: invert(1); }
 body.theme-light .theme-lamp:focus-visible { outline-color: #191817; }
 body.theme-light .music-note:focus-visible { outline-color: #191817; }
+.mobile-navigation { display: none; }
 @media (max-width:560px) { .contact-dialog { max-width:calc(100vw - 24px); } }
 @media (prefers-reduced-motion: reduce) {
   .contact-dialog { transition-duration: .01ms; }
@@ -318,6 +319,59 @@ body.theme-light .music-note:focus-visible { outline-color: #191817; }
 
 /* Figma app、home — 375px mobile homepage */
 @media (max-width: 560px) {
+  body.mobile-navigation-open { overflow: hidden; }
+  .mobile-navigation {
+    position: fixed;
+    z-index: 1500;
+    inset: 0;
+    display: block;
+    overflow: hidden;
+    color: #fff;
+    background: #01010b;
+    visibility: hidden;
+    transform: translate3d(-100%,0,0);
+    transition: transform .55s cubic-bezier(.22,1,.36,1), visibility 0s .55s;
+    will-change: transform;
+  }
+  .mobile-navigation.is-open {
+    visibility: visible;
+    transform: translate3d(0,0,0);
+    transition-delay: 0s;
+  }
+  .mobile-navigation-close {
+    position: absolute;
+    top: 70px;
+    left: 16px;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+  .mobile-navigation-close img { display: block; width: 20px; height: 20px; }
+  .mobile-navigation-menu {
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: 103px;
+    border-top: 1px solid #20202b;
+  }
+  .mobile-navigation-menu a {
+    height: 76px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    border-bottom: 1px solid #20202b;
+    font-family: "Test Signifier", Georgia, "Times New Roman", serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -.48px;
+    text-decoration: none;
+  }
+  .mobile-navigation-menu a:focus-visible,
+  .mobile-navigation-close:focus-visible { outline: 1px solid rgba(255,255,255,.82); outline-offset: 4px; }
   .home-page .hero {
     min-height: 590px;
     padding: 0 0 72px;
@@ -377,7 +431,7 @@ body.theme-light .music-note:focus-visible { outline-color: #191817; }
     padding-top: 0;
   }
   .home-page .intro {
-    margin-top: 122px;
+    margin-top: 133px;
     display: block;
     transform: none;
   }
@@ -391,7 +445,7 @@ body.theme-light .music-note:focus-visible { outline-color: #191817; }
   .home-page .intro p {
     width: 100%;
     max-width: 343px;
-    margin-top: 45px;
+    margin-top: 18px;
     padding: 0;
     font-size: 13px;
     line-height: 20px;
@@ -401,7 +455,7 @@ body.theme-light .music-note:focus-visible { outline-color: #191817; }
   .home-page .project-deck {
     width: 100%;
     aspect-ratio: 343 / 68;
-    margin-top: 74px;
+    margin-top: 30px;
   }
   .home-page .project-deck-stage { transform: none; }
   .home-page .project-deck-card { width: 24%; }
@@ -461,7 +515,14 @@ body.theme-light .music-note:focus-visible { outline-color: #191817; }
     letter-spacing: -.2px;
   }
   .home-page .uiux-art { left: -31px; top: 83px; transform: scale(.738); transform-origin: left top; }
-  .home-page .graphic-art { left: -64px; top: 91px; transform: scale(.738); transform-origin: left top; }
+  .home-page .graphic-art {
+    left: -86.33px;
+    top: 91px;
+    width: 326.401px;
+    height: 200.992px;
+    transform: none;
+  }
+  .home-page .graphic-art img { width: 392.55px; height: 233.664px; }
   .home-page .motion-art { left: -18px; top: 40px; transform: scale(.716); transform-origin: left top; }
   .home-page .illustration-mosaic {
     left: 12px;
@@ -472,7 +533,19 @@ body.theme-light .music-note:focus-visible { outline-color: #191817; }
     gap: 1.167px;
   }
   .home-page .illustration-mosaic > i { width: 7.781px; height: 7.781px; }
-  .home-page .personal-card-art { transform: scale(.735); transform-origin: left top; width: 226px; height: 308px; }
+  .home-page .personal-card-art { width: 166px; height: 226px; transform: none; }
+  .home-page .personal-layer:nth-child(1) { left: -79px; top: 67.736px; width: 334px; height: 204.911px; }
+  .home-page .personal-layer:nth-child(1) img { width: 354.7px; height: 191.1px; }
+  .home-page .personal-layer:nth-child(2) { left: -53.196px; top: 109.546px; width: 229.584px; height: 157.138px; }
+  .home-page .personal-layer:nth-child(2) img { width: 253.95px; height: 162.13px; }
+  .home-page .personal-layer:nth-child(3) { left: -46.408px; top: 124.693px; width: 227.407px; height: 146.029px; }
+  .home-page .personal-layer:nth-child(3) img { width: 253.94px; height: 150.84px; }
+  .home-page .personal-layer:nth-child(4) { left: -37.401px; top: 142.158px; width: 221.967px; height: 118.255px; }
+  .home-page .personal-layer:nth-child(4) img { width: 253.95px; height: 122.52px; }
+  .home-page .personal-layer:nth-child(5) { left: 99.467px; top: 167.286px; width: 87.038px; height: 85.83px; }
+  .home-page .personal-layer:nth-child(5) img { width: 105.66px; height: 104.2px; }
+  .home-page .personal-layer:nth-child(6) { left: 112.732px; top: 182.651px; width: 79.541px; height: 75.574px; }
+  .home-page .personal-layer:nth-child(6) img { width: 99.55px; height: 94.78px; }
 
   .home-page .capabilities-showcase {
     width: 166px;
@@ -485,35 +558,26 @@ body.theme-light .music-note:focus-visible { outline-color: #191817; }
     isolation: isolate;
     contain: paint;
   }
-  .home-page .capabilities-ticker { top: 14px; left: 10px; width: calc(100% - 10px); }
-  .home-page .capabilities-ticker-group { gap: 4px; padding-right: 20px; font-size: 13px; }
-  .home-page .capabilities-ticker-group img { width: 23px; height: 16px; }
+  .home-page .capabilities-ticker { top: 13px; left: 0; width: 100%; }
+  .home-page .capabilities-ticker-group { gap: 5px; padding-right: 20px; font-size: 16px; letter-spacing: -.32px; }
+  .home-page .capabilities-ticker-group img { width: 27.12px; height: 18.55px; border-radius: .76px; }
   .home-page .capabilities-aurora { inset: 38px -2px 18px; }
   .home-page .capabilities-icons {
-    left: 8px;
-    right: 8px;
-    top: auto;
-    bottom: 8px;
-    width: auto;
-    height: 33px;
-    display: flex;
-    align-items: flex-end;
-    gap: 0;
+    inset: 0;
     transform: none;
   }
   .home-page .capabilities-icons .falling-icon {
-    position: relative;
-    left: auto;
-    top: auto;
-    flex: 0 0 33px;
-    width: 33px;
-    height: 33px;
-    margin-right: -4px;
-    opacity: 1;
-    transform: none;
-    animation: none;
+    position: absolute;
+    width: 33.103px;
+    height: 33.103px;
   }
-  .home-page .capabilities-icons .falling-icon:nth-child(n+6) { display: none; }
+  .home-page .capabilities-icons .icon-1 { z-index: 1; left: -5px; top: 193px; }
+  .home-page .capabilities-icons .icon-3 { z-index: 2; left: 104px; top: 193px; }
+  .home-page .capabilities-icons .icon-4 { z-index: 3; left: 133px; top: 193px; }
+  .home-page .capabilities-icons .icon-9 { z-index: 4; left: 28px; top: 193px; }
+  .home-page .capabilities-icons .icon-6 { z-index: 5; left: 45.88px; top: 193px; }
+  .home-page .capabilities-icons .icon-7 { z-index: 6; left: 63px; top: 193px; }
+  .home-page .capabilities-icons :is(.icon-2, .icon-5, .icon-8) { display: none; }
   .home-page .falling-icon.icon-1 .falling-icon-glyph {
     left: 8.7px;
     top: 9px;
@@ -521,9 +585,8 @@ body.theme-light .music-note:focus-visible { outline-color: #191817; }
     height: 15px;
   }
   .home-page .capabilities-showcase.is-dropping .falling-icon {
-    opacity: 1;
-    transform: none;
-    animation: none;
+    animation: capability-icon-drop 2.05s linear forwards;
+    animation-delay: var(--drop-delay);
   }
 
   .home-page .profile-details {
@@ -600,11 +663,11 @@ body.theme-light .music-note:focus-visible { outline-color: #191817; }
   }
   .home-page .connect-row > h2 { padding-top: 29px; }
   .home-page .social-links {
-    width: 110px;
+    width: 136px;
     height: 24px;
     margin: 30px 0 0;
     align-self: start;
-    gap: 19px;
+    gap: 32px;
   }
   .home-page .social-item,
   .home-page .social-control { width: 24px; height: 24px; }

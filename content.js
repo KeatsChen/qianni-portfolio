@@ -104,10 +104,16 @@ document.addEventListener('click', (event) => {
     window.requestAnimationFrame(() => {
       window.setTimeout(() => {
         projectDetailFrame = document.createElement('iframe');
-        projectDetailFrame.className = 'project-detail-frame';
-        projectDetailFrame.title = projectCard.getAttribute('aria-label') || '项目详情';
-        projectDetailFrame.src = projectCard.href;
-        document.body.appendChild(projectDetailFrame);
+        const frame = projectDetailFrame;
+        frame.className = 'project-detail-frame';
+        frame.title = projectCard.getAttribute('aria-label') || '项目详情';
+        frame.addEventListener('load', () => {
+          if (projectDetailFrame !== frame) return;
+          frame.classList.add('is-visible');
+          resetProjectTransition();
+        }, { once: true });
+        frame.src = projectCard.href;
+        document.body.appendChild(frame);
       }, 120);
     });
   });
@@ -312,13 +318,13 @@ const categoryData = {
     cards: `
       <section class="personal-tutorial" aria-labelledby="personal-tutorial-title"><header class="personal-tutorial-heading personal-reveal"><a class="back-button personal-tutorial-back" href="index.html?v=252&amp;from=list" aria-label="返回作品集首页首屏"><img class="back-circle" src="assets/content/back-circle.svg" alt="" /><img class="back-arrow" src="assets/content/back-arrow.svg" alt="" /></a><h2 id="personal-tutorial-title" data-en="Tutorial" data-zh="教程">Tutorial</h2></header><div class="personal-tutorial-grid">${personalTutorialImages.map(({ href, src, alt }, index) => `<a class="personal-tutorial-card personal-reveal" style="--tutorial-order:${index}" href="${href}" target="_blank" rel="noopener noreferrer" aria-label="Open ${alt}"><img src="${src}" alt="${alt}" /></a>`).join('')}</div></section>
       <section class="personal-vlog" aria-labelledby="personal-vlog-title">
-        <p class="personal-vlog-lead personal-reveal"><span data-en="Vlog  |  I came into this world to see the sun," data-zh="Vlog  |  我来到这个世界上为的是看太阳，">Vlog  |  I came into this world to see the sun,</span><span data-en=" and the blue horizon wide." data-zh="和蔚蓝色的原野。"> and the blue horizon wide.</span></p>
+        <p class="personal-vlog-lead personal-reveal"><span class="personal-vlog-lead-desktop" data-en="Vlog  |  I came into this world to see the sun," data-zh="Vlog  |  我来到这个世界上为的是看太阳，">Vlog  |  I came into this world to see the sun,</span><span class="personal-vlog-lead-desktop" data-en=" and the blue horizon wide." data-zh="和蔚蓝色的原野。"> and the blue horizon wide.</span><span class="personal-vlog-lead-mobile" data-en="Vlog  |  I came into this world to see the sun," data-zh="Vlog  |  我来到这个世界上为的是看太阳，">Vlog  |  I came into this world to see the sun,</span><span class="personal-vlog-lead-mobile" data-en=" and the blue horizon wide." data-zh="和蔚蓝色的原野。"> and the blue horizon wide.</span></p>
         <div class="personal-vlog-list" aria-label="Personal vlogs">
           <a class="personal-vlog-row" href="https://www.bilibili.com/video/BV1pj411d7cL/?spm_id_from=333.1387.upload.video_card.click&amp;vd_source=8f73d9a3d97fa8485d9fd584af4366f3" target="_blank" rel="noopener noreferrer" aria-label="Watch Living in Dali on Bilibili"><div class="personal-vlog-media"><img src="assets/personal-space/living-in-dali.png?v=1" alt="Living in Dali vlog still" /><span class="personal-vlog-shade"></span><img class="personal-vlog-link" src="assets/personal-space/vlog-link-arrow.svg?v=2" alt="" /><h3 data-en="Living in Dali" data-zh="生活在大理">Living in Dali</h3></div></a>
           <a class="personal-vlog-row" href="https://www.bilibili.com/video/BV1D34y1b7Rc/?spm_id_from=333.1387.upload.video_card.click&amp;vd_source=8f73d9a3d97fa8485d9fd584af4366f3" target="_blank" rel="noopener noreferrer" aria-label="Watch Explore Shanghai’s Vintage Markets on Foot on Bilibili"><div class="personal-vlog-media"><img src="assets/personal-space/flower-bird-market.png?v=1" alt="Shanghai Flower and Bird Market vlog still" /><span class="personal-vlog-shade"></span><img class="personal-vlog-link" src="assets/personal-space/vlog-link-arrow.svg?v=2" alt="" /><h3 data-en="Explore Shanghai’s Vintage Markets on Foot" data-zh="徒步探索上海复古市集">Explore Shanghai’s Vintage Markets on Foot</h3></div></a>
           <a class="personal-vlog-row" href="https://www.bilibili.com/video/BV1KopE64Ekp/?spm_id_from=333.1387.upload.video_card.click&amp;vd_source=8f73d9a3d97fa8485d9fd584af4366f3" target="_blank" rel="noopener noreferrer" aria-label="Watch A Day Trip to Suzhou on Bilibili"><div class="personal-vlog-media"><img src="assets/personal-space/suzhou-day-trip.png?v=1" alt="Suzhou day trip vlog still" /><span class="personal-vlog-shade"></span><img class="personal-vlog-link" src="assets/personal-space/vlog-link-arrow.svg?v=2" alt="" /><h3 data-en="A Day Trip to Suzhou" data-zh="苏州一日游">A Day Trip to Suzhou</h3></div></a>
         </div>
-        <section class="personal-articles personal-reveal" aria-labelledby="personal-article-title"><h2 id="personal-article-title" data-en="Travel Journal" data-zh="游记">Travel Journal</h2><a href="https://mp.weixin.qq.com/s/Kk8yubpBNqq8rYH3ezkOfA" target="_blank" rel="noopener noreferrer"><span data-en="Shunde | Please Don’t Eat Me, Don’t Eat Me — I’ll Sing You a Beautiful Song" data-zh="顺德｜请你不要吃我不要吃我，我给你唱一首好听的歌">Shunde | Please Don’t Eat Me, Don’t Eat Me — I’ll Sing You a Beautiful Song</span><time>2018</time></a><a href="https://mp.weixin.qq.com/s/iRQPTY2LAT8X5iHg98ZGJg" target="_blank" rel="noopener noreferrer"><span data-en="Shangri-La | How Long This Life, How Far This Journey Across the Seas" data-zh="香格里拉｜此生多漫长，此身越重洋。">Shangri-La | How Long This Life, How Far This Journey Across the Seas</span><time>2022</time></a></section>
+        <section class="personal-articles personal-reveal" aria-labelledby="personal-article-title"><h2 id="personal-article-title" data-en="Travel Journal" data-zh="游记">Travel Journal</h2><a href="https://mp.weixin.qq.com/s/Kk8yubpBNqq8rYH3ezkOfA" target="_blank" rel="noopener noreferrer"><span class="personal-article-desktop" data-en="Shunde | Please Don’t Eat Me, Don’t Eat Me — I’ll Sing You a Beautiful Song" data-zh="顺德｜请你不要吃我不要吃我，我给你唱一首好听的歌">Shunde | Please Don’t Eat Me, Don’t Eat Me — I’ll Sing You a Beautiful Song</span><span class="personal-article-mobile" data-en="Shunde | Please Don’t Eat Me, Don’t Eat Me — I’ll Sing You a Beautiful Song" data-zh="顺德｜请你不要吃我不要吃我，我给你唱一首好听的歌">Shunde | Please Don’t Eat Me, Don’t Eat Me — I’ll Sing You a Beautiful Song</span><time>2018</time></a><a href="https://mp.weixin.qq.com/s/iRQPTY2LAT8X5iHg98ZGJg" target="_blank" rel="noopener noreferrer"><span class="personal-article-desktop" data-en="Shangri-La | How Long This Life, How Far This Journey Across the Seas" data-zh="香格里拉｜此生多漫长，此身越重洋。">Shangri-La | How Long This Life, How Far This Journey Across the Seas</span><span class="personal-article-mobile" data-en="Shangri-La | How Long This Life, How Far This Journey Across the Seas" data-zh="香格里拉｜此生多漫长，此身越重洋。">Shangri-La | How Long This Life, How Far This Journey Across the Seas</span><time>2022</time></a></section>
       </section>`
   }
 };
