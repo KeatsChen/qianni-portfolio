@@ -204,15 +204,36 @@ initTiltedCapabilitiesCard();
 // Home always paints at its first screen. Temporarily disable CSS smooth
 // scrolling so a restored browser position never visibly animates upward.
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-const isFirstMobileHomeEntry = sessionStorage.getItem('qianni-home-entered') !== '1'
-  && matchMedia('(max-width: 560px)').matches
-  && !location.hash;
+const isFirstMobileHomeEntry = matchMedia('(max-width: 560px)').matches && !location.hash;
+let mobileHomeTopLock = isFirstMobileHomeEntry;
 const settleFirstMobileHomeAtTop = () => {
-  if (!isFirstMobileHomeEntry) return;
-  [0, 80, 240, 600, 1200].forEach((delay) => {
-    window.setTimeout(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }), delay);
+  if (!mobileHomeTopLock) return;
+  [0, 80, 240, 600, 1200, 2400].forEach((delay) => {
+    window.setTimeout(() => {
+      if (mobileHomeTopLock) window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    }, delay);
   });
 };
+const keepMobileHomeAtTop = () => {
+  if (mobileHomeTopLock && window.scrollY > 0) window.scrollTo(0, 0);
+};
+const releaseMobileHomeTopLock = () => {
+  if (!mobileHomeTopLock) return;
+  mobileHomeTopLock = false;
+  window.removeEventListener('scroll', keepMobileHomeAtTop);
+  window.removeEventListener('touchstart', releaseMobileHomeTopLock);
+  window.removeEventListener('pointerdown', releaseMobileHomeTopLock);
+  window.removeEventListener('wheel', releaseMobileHomeTopLock);
+  window.removeEventListener('keydown', releaseMobileHomeTopLock);
+};
+if (mobileHomeTopLock) {
+  window.addEventListener('scroll', keepMobileHomeAtTop, { passive: true });
+  window.addEventListener('touchstart', releaseMobileHomeTopLock, { passive: true });
+  window.addEventListener('pointerdown', releaseMobileHomeTopLock, { passive: true });
+  window.addEventListener('wheel', releaseMobileHomeTopLock, { passive: true });
+  window.addEventListener('keydown', releaseMobileHomeTopLock);
+  window.setTimeout(releaseMobileHomeTopLock, 8000);
+}
 let homeBootReleased = false;
 const pinHomeToTop = () => {
   const root = document.documentElement;
