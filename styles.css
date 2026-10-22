@@ -379,7 +379,7 @@ body.theme-light .music-note:focus-visible { outline-color: #191817; }
   }
   .home-page .hero-nav {
     position: absolute;
-    top: 64px;
+    top: 43px;
     height: 38px;
     padding: 0 16px;
     display: block;

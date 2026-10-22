@@ -204,6 +204,15 @@ initTiltedCapabilitiesCard();
 // Home always paints at its first screen. Temporarily disable CSS smooth
 // scrolling so a restored browser position never visibly animates upward.
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+const isFirstMobileHomeEntry = sessionStorage.getItem('qianni-home-entered') !== '1'
+  && matchMedia('(max-width: 560px)').matches
+  && !location.hash;
+const settleFirstMobileHomeAtTop = () => {
+  if (!isFirstMobileHomeEntry) return;
+  [0, 80, 240, 600, 1200].forEach((delay) => {
+    window.setTimeout(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }), delay);
+  });
+};
 let homeBootReleased = false;
 const pinHomeToTop = () => {
   const root = document.documentElement;
@@ -221,6 +230,7 @@ const releaseHomeAtTop = () => {
       window.scrollTo(0, 0);
       document.documentElement.style.removeProperty('scroll-behavior');
       document.documentElement.classList.remove('home-booting');
+      settleFirstMobileHomeAtTop();
       window.dispatchEvent(new Event('homebootready'));
     });
   });
@@ -228,11 +238,15 @@ const releaseHomeAtTop = () => {
 pinHomeToTop();
 window.addEventListener('pageshow', (event) => {
   pinHomeToTop();
+  settleFirstMobileHomeAtTop();
   if (event.persisted || document.readyState === 'complete') releaseHomeAtTop();
 });
 window.addEventListener('load', () => {
   const fontsReady = document.fonts?.ready || Promise.resolve();
-  fontsReady.then(releaseHomeAtTop);
+  fontsReady.then(() => {
+    releaseHomeAtTop();
+    settleFirstMobileHomeAtTop();
+  });
 }, { once: true });
 const concealHomeBeforeLeaving = () => {
   homeBootReleased = false;
