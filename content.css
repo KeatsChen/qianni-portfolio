@@ -1946,7 +1946,7 @@ body:has(.content-page.illustration-view) { overflow-x:hidden; overflow-y:auto; 
   /* Figma app、Motion Design — updated mobile navigation and title rail. */
   .work-type-header {
     /* Figma's first 44px are the native iOS top bar, not page content. */
-    top: 22px;
+    top: 44px;
     left: 56px;
     width: calc(100% - 56px);
     height: 24px;
@@ -1974,7 +1974,7 @@ body:has(.content-page.illustration-view) { overflow-x:hidden; overflow-y:auto; 
   .content-page:not(.category-view) .back-button,
   .content-page.personal-view .personal-tutorial-heading .personal-tutorial-back {
     left: 16px;
-    top: 18px;
+    top: 40px;
     width: 32px;
     height: 32px;
   }
@@ -2037,4 +2037,16 @@ body:has(.content-page.illustration-view) { overflow-x:hidden; overflow-y:auto; 
   }
   .motion-showcase { padding-top: 131px; }
   .motion-showcase-list { margin-top: 45px; }
+
+  /* Personal Space mobile: halve the two requested vertical gaps. */
+  .content-page.personal-view { min-height: 1344.275px; }
+  .personal-tutorial {
+    min-height: 314.5px;
+    height: 314.5px;
+  }
+  .personal-tutorial-heading h2 { top: 80.5px; }
+  .personal-tutorial-grid { top: 121.5px; }
+  .personal-vlog { height: 1029.775px; }
+  .personal-vlog-list { top: 114.225px; }
+  .personal-articles { top: 756.775px; }
 }

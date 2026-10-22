@@ -145,6 +145,49 @@ html body .site-copyright--motion .site-footer-nav a {
 
 /* Pages with a dedicated mobile footer must not also show the injected one. */
 @media (max-width: 560px) {
+  body.home-page > .site-copyright {
+    min-height: 175px;
+    height: 175px;
+    padding: 0;
+    display: block;
+    font-size: 10px;
+    line-height: 10px;
+    text-align: left;
+  }
+  body.home-page > .site-copyright .site-footer-nav {
+    position: absolute;
+    top: 119px;
+    left: 21px;
+    right: 21px;
+    height: 10px;
+    display: grid;
+    grid-template-columns: 105px 1px 50px 1px 58px;
+    justify-content: space-between;
+    gap: 0;
+    font-size: 10px;
+    line-height: 10px;
+    text-align: left;
+  }
+  body.home-page > .site-copyright .site-footer-nav span {
+    width: 1px;
+    height: 10px;
+  }
+  body.home-page > .site-copyright > p {
+    position: absolute;
+    top: 152px;
+    left: 50%;
+    width: 250px;
+    margin: 0;
+    font-size: 10px;
+    line-height: 10px;
+    text-align: center;
+    transform: translateX(-50%);
+  }
+  body.home-page > .back-to-top {
+    right: 16px;
+    bottom: 84px;
+  }
+
   body.work-list-page > .site-copyright,
   body.project1-page > .site-copyright {
     display: none !important;
