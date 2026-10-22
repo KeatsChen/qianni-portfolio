@@ -206,30 +206,37 @@ initTiltedCapabilitiesCard();
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 const isFirstMobileHomeEntry = matchMedia('(max-width: 560px)').matches && !location.hash;
 let mobileHomeTopLock = isFirstMobileHomeEntry;
+const forceHomeScrollTop = () => {
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+};
 const settleFirstMobileHomeAtTop = () => {
   if (!mobileHomeTopLock) return;
-  [0, 80, 240, 600, 1200, 2400].forEach((delay) => {
+  [0, 80, 240, 600, 1200, 2400, 4000].forEach((delay) => {
     window.setTimeout(() => {
-      if (mobileHomeTopLock) window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      if (mobileHomeTopLock) forceHomeScrollTop();
     }, delay);
   });
 };
 const keepMobileHomeAtTop = () => {
-  if (mobileHomeTopLock && window.scrollY > 0) window.scrollTo(0, 0);
+  if (mobileHomeTopLock && (window.scrollY > 0 || document.documentElement.scrollTop > 0 || document.body.scrollTop > 0)) {
+    forceHomeScrollTop();
+  }
 };
 const releaseMobileHomeTopLock = () => {
   if (!mobileHomeTopLock) return;
   mobileHomeTopLock = false;
   window.removeEventListener('scroll', keepMobileHomeAtTop);
-  window.removeEventListener('touchstart', releaseMobileHomeTopLock);
-  window.removeEventListener('pointerdown', releaseMobileHomeTopLock);
+  window.removeEventListener('touchmove', releaseMobileHomeTopLock);
   window.removeEventListener('wheel', releaseMobileHomeTopLock);
   window.removeEventListener('keydown', releaseMobileHomeTopLock);
 };
 if (mobileHomeTopLock) {
   window.addEventListener('scroll', keepMobileHomeAtTop, { passive: true });
-  window.addEventListener('touchstart', releaseMobileHomeTopLock, { passive: true });
-  window.addEventListener('pointerdown', releaseMobileHomeTopLock, { passive: true });
+  // A tap must not release the lock: mobile Safari can restore its old scroll
+  // position after the first pointer event. Release only on an actual gesture.
+  window.addEventListener('touchmove', releaseMobileHomeTopLock, { passive: true });
   window.addEventListener('wheel', releaseMobileHomeTopLock, { passive: true });
   window.addEventListener('keydown', releaseMobileHomeTopLock);
   window.setTimeout(releaseMobileHomeTopLock, 8000);
@@ -239,16 +246,16 @@ const pinHomeToTop = () => {
   const root = document.documentElement;
   root.classList.add('home-booting');
   root.style.scrollBehavior = 'auto';
-  window.scrollTo(0, 0);
+  forceHomeScrollTop();
 };
 const releaseHomeAtTop = () => {
   if (homeBootReleased) return;
   homeBootReleased = true;
   pinHomeToTop();
   window.requestAnimationFrame(() => {
-    window.scrollTo(0, 0);
+    forceHomeScrollTop();
     window.requestAnimationFrame(() => {
-      window.scrollTo(0, 0);
+      forceHomeScrollTop();
       document.documentElement.style.removeProperty('scroll-behavior');
       document.documentElement.classList.remove('home-booting');
       settleFirstMobileHomeAtTop();
@@ -274,7 +281,7 @@ const concealHomeBeforeLeaving = () => {
   const root = document.documentElement;
   root.classList.add('home-booting');
   root.style.scrollBehavior = 'auto';
-  window.scrollTo(0, 0);
+  forceHomeScrollTop();
 };
 window.addEventListener('pagehide', concealHomeBeforeLeaving);
 window.addEventListener('beforeunload', concealHomeBeforeLeaving);
