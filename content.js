@@ -714,9 +714,12 @@ const setupGallery = () => {
   requestUpdate();
   window.requestAnimationFrame(ensureSecondCardPeek);
   if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const revealOnFirstPixel = matchMedia('(max-width: 560px)').matches;
     revealObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
       if (entry.isIntersecting) { entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); }
-    }), { threshold: .1, rootMargin: '0px 0px -5% 0px' });
+    }), revealOnFirstPixel
+      ? { threshold: 0, rootMargin: '0px' }
+      : { threshold: .1, rootMargin: '0px 0px -5% 0px' });
     cards.slice(2).forEach((card) => { card.classList.add('reveal', 'deferred-reveal'); revealObserver.observe(card); });
     projectGallery.querySelectorAll('.graphic-reveal, .personal-reveal:not(.personal-tutorial-card)').forEach((element) => {
       element.classList.add('graphic-reveal-pending');
@@ -767,7 +770,7 @@ const switchTab = (tab, updateHistory = true) => {
   contentPage.classList.toggle('motion-view', tab === 'motion');
   contentPage.classList.toggle('personal-view', tab === 'personal');
   const backToTopImage = document.querySelector('.back-to-top img');
-  if (backToTopImage) backToTopImage.src = tab === 'personal' ? 'assets/back-to-top-light.svg?v=1' : 'assets/back-to-top.svg?v=2';
+  if (backToTopImage) backToTopImage.src = tab === 'personal' ? 'assets/back-to-top-light.svg?v=2' : 'assets/back-to-top.svg?v=2';
   if (tab === 'uiux') { projectIndex.innerHTML = uiuxIndexHTML; projectGallery.innerHTML = uiuxGalleryHTML; }
   else { projectIndex.innerHTML = categoryIndex(categoryData[tab]); projectGallery.innerHTML = categoryData[tab].cards; }
   if (updateHistory) {

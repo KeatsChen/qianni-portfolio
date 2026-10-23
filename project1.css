@@ -121,10 +121,10 @@ h1 {
     top: 76px;
     width: 175px;
     margin: 0;
-    display: flex;
+    display: grid;
+    grid-template-columns: 128px 29px;
+    column-gap: 18px;
     align-items: flex-start;
-    justify-content: space-between;
-    gap: 18px;
   }
   .project-meta > div {
     min-width: 0;

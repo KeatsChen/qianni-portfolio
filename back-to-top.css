@@ -99,6 +99,16 @@ html body .site-copyright--motion .site-footer-nav a {
   height: 48px;
 }
 
+.back-to-top img[src*="back-to-top-light.svg"] {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 69px;
+  height: 69px;
+  max-width: none;
+  transform: translate(-50%, -50%);
+}
+
 .back-to-top:hover {
   filter: brightness(1.14) drop-shadow(0 0 12px rgba(83, 92, 255, .34));
   transform: translate3d(0, -3px, 0) scale(1.04);
@@ -111,17 +121,11 @@ html body .site-copyright--motion .site-footer-nav a {
 
 .research-page .back-to-top,
 .materials-page .back-to-top {
-  right: 37px;
-  bottom: 37px;
-  width: 69px;
-  height: 69px;
+  right: 48px;
+  bottom: 48px;
+  width: 48px;
+  height: 48px;
   box-shadow: none;
-}
-
-.research-page .back-to-top img,
-.materials-page .back-to-top img {
-  width: 69px;
-  height: 69px;
 }
 
 .back-to-top:focus-visible {
@@ -143,10 +147,7 @@ html body .site-copyright--motion .site-footer-nav a {
     width: 48px;
     height: 48px;
   }
-  .research-page .back-to-top img,
-  .materials-page .back-to-top img,
-  .content-page.personal-view ~ .back-to-top,
-  .content-page.personal-view ~ .back-to-top img {
+  .content-page.personal-view ~ .back-to-top {
     width: 48px;
     height: 48px;
   }

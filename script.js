@@ -688,7 +688,7 @@ function setTheme(theme) {
   const isLight = theme === 'light';
   document.body.classList.toggle('theme-light', isLight);
   const backToTopImage = document.querySelector('.back-to-top img');
-  if (backToTopImage) backToTopImage.src = isLight ? 'assets/back-to-top-light.svg?v=1' : 'assets/back-to-top.svg?v=2';
+  if (backToTopImage) backToTopImage.src = isLight ? 'assets/back-to-top-light.svg?v=2' : 'assets/back-to-top.svg?v=2';
   themeLamp?.setAttribute('aria-pressed', String(isLight));
   themeLamp?.setAttribute('aria-label', isLight ? '切换到深色模式' : '切换到浅色模式');
 }
