@@ -373,7 +373,7 @@ body.theme-light .music-note:focus-visible { outline-color: #191817; }
   .mobile-navigation-menu a:focus-visible,
   .mobile-navigation-close:focus-visible { outline: 1px solid rgba(255,255,255,.82); outline-offset: 4px; }
   .home-page .hero {
-    min-height: 590px;
+    min-height: 546px;
     padding: 0 0 72px;
     overflow: hidden;
   }

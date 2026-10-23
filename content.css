@@ -1410,14 +1410,6 @@ body:has(.content-page.illustration-view) { overflow-x:hidden; overflow-y:auto; 
   .work-type-tabs button span { white-space: nowrap; }
   .work-type-language { display: none; }
 
-  .graphic-editorial-copy dl {
-    grid-template-columns: 31% 49% 20%;
-  }
-  .graphic-editorial-copy dl .category-date {
-    justify-self: end;
-    gap: 4px;
-  }
-
   .content-page.graphic-view .project-index,
   .content-page.illustration-view .project-index {
     position: relative;
@@ -1505,6 +1497,10 @@ body:has(.content-page.illustration-view) { overflow-x:hidden; overflow-y:auto; 
     flex-direction: column;
     gap: 10.088px;
     align-items: stretch;
+  }
+  /* Mobile UI/UX list: keep the Figma 31px gap below the 24px tab rail. */
+  .content-page:not(.category-view):not(.motion-view):not(.personal-view) .project-gallery {
+    padding-top: 99px;
   }
   .content-page:not(.category-view) .gallery-card {
     width: 100%;
@@ -1934,7 +1930,7 @@ body:has(.content-page.illustration-view) { overflow-x:hidden; overflow-y:auto; 
   .list-skeleton-gallery {
     width: calc(100% - 32px);
     max-width: 343px;
-    margin: 72px auto 0;
+    margin: 99px auto 0;
     gap: 10px;
   }
   .list-skeleton-gallery i {
