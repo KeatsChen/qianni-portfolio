@@ -85,22 +85,24 @@ h1 {
 }
 @media (max-width: 560px) {
   body:has(> .project-page) .site-nav { display: none !important; }
-  .project-page { padding: 68px 0 0; }
+  .project-page { padding: 20px 0 0; }
   .project-info {
     position: relative;
     width: calc(100% - 32px);
     max-width: 343px;
-    height: 129px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
   }
   .project-title-row {
     position: relative;
-    display: grid;
-    grid-template-columns: 32px minmax(0, 303px);
-    gap: 8px;
-    align-items: start;
+    display: block;
+    min-height: 0;
+    padding-left: 40px;
   }
   .back-button,
   .back-circle { width: 32px; height: 32px; }
+  .back-button { position: absolute; left: 0; top: 0; }
   .back-arrow { width: 9px; height: 9px; }
   h1 {
     max-width: 303px;
@@ -109,18 +111,20 @@ h1 {
     letter-spacing: -.4px;
   }
   .project-rule {
-    position: absolute;
+    position: relative;
+    order: 3;
     left: 0;
-    top: 128px;
+    top: auto;
     width: 100%;
-    margin: 0;
+    margin: 18px 0 0;
   }
   .project-meta {
-    position: absolute;
+    position: relative;
+    order: 2;
     left: 40px;
-    top: 76px;
+    top: auto;
     width: 175px;
-    margin: 0;
+    margin: 18px 0 0;
     display: grid;
     grid-template-columns: 128px 29px;
     column-gap: 18px;

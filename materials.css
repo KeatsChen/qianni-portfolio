@@ -22,18 +22,18 @@
 
 /* Updated Figma app、work detail_Philippine mobile frame 4936:6081. */
 @media(max-width:560px){
-  .case-overview{height:2062px;padding:0;background:var(--mist)}
-  .case-heading{position:absolute;inset:34px auto auto 16px;width:343px;height:56px;min-height:0}
-  .case-heading::after{content:"";position:absolute;left:0;top:78px;width:343px;height:1px;background:rgba(4,4,4,.28)}
+  .case-overview{height:2046px;padding:0;background:var(--mist)}
+  .case-heading{position:absolute;inset:20px auto auto 16px;width:343px;height:56px;min-height:0}
+  .case-heading::after{content:"";position:absolute;left:0;top:76px;width:343px;height:1px;background:rgba(4,4,4,.28)}
   .case-back{top:0;width:32px;height:32px}
   .case-back img{width:9px}
   .case-heading h1{position:absolute;left:40px;top:2px;width:303px;margin:0;font-size:20px;line-height:28px;letter-spacing:-.4px}
-  .case-statement{position:absolute;left:16px;top:136px;width:343px;margin:0;font-size:20.137px;line-height:26.849px;letter-spacing:0}
+  .case-statement{position:absolute;left:16px;top:120px;width:343px;margin:0;font-size:20.137px;line-height:26.849px;letter-spacing:0}
   .case-facts{display:none}
-  .mobile-overview-meta{position:absolute;left:16px;top:241px;width:344px;margin:0;display:grid;grid-template-columns:68px 29px 1fr;column-gap:80px;row-gap:24px;color:#040404;font:500 12px/17px "PingFang SC",Inter,sans-serif}
+  .mobile-overview-meta{position:absolute;left:16px;top:225px;width:344px;margin:0;display:grid;grid-template-columns:68px 29px 1fr;column-gap:80px;row-gap:24px;color:#040404;font:500 12px/17px "PingFang SC",Inter,sans-serif}
   .mobile-overview-meta div:nth-child(4),.mobile-overview-meta div:nth-child(5){grid-column:1/-1}
   .mobile-overview-meta dt{color:#8c8c8c}.mobile-overview-meta dt,.mobile-overview-meta dd{margin:0;white-space:nowrap}
-  .hero-phones{position:absolute;left:calc(50% - 123.06px);top:426px;width:246.12px;margin:0;display:flex;flex-direction:column;gap:24px;transform:none}
+  .hero-phones{position:absolute;left:calc(50% - 123.06px);top:410px;width:246.12px;margin:0;display:flex;flex-direction:column;gap:24px;transform:none}
   .hero-phones .phone{width:231.563px;margin-left:7.28px;border-width:5.641px;border-radius:29.617px}
   .hero-phones .phone::after{top:7.76px;width:66.991px;height:19.745px;border-radius:26.796px}
   .hero-phones .hero-home{height:688.074px}.hero-phones .hero-profile{height:838.26px}
@@ -111,14 +111,14 @@
 
 /* Keep the latest app frame authoritative after the legacy mobile fallback. */
 @media(max-width:560px){
-  .case-overview{height:2062px;padding:0}
-  .case-heading{position:absolute;inset:34px auto auto 16px;width:343px;height:56px;min-height:0;margin:0}
-  .case-heading::after{top:78px}
+  .case-overview{height:2046px;padding:0}
+  .case-heading{position:absolute;inset:20px auto auto 16px;width:343px;height:56px;min-height:0;margin:0}
+  .case-heading::after{top:76px}
   .case-back{top:0;width:32px;height:32px}.case-back img{width:9px}
   .case-heading h1{position:absolute;left:40px;top:2px;width:303px;margin:0;line-height:28px}
-  .case-statement{position:absolute;left:16px;top:136px;width:343px;margin:0;font-size:20.137px;line-height:26.849px;letter-spacing:0}
+  .case-statement{position:absolute;left:16px;top:120px;width:343px;margin:0;font-size:20.137px;line-height:26.849px;letter-spacing:0}
   .case-facts{display:none}
-  .hero-phones{position:absolute;left:calc(50% - 123.06px);top:426px;width:246.12px;margin:0;display:flex;grid-template-columns:none;flex-direction:column;gap:24px}
+  .hero-phones{position:absolute;left:calc(50% - 123.06px);top:410px;width:246.12px;margin:0;display:flex;grid-template-columns:none;flex-direction:column;gap:24px}
   .hero-phones .phone{width:231.563px;height:auto;margin-left:7.28px;border-width:5.641px;border-radius:29.617px}
   .hero-phones .phone::after{top:7.76px;width:66.991px;height:19.745px;border-radius:26.796px}
   .hero-phones .hero-home{height:688.074px}.hero-phones .hero-profile{height:838.26px}

@@ -18,5 +18,6 @@
 <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_4719_2592"/>
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_4719_2592" result="shape"/>
 </filter>
-<clipPath id="bgblur_0_4719_2592_clip_path" transform="translate(-4.10039 -3.09999)"><circle cx="34.4004" cy="33.4" r="24"/></clipPath></defs>
+<clipPath id="bgblur_0_4719_2592_clip_path" transform="translate(-4.10039 -3.09999)"><circle cx="34.4004" cy="33.4" r="24"/>
+</clipPath></defs>
 </svg>

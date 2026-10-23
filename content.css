@@ -868,6 +868,41 @@ body:has(.content-page.illustration-view) { overflow:hidden; }
 .motion-intro p { width:100%; max-width:none; margin:0; color:#fff; font:500 20px/27px "PingFang SC",Inter,"Helvetica Neue",Arial,sans-serif; letter-spacing:-.4px; }
 .motion-intro p::first-line { color:inherit; }
 .motion-intro p span:last-child { color:rgba(255,255,255,.56); }
+.motion-intro .motion-rednote-link {
+  display:inline-block;
+  width:max-content;
+  padding:0;
+  margin:0;
+  color:inherit;
+  line-height:1.05;
+  text-decoration:none;
+  border-bottom:1px solid currentColor;
+}
+.motion-intro .motion-rednote-link:hover,
+.motion-intro .motion-rednote-link:focus-visible { color:#fff; }
+.motion-intro .motion-rednote-cta {
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  color:#fff;
+  vertical-align:middle;
+  white-space:nowrap;
+}
+.motion-intro .motion-rednote-cta img {
+  width:26px;
+  height:26px;
+  display:block;
+  flex:0 0 26px;
+}
+
+@media(max-width:560px){
+  .motion-intro .motion-rednote-cta { gap:3px; }
+  .motion-intro .motion-rednote-cta img {
+    width:14px;
+    height:14px;
+    flex-basis:14px;
+  }
+}
 .motion-intro dl { margin:22px 0 0; display:flex; align-items:center; gap:56px; color:#949494; font:500 14px/29px "PingFang SC",Inter,"Helvetica Neue",Arial,sans-serif; letter-spacing:-.28px; white-space:nowrap; }
 .motion-intro dl div,
 .motion-intro dl dt { margin:0; }
@@ -1956,6 +1991,13 @@ body:has(.content-page.illustration-view) { overflow-x:hidden; overflow-y:auto; 
     line-height: 12px;
     letter-spacing: -.24px;
   }
+  .work-type-tabs button.active {
+    animation: mobile-work-tab-select .42s cubic-bezier(.22,1,.36,1) both;
+  }
+  .content-page.tab-changing .project-index,
+  .content-page.tab-changing .project-gallery {
+    animation: mobile-work-tab-content-in .68s cubic-bezier(.22,1,.36,1) both !important;
+  }
 
   .content-page.graphic-view .project-index,
   .content-page.illustration-view .project-index,
@@ -1997,7 +2039,7 @@ body:has(.content-page.illustration-view) { overflow-x:hidden; overflow-y:auto; 
   .content-page.illustration-view .category-summary,
   .content-page.motion-view .category-summary {
     left: 16px;
-    top: 80px;
+    top: 98px;
     width: calc(100% - 32px);
   }
   .content-page.graphic-view .category-summary h1,
@@ -2011,7 +2053,7 @@ body:has(.content-page.illustration-view) { overflow-x:hidden; overflow-y:auto; 
 
   .graphic-editorial-layout,
   .illustration-editorial-layout {
-    padding: 131px 16px 84px;
+    padding: 149px 16px 84px;
   }
   .graphic-editorial-copy,
   .illustration-editorial-copy {
@@ -2029,23 +2071,91 @@ body:has(.content-page.illustration-view) { overflow-x:hidden; overflow-y:auto; 
   .graphic-editorial-copy dl,
   .illustration-editorial-copy dl,
   .motion-intro dl {
+    width: 300px;
     margin-top: 18px;
+    display: grid;
+    grid-template-columns: 83px 74px 71px;
+    column-gap: 36px;
+    align-items: center;
     font-size: 12px;
     line-height: 12px;
     letter-spacing: -.24px;
   }
-  .motion-showcase { padding-top: 131px; }
-  .motion-showcase-list { margin-top: 45px; }
+  .graphic-editorial-copy dl > div:nth-child(1),
+  .illustration-editorial-copy dl > div:nth-child(1),
+  .motion-intro dl > div:nth-child(1) { grid-column: 1; }
+  .graphic-editorial-copy dl > div:nth-child(2),
+  .illustration-editorial-copy dl > div:nth-child(2),
+  .motion-intro dl > div:nth-child(2) { grid-column: 2; }
+  .graphic-editorial-copy dl > .category-date,
+  .illustration-editorial-copy dl > .category-date,
+  .motion-intro dl > .category-date {
+    grid-column: 3;
+    display: grid;
+    grid-template-columns: 6px 29px;
+    column-gap: 36px;
+    align-items: center;
+  }
+  .graphic-editorial-copy dl > .category-date dt,
+  .illustration-editorial-copy dl > .category-date dt,
+  .motion-intro dl > .category-date dt { text-align: left; }
+  .motion-showcase { padding-top: 149px; }
+  .motion-showcase-list {
+    width: 100%;
+    max-width: none;
+    margin-top: 45px;
+  }
+  .motion-showcase-card {
+    width: 100%;
+    max-width: none;
+  }
 
-  /* Personal Space mobile: halve the two requested vertical gaps. */
-  .content-page.personal-view { min-height: 1344.275px; }
+  /* Personal Space mobile: Section 1 uses two cards per row. */
+  .content-page.personal-view { min-height: 1535.15px; }
   .personal-tutorial {
-    min-height: 314.5px;
-    height: 314.5px;
+    min-height: 505.375px;
+    height: 505.375px;
   }
   .personal-tutorial-heading h2 { top: 80.5px; }
-  .personal-tutorial-grid { top: 121.5px; }
+  .personal-tutorial-grid {
+    top: 121.5px;
+    max-width: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .personal-tutorial-card::after {
+    display: block;
+    top: 7px;
+    right: 7px;
+    width: 20px;
+    height: 20px;
+    opacity: 1;
+    transform: none;
+  }
+  .personal-vlog-list,
+  .personal-articles { max-width: none; }
+  .personal-vlog-row {
+    height: auto;
+    aspect-ratio: 343 / 184.017;
+  }
+  .personal-vlog-row .personal-vlog-media {
+    height: 100%;
+    aspect-ratio: auto;
+  }
   .personal-vlog { height: 1029.775px; }
   .personal-vlog-list { top: 114.225px; }
   .personal-articles { top: 756.775px; }
+}
+
+@keyframes mobile-work-tab-select {
+  from { opacity:.58; transform:scale(.94); }
+  to { opacity:1; transform:scale(1); }
+}
+@keyframes mobile-work-tab-content-in {
+  from { opacity:0; filter:blur(7px); transform:translate3d(0,22px,0); }
+  to { opacity:1; filter:blur(0); transform:translate3d(0,0,0); }
+}
+@media (max-width:560px) and (prefers-reduced-motion:reduce) {
+  .work-type-tabs button.active,
+  .content-page.tab-changing .project-index,
+  .content-page.tab-changing .project-gallery { animation:none!important; }
 }

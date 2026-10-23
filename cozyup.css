@@ -52,20 +52,20 @@
 
 /* Updated Figma mobile frame 4887:5362. Web/desktop remains unchanged. */
 @media(max-width:560px){
-  .case-overview{height:1087px;padding:0}
-  .case-heading{inset:34px auto auto 16px;width:343px;height:32px}
-  .case-heading::after{content:"";position:absolute;left:0;top:52px;width:343px;height:1px;background:rgba(255,255,255,.24)}
+  .case-overview{height:1069px;padding:0}
+  .case-heading{inset:20px auto auto 16px;width:343px;height:32px}
+  .case-heading::after{content:"";position:absolute;left:0;top:48px;width:343px;height:1px;background:rgba(255,255,255,.24)}
   .case-back{top:0;width:32px;height:32px}
   .case-back img{width:9px}
   .case-heading h1{left:40px;top:2px;font-size:20px;line-height:28px}
-  .case-statement{left:15px;top:110px;width:344px;font-size:20.137px;line-height:26.849px}
+  .case-statement{left:15px;top:92px;width:344px;font-size:20.137px;line-height:26.849px}
   .case-facts{display:none}
-  .mobile-overview-meta{position:absolute;left:15px;top:188px;width:344px;margin:0;display:grid;grid-template-columns:48px 29px 1fr;column-gap:80px;row-gap:24px;color:#d6c8d8;font:500 12px/17px "PingFang SC",Inter,sans-serif}
+  .mobile-overview-meta{position:absolute;left:15px;top:170px;width:344px;margin:0;display:grid;grid-template-columns:48px 29px 1fr;column-gap:80px;row-gap:24px;color:#d6c8d8;font:500 12px/17px "PingFang SC",Inter,sans-serif}
   .mobile-overview-meta div{min-width:0}
   .mobile-overview-meta div:nth-child(4),.mobile-overview-meta div:nth-child(5){grid-column:1/-1}
   .mobile-overview-meta dt{color:#766c78}
   .mobile-overview-meta dt,.mobile-overview-meta dd{margin:0;white-space:nowrap}
-  .landing-page{left:calc(50% - 121.807px);top:398px;width:243.614px;height:626px;border-radius:3.015px}
+  .landing-page{left:calc(50% - 121.807px);top:380px;width:243.614px;height:626px;border-radius:3.015px}
 
   .design-guidelines{height:592px}
   .design-guidelines h2{inset:36px 16px auto auto;width:343px;font-size:24px;line-height:32px}
