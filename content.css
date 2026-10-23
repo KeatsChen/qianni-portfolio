@@ -2110,8 +2110,15 @@ body:has(.content-page.illustration-view) { overflow-x:hidden; overflow-y:auto; 
     max-width: none;
   }
 
-  /* Personal Space mobile: Section 1 uses two cards per row. */
-  .content-page.personal-view { min-height: 1535.15px; }
+  /* Personal Space mobile: natural page flow keeps scrolling and footer clear. */
+  body.work-list-page:has(.content-page.personal-view) {
+    min-height: 100svh;
+    height: auto;
+  }
+  .content-page.personal-view {
+    min-height: 0;
+    height: auto;
+  }
   .personal-tutorial {
     min-height: 505.375px;
     height: 505.375px;
@@ -2122,15 +2129,7 @@ body:has(.content-page.illustration-view) { overflow-x:hidden; overflow-y:auto; 
     max-width: none;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .personal-tutorial-card::after {
-    display: block;
-    top: 7px;
-    right: 7px;
-    width: 20px;
-    height: 20px;
-    opacity: 1;
-    transform: none;
-  }
+  .personal-tutorial-card::after { display: none; }
   .personal-vlog-list,
   .personal-articles { max-width: none; }
   .personal-vlog-row {
@@ -2144,6 +2143,14 @@ body:has(.content-page.illustration-view) { overflow-x:hidden; overflow-y:auto; 
   .personal-vlog { height: 1029.775px; }
   .personal-vlog-list { top: 114.225px; }
   .personal-articles { top: 756.775px; }
+  .content-page.personal-view + .work-mobile-footer {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: calc(100% - 32px);
+    margin: 60px auto 13px;
+  }
 }
 
 @keyframes mobile-work-tab-select {

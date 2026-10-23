@@ -769,6 +769,7 @@ const switchTab = (tab, updateHistory = true) => {
   contentPage.classList.toggle('illustration-view', tab === 'illustration');
   contentPage.classList.toggle('motion-view', tab === 'motion');
   contentPage.classList.toggle('personal-view', tab === 'personal');
+  if (tab !== 'uiux') hideListSkeleton();
   const backToTopImage = document.querySelector('.back-to-top img');
   if (backToTopImage) backToTopImage.src = tab === 'personal' ? 'assets/back-to-top-light.svg?v=2' : 'assets/back-to-top.svg?v=2';
   if (tab === 'uiux') { projectIndex.innerHTML = uiuxIndexHTML; projectGallery.innerHTML = uiuxGalleryHTML; }
