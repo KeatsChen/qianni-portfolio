@@ -142,16 +142,15 @@ h1 {
   }
   .project-meta dt { color: #6c7875; }
   .project-meta dd { color: #fff; }
-  .project-gallery-desktop { display: none; }
-  .project-gallery,
-  .project-gallery-mobile {
+  .project-gallery {
     display: flex;
     width: calc(100% - 32px);
     max-width: 343px;
     margin-top: 25px;
     gap: 12px;
   }
-  .project-gallery-desktop { display: none !important; }
+  .project-gallery-desktop { display: flex !important; }
+  .project-gallery-mobile { display: none !important; }
   .project-mobile-footer {
     display: block;
     width: calc(100% - 32px);

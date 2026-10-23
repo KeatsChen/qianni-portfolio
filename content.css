@@ -2,6 +2,9 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; background: var(--bg); }
 body { margin: 0; color: #fff; background: var(--bg); font-family: "PingFang SC", "Helvetica Neue", Arial, sans-serif; }
+@media (min-width: 901px) {
+  body.project-detail-open { overflow: hidden; }
+}
 a { color: inherit; }
 .work-mobile-footer,
 .motion-intro-mobile,

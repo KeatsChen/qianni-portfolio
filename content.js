@@ -114,6 +114,7 @@ document.addEventListener('click', (event) => {
           resetProjectTransition();
         }, { once: true });
         frame.src = projectCard.href;
+        document.body.classList.add('project-detail-open');
         document.body.appendChild(frame);
       }, 120);
     });
@@ -130,6 +131,7 @@ window.addEventListener('message', (event) => {
   if (event.data?.type !== 'close-project-detail') return;
   const frame = projectDetailFrame;
   projectDetailFrame = null;
+  document.body.classList.remove('project-detail-open');
   try { frame.contentWindow.stop(); } catch (_) {}
   frame.remove();
   resetProjectTransition();
