@@ -622,15 +622,20 @@ body.theme-light .music-note:focus-visible { outline-color: #191817; }
     position: relative;
     max-width: 130px;
   }
-  .home-page .engagements > h2::after {
+  .home-page .engagements {
+    position: relative;
+  }
+  .home-page .engagements::after {
     content: "";
     position: absolute;
-    top: 68px;
+    top: 88px;
     left: 0;
     width: 142px;
     height: 1px;
     background: var(--home-divider);
+    pointer-events: none;
   }
+  .home-page .engagements > h2::after { content: none; }
   .home-page .experience-list { padding-top: 14px; }
   .home-page .experience-list article {
     height: auto;
@@ -700,9 +705,9 @@ body.theme-light .music-note:focus-visible { outline-color: #191817; }
     height: 1px;
     background: linear-gradient(
       to right,
-      var(--home-divider) 0 41.4%,
-      transparent 41.4% 46.06%,
-      var(--home-divider) 46.06% 100%
+      var(--home-divider) 0 142px,
+      transparent 142px 158px,
+      var(--home-divider) 158px 343px
     );
     pointer-events: none;
   }
