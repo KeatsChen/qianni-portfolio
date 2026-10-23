@@ -10,6 +10,7 @@
 @media(max-width:620px){.case-heading h1{font-size:20px}.hero-phones{gap:12px}.phone{border-width:4px;border-radius:20px}.phone-gallery{grid-template-columns:1fr 1fr;gap:20px 12px}.column-right{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}.column-right .phone:last-child{grid-column:1/-1;width:calc(50% - 6px);justify-self:center}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal-item{opacity:1!important;filter:none!important;transform:none!important;transition:none!important}}
 .case-statement .statement-primary{color:inherit}
+.mobile-overview-meta,.phone-gallery-mobile{display:none}
 
 @media(min-width:901px){.more-heading{top:159px}}
 
@@ -17,6 +18,48 @@
 @media(min-width:901px){
   .more-pages{background:linear-gradient(to bottom,#fff 0 23px,var(--mist) 23px 100%)}
   .case-closing{background:linear-gradient(to bottom,var(--mist) 0 82px,#fff 82px 100%)}
+}
+
+/* Updated Figma app、work detail_Philippine mobile frame 4936:6081. */
+@media(max-width:560px){
+  .case-overview{height:2096px;padding:0;background:var(--mist)}
+  .case-heading{position:absolute;inset:68px auto auto 16px;width:343px;height:56px;min-height:0}
+  .case-heading::after{content:"";position:absolute;left:0;top:78px;width:343px;height:1px;background:rgba(4,4,4,.28)}
+  .case-back{top:0;width:32px;height:32px}
+  .case-back img{width:9px}
+  .case-heading h1{position:absolute;left:40px;top:2px;width:303px;margin:0;font-size:20px;line-height:28px;letter-spacing:-.4px}
+  .case-statement{position:absolute;left:16px;top:170px;width:343px;margin:0;font-size:20.137px;line-height:26.849px;letter-spacing:0}
+  .case-facts{display:none}
+  .mobile-overview-meta{position:absolute;left:16px;top:275px;width:344px;margin:0;display:grid;grid-template-columns:50px 29px 1fr;column-gap:80px;row-gap:24px;color:#040404;font:500 12px/17px "PingFang SC",Inter,sans-serif}
+  .mobile-overview-meta div:nth-child(4),.mobile-overview-meta div:nth-child(5){grid-column:1/-1}
+  .mobile-overview-meta dt{color:#8c8c8c}.mobile-overview-meta dt,.mobile-overview-meta dd{margin:0;white-space:nowrap}
+  .hero-phones{position:absolute;left:calc(50% - 123.06px);top:460px;width:246.12px;margin:0;display:flex;flex-direction:column;gap:24px;transform:none}
+  .hero-phones .phone{width:231.563px;margin-left:7.28px;border-width:5.641px;border-radius:29.617px}
+  .hero-phones .phone::after{top:7.76px;width:66.991px;height:19.745px;border-radius:26.796px}
+  .hero-phones .hero-home{height:688.074px}.hero-phones .hero-profile{height:838.26px}
+  .hero-phones img{width:100%;height:100%;object-fit:cover;object-position:top}
+
+  .more-pages{height:1944px;padding:0;background:#fff}
+  .more-heading{position:absolute;left:82px;top:36px;width:211px;margin:0;text-align:center}
+  .more-heading h2{font-size:24px;line-height:24px;letter-spacing:-.48px}
+  .more-heading p{width:173px;margin:11px auto 0;font-size:11px;line-height:15px;letter-spacing:0}
+  .phone-gallery{display:none}
+  .phone-gallery-mobile{position:absolute;left:16px;top:140px;width:339.806px;display:grid;grid-template-columns:163.237px 162.806px;column-gap:13.763px}
+  .mobile-phone-column{display:flex;flex-direction:column;gap:15.416px}
+  .mobile-right-column{padding-top:49px}
+  .phone-gallery-mobile .phone{width:158.073px;margin-left:4.8px;border-width:3.842px;border-radius:20.171px}
+  .phone-gallery-mobile .phone::after{top:5.28px;width:45.624px;height:13.447px;border-radius:18.25px}
+  .phone-gallery-mobile .gallery-home{height:468.367px}
+  .phone-gallery-mobile .gallery-contact,.phone-gallery-mobile .gallery-community{height:336.326px}
+  .phone-gallery-mobile .gallery-company{height:561.229px}
+  .phone-gallery-mobile .gallery-marketplace{height:489.554px}
+  .phone-gallery-mobile .gallery-membership,.phone-gallery-mobile .gallery-request,.phone-gallery-mobile .gallery-news{height:336.178px}
+  .phone-gallery-mobile img{width:100%;height:100%;object-fit:cover;object-position:top}
+
+  .case-closing{height:154px;padding:0;background:var(--mist)}
+  .closing-eyebrow{left:16px;top:42px;font-size:12px;line-height:12px}
+  .case-closing h2{left:16px;top:72px;width:260px;font-size:30px;line-height:40px;white-space:nowrap}
+  .case-closing time{right:16px;bottom:42px;font-size:12px;line-height:12px}
 }
 
 /* Mobile detail layout follows the app、AI Virtual Companion Platform template. */
@@ -64,4 +107,25 @@
   .case-closing{padding:80px 70px 0;background:linear-gradient(to bottom,#fff 0 23px,var(--mist) 23px 100%)}
   .case-closing .closing-eyebrow{margin-bottom:34px}
   .case-closing time{bottom:46px}
+}
+
+/* Keep the latest app frame authoritative after the legacy mobile fallback. */
+@media(max-width:560px){
+  .case-overview{height:2096px;padding:0}
+  .case-heading{position:absolute;inset:68px auto auto 16px;width:343px;height:56px;min-height:0;margin:0}
+  .case-heading::after{top:78px}
+  .case-back{top:0;width:32px;height:32px}.case-back img{width:9px}
+  .case-heading h1{position:absolute;left:40px;top:2px;width:303px;margin:0;line-height:28px}
+  .case-statement{position:absolute;left:16px;top:170px;width:343px;margin:0;font-size:20.137px;line-height:26.849px;letter-spacing:0}
+  .case-facts{display:none}
+  .hero-phones{position:absolute;left:calc(50% - 123.06px);top:460px;width:246.12px;margin:0;display:flex;grid-template-columns:none;flex-direction:column;gap:24px}
+  .hero-phones .phone{width:231.563px;height:auto;margin-left:7.28px;border-width:5.641px;border-radius:29.617px}
+  .hero-phones .phone::after{top:7.76px;width:66.991px;height:19.745px;border-radius:26.796px}
+  .hero-phones .hero-home{height:688.074px}.hero-phones .hero-profile{height:838.26px}
+  .hero-phones img{width:100%;height:100%;object-fit:cover}
+  .more-pages{height:1944px;padding:0}
+  .more-heading{position:absolute;left:82px;top:36px;width:211px;margin:0;text-align:center}
+  .more-heading h2{font-size:24px;line-height:24px}.more-heading p{width:173px;margin:11px auto 0;font-size:11px;line-height:15px}
+  .phone-gallery{display:none}
+  .case-closing{height:154px;padding:0}.closing-eyebrow{top:42px}.case-closing h2{top:72px;font-size:30px;line-height:40px}.case-closing time{bottom:42px}
 }

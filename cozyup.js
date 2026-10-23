@@ -2,7 +2,7 @@
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const items = [...document.querySelectorAll('.reveal-item')];
-  const heroText = document.querySelector('.case-facts');
+  const heroText = document.querySelector(matchMedia('(max-width: 560px)').matches ? '.mobile-overview-meta' : '.case-facts');
   const heroImage = document.querySelector('.landing-page');
   const observedItems = items.filter((item) => item !== heroImage);
 

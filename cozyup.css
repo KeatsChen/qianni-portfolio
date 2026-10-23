@@ -2,6 +2,8 @@
 @media(max-width:900px){.case-overview,.design-guidelines,.more-pages,.case-closing{width:100%;height:auto}.case-overview{padding:130px 20px 88px}.case-heading,.case-statement,.case-facts,.landing-page,.section-kicker,.design-guidelines h2,.guideline-cards,.palette,.more-pages>h2,.page-shot{position:relative;inset:auto}.case-heading{height:auto;align-items:center;flex-wrap:wrap}.case-heading h1{flex:1;font-size:clamp(24px,6vw,32px);line-height:1.08}.heading-meta{position:relative;flex-basis:100%;width:100%;margin:30px 0 0 78px}.case-statement{width:auto;margin-top:56px;font-size:clamp(34px,8vw,48px);line-height:1.3}.case-facts{margin-top:52px;display:grid;gap:20px}.case-facts div{display:grid;grid-template-columns:120px 1fr}.landing-page{width:min(695.429px,100%);height:auto;margin:76px auto 0;transform:none!important}.landing-page img{height:auto}.design-guidelines{padding:70px 20px}.design-guidelines h2{width:auto;margin:28px 0 48px;text-align:left;font-size:46px;line-height:1.08}.guideline-cards{grid-template-columns:1fr;gap:14px}.guideline-cards article{height:auto;min-height:125px}.guideline-cards p{width:auto}.palette{margin-top:28px;overflow-x:auto}.more-pages{padding:76px 20px}.more-pages>h2{width:auto;font-size:46px;line-height:1.1}.page-gallery{margin-top:58px;display:grid;gap:22px}.page-shot{width:100%!important;height:auto!important}.page-shot img{height:auto}.case-closing{height:260px;padding:56px 20px}.case-closing h2{font-size:48px}.case-closing time{right:20px;bottom:54px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal-item{opacity:1!important;filter:none!important;transform:none!important;transition:none!important}}
 
+.mobile-overview-meta{display:none}
+
 /* Figma app、AI Virtual Companion Platform — mobile detail composition. */
 @media(max-width:560px){
   html,body{min-width:0;background:#120d14}
@@ -47,3 +49,41 @@
 }
 .case-statement .statement-primary,.design-guidelines h2 .guideline-primary,.more-pages>h2 .more-primary{color:inherit}
 .footer-injection-guard{display:none!important}
+
+/* Updated Figma mobile frame 4887:5362. Web/desktop remains unchanged. */
+@media(max-width:560px){
+  .case-overview{height:1121px;padding:0}
+  .case-heading{inset:68px auto auto 16px;width:343px;height:32px}
+  .case-heading::after{content:"";position:absolute;left:0;top:52px;width:343px;height:1px;background:rgba(255,255,255,.24)}
+  .case-back{top:0;width:32px;height:32px}
+  .case-back img{width:9px}
+  .case-heading h1{left:40px;top:2px;font-size:20px;line-height:28px}
+  .case-statement{left:15px;top:144px;width:344px;font-size:20.137px;line-height:26.849px}
+  .case-facts{display:none}
+  .mobile-overview-meta{position:absolute;left:15px;top:222px;width:344px;margin:0;display:grid;grid-template-columns:88px 49px 1fr;column-gap:80px;row-gap:24px;color:#d6c8d8;font:500 12px/17px "PingFang SC",Inter,sans-serif}
+  .mobile-overview-meta div{min-width:0}
+  .mobile-overview-meta div:nth-child(4),.mobile-overview-meta div:nth-child(5){grid-column:1/-1}
+  .mobile-overview-meta dt{color:#766c78}
+  .mobile-overview-meta dt,.mobile-overview-meta dd{margin:0;white-space:nowrap}
+  .landing-page{left:calc(50% - 121.807px);top:432px;width:243.614px;height:626px;border-radius:3.015px}
+
+  .design-guidelines{height:592px}
+  .design-guidelines h2{inset:36px 16px auto auto;width:343px;font-size:24px;line-height:32px}
+  .guideline-cards{left:16px;top:159px;width:343px;gap:12px}
+  .guideline-cards article{width:343px;height:auto;min-height:102px;padding:20px 24px;border-radius:6px}
+  .guideline-cards strong{font-size:19px;line-height:19px;letter-spacing:0}
+  .guideline-cards p{width:295px;margin:6px 0 0;font-size:14px;line-height:1.32;letter-spacing:0}
+  .palette{left:16px;top:510px;width:343px;grid-template-columns:125px repeat(3,67px);gap:5px}
+  .palette span{height:38px;border-radius:10px}
+  .palette .gradient{padding:0 14px;gap:8px}
+
+  .more-pages{height:1386px}
+  .more-pages>h2{left:16px;top:56px;width:314px;font-size:24px;line-height:32px}
+  .page-gallery{left:calc(50% - 137.5px);top:180px;width:275px;gap:16px}
+  .page-shot,.page-shot.onboarding,.page-shot.home,.page-shot.creator,.page-shot.chat,.page-shot.paywall{width:275px;border-radius:3.503px}
+
+  .case-closing{height:174px}
+  .closing-eyebrow{left:16px;top:24px;font-size:12px;line-height:12px}
+  .case-closing h2{left:16px;top:44px;width:206px;font-size:30px;line-height:40px}
+  .case-closing time{right:16px;bottom:50px;font-size:12px;line-height:12px}
+}
