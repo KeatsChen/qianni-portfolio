@@ -60,7 +60,7 @@
   .case-heading h1{left:40px;top:2px;font-size:20px;line-height:28px}
   .case-statement{left:15px;top:144px;width:344px;font-size:20.137px;line-height:26.849px}
   .case-facts{display:none}
-  .mobile-overview-meta{position:absolute;left:15px;top:222px;width:344px;margin:0;display:grid;grid-template-columns:88px 49px 1fr;column-gap:80px;row-gap:24px;color:#d6c8d8;font:500 12px/17px "PingFang SC",Inter,sans-serif}
+  .mobile-overview-meta{position:absolute;left:15px;top:222px;width:344px;margin:0;display:grid;grid-template-columns:48px 29px 1fr;column-gap:80px;row-gap:24px;color:#d6c8d8;font:500 12px/17px "PingFang SC",Inter,sans-serif}
   .mobile-overview-meta div{min-width:0}
   .mobile-overview-meta div:nth-child(4),.mobile-overview-meta div:nth-child(5){grid-column:1/-1}
   .mobile-overview-meta dt{color:#766c78}

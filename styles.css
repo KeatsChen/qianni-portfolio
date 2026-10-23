@@ -618,7 +618,19 @@ body.theme-light .music-note:focus-visible { outline-color: #191817; }
     line-height: 24px;
     letter-spacing: -.48px;
   }
-  .home-page .engagements > h2 { max-width: 130px; }
+  .home-page .engagements > h2 {
+    position: relative;
+    max-width: 130px;
+  }
+  .home-page .engagements > h2::after {
+    content: "";
+    position: absolute;
+    top: 68px;
+    left: 0;
+    width: 142px;
+    height: 1px;
+    background: var(--home-divider);
+  }
   .home-page .experience-list { padding-top: 14px; }
   .home-page .experience-list article {
     height: auto;
@@ -631,6 +643,19 @@ body.theme-light .music-note:focus-visible { outline-color: #191817; }
     row-gap: 8px;
     align-content: start;
     align-items: start;
+  }
+  .home-page .experience-list article:nth-child(3) {
+    grid-template-columns: 130px 55px;
+    column-gap: 0;
+  }
+  .home-page .experience-list article:nth-child(3) span {
+    width: 130px;
+    font-size: 10px;
+    white-space: nowrap;
+  }
+  .home-page .experience-list article:nth-child(3) time {
+    width: 55px;
+    font-size: 10px;
   }
   .home-page .experience-list article:last-child {
     margin-bottom: 0;

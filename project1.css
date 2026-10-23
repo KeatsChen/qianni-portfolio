@@ -84,46 +84,74 @@ h1 {
   .project-gallery { width: calc(100% - 44px); margin-top: 48px; gap: 16px; }
 }
 @media (max-width: 560px) {
-  .project1-page .site-nav { display: none; }
-  .project-page { padding: 62px 0 0; }
-  .project-info { width: calc(100% - 32px); max-width: 343px; }
+  body:has(> .project-page) .site-nav { display: none !important; }
+  .project-page { padding: 68px 0 0; }
+  .project-info {
+    position: relative;
+    width: calc(100% - 32px);
+    max-width: 343px;
+    height: 129px;
+  }
   .project-title-row {
-    grid-template-columns: 24px minmax(0, 235px);
-    gap: 7px;
+    position: relative;
+    display: grid;
+    grid-template-columns: 32px minmax(0, 303px);
+    gap: 8px;
     align-items: start;
   }
   .back-button,
-  .back-circle { width: 24px; height: 24px; }
-  .back-arrow { width: 7px; height: 7px; }
+  .back-circle { width: 32px; height: 32px; }
+  .back-arrow { width: 9px; height: 9px; }
   h1 {
-    max-width: 235px;
+    max-width: 303px;
     font-size: 20px;
     line-height: 28px;
     letter-spacing: -.4px;
   }
   .project-rule {
+    position: absolute;
+    left: 0;
+    top: 128px;
     width: 100%;
-    margin: 29px 0 0;
+    margin: 0;
   }
   .project-meta {
-    width: 100%;
-    margin: 6px 0 0;
+    position: absolute;
+    left: 40px;
+    top: 76px;
+    width: 175px;
+    margin: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
   }
-  .project-meta > div { min-height: 28px; }
+  .project-meta > div {
+    min-width: 0;
+    min-height: 0;
+    display: block;
+  }
   .project-meta dt,
   .project-meta dd {
-    font-size: 13px;
-    line-height: 18px;
-    letter-spacing: -.26px;
+    margin: 0;
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: 0;
+    text-align: left;
+    white-space: nowrap;
   }
+  .project-meta dt { color: #6c7875; }
+  .project-meta dd { color: #fff; }
   .project-gallery-desktop { display: none; }
+  .project-gallery,
   .project-gallery-mobile {
     display: flex;
     width: calc(100% - 32px);
     max-width: 343px;
-    margin-top: 31px;
-    gap: 5.532px;
+    margin-top: 25px;
+    gap: 12px;
   }
+  .project-gallery-desktop { display: none !important; }
   .project-mobile-footer {
     display: block;
     width: calc(100% - 32px);

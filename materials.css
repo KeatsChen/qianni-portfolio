@@ -30,7 +30,7 @@
   .case-heading h1{position:absolute;left:40px;top:2px;width:303px;margin:0;font-size:20px;line-height:28px;letter-spacing:-.4px}
   .case-statement{position:absolute;left:16px;top:170px;width:343px;margin:0;font-size:20.137px;line-height:26.849px;letter-spacing:0}
   .case-facts{display:none}
-  .mobile-overview-meta{position:absolute;left:16px;top:275px;width:344px;margin:0;display:grid;grid-template-columns:50px 29px 1fr;column-gap:80px;row-gap:24px;color:#040404;font:500 12px/17px "PingFang SC",Inter,sans-serif}
+  .mobile-overview-meta{position:absolute;left:16px;top:275px;width:344px;margin:0;display:grid;grid-template-columns:68px 29px 1fr;column-gap:80px;row-gap:24px;color:#040404;font:500 12px/17px "PingFang SC",Inter,sans-serif}
   .mobile-overview-meta div:nth-child(4),.mobile-overview-meta div:nth-child(5){grid-column:1/-1}
   .mobile-overview-meta dt{color:#8c8c8c}.mobile-overview-meta dt,.mobile-overview-meta dd{margin:0;white-space:nowrap}
   .hero-phones{position:absolute;left:calc(50% - 123.06px);top:460px;width:246.12px;margin:0;display:flex;flex-direction:column;gap:24px;transform:none}
