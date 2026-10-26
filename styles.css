@@ -655,12 +655,10 @@ body.theme-light .music-note:focus-visible { outline-color: #191817; }
   }
   .home-page .experience-list article:nth-child(3) span {
     width: 130px;
-    font-size: 10px;
-    white-space: nowrap;
+    white-space: normal;
   }
   .home-page .experience-list article:nth-child(3) time {
     width: 55px;
-    font-size: 10px;
   }
   .home-page .experience-list article:last-child {
     margin-bottom: 0;
