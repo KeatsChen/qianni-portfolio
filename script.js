@@ -726,6 +726,9 @@ const contactContent = {
   wechat: {
     title: '微信', width: 178
   },
+  phone: {
+    title: { en: 'Phone', zh: '手机号' }, width: 178
+  },
   email: {
     title: '邮箱', width: 211
   }
@@ -765,7 +768,9 @@ document.querySelectorAll('.contact-trigger').forEach((trigger) => {
     lastContactTrigger = trigger;
     trigger.setAttribute('aria-expanded', 'true');
     trigger.closest('.social-item')?.classList.add('has-dialog-open');
-    contactDialogTitle.textContent = content.title;
+    contactDialogTitle.textContent = typeof content.title === 'string'
+      ? content.title
+      : content.title[document.documentElement.lang === 'zh-CN' ? 'zh' : 'en'];
     contactDialogValue.textContent = trigger.dataset.contactValue;
     contactDialogCopyLabel.textContent = '复制';
     contactDialog.style.setProperty('--contact-dialog-width', `${content.width}px`);
