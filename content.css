@@ -894,6 +894,19 @@ body:has(.content-page.illustration-view) { overflow:hidden; }
   display:block;
   flex:0 0 26px;
 }
+.motion-intro .motion-rednote-cta.tab-inline-reveal {
+  opacity:0;
+  filter:blur(8px);
+  transform:translateX(-12px);
+  will-change:opacity,filter,transform;
+}
+.motion-intro .motion-rednote-cta.tab-inline-reveal.is-visible {
+  animation:motion-rednote-reveal .65s cubic-bezier(.5,0,0,1) var(--inline-delay,0ms) both;
+}
+@keyframes motion-rednote-reveal {
+  from { opacity:0; filter:blur(8px); transform:translateX(-12px); }
+  to { opacity:1; filter:blur(0); transform:translateX(0); }
+}
 
 @media(max-width:560px){
   .motion-intro .motion-rednote-cta { gap:3px; }
@@ -985,7 +998,7 @@ body:has(.content-page.illustration-view) { overflow:hidden; }
   to { opacity:1; filter:blur(0); translate:0 0; }
 }
 @media(prefers-reduced-motion:reduce){
-  .tab-blur-text-token,.tab-image-reveal{opacity:1;filter:none;transform:none;translate:none;transition:none;animation:none}
+  .tab-blur-text-token,.tab-image-reveal,.motion-intro .motion-rednote-cta.tab-inline-reveal{opacity:1;filter:none;transform:none;translate:none;transition:none;animation:none}
 }
 
 @media(max-width:760px){
@@ -1294,6 +1307,23 @@ body:has(.content-page.illustration-view) { overflow-x:hidden; overflow-y:auto; 
   white-space:nowrap;
 }
 
+/* Metadata labels have different natural widths. Equal columns made the
+   centre label run into the year at notebook-sized desktop widths. Keep the
+   outer labels intrinsic and let only the centre column absorb the space. */
+@media (min-width:761px) {
+  .motion-intro dl,
+  .graphic-editorial-copy dl,
+  .illustration-editorial-copy dl {
+    grid-template-columns:max-content minmax(0,1fr) max-content;
+    column-gap:24px;
+  }
+  .motion-intro dl > div:nth-child(2),
+  .graphic-editorial-copy dl > div:nth-child(2),
+  .illustration-editorial-copy dl > div:nth-child(2) {
+    min-width:0;
+    justify-self:start;
+  }
+}
 /* Personal tutorial cards: explicit external-link affordance. */
 .personal-tutorial-card { cursor:pointer; isolation:isolate; }
 .personal-tutorial-card::before {

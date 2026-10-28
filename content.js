@@ -86,13 +86,13 @@ document.addEventListener('click', (event) => {
   const backButton = event.target.closest('.back-button');
   if (!backButton) return;
 
-  // In a regular page, keep the anchor's native navigation. The custom
-  // close behavior is only needed when the portfolio is opened in an iframe.
-  if (window.self === window.top) return;
+  // Keep one return mechanism in both standalone and embedded Work List
+  // views. Navigating the top document directly cannot be lost by an iframe
+  // message race, and produces exactly one Home load.
   event.preventDefault();
   event.stopImmediatePropagation();
-  const targetOrigin = location.origin === 'null' ? '*' : location.origin;
-  window.parent.postMessage({ type: 'close-portfolio-page' }, targetOrigin);
+  const homeUrl = new URL(backButton.getAttribute('href'), window.location.href).href;
+  window.top.location.assign(homeUrl);
 }, true);
 
 document.addEventListener('click', (event) => {
@@ -208,6 +208,18 @@ function prepareTabEntranceAnimations() {
     element.style.setProperty('--block-delay', `${Math.min(groupIndex * 30, 180)}ms`);
   });
 
+  // The RedNote icon and link are interactive elements, so they cannot be
+  // split into text tokens like the surrounding sentence. Animate that small
+  // group as one unit to keep its entrance in sync with the subtitle.
+  const motionRednoteCta = currentTab === 'motion'
+    ? document.querySelector('.motion-rednote-cta')
+    : null;
+  if (motionRednoteCta) {
+    motionRednoteCta.classList.add('tab-inline-reveal');
+    motionRednoteCta.classList.remove('is-visible');
+    motionRednoteCta.style.setProperty('--inline-delay', '150ms');
+  }
+
   let imageElements = [...projectGallery.querySelectorAll([
     '.gallery-card',
     '.graphic-grid-poster',
@@ -235,7 +247,7 @@ function prepareTabEntranceAnimations() {
     element.style.setProperty('--tab-image-delay', `${delay}ms`);
   });
 
-  const animatedElements = [...textElements, ...imageElements];
+  const animatedElements = [...textElements, ...imageElements, ...(motionRednoteCta ? [motionRednoteCta] : [])];
   if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
     animatedElements.forEach((element) => element.classList.add('is-visible'));
     return;

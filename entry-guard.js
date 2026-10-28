@@ -1,6 +1,9 @@
 const homeEntryKey = 'qianni-home-entered';
 const entrySource = new URLSearchParams(window.location.search).get('from');
-const isExplicitNavigation = entrySource === 'nav';
+// A return from the work list/detail page is already a deliberate in-site
+// navigation. Treat it the same as the primary nav so Safari does not first
+// request Home and then replace it with a second Home request.
+const isExplicitNavigation = ['nav', 'list', 'detail'].includes(entrySource);
 
 if (!isExplicitNavigation && sessionStorage.getItem(homeEntryKey) !== '1') {
   window.location.replace('index.html?first=1');
