@@ -207,6 +207,11 @@ if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 const isFirstMobileHomeEntry = matchMedia('(max-width: 560px)').matches && !location.hash;
 let mobileHomeTopLock = isFirstMobileHomeEntry;
 const forceHomeScrollTop = () => {
+  // Section links are public entry points too; do not reset them to the hero.
+  if (location.hash) {
+    document.getElementById(location.hash.slice(1))?.scrollIntoView({ behavior: 'instant' });
+    return;
+  }
   document.documentElement.scrollTop = 0;
   document.body.scrollTop = 0;
   window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
@@ -265,9 +270,13 @@ const releaseHomeAtTop = () => {
 };
 pinHomeToTop();
 window.addEventListener('pageshow', (event) => {
-  pinHomeToTop();
-  settleFirstMobileHomeAtTop();
-  if (event.persisted || document.readyState === 'complete') releaseHomeAtTop();
+  if (!event.persisted) return;
+  // A cached document has already completed its entrance. Reveal it without
+  // reinitializing animations or overwriting the browser's restored position.
+  homeBootReleased = true;
+  document.documentElement.classList.remove('home-booting');
+  document.documentElement.style.removeProperty('scroll-behavior');
+  releaseMobileHomeTopLock();
 });
 window.addEventListener('load', () => {
   const fontsReady = document.fonts?.ready || Promise.resolve();
@@ -281,10 +290,8 @@ const concealHomeBeforeLeaving = () => {
   const root = document.documentElement;
   root.classList.add('home-booting');
   root.style.scrollBehavior = 'auto';
-  forceHomeScrollTop();
 };
 window.addEventListener('pagehide', concealHomeBeforeLeaving);
-window.addEventListener('beforeunload', concealHomeBeforeLeaving);
 
 const runAfterHomeBoot = (callback) => {
   if (!document.documentElement.classList.contains('home-booting')) {
@@ -359,7 +366,10 @@ let suppressNextIntroTextMotion = isHomeReturnEntry;
 if (isHomeReturnEntry) {
   history.scrollRestoration = 'manual';
   window.scrollTo(0, 0);
-  history.replaceState(null, '', 'index.html');
+  const homeUrl = new URL(location.href);
+  homeUrl.searchParams.delete('from');
+  homeUrl.searchParams.delete('first');
+  history.replaceState(history.state, '', `${homeUrl.pathname}${homeUrl.search}${homeUrl.hash}`);
 }
 
 function prepareIntroTextMotion() {
@@ -401,37 +411,6 @@ function prepareIntroTextMotion() {
     window.requestAnimationFrame(() => intro.classList.add('intro-motion-visible'));
   });
 }
-
-let homeReturnRevealTimer = 0;
-window.replayHomeEntranceMotion = () => {
-  window.scrollTo(0, 0);
-  document.body.classList.remove('home-return-reveal');
-  void document.body.offsetWidth;
-  document.body.classList.add('home-return-reveal');
-  // The intro words already completed their own entrance on first load.
-  // Rebuilding them here stacks a second reveal on top of the page reveal
-  // and produces a visible double flash when an overlay is closed.
-  document.querySelector('.intro')?.classList.add('intro-motion-visible');
-  window.clearTimeout(homeReturnRevealTimer);
-  homeReturnRevealTimer = window.setTimeout(() => {
-    document.body.classList.remove('home-return-reveal');
-  }, 2600);
-};
-
-window.closePortfolioPageWithHomeEntrance = () => {
-  const overlay = document.querySelector('.site-page-overlay');
-  document.body.classList.remove('site-page-open', 'directory-page-open');
-  window.replayHomeEntranceMotion();
-  overlay?.remove();
-};
-
-// Keep the overlay close route in the homepage script so the back button does
-// not depend on the optional music/navigation script or its cached version.
-window.addEventListener('message', (event) => {
-  if (event.origin !== location.origin || event.data?.type !== 'close-portfolio-page') return;
-  event.stopImmediatePropagation();
-  window.closePortfolioPageWithHomeEntrance();
-});
 
 function initializeProjectDeck() {
   const deck = document.querySelector('.project-deck');
@@ -852,7 +831,8 @@ if (capabilitiesShowcase) {
 const revealGroups = [
   ['.hero-nav a', 70],
   ['.feature-card', 90],
-  ['.work-card, .capabilities-showcase', 180, 900],
+  ['.work-card', 180, 900],
+  ['.capabilities-showcase', 0],
   ['.detail-row h2', 80],
   ['.experience-list article', 90],
   ['.compact-row > p, .social-links', 90],

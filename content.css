@@ -58,7 +58,7 @@ a { color: inherit; }
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 15px;
 }
-.work-type-tabs button {
+.work-type-tabs :is(button, a) {
   height: 24px;
   display: flex;
   align-items: center;
@@ -76,8 +76,8 @@ a { color: inherit; }
   cursor: pointer;
   transition: color .25s cubic-bezier(.33,0,.66,1), background-color .25s cubic-bezier(.33,0,.66,1), transform .45s cubic-bezier(.22,1,.36,1);
 }
-.work-type-tabs button.active { color: #01010b; background: #fff; }
-.work-type-tabs button:focus-visible,
+.work-type-tabs :is(button, a).active { color: #01010b; background: #fff; }
+.work-type-tabs :is(button, a):focus-visible,
 .work-type-language button:focus-visible,
 .work-type-music:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 .work-type-language {
@@ -127,7 +127,7 @@ a { color: inherit; }
 .work-type-music img { position: absolute; left: 5px; top: 5px; width: 14px; height: 14px; }
 .work-type-music[aria-pressed="true"] img { filter: sepia(1) saturate(6) hue-rotate(350deg) drop-shadow(0 0 5px rgba(255,216,77,.8)); }
 @media (hover: hover) {
-  .work-type-tabs button:not(.active):hover { color: #01010b; background: #fff; }
+  .work-type-tabs :is(button, a):not(.active):hover { color: #01010b; background: #fff; }
   .work-type-music:hover { background: rgba(255,255,255,.18); }
 }
 .content-page { min-height: 100vh; display: grid; grid-template-columns: minmax(420px, 40.28vw) minmax(0, 1fr); background: var(--bg); }
@@ -378,7 +378,7 @@ body.secondary-entry.tab-has-switched .content-page.tab-changing .project-index 
 @media (max-width: 1050px) {
   .work-type-header { left: 28px; right: 28px; gap: 10px; }
   .work-type-tabs { gap: 8px; }
-  .work-type-tabs button { padding-inline: 7px; font-size: 12px; letter-spacing: -.18px; white-space: nowrap; }
+  .work-type-tabs :is(button, a) { padding-inline: 7px; font-size: 12px; letter-spacing: -.18px; white-space: nowrap; }
   .content-page { grid-template-columns: 370px minmax(0,1fr); }
   .list-skeleton { grid-template-columns:370px minmax(0,1fr); }
   .list-skeleton-back { left:28px; }
@@ -431,7 +431,7 @@ body.secondary-entry.tab-has-switched .content-page.tab-changing .project-index 
   .work-type-header { top: 12px; left: 12px; right: 12px; height: 32px; grid-template-columns: minmax(0,1fr) 82px; gap: 8px; }
   .work-type-tabs { grid-column: 1; grid-row: 1; grid-template-columns: repeat(5, minmax(112px,1fr)); gap: 6px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; }
   .work-type-tabs::-webkit-scrollbar { display: none; }
-  .work-type-tabs button { min-width: 112px; padding-inline: 10px; font-size: 12px; }
+  .work-type-tabs :is(button, a) { min-width: 112px; padding-inline: 10px; font-size: 12px; }
   .work-type-language { grid-column: 2; grid-row: 1; width: 82px; padding-inline: 7px; }
   .work-type-music { justify-self: end; }
   .content-page { display: block; }
@@ -1465,7 +1465,7 @@ body:has(.content-page.illustration-view) { overflow-x:hidden; overflow-y:auto; 
     scrollbar-width: none;
   }
   .work-type-tabs::-webkit-scrollbar { display: none; }
-  .work-type-tabs button {
+  .work-type-tabs :is(button, a) {
     flex: 0 0 111px;
     min-width: 111px;
     height: 20px;
@@ -1475,7 +1475,7 @@ body:has(.content-page.illustration-view) { overflow-x:hidden; overflow-y:auto; 
     line-height: 12px;
     letter-spacing: -.22px;
   }
-  .work-type-tabs button span { white-space: nowrap; }
+  .work-type-tabs :is(button, a) span { white-space: nowrap; }
   .work-type-language { display: none; }
 
   .content-page.graphic-view .project-index,
@@ -2015,13 +2015,13 @@ body:has(.content-page.illustration-view) { overflow-x:hidden; overflow-y:auto; 
     width: calc(100% - 56px);
     height: 24px;
   }
-  .work-type-tabs button {
+  .work-type-tabs :is(button, a) {
     height: 24px;
     font-size: 12px;
     line-height: 12px;
     letter-spacing: -.24px;
   }
-  .work-type-tabs button.active {
+  .work-type-tabs :is(button, a).active {
     animation: mobile-work-tab-select .42s cubic-bezier(.22,1,.36,1) both;
   }
   .content-page.tab-changing .project-index,
@@ -2214,7 +2214,7 @@ body:has(.content-page.illustration-view) { overflow-x:hidden; overflow-y:auto; 
   to { opacity:1; filter:blur(0); transform:translate3d(0,0,0); }
 }
 @media (max-width:560px) and (prefers-reduced-motion:reduce) {
-  .work-type-tabs button.active,
+  .work-type-tabs :is(button, a).active,
   .content-page.tab-changing .project-index,
   .content-page.tab-changing .project-gallery { animation:none!important; }
 }

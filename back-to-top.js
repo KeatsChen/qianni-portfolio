@@ -4,11 +4,11 @@ if (!document.querySelector('.site-copyright')) {
   footer.innerHTML = `
     <p>© 2026 Designed by Qianni Zhong. All Rights Reserved.</p>
     <nav class="site-footer-nav" aria-label="Footer navigation">
-      <a href="index.html?v=196#engagements">Recent engagements</a>
+      <a href="index.html#engagements">Recent engagements</a>
       <span aria-hidden="true"></span>
       <a href="content.html?v=127&amp;from=nav">My Works</a>
       <span aria-hidden="true"></span>
-      <a href="index.html?v=196#connect">Contact me</a>
+      <a href="index.html#connect">Contact me</a>
     </nav>`;
   document.body.append(footer);
 }

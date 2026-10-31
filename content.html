@@ -6,30 +6,30 @@
     <link rel="shortcut icon" type="image/png" href="assets/favicon-z-32.png?v=4" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script>
-      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
       document.documentElement.style.scrollBehavior = 'auto';
-      window.scrollTo(0, 0);
       try {
         if (sessionStorage.getItem('qianni-work-list-skeleton-seen') === '1') {
           document.documentElement.classList.add('list-skeleton-seen');
         }
       } catch (_) {}
     </script>
-    <script src="entry-guard.js?v=6"></script>
+    <script src="entry-guard.js?v=7"></script>
     <meta name="description" content="钟倩妮的 UI/UX 设计作品目录" />
     <title>UI/UX Design — Qianni Zhong</title>
-    <link rel="stylesheet" href="content.css?v=174" />
+    <link rel="canonical" href="https://qianni.space/content.html" />
+    <link rel="stylesheet" href="content.css?v=175" />
     <link rel="stylesheet" href="back-to-top.css?v=15" />
     <link rel="stylesheet" href="secondary-entry.css?v=2" />
   </head>
   <body class="secondary-entry work-list-page no-music-control">
     <nav class="work-type-header" aria-label="项目类型">
       <div class="work-type-tabs">
-        <button class="active" type="button" data-work-tab="uiux" aria-current="page"><span data-en="UI/UX Design" data-zh="UI/UX 设计">UI/UX Design</span></button>
-        <button type="button" data-work-tab="graphic"><span data-en="Graphic Design" data-zh="平面设计">Graphic Design</span></button>
-        <button type="button" data-work-tab="motion"><span data-en="Motion Design" data-zh="动效设计">Motion Design</span></button>
-        <button type="button" data-work-tab="illustration"><span data-en="Illustration" data-zh="插画">Illustration</span></button>
-        <button type="button" data-work-tab="personal"><span data-en="Personal Space" data-zh="个人空间">Personal Space</span></button>
+        <a class="active" data-work-tab="uiux" aria-current="page" href="content.html"><span data-en="UI/UX Design" data-zh="UI/UX 设计">UI/UX Design</span></a>
+        <a data-work-tab="graphic" href="content.html?tab=graphic"><span data-en="Graphic Design" data-zh="平面设计">Graphic Design</span></a>
+        <a data-work-tab="motion" href="content.html?tab=motion"><span data-en="Motion Design" data-zh="动效设计">Motion Design</span></a>
+        <a data-work-tab="illustration" href="content.html?tab=illustration"><span data-en="Illustration" data-zh="插画">Illustration</span></a>
+        <a data-work-tab="personal" href="content.html?tab=personal"><span data-en="Personal Space" data-zh="个人空间">Personal Space</span></a>
       </div>
       <div class="work-type-language" role="group" aria-label="Language"><button type="button" data-lang="zh">中</button><button type="button" data-lang="en">En</button></div>
     </nav>
@@ -46,7 +46,7 @@
     </div>
     <main class="content-page">
       <aside class="project-index">
-        <a class="back-button" href="index.html?v=251&amp;from=list" aria-label="返回作品集首页首屏">
+        <a class="back-button" href="index.html" aria-label="返回作品集首页首屏">
           <img class="back-circle" src="assets/content/back-circle.svg" alt="" />
           <img class="back-arrow" src="assets/content/back-arrow.svg" alt="" />
         </a>
@@ -67,28 +67,28 @@
       </aside>
 
       <section class="project-gallery" aria-label="UI/UX 项目封面">
-        <a class="gallery-card image-card" id="architecture" href="project1.html?from=nav&amp;v=47" aria-label="查看 Architectural Assets Platform Redesign 项目详情"><img src="assets/content/architecture-cover-hd.png?v=2" srcset="assets/content/architecture-cover-hd-mobile.webp 900w, assets/content/architecture-cover-hd-web.webp 1632w" sizes="(max-width: 560px) calc(100vw - 32px), 816px" alt="Architectural Assets Platform Redesign 项目封面" decoding="async" fetchpriority="high" /></a>
+        <a class="gallery-card image-card" id="architecture" href="project1.html" aria-label="查看 Architectural Assets Platform Redesign 项目详情"><img src="assets/content/architecture-cover-hd.png?v=2" srcset="assets/content/architecture-cover-hd-mobile.webp 900w, assets/content/architecture-cover-hd-web.webp 1632w" sizes="(max-width: 560px) calc(100vw - 32px), 816px" alt="Architectural Assets Platform Redesign 项目封面" decoding="async" fetchpriority="high" /></a>
 
-        <a class="gallery-card image-card board-card okr-card" id="okr" href="okr.html?v=154&amp;from=nav" aria-label="查看 OKR System Design 项目详情"><img data-src="assets/content/okr-cover-2026.png?v=1" data-srcset="assets/content/okr-cover-2026-mobile.webp 900w, assets/content/okr-cover-2026-web.webp 1632w" data-sizes="(max-width: 560px) calc(100vw - 32px), 816px" alt="OKR System Design 项目封面" decoding="async" /></a>
+        <a class="gallery-card image-card board-card okr-card" id="okr" href="okr.html" aria-label="查看 OKR System Design 项目详情"><img data-src="assets/content/okr-cover-2026.png?v=1" data-srcset="assets/content/okr-cover-2026-mobile.webp 900w, assets/content/okr-cover-2026-web.webp 1632w" data-sizes="(max-width: 560px) calc(100vw - 32px), 816px" alt="OKR System Design 项目封面" decoding="async" /></a>
 
-        <a class="gallery-card image-card chatbot-card" id="chatbot" href="chatbot.html?from=nav&amp;v=45" aria-label="查看心理健康 AI Chatbot 项目详情"><img data-src="assets/content/chatbot.png" data-srcset="assets/content/chatbot-mobile.webp 900w, assets/content/chatbot-web.webp 1800w" data-sizes="(max-width: 560px) calc(100vw - 32px), 816px" alt="心理健康 AI Chatbot App 项目封面" decoding="async" /></a>
+        <a class="gallery-card image-card chatbot-card" id="chatbot" href="chatbot.html" aria-label="查看心理健康 AI Chatbot 项目详情"><img data-src="assets/content/chatbot.png" data-srcset="assets/content/chatbot-mobile.webp 900w, assets/content/chatbot-web.webp 1800w" data-sizes="(max-width: 560px) calc(100vw - 32px), 816px" alt="心理健康 AI Chatbot App 项目封面" decoding="async" /></a>
 
-        <a class="gallery-card image-card board-card research-card" id="research" href="research.html?from=nav&amp;v=117" aria-label="查看法国学术官网项目详情"><img data-src="assets/projects/research-3-8.png" data-srcset="assets/projects/research-3-8-mobile.webp 900w, assets/projects/research-3-8-web.webp 1800w" data-sizes="(max-width: 560px) calc(100vw - 32px), 816px" alt="法国学术官网项目封面" decoding="async" /></a>
+        <a class="gallery-card image-card board-card research-card" id="research" href="research.html" aria-label="查看法国学术官网项目详情"><img data-src="assets/projects/research-3-8.png" data-srcset="assets/projects/research-3-8-mobile.webp 900w, assets/projects/research-3-8-web.webp 1800w" data-sizes="(max-width: 560px) calc(100vw - 32px), 816px" alt="法国学术官网项目封面" decoding="async" /></a>
 
-        <a class="gallery-card image-card board-card cozyup-card" id="cozyup" href="cozyup.html?from=nav&amp;v=63" aria-label="查看 AI Virtual Companion Platform 项目详情"><img data-src="assets/projects/cozyup-3-11-2026.png?v=1" data-srcset="assets/projects/cozyup-3-11-2026-mobile.webp 900w, assets/projects/cozyup-3-11-2026-web.webp 1800w" data-sizes="(max-width: 560px) calc(100vw - 32px), 816px" alt="AI Virtual Companion Platform 项目封面" decoding="async" /></a>
-        <a class="gallery-card image-card board-card materials-card" id="materials" href="materials.html?from=nav&amp;v=110" aria-label="查看菲律宾建材商城项目详情"><img data-src="assets/projects/materials-11-7.png" data-srcset="assets/projects/materials-11-7-mobile.webp 900w, assets/projects/materials-11-7-web.webp 1800w" data-sizes="(max-width: 560px) calc(100vw - 32px), 816px" alt="菲律宾建材商城 App 项目封面" decoding="async" /></a>
-        <a class="gallery-card image-card board-card sports-card" id="sports" href="sports.html?from=nav&amp;v=2" aria-label="查看 Hong Kong Sports Ticketing Platform 项目详情"><img data-src="assets/projects/hong-kong-sports-ticketing-11-9-3x.png?v=1" data-srcset="assets/projects/hong-kong-sports-ticketing-11-9-3x-mobile.webp 900w, assets/projects/hong-kong-sports-ticketing-11-9-3x-web.webp 1800w" data-sizes="(max-width: 560px) calc(100vw - 32px), 816px" alt="Hong Kong Sports Ticketing Platform 项目封面" decoding="async" /></a>
-        <a class="gallery-card image-card board-card bim-card" id="bim" href="bim.html?from=nav&amp;v=2" aria-label="查看 HanXi BIM Mini Program 项目详情"><img data-src="assets/projects/hanxi-bim-mini-program-11-8-3x.png?v=1" data-srcset="assets/projects/hanxi-bim-mini-program-11-8-3x-mobile.webp 900w, assets/projects/hanxi-bim-mini-program-11-8-3x-web.webp 1800w" data-sizes="(max-width: 560px) calc(100vw - 32px), 816px" alt="HanXi BIM Mini Program 项目封面" decoding="async" /></a>
-        <a class="gallery-card image-card board-card food-card" id="food" href="food.html?from=nav&amp;v=2" aria-label="查看 Food Delivery App Design 项目详情"><img data-src="assets/projects/food-delivery-app-design-11-6-3x.png?v=1" data-srcset="assets/projects/food-delivery-app-design-11-6-3x-mobile.webp 900w, assets/projects/food-delivery-app-design-11-6-3x-web.webp 1800w" data-sizes="(max-width: 560px) calc(100vw - 32px), 816px" alt="Food Delivery App Design 项目封面" decoding="async" /></a>
-        <a class="gallery-card image-card board-card sustainability-card" id="sustainability" href="sustainability.html?from=nav&amp;v=2" aria-label="查看 Sustainability Mini App Design 项目详情"><img data-src="assets/projects/sustainability-mini-app-design-11-3-3x.png?v=1" data-srcset="assets/projects/sustainability-mini-app-design-11-3-3x-mobile.webp 900w, assets/projects/sustainability-mini-app-design-11-3-3x-web.webp 1800w" data-sizes="(max-width: 560px) calc(100vw - 32px), 816px" alt="Sustainability Mini App Design 项目封面" decoding="async" /></a>
-        <a class="gallery-card image-card board-card community-card" id="community" href="community.html?from=nav&amp;v=2" aria-label="查看 Community Mini App Design 项目详情"><img data-src="assets/projects/community-mini-app-design-11-5-3x.png?v=1" data-srcset="assets/projects/community-mini-app-design-11-5-3x-mobile.webp 900w, assets/projects/community-mini-app-design-11-5-3x-web.webp 1800w" data-sizes="(max-width: 560px) calc(100vw - 32px), 816px" alt="Community Mini App Design 项目封面" decoding="async" /></a>
+        <a class="gallery-card image-card board-card cozyup-card" id="cozyup" href="cozyup.html" aria-label="查看 AI Virtual Companion Platform 项目详情"><img data-src="assets/projects/cozyup-3-11-2026.png?v=1" data-srcset="assets/projects/cozyup-3-11-2026-mobile.webp 900w, assets/projects/cozyup-3-11-2026-web.webp 1800w" data-sizes="(max-width: 560px) calc(100vw - 32px), 816px" alt="AI Virtual Companion Platform 项目封面" decoding="async" /></a>
+        <a class="gallery-card image-card board-card materials-card" id="materials" href="materials.html" aria-label="查看菲律宾建材商城项目详情"><img data-src="assets/projects/materials-11-7.png" data-srcset="assets/projects/materials-11-7-mobile.webp 900w, assets/projects/materials-11-7-web.webp 1800w" data-sizes="(max-width: 560px) calc(100vw - 32px), 816px" alt="菲律宾建材商城 App 项目封面" decoding="async" /></a>
+        <a class="gallery-card image-card board-card sports-card" id="sports" href="sports.html" aria-label="查看 Hong Kong Sports Ticketing Platform 项目详情"><img data-src="assets/projects/hong-kong-sports-ticketing-11-9-3x.png?v=1" data-srcset="assets/projects/hong-kong-sports-ticketing-11-9-3x-mobile.webp 900w, assets/projects/hong-kong-sports-ticketing-11-9-3x-web.webp 1800w" data-sizes="(max-width: 560px) calc(100vw - 32px), 816px" alt="Hong Kong Sports Ticketing Platform 项目封面" decoding="async" /></a>
+        <a class="gallery-card image-card board-card bim-card" id="bim" href="bim.html" aria-label="查看 HanXi BIM Mini Program 项目详情"><img data-src="assets/projects/hanxi-bim-mini-program-11-8-3x.png?v=1" data-srcset="assets/projects/hanxi-bim-mini-program-11-8-3x-mobile.webp 900w, assets/projects/hanxi-bim-mini-program-11-8-3x-web.webp 1800w" data-sizes="(max-width: 560px) calc(100vw - 32px), 816px" alt="HanXi BIM Mini Program 项目封面" decoding="async" /></a>
+        <a class="gallery-card image-card board-card food-card" id="food" href="food.html" aria-label="查看 Food Delivery App Design 项目详情"><img data-src="assets/projects/food-delivery-app-design-11-6-3x.png?v=1" data-srcset="assets/projects/food-delivery-app-design-11-6-3x-mobile.webp 900w, assets/projects/food-delivery-app-design-11-6-3x-web.webp 1800w" data-sizes="(max-width: 560px) calc(100vw - 32px), 816px" alt="Food Delivery App Design 项目封面" decoding="async" /></a>
+        <a class="gallery-card image-card board-card sustainability-card" id="sustainability" href="sustainability.html" aria-label="查看 Sustainability Mini App Design 项目详情"><img data-src="assets/projects/sustainability-mini-app-design-11-3-3x.png?v=1" data-srcset="assets/projects/sustainability-mini-app-design-11-3-3x-mobile.webp 900w, assets/projects/sustainability-mini-app-design-11-3-3x-web.webp 1800w" data-sizes="(max-width: 560px) calc(100vw - 32px), 816px" alt="Sustainability Mini App Design 项目封面" decoding="async" /></a>
+        <a class="gallery-card image-card board-card community-card" id="community" href="community.html" aria-label="查看 Community Mini App Design 项目详情"><img data-src="assets/projects/community-mini-app-design-11-5-3x.png?v=1" data-srcset="assets/projects/community-mini-app-design-11-5-3x-mobile.webp 900w, assets/projects/community-mini-app-design-11-5-3x-web.webp 1800w" data-sizes="(max-width: 560px) calc(100vw - 32px), 816px" alt="Community Mini App Design 项目封面" decoding="async" /></a>
       </section>
     </main>
     <footer class="work-mobile-footer">
       <nav aria-label="页脚导航">
         <a href="index.html#engagements" data-en="Recent engagements" data-zh="近期经历">Recent engagements</a>
         <span aria-hidden="true"></span>
-        <a href="content.html?from=nav" data-en="My Works" data-zh="我的作品">My Works</a>
+        <a href="content.html" data-en="My Works" data-zh="我的作品">My Works</a>
         <span aria-hidden="true"></span>
         <a href="index.html#connect" data-en="Contact me" data-zh="联系我">Contact me</a>
       </nav>
@@ -105,8 +105,8 @@
       </div>
     </div>
     <button class="back-to-top" type="button" aria-label="回到顶部"><img src="assets/back-to-top.svg?v=2" alt="" /></button>
-    <script src="back-to-top.js?v=6"></script>
-    <script src="content.js?v=162"></script>
-    <script src="music.js?v=19"></script>
+    <script src="back-to-top.js?v=7"></script>
+    <script src="content.js?v=163"></script>
+    <script src="music.js?v=22"></script>
   </body>
 </html>

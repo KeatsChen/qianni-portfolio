@@ -12,8 +12,6 @@ const projectTransition = document.querySelector('.project-transition');
 const listSkeleton = document.querySelector('.list-skeleton');
 const listSkeletonSessionKey = 'qianni-work-list-skeleton-seen';
 let projectNavigationStarted = false;
-let projectDetailFrame = null;
-let activeProjectCard = null;
 
 const hideListSkeleton = () => {
   if (!listSkeleton || listSkeleton.classList.contains('is-hidden')) return;
@@ -79,68 +77,22 @@ const loadDeferredGalleryImages = () => {
   images.forEach((image) => deferredImageObserver.observe(image));
 };
 
-if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-window.scrollTo(0, 0);
-
-document.addEventListener('click', (event) => {
-  const backButton = event.target.closest('.back-button');
-  if (!backButton) return;
-
-  // Keep one return mechanism in both standalone and embedded Work List
-  // views. Navigating the top document directly cannot be lost by an iframe
-  // message race, and produces exactly one Home load.
-  event.preventDefault();
-  event.stopImmediatePropagation();
-  const homeUrl = new URL(backButton.getAttribute('href'), window.location.href).href;
-  window.top.location.assign(homeUrl);
-}, true);
-
 document.addEventListener('click', (event) => {
   const projectCard = event.target.closest('.gallery-card[href]');
-  if (!projectCard) return;
+  if (!projectCard || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || projectCard.target === '_blank') return;
   event.preventDefault();
   event.stopImmediatePropagation();
   if (projectNavigationStarted) return;
   projectNavigationStarted = true;
-  activeProjectCard = projectCard;
   projectTransition?.classList.add('is-active');
   projectTransition?.setAttribute('aria-hidden', 'false');
   window.requestAnimationFrame(() => {
     window.requestAnimationFrame(() => {
       window.setTimeout(() => {
-        projectDetailFrame = document.createElement('iframe');
-        const frame = projectDetailFrame;
-        frame.className = 'project-detail-frame';
-        frame.title = projectCard.getAttribute('aria-label') || '项目详情';
-        frame.addEventListener('load', () => {
-          if (projectDetailFrame !== frame) return;
-          frame.classList.add('is-visible');
-          resetProjectTransition();
-        }, { once: true });
-        frame.src = projectCard.href;
-        document.body.classList.add('project-detail-open');
-        document.body.appendChild(frame);
+        window.location.assign(projectCard.href);
       }, 120);
     });
   });
-});
-
-window.addEventListener('message', (event) => {
-  if (event.origin !== location.origin || !projectDetailFrame || event.source !== projectDetailFrame.contentWindow) return;
-  if (event.data?.type === 'portfolio-page-context' && event.data.page === 'detail') {
-    projectDetailFrame.classList.add('is-visible');
-    resetProjectTransition();
-    return;
-  }
-  if (event.data?.type !== 'close-project-detail') return;
-  const frame = projectDetailFrame;
-  projectDetailFrame = null;
-  document.body.classList.remove('project-detail-open');
-  try { frame.contentWindow.stop(); } catch (_) {}
-  frame.remove();
-  resetProjectTransition();
-  activeProjectCard?.focus({ preventScroll: true });
-  activeProjectCard = null;
 });
 
 if (sessionStorage.getItem(languageSessionKey) !== '1') {
@@ -335,7 +287,7 @@ const categoryData = {
   personal: {
     title: 'Personal Space', zhTitle: '个人空间', directGallery: true,
     cards: `
-      <section class="personal-tutorial" aria-labelledby="personal-tutorial-title"><header class="personal-tutorial-heading personal-reveal"><a class="back-button personal-tutorial-back" href="index.html?v=252&amp;from=list" aria-label="返回作品集首页首屏"><img class="back-circle" src="assets/content/back-circle.svg" alt="" /><img class="back-arrow" src="assets/content/back-arrow.svg" alt="" /></a><h2 id="personal-tutorial-title" data-en="Tutorial" data-zh="教程">Tutorial</h2></header><div class="personal-tutorial-grid">${personalTutorialImages.map(({ href, src, alt }, index) => `<a class="personal-tutorial-card personal-reveal" style="--tutorial-order:${index}" href="${href}" target="_blank" rel="noopener noreferrer" aria-label="Open ${alt}"><img src="${src}" alt="${alt}" loading="lazy" decoding="async" /></a>`).join('')}</div></section>
+      <section class="personal-tutorial" aria-labelledby="personal-tutorial-title"><header class="personal-tutorial-heading personal-reveal"><a class="back-button personal-tutorial-back" href="index.html" aria-label="返回作品集首页首屏"><img class="back-circle" src="assets/content/back-circle.svg" alt="" /><img class="back-arrow" src="assets/content/back-arrow.svg" alt="" /></a><h2 id="personal-tutorial-title" data-en="Tutorial" data-zh="教程">Tutorial</h2></header><div class="personal-tutorial-grid">${personalTutorialImages.map(({ href, src, alt }, index) => `<a class="personal-tutorial-card personal-reveal" style="--tutorial-order:${index}" href="${href}" target="_blank" rel="noopener noreferrer" aria-label="Open ${alt}"><img src="${src}" alt="${alt}" loading="lazy" decoding="async" /></a>`).join('')}</div></section>
       <section class="personal-vlog" aria-labelledby="personal-vlog-title">
         <p class="personal-vlog-lead personal-reveal"><span class="personal-vlog-lead-desktop" data-en="Vlog  |  I came into this world to see the sun," data-zh="Vlog  |  我来到这个世界上为的是看太阳，">Vlog  |  I came into this world to see the sun,</span><span class="personal-vlog-lead-desktop" data-en=" and the blue horizon wide." data-zh="和蔚蓝色的原野。"> and the blue horizon wide.</span><span class="personal-vlog-lead-mobile" data-en="Vlog  |  I came into this world to see the sun," data-zh="Vlog  |  我来到这个世界上为的是看太阳，">Vlog  |  I came into this world to see the sun,</span><span class="personal-vlog-lead-mobile" data-en=" and the blue horizon wide." data-zh="和蔚蓝色的原野。"> and the blue horizon wide.</span></p>
         <div class="personal-vlog-list" aria-label="Personal vlogs">
@@ -653,9 +605,11 @@ const setupGallery = () => {
   });
   rows.forEach((row) => {
     const handler = (event) => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       const target = document.querySelector(row.hash);
       if (!target) return;
       event.preventDefault();
+      if (location.hash !== row.hash) history.pushState({ tab: currentTab }, '', row.hash);
       const sequence = ++scrollSequence;
       scrollInProgress = true;
       selectRow(row);
@@ -801,20 +755,31 @@ const switchTab = (tab, updateHistory = true) => {
   applyPortfolioLanguage(localStorage.getItem(languageKey) || 'en');
   loadDeferredGalleryImages();
   setupGallery();
-  window.scrollTo({ top: 0, behavior: 'auto' });
+  if (updateHistory) window.scrollTo({ top: 0, behavior: 'auto' });
+  document.title = `${tab === 'uiux' ? 'UI/UX Design' : categoryData[tab].title} — Qianni Zhong`;
+  const canonical = document.querySelector('link[rel="canonical"]');
+  if (canonical) canonical.href = `https://qianni.space/content.html${tab === 'uiux' ? '' : `?tab=${tab}`}`;
   if (updateHistory) {
     const url = new URL(location.href);
     if (tab === 'uiux') url.searchParams.delete('tab'); else url.searchParams.set('tab', tab);
-    history.replaceState({ tab }, '', `${url.pathname}${url.search}`);
+    url.hash = '';
+    history.pushState({ tab }, '', `${url.pathname}${url.search}`);
   }
 };
 
-tabButtons.forEach((button) => button.addEventListener('click', () => { if (button.dataset.workTab !== currentTab) switchTab(button.dataset.workTab); }));
+tabButtons.forEach((button) => button.addEventListener('click', (event) => {
+  if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  event.preventDefault();
+  if (button.dataset.workTab !== currentTab) switchTab(button.dataset.workTab);
+}));
+window.addEventListener('popstate', () => {
+  const tab = new URLSearchParams(location.search).get('tab') || 'uiux';
+  if (tab !== currentTab) switchTab(tab, false);
+});
 switchTab(new URLSearchParams(location.search).get('tab') || 'uiux', false);
 window.requestAnimationFrame(() => {
-  window.scrollTo(0, 0);
+  if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView({ behavior: 'instant' });
   window.requestAnimationFrame(() => {
-    window.scrollTo(0, 0);
     document.documentElement.style.removeProperty('scroll-behavior');
   });
 });

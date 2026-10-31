@@ -1,20 +1,5 @@
-const isEmbeddedPortfolioPage = window.self !== window.top;
-const portfolioMessageOrigin = location.origin === 'null' ? '*' : location.origin;
-
-if (isEmbeddedPortfolioPage) {
-  window.parent.postMessage({
-    type: 'portfolio-page-context',
-    page: location.pathname.endsWith('/content.html') ? 'directory' : 'detail'
-  }, portfolioMessageOrigin);
-
-  if (location.pathname.endsWith('/content.html')) {
-    document.addEventListener('click', (event) => {
-      if (!event.target.closest('.back-button')) return;
-      event.preventDefault();
-      window.parent.postMessage({ type: 'close-portfolio-page' }, portfolioMessageOrigin);
-    });
-  }
-} else {
+// Audio state is shared between real HTML pages. Navigation stays native so
+// the address bar, browser history, and direct links all describe the page.
 const musicStateKey = 'qianni-portfolio-music';
 let musicNoteButton = document.querySelector('.music-note');
 
@@ -137,47 +122,6 @@ window.setInterval(() => {
 }, 1000);
 
 restoreMusic();
-
-function openPortfolioPage(url) {
-  let overlay = document.querySelector('.site-page-overlay');
-  if (!overlay) {
-    overlay = document.createElement('iframe');
-    overlay.className = 'site-page-overlay';
-    overlay.title = '项目详情';
-    document.body.appendChild(overlay);
-  }
-  overlay.src = url;
-  document.body.classList.add('site-page-open');
-  document.body.classList.toggle('directory-page-open', new URL(url).pathname.endsWith('/content.html'));
-}
-
-document.addEventListener('click', (event) => {
-  const link = event.target.closest('a[href]');
-  if (!link || link.target === '_blank' || link.origin !== location.origin) return;
-  if (link.classList.contains('back-button')) return;
-  if (link.closest('.work-type-header')) return;
-  const url = new URL(link.href);
-  if (url.pathname === location.pathname && url.hash) return;
-  if (!url.pathname.endsWith('.html') || url.pathname.endsWith('/index.html')) return;
-  event.preventDefault();
-  writeMusicState();
-  openPortfolioPage(url.href);
+window.addEventListener('pageshow', (event) => {
+  if (event.persisted) restoreMusic();
 });
-
-window.addEventListener('message', (event) => {
-  if (event.origin !== location.origin) return;
-  if (event.data?.type === 'portfolio-page-context') {
-    document.body.classList.toggle('directory-page-open', event.data.page === 'directory');
-    return;
-  }
-  if (event.data?.type === 'close-portfolio-page') {
-    if (typeof window.closePortfolioPageWithHomeEntrance === 'function') {
-      window.closePortfolioPageWithHomeEntrance();
-      return;
-    }
-    document.querySelector('.site-page-overlay')?.remove();
-    document.body.classList.remove('site-page-open', 'directory-page-open');
-    window.scrollTo(0, 0);
-  }
-});
-}
