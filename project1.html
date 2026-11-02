@@ -1,84 +1,161 @@
 <!doctype html>
-<html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-z-32.png?v=4" />
-    <link rel="shortcut icon" type="image/png" href="assets/favicon-z-32.png?v=4" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="entry-guard.js?v=7"></script>
-    <meta name="description" content="建筑素材平台体验升级项目详情" />
-    <title>Architecture Asset Platform Experience Upgrade — Qianni Zhong</title>
-    <link rel="canonical" href="https://qianni.space/project1.html" />
-    <link rel="stylesheet" href="project1.css?v=16" />
-    <link rel="stylesheet" href="portfolio-nav.css?v=11" />
-    <link rel="stylesheet" href="secondary-entry.css?v=1" />
-    <link rel="stylesheet" href="back-to-top.css?v=15" />
-  </head>
-  <body class="has-site-nav secondary-entry project1-page">
-    <nav class="site-nav" aria-label="Portfolio navigation">
-      <a class="site-nav-link" href="index.html#engagements"><span data-en="Recent engagements" data-zh="近期经历">Recent engagements</span><img loading="lazy" decoding="async" src="assets/nav-arrow.svg?v=2" alt="" /></a>
-      <a class="site-nav-link" href="content.html"><span data-en="My Works" data-zh="我的作品">My Works</span><img loading="lazy" decoding="async" src="assets/nav-arrow.svg?v=2" alt="" /></a>
-      <a class="site-nav-link" href="index.html#connect"><span data-en="Contact me" data-zh="联系我">Contact me</span><img loading="lazy" decoding="async" src="assets/nav-arrow.svg?v=2" alt="" /></a>
-      <div class="site-nav-language" role="group" aria-label="Language"><button type="button" data-lang="zh">中</button><button type="button" data-lang="en">En</button></div>
-    </nav>
-    <main class="project-page">
-      <aside class="project-sidebar">
-        <div class="project-info">
-          <div class="project-title-row">
-            <a class="back-button" href="content.html#architecture" aria-label="返回项目目录">
-              <img loading="lazy" decoding="async" class="back-circle" src="assets/project1/back-circle.svg" alt="" />
-              <img loading="lazy" decoding="async" class="back-arrow" src="assets/project1/back-arrow.svg" alt="" />
-            </a>
-            <h1 data-en="Architecture Asset Platform Experience Upgrade" data-zh="建筑素材平台体验升级">Architecture Asset Platform Experience Upgrade</h1>
-          </div>
-          <div class="project-rule"></div>
-          <dl class="project-meta">
-            <div><dt data-en="Industry" data-zh="行业">Industry</dt><dd data-en="Architecture" data-zh="建筑">Architecture</dd></div>
-            <div><dt data-en="Date" data-zh="时间">Date</dt><dd>2024</dd></div>
-          </dl>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-z-32.png?v=4" />
+  <meta name="description" content="Architectural Assets Platform Redesign: research, brand direction, interaction design and a new visual system by Qianni Zhong." />
+  <title>Architectural Assets Platform Redesign — Qianni Zhong</title>
+  <link rel="canonical" href="https://qianni.space/project1.html" />
+  <script>
+    // Set the initial animation state before styles or page content can paint.
+    if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('arch-motion-ready');
+      window.archRevealFallback = setTimeout(() => {
+        document.documentElement.classList.remove('arch-motion-ready');
+      }, 4000);
+    }
+  </script>
+  <link rel="stylesheet" href="portfolio-nav.css?v=11" />
+  <link rel="stylesheet" href="back-to-top.css?v=15" />
+  <link rel="preload" href="assets/fonts/TestSignifier-Regular.otf" as="font" type="font/otf" crossorigin />
+  <link rel="stylesheet" href="architecture-detail.css?v=18" />
+  <link rel="stylesheet" href="architecture-navigation.css?v=2" />
+  <link rel="stylesheet" href="project-pagination.css?v=9" />
+</head>
+<body class="has-site-nav architecture-detail-page">
+  <div class="arch-backdrop" aria-hidden="true"></div>
+  <nav class="site-nav" aria-label="Portfolio navigation">
+    <a class="site-nav-link" href="index.html#engagements"><span data-en="Recent engagements" data-zh="近期经历">Recent engagements</span><img src="assets/architecture-v2/nav-first-arrow.svg" alt="" /></a>
+    <a class="site-nav-link" href="content.html"><span data-en="My Works" data-zh="我的作品">My Works</span><img src="assets/architecture-v2/nav-arrow.svg" alt="" /></a>
+    <a class="site-nav-link" href="index.html#connect"><span data-en="Contact me" data-zh="联系我">Contact me</span><img src="assets/architecture-v2/nav-arrow.svg" alt="" /></a>
+    <div class="site-nav-language" role="group" aria-label="Language"><button type="button" data-lang="zh">中</button><button type="button" data-lang="en">En</button></div>
+  </nav>
+  <main class="arch-case">
+    <header class="arch-overview">
+      <div class="arch-title-row arch-reveal">
+        <a class="arch-back" href="content.html#architecture" aria-label="Back to projects"><img src="assets/project1/back-circle.svg" alt="" /><img src="assets/project1/back-arrow.svg" alt="" /></a>
+        <h1 data-en="Architectural Assets Platform Redesign" data-zh="建筑素材平台官网体验升级">Architectural Assets Platform Redesign</h1>
+      </div>
+      <div class="arch-role arch-reveal">
+        <dl><dt data-en="Role" data-zh="角色">Role</dt><dd data-en="Product Manager · Interaction Designer · Visual Designer" data-zh="产品经理、交互设计、视觉设计">Product Manager · Interaction Designer · Visual Designer</dd></dl>
+        <div id="arch-responsibilities" class="arch-responsibilities">
+          <p class="arch-label" data-en="Responsibilities" data-zh="职责">Responsibilities</p>
+          <ul>
+            <li data-en="Worked closely with the project lead and target users to understand business needs, user pain points and issues with the existing website, defining redesign goals and the overall design direction." data-zh="我在项目前期与项目负责人及目标用户深入沟通，梳理业务需求、用户痛点与现有网站的问题，明确改版目标及整体设计方向；">Worked closely with the project lead and target users to understand business needs, user pain points and issues with the existing website, defining redesign goals and the overall design direction.</li>
+            <li data-en="Planned the information architecture, page layouts and prototypes, clarifying content hierarchy and the interactions between pages." data-zh="根据项目需求规划网站的信息架构、页面布局，设计网站原型，明确内容层级及页面间的交互关系；">Planned the information architecture, page layouts and prototypes, clarifying content hierarchy and the interactions between pages.</li>
+            <li data-en="Designed the visual language and interaction experience, including visual standards, components and interaction states, improving consistency, usability and the overall experience." data-zh="负责网站整体视觉风格与交互体验设计，包括页面视觉规范、组件样式、交互状态，提升网站的视觉一致性、易用性与整体体验。">Designed the visual language and interaction experience, including visual standards, components and interaction states, improving consistency, usability and the overall experience.</li>
+          </ul>
         </div>
+      </div>
+      <aside class="arch-facts arch-reveal" aria-label="Project information">
+        <div class="arch-tools"><img src="assets/architecture-v2/figma.png" width="30" height="30" alt="Figma" /><span class="arch-ps"><img src="assets/architecture-v2/photoshop.png" width="35" height="35" alt="Adobe Photoshop" /></span></div>
+        <dl><dt data-en="Date" data-zh="时间">Date</dt><dd>2023–2024</dd></dl>
+        <dl><dt data-en="Devices" data-zh="终端">Devices</dt><dd data-en="Mobile & Desktop" data-zh="手机&amp;桌面端">Mobile & Desktop</dd></dl>
       </aside>
+      <div class="arch-hero arch-reveal" aria-label="Redesigned platform preview">
+        <figure class="arch-window arch-hero-home"><img src="assets/architecture-v2/home-screen.png" width="1401" height="4096" fetchpriority="high" decoding="async" alt="Redesigned Xiju platform homepage" /></figure>
+        <figure class="arch-window arch-hero-enterprise"><img src="assets/architecture-v2/enterprise-screen.png" width="1564" height="4096" decoding="async" alt="Redesigned enterprise platform" /></figure>
+      </div>
+    </header>
 
-      <section class="project-gallery project-gallery-desktop" aria-label="项目展示">
-        <img loading="lazy" decoding="async" src="assets/project1/01.png" alt="建筑素材平台体验升级：项目概览" />
-        <img loading="lazy" decoding="async" src="assets/project1/02.png" alt="项目背景" />
-        <img loading="lazy" decoding="async" src="assets/project1/03.png" alt="探索与洞察" />
-        <img loading="lazy" decoding="async" src="assets/project1/04.png" alt="用户洞察" />
-        <img loading="lazy" decoding="async" src="assets/project1/05.png" alt="设计目标" />
-        <img loading="lazy" decoding="async" src="assets/project1/06.png" alt="视觉风格" />
-        <img loading="lazy" decoding="async" src="assets/project1/07.png" alt="字体规范" />
-        <img loading="lazy" decoding="async" src="assets/project1/08.png" alt="色彩规范" />
-        <img loading="lazy" decoding="async" src="assets/project1/09.png" alt="图标规范" />
-        <img loading="lazy" decoding="async" src="assets/project1/10.png" alt="首页设计" />
-        <img loading="lazy" decoding="async" src="assets/project1/11.png" alt="页面设计展示" />
-        <img loading="lazy" decoding="async" src="assets/project1/12.png" alt="移动端设计" />
-        <img loading="lazy" decoding="async" src="assets/project1/13.png" alt="最终设计总结" />
-      </section>
+    <section class="arch-section arch-background" aria-labelledby="arch-background-title">
+      <header class="arch-section-heading arch-reveal"><h2 id="arch-background-title" data-en="Project Background" data-zh="项目背景">Project Background</h2><p>Project Background</p></header>
+      <p class="arch-background-lead arch-rich arch-reveal" data-rich-zh="希巨平台致力于**中国创意行业**的资源共享创新服务，运用**前沿的互联网应用技术**结合团队20年的行业管理经验，为创意设计行业提供**共享平台服务。**" data-rich-en="Xiju brings resource sharing and innovation to **China’s creative industry**. Combining **advanced internet technologies** with 20 years of industry management experience, it provides **a shared platform for creative design professionals.**">Xiju brings resource sharing and innovation to China’s creative industry.</p>
+      <dl class="arch-background-facts arch-reveal"><div><dt data-en="Industry" data-zh="行业">Industry</dt><dd data-en="Architectural Design" data-zh="建筑设计">Architectural Design</dd></div><div><dt data-en="Location" data-zh="地区">Location</dt><dd data-en="Shanghai" data-zh="上海">Shanghai</dd></div></dl>
+    </section>
 
-      <section class="project-gallery project-gallery-mobile" aria-label="移动端项目展示">
-        <img loading="lazy" decoding="async" src="assets/project1/01.png" alt="建筑素材平台体验升级：项目概览" />
-        <img loading="lazy" decoding="async" src="assets/project1/02.png" alt="项目背景" />
-        <img loading="lazy" decoding="async" src="assets/project1/03.png" alt="视觉与体验设计展示一" />
-        <img loading="lazy" decoding="async" src="assets/project1/04.png" alt="视觉与体验设计展示二" />
-        <img loading="lazy" decoding="async" src="assets/project1/05.png" alt="视觉与体验设计展示三" />
-        <img loading="lazy" decoding="async" src="assets/project1/06.png" alt="移动端设计展示" />
-      </section>
+    <section class="arch-section arch-comparison" aria-labelledby="arch-comparison-title">
+      <header class="arch-section-heading arch-reveal"><h2 id="arch-comparison-title" data-en="Before & After" data-zh="改版前后">Before & After</h2><p>Project Background</p></header>
+      <div class="arch-comparison-grid">
+        <div class="arch-comparison-column arch-reveal"><h3 class="arch-dot-label" data-en="Before" data-zh="改版前">Before</h3><div class="arch-before-grid"><div><img src="assets/architecture-v2/before-assets.png" width="793" height="831" loading="lazy" decoding="async" alt="Original asset library" /><img src="assets/architecture-v2/before-panel.png" width="793" height="671" loading="lazy" decoding="async" alt="Original platform interface" /></div><img src="assets/architecture-v2/before-home.png" width="384" height="865" loading="lazy" decoding="async" alt="Original platform homepage" /></div></div>
+        <div class="arch-comparison-column arch-reveal"><h3 class="arch-dot-label" data-en="After" data-zh="改版后">After</h3><div class="arch-after-grid"><figure class="arch-window"><img src="assets/architecture-v2/home-screen.png" width="1401" height="4096" loading="lazy" decoding="async" alt="Redesigned homepage comparison" /></figure><figure class="arch-window"><img src="assets/architecture-v2/enterprise-screen.png" width="1564" height="4096" loading="lazy" decoding="async" alt="Redesigned enterprise interface comparison" /></figure></div></div>
+      </div>
+    </section>
 
-      <footer class="project-mobile-footer">
-        <nav aria-label="页脚导航">
-          <a href="index.html#engagements" data-en="Recent engagements" data-zh="近期经历">Recent engagements</a>
-          <span aria-hidden="true"></span>
-          <a href="content.html" data-en="My Works" data-zh="我的作品">My Works</a>
-          <span aria-hidden="true"></span>
-          <a href="index.html#connect" data-en="Contact me" data-zh="联系我">Contact me</a>
-        </nav>
-        <p>© 2026 Designed by Qianni Zhong. All Rights Reserved.</p>
-      </footer>
-    </main>
-    <button class="back-to-top" type="button" aria-label="回到顶部"><img loading="lazy" decoding="async" src="assets/back-to-top.svg?v=2" alt="" /></button>
-    <script src="portfolio-nav.js?v=6"></script>
-    <script src="back-to-top.js?v=7"></script>
-    <script src="project1.js?v=3"></script>
-    <script src="music.js?v=22"></script>
-  </body>
+    <section class="arch-section arch-interviews" aria-labelledby="arch-interviews-title">
+      <header class="arch-section-heading arch-reveal"><h2 id="arch-interviews-title" data-en="User Interviews" data-zh="用户访谈">User Interviews</h2><p>Project Background</p></header>
+      <div class="arch-interview-body">
+        <span class="arch-quote-mark" aria-hidden="true">“</span>
+        <div class="arch-quotes">
+          <figure class="arch-quote arch-reveal"><blockquote class="arch-rich" data-rich-zh="我希望他们觉得我们像**一本专业的建筑杂志**，而不是一个粗糙的素材仓库。现在的问题是**看着不高级**，好东西（功能）藏得太深、**用起来太绕。**" data-rich-en="“I want people to see us as **a professional architecture magazine**, rather than a rough asset warehouse. Right now, **the experience doesn’t feel premium**, and our best features are buried too deep and **too difficult to use.**”">I want people to see us as a professional architecture magazine.</blockquote><figcaption><img src="assets/architecture-v2/portrait.jpg" width="62" height="62" loading="lazy" decoding="async" alt="" /><div><span data-en="Mr. Zhang" data-zh="张总">Mr. Zhang</span><small data-en="CEO, Xiju Platform" data-zh="希巨平台CEO">CEO, Xiju Platform</small></div></figcaption></figure>
+          <figure class="arch-quote arch-reveal"><blockquote class="arch-rich" data-rich-zh="页面看着**有点乱**，找图还行，但想把好图整理起来和团队一起**用就特别麻烦**。感觉**工具不好用**，还不如自己电脑里建个文件夹来得直接。" data-rich-en="“The pages feel **a little cluttered**. Finding images is fine, but organizing them and **sharing them with my team is a hassle**. The **tools are difficult to use**—it feels easier to create a folder on my own computer.”">The pages feel a little cluttered.</blockquote><figcaption><img src="assets/architecture-v2/portrait-alternate.jpg" width="62" height="62" loading="lazy" decoding="async" alt="" /><div><span data-en="Mr. Liu" data-zh="刘工">Mr. Liu</span><small data-en="Senior Architectural Designer" data-zh="资深建筑设计师">Senior Architectural Designer</small></div></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="arch-section arch-goals" aria-labelledby="arch-goals-title">
+      <header class="arch-section-heading arch-centered arch-reveal"><h2 id="arch-goals-title" data-en="Defining Design Goals" data-zh="设计目标推导">Defining Design Goals</h2><p>Project Background</p></header>
+      <div class="arch-goal-list">
+        <div class="arch-goal-row arch-reveal">
+          <div class="arch-problems"><div><h3 data-en="Brand positioning and perception gap" data-zh="品牌定位与感知落差">Brand positioning and perception gap</h3><p data-en="“A professional magazine, not an asset warehouse.”" data-zh="“像专业建筑杂志，别像粗糙仓库”">“A professional magazine, not an asset warehouse.”</p></div><div><h3 data-en="Lack of visual quality and expression" data-zh="视觉品质感与表现力不足">Lack of visual quality and expression</h3><p data-en="“It doesn’t feel premium.”" data-zh="“现在看着不高级”">“It doesn’t feel premium.”</p></div></div>
+          <img class="arch-flow-arrow" src="assets/architecture-v2/arrow-in.svg" alt="" />
+          <div class="arch-goal-circle"><img src="assets/architecture-v2/goal-circle.svg" alt="" /><h3 data-en="Improve Brand Perception" data-zh="品牌感知优化">Improve Brand Perception</h3></div>
+          <img class="arch-flow-arrow" src="assets/architecture-v2/arrow-out.svg" alt="" />
+          <div class="arch-solutions"><p data-en="Refine the visual direction" data-zh="视觉方向调整">Refine the visual direction</p><p data-en="Integrate the brand throughout" data-zh="全局品牌融入">Integrate the brand throughout</p></div>
+        </div>
+        <div class="arch-goal-row arch-reveal">
+          <div class="arch-problems"><div><h3 data-en="Confusing architecture and hierarchy" data-zh="信息架构混乱，视觉层次不清">Confusing architecture and hierarchy</h3><p data-en="“The page feels cluttered.”" data-zh="“页面看着有点乱”">“The page feels cluttered.”</p></div><div><h3 data-en="Tools offer no clear advantage" data-zh="工具失效，未形成替代优势">Tools offer no clear advantage</h3><p data-en="“I’d rather use my own folders.”" data-zh="“不如用自己文件夹”">“I’d rather use my own folders.”</p></div></div>
+          <img class="arch-flow-arrow" src="assets/architecture-v2/arrow-in.svg" alt="" />
+          <div class="arch-goal-circle"><img src="assets/architecture-v2/goal-circle.svg" alt="" /><h3 data-en="Improve the Interaction Experience" data-zh="交互体验优化">Improve the Interaction Experience</h3></div>
+          <img class="arch-flow-arrow" src="assets/architecture-v2/arrow-out.svg" alt="" />
+          <div class="arch-solutions"><p data-en="Layout" data-zh="布局">Layout</p><p data-en="Design standards" data-zh="规范">Design standards</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="arch-section arch-visual-direction" aria-labelledby="arch-visual-title">
+      <header class="arch-section-heading arch-reveal"><h2 id="arch-visual-title" data-en="Visual Direction" data-zh="视觉方向调整">Visual Direction</h2><p>Project Background</p></header>
+      <div class="arch-research-grid">
+        <article class="arch-research-card arch-reveal"><h3><span class="arch-research-icon"><img src="assets/architecture-v2/b54e1.svg" alt="" /></span><span data-en="Competitor Analysis" data-zh="竞品分析">Competitor Analysis</span></h3><p class="arch-rich" data-rich-zh="通过分析主流建筑素材平台，发现其界面均采用**严格的栅格系统和模块化布局**，这与建筑师的思维模式高度重合，从而推导出**“秩序感”**关键词，是**建立专业信任与提升浏览效率**的核心视觉特征。" data-rich-en="Leading architecture asset platforms rely on **strict grids and modular layouts**, reflecting the way architects think. This led to **a sense of order** as a core visual quality for **building trust and improving browsing efficiency.**">Leading architecture asset platforms rely on strict grids and modular layouts.</p><img class="arch-down-arrow" src="assets/architecture-v2/arrow-down.svg" alt="" /><figure class="arch-mood"><img class="arch-mood-underlay" src="assets/architecture-v2/mood-glass.png" width="658" height="370" alt="" loading="lazy" /><img src="assets/architecture-v2/mood-order.png" width="658" height="439" alt="Ordered architectural forms" loading="lazy" decoding="async" /><figcaption data-en="Order" data-zh="秩序感">Order</figcaption></figure></article>
+        <article class="arch-research-card arch-reveal"><h3><span class="arch-research-icon"><img src="assets/architecture-v2/8ba21.svg" alt="" /></span><span data-en="Industry Research" data-zh="行业研究">Industry Research</span></h3><p class="arch-rich" data-rich-zh="通过对**建筑行业数字化转型趋势**的分析，BIM、参数化设计和智能建造等技术正重塑行业模式，因此平台视觉需通过**深色基调、融入发光元素、未来主义元素**等，将这种数字化升级转化为**具有“科技感”的视觉语言**。" data-rich-en="**Digital transformation in architecture**, including BIM, parametric design and smart construction, is reshaping the industry. **Dark tones, luminous elements and futuristic details** translate that evolution into **a technology-driven visual language.**">Digital transformation is reshaping architecture.</p><img class="arch-down-arrow" src="assets/architecture-v2/arrow-down.svg" alt="" /><figure class="arch-mood"><img src="assets/architecture-v2/mood-tech.jpg" width="1600" height="1067" alt="Technology mood reference" loading="lazy" decoding="async" /><figcaption data-en="Technology" data-zh="科技感">Technology</figcaption></figure></article>
+        <article class="arch-research-card arch-reveal"><h3><span class="arch-research-icon"><img src="assets/architecture-v2/85c92.svg" alt="" /></span><span data-en="User Research" data-zh="用户研究">User Research</span></h3><p class="arch-rich" data-rich-zh="用户研究表明，建筑设计师在寻求设计素材时，不仅关注功能性，更期待**平台能体现其专业审美与行业身份**，因此通过**极简布局、高级灰色彩体系及精致的图形材质光影细节**，营造出符合其职业自豪感的**视觉“高级感”**。" data-rich-en="Architects expect tools that **reflect their professional taste and identity**, beyond utility alone. **Minimal layouts, sophisticated neutral tones and refined material and lighting details** create **a premium visual experience.**">Architects expect tools that reflect their professional identity.</p><img class="arch-down-arrow" src="assets/architecture-v2/arrow-down.svg" alt="" /><figure class="arch-mood"><img src="assets/architecture-v2/mood-premium.png" width="658" height="439" alt="Layered sculptural forms" loading="lazy" decoding="async" /><figcaption data-en="Sophistication" data-zh="高级感">Sophistication</figcaption></figure></article>
+      </div>
+    </section>
+
+    <section class="arch-section arch-typography" aria-labelledby="arch-type-title">
+      <header class="arch-section-heading arch-reveal"><h2 id="arch-type-title" data-en="Typography" data-zh="字体规范">Typography</h2><p>Project Background</p></header>
+      <div class="arch-font-specimen arch-reveal"><div class="arch-font-top"><span>Font</span><div class="arch-font-weights"><span>Regular</span><span>Medium</span><span>DemiBold</span><span>SemiBold</span></div></div><p class="arch-misans">MiSans</p></div>
+      <div class="arch-numeral-specimen arch-reveal"><div><p data-en="Numerals" data-zh="数字">Numerals</p><p>DIN</p></div><div class="arch-din"><p>0123456789</p><p>0123456789</p><p>0123456789</p></div></div>
+    </section>
+
+    <section class="arch-section arch-colors" aria-labelledby="arch-color-title">
+      <header class="arch-section-heading arch-reveal"><h2 id="arch-color-title" data-en="Color System" data-zh="色彩规范">Color System</h2><p>Project Background</p></header>
+      <div class="arch-color-body">
+        <div class="arch-reveal"><p class="arch-rich arch-color-copy" data-rich-zh="采用希巨品牌绿色作为主色调，通过优化其明度与饱和度并加入渐变设计，将原本传统的绿色基调转化为更加**明亮、富有科技感与未来感的色彩风格**。同时，引入暖黄色作为辅助色，在**提升视觉活力**的同时也为整体平台注入了温度与亲和力。" data-rich-en="The palette builds on Xiju’s brand green. Adjusting brightness and saturation and introducing gradients creates **a brighter, technological and forward-looking identity**. Warm yellow-orange accents **add energy**, warmth and approachability.">The palette builds on Xiju’s brand green.</p><ul class="arch-tags" aria-label="Design disciplines"><li>BIM</li><li>Web</li><li>App</li><li>Visual Design</li></ul></div>
+        <div class="arch-swatches arch-reveal"><div class="arch-swatch arch-swatch-primary"><div class="arch-swatch-color"></div><div class="arch-swatch-caption"><h3 data-en="Primary" data-zh="主色">Primary</h3><p>#16D0BE <span>#04C3F5</span></p></div></div><div class="arch-secondary-swatches"><div class="arch-swatch"><div class="arch-swatch-color" style="--swatch:#04c9b5"></div><div class="arch-swatch-caption"><h3 data-en="Secondary" data-zh="辅助色">Secondary</h3><p>#04C9B5</p></div></div><div class="arch-swatch"><div class="arch-swatch-color" style="--swatch:#ec8405"></div><div class="arch-swatch-caption"><h3 data-en="Secondary" data-zh="辅助色">Secondary</h3><p>#EC8405</p></div></div><div class="arch-swatch"><div class="arch-swatch-color" style="--swatch:#fff"></div><div class="arch-swatch-caption"><h3 data-en="Secondary" data-zh="辅助色">Secondary</h3><p>#FFFFFF</p></div></div></div></div>
+      </div>
+    </section>
+
+    <section class="arch-section arch-icons" aria-labelledby="arch-icons-title">
+      <header class="arch-section-heading arch-reveal"><h2 id="arch-icons-title" data-en="Icon System" data-zh="Icon规范">Icon System</h2><p>Project Background</p></header>
+      <div class="arch-icon-row arch-reveal"><div class="arch-icon-grid arch-icon-grid-flat"><img src="assets/architecture-v2/81b7f.svg" alt="Geometric icon 1" loading="lazy" /><img src="assets/architecture-v2/57249.svg" alt="Geometric icon 2" loading="lazy" /><img src="assets/architecture-v2/dd627.svg" alt="Geometric icon 3" loading="lazy" /><img src="assets/architecture-v2/54f60.svg" alt="Geometric icon 4" loading="lazy" /><img src="assets/architecture-v2/b7ff9.svg" alt="Geometric icon 5" loading="lazy" /><img src="assets/architecture-v2/0eba2.svg" alt="Geometric icon 6" loading="lazy" /><img src="assets/architecture-v2/ad176.svg" alt="Geometric icon 7" loading="lazy" /><img src="assets/architecture-v2/7af15.svg" alt="Geometric icon 8" loading="lazy" /></div><p class="arch-rich" data-rich-zh="此图标以**几何图形**为基底，结合**对比、重复、对齐等图形设计技巧**，塑造出**简练而富有张力**的形态。在极简中追求精准的比例与细节质感，传递**静谧而高级**的视觉感受。" data-rich-en="Based on **geometric forms**, these icons use **contrast, repetition and alignment** to create **simple yet expressive shapes**. Precise proportions and refined details bring **a calm, sophisticated quality** to the interface.">Geometric icons use contrast, repetition and alignment.</p></div>
+      <div class="arch-icon-row arch-reveal"><div class="arch-icon-grid arch-icon-grid-glass"><span><img src="assets/architecture-v2/687de.svg" alt="Personal workspace icon" loading="lazy" /></span><span><img src="assets/architecture-v2/a9b31.svg" alt="Seamless workflow icon" loading="lazy" /></span><span><img src="assets/architecture-v2/928e6.svg" alt="Assets icon" loading="lazy" /></span><span><img src="assets/architecture-v2/d4951.svg" alt="Cloud tools icon" loading="lazy" /></span><span><img src="assets/architecture-v2/260cb.svg" alt="Design tools icon" loading="lazy" /></span><span><img src="assets/architecture-v2/5cd45.svg" alt="Collaboration icon" loading="lazy" /></span></div><p class="arch-rich" data-rich-zh="此图标基于工具造型，赋予**半透明毛玻璃质感**与轮廓光晕。通过精准调控高光与阴影的过渡，在保留实体厚重感的同时，呈现数字化通透光泽，达成**科技感与专业度**的视觉平衡。" data-rich-en="Tool-inspired forms combine **translucent frosted glass** and luminous contours. Controlled highlights and shadows retain a tangible sense of depth while adding digital clarity, balancing **technology and professionalism**.">Tool-inspired forms combine translucent frosted glass and luminous contours.</p></div>
+    </section>
+
+    <section class="arch-section arch-more" aria-labelledby="arch-more-title">
+      <header class="arch-section-heading arch-reveal"><h2 id="arch-more-title" data-en="More Pages" data-zh="更多页面">More Pages</h2><p>More pages</p></header>
+      <div class="arch-more-grid">
+        <figure class="arch-window arch-more-portfolio arch-reveal"><img src="assets/architecture-v2/portfolio-screen.png" width="1315" height="4096" loading="lazy" decoding="async" alt="Redesigned portfolio page" /></figure>
+        <div class="arch-more-middle arch-reveal"><figure class="arch-window arch-more-enterprise"><img src="assets/architecture-v2/enterprise-screen.png" width="1564" height="4096" loading="lazy" decoding="async" alt="Enterprise platform full page" /></figure><figure class="arch-window arch-more-help"><img src="assets/architecture-v2/help-screen.png" width="2318" height="4096" loading="lazy" decoding="async" alt="Help center page" /></figure></div>
+        <figure class="arch-window arch-more-home arch-reveal"><img src="assets/architecture-v2/home-screen.png" width="1401" height="4096" loading="lazy" decoding="async" alt="Platform homepage full page" /></figure>
+      </div>
+    </section>
+
+    <section class="arch-section arch-summary" aria-labelledby="arch-summary-title">
+      <div class="arch-summary-copy arch-reveal"><header class="arch-section-heading"><h2 id="arch-summary-title" data-en="Design Reflections" data-zh="设计小结">Design Reflections</h2><p>Project Background</p></header><ul class="arch-takeaways"><li class="arch-rich" data-rich-zh="官网是公司的门面，是外界了解公司的窗口。官网内容、视觉风格都应该**贴合公司的整体调性**。" data-rich-en="A website is a company’s public face. Its content and visual language should **reflect the character of the brand**.">A website is a company’s public face.</li><li class="arch-rich" data-rich-zh="在内容的呈现上，应该**以用户为中心**调整内容重点，一步步对用户进行引导，从而实现转化。" data-rich-en="Content should be **centered on users**, highlighting what matters and guiding them step by step toward conversion.">Content should be centered on users.</li><li class="arch-rich" data-rich-zh="在进行视觉设计前，先梳理设计目标，创建情绪版，**基于情绪版进行视觉设计**，确保最终的输出设计稿的风格符合预期。" data-rich-en="Define the goals and build a moodboard before visual exploration. **Use that direction to guide the design**, keeping the final outcome aligned with the intended style.">Define goals and build a moodboard before visual exploration.</li></ul><ul class="arch-tags" aria-label="Design disciplines"><li>BIM</li><li>Web</li><li>App</li><li>Visual Design</li></ul></div>
+      <div class="arch-summary-artwork arch-reveal"><figure class="arch-window arch-summary-screen"><img src="assets/architecture-v2/home-screen.png" width="1401" height="4096" loading="lazy" decoding="async" alt="Final platform design" /></figure></div>
+    </section>
+    <nav id="project-navigation" class="project-pagination" aria-label="Project navigation">
+      <img class="project-pagination-divider" src="assets/architecture-v2/project-switch-divider.svg" width="1240" height="1" alt="" />
+      <div class="project-pagination-row">
+        <a class="project-pagination-link" href="okr.html?v=20261102-pagination-3" rel="next"><span class="project-pagination-label" data-en="OKR System Design" data-zh="OKR 系统设计">OKR System Design</span><span class="project-pagination-arrow" aria-hidden="true"><img class="project-pagination-default" src="assets/architecture-v2/project-next-arrow.svg" width="16" height="16" alt="" /><img class="project-pagination-hover" src="assets/architecture-v2/project-switch-hover-arrow.svg" width="16" height="16" alt="" /></span></a>
+      </div>
+    </nav>
+  </main>
+  <button class="back-to-top" type="button" aria-label="Back to top"><img src="assets/back-to-top.svg?v=2" alt="" /></button>
+  <script src="portfolio-nav.js?v=7"></script>
+  <script src="architecture-detail.js?v=3"></script>
+  <script src="back-to-top.js?v=7"></script>
+</body>
 </html>

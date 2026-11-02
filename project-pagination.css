@@ -1,0 +1,55 @@
+/* Shared case-study navigation, in Work List order. */
+.project-pagination {
+  --switch-ink:#fff; --switch-hover:rgba(255,255,255,.15);
+  position:relative; width:min(1240px,calc(100% - 200px));
+  margin:5px auto 0; padding-bottom:192px; color:var(--switch-ink); box-sizing:border-box;
+}
+.architecture-detail-page .project-pagination { width:100%; }
+/* Continue each bespoke closing section through the whole pagination band. */
+.project-pagination-surface { width:min(1440px,100%); margin:0 auto; padding-top:5px; }
+.project-pagination-surface .project-pagination { margin-top:0; }
+.research-page .project-pagination-surface { background:var(--mist,#e8edf9); }
+:is(.research-page,.materials-page,.cozyup-page) { --closing-gutter:100px; }
+:is(.research-page,.materials-page,.cozyup-page) .case-closing { padding-inline:var(--closing-gutter); }
+:is(.research-page,.materials-page,.cozyup-page) .case-closing time { right:var(--closing-gutter); }
+.cozyup-page .project-pagination-surface { background:#e75b9d; }
+.materials-page .project-pagination-surface { background:var(--mist,#f5f7fc); }
+.project-pagination-divider { display:block; width:100%; height:1px; margin:0; }
+.project-pagination-row { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); column-gap:32px; margin-top:46px; }
+.project-pagination-link {
+  position:relative; display:flex; align-items:center; gap:2px; min-width:0;
+  min-height:26px; padding:4px 10px 4px 18px; border-radius:28px;
+  color:var(--switch-ink); opacity:.7; background:transparent; text-decoration:none;
+  font:400 14px/18px "PingFang SC","Helvetica Neue",Arial,sans-serif;
+  transition:opacity .25s ease; box-sizing:border-box;
+}
+.project-pagination-link[rel="prev"] { grid-column:1; justify-self:start; margin-left:-10px; padding:4px 18px 4px 10px; }
+.project-pagination-link[rel="next"] { grid-column:2; justify-self:end; margin-right:-10px; text-align:right; }
+.project-pagination-link::before { content:""; position:absolute; inset:0; border-radius:28px; background:var(--switch-hover); opacity:0; transition:opacity .25s ease; pointer-events:none; }
+.project-pagination-link > span { position:relative; }
+.project-pagination-label { min-width:0; overflow-wrap:anywhere; }
+.project-pagination-arrow { position:relative; width:16px; height:16px; flex:0 0 16px; }
+.project-pagination-arrow img { position:absolute; inset:0; display:block; width:16px; height:16px; max-width:none; margin:0; }
+.project-pagination-link[rel="prev"] .project-pagination-arrow { transform:rotate(180deg); }
+.project-pagination-hover { opacity:0; }
+.project-pagination-link:is(:hover,:focus-visible,:active) { opacity:1; }
+.project-pagination-link:is(:hover,:focus-visible,:active)::before { opacity:1; }
+.project-pagination-link:is(:hover,:focus-visible,:active) .project-pagination-default { opacity:0; }
+.project-pagination-link:is(:hover,:focus-visible,:active) .project-pagination-hover { opacity:1; }
+.project-pagination-link:focus-visible { outline:1px solid currentColor; outline-offset:3px; }
+.project-pagination--light { --switch-ink:#14140d; --switch-hover:rgba(20,20,13,.15); border-top:1px solid #e0d9cf; }
+.research-page .project-pagination { border-top-color:#b5b5c3; }
+.project-pagination--light .project-pagination-arrow img { filter:brightness(0); }
+.project-pagination--light .project-pagination-divider { display:none; }
+.research-page .project-pagination-link { --switch-hover:#000; }
+.research-page .project-pagination-link:is(:hover,:focus-visible,:active) { color:#fff; }
+.research-page .project-pagination-link:is(:hover,:focus-visible,:active) .project-pagination-arrow img { filter:none; }
+@media(max-width:1100px) { .project-pagination { width:calc(100% - 96px); } :is(.research-page,.materials-page,.cozyup-page) { --closing-gutter:48px; } }
+@media(max-width:760px) { .project-pagination { width:calc(100% - 48px); } :is(.research-page,.materials-page,.cozyup-page) { --closing-gutter:24px; } }
+@media(max-width:560px) {
+  .project-pagination { width:calc(100% - 32px); padding-bottom:128px; }
+  .project-pagination-row { column-gap:24px; }
+  .project-pagination-label { min-width:0; }
+  :is(.research-page,.materials-page,.cozyup-page) { --closing-gutter:16px; }
+}
+@media(prefers-reduced-motion:reduce) { .project-pagination-link,.project-pagination-link::before { transition:none; } }

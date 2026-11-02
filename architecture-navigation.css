@@ -1,0 +1,27 @@
+/* Latest Figma navigation: 5061:1420, four controls, white at 10%. */
+.architecture-detail-page .site-nav {
+  top:50px; left:50%; right:auto; width:min(1240px,calc(100% - 200px));
+  height:24px; padding:0; gap:16px;
+  grid-template-columns:minmax(0,302fr) minmax(0,489fr) minmax(0,302fr) 99px;
+  transform:translate(-50%,calc(var(--nav-hide-progress)*-100px));
+}
+.architecture-detail-page .site-nav::before { content:none; }
+.architecture-detail-page .site-nav-link,
+.architecture-detail-page .site-nav-language {
+  height:24px; background:rgba(255,255,255,.1); border-radius:43px;
+}
+.architecture-detail-page .site-nav-link { padding:0 13px; font-size:14px; line-height:16px; letter-spacing:-.28px; }
+.architecture-detail-page .site-nav-language { padding:0 10px; }
+.architecture-detail-page .site-nav-language button { color:#90909b; opacity:1; }
+.architecture-detail-page .site-nav-language button.active { color:#fff; }
+.architecture-detail-page .site-nav-language button.active::after {
+  width:5.196px; height:2.25px; bottom:0; clip-path:none; background:transparent url("assets/architecture-v2/nav-language-marker.svg") center/contain no-repeat;
+}
+@media(hover:hover) {
+  .architecture-detail-page .site-nav-link:hover { background:#f1f1f1; }
+}
+@media(max-width:1100px) { .architecture-detail-page .site-nav { width:calc(100% - 96px); } }
+@media(max-width:760px) {
+  .architecture-detail-page .site-nav { top:24px; width:calc(100% - 48px); gap:8px; grid-template-columns:1fr 1fr 1fr 75px; }
+}
+@media(max-width:560px) { .architecture-detail-page .site-nav { display:none; } }
