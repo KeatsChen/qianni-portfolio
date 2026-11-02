@@ -13,6 +13,12 @@ body.architecture-detail-page { position:relative; margin:0; overflow-x:clip; ba
 .architecture-detail-page :is(h1,h2,h3,p,figure,blockquote,dl,dd) { margin:0; }
 .architecture-detail-page img { display:block; max-width:100%; }
 .arch-backdrop { position:absolute; z-index:0; inset:0; overflow:hidden; pointer-events:none; background-image:url("assets/architecture-v2/background.svg"); background-repeat:no-repeat; background-size:3905.88px 13781.8px; background-position:calc(50% - 359.34px) -1042px; }
+.arch-backdrop.is-aligned { background-image:none; }
+.arch-backdrop-glow { position:absolute; top:0; left:0; visibility:hidden; transform-origin:0 0; }
+.arch-backdrop.is-aligned .arch-backdrop-glow { visibility:visible; }
+.arch-backdrop-glow > img { display:block; max-width:none; }
+.arch-backdrop-glow[data-design-node="5000:1020"],
+.arch-backdrop-glow[data-design-node="5000:1022"] { opacity:.5; }
 .arch-case { position:relative; z-index:1; width:min(1440px,100%); margin:auto; padding:144px 100px 0; }
 .arch-overview { position:relative; }
 .arch-title-row { display:flex; align-items:center; gap:24px; padding-right:130px; min-height:51px; }
@@ -140,11 +146,14 @@ html:lang(zh-CN) .arch-goal-circle h3 { width:83px; }
 .arch-icon-row { display:grid; grid-template-columns:minmax(0,509px) minmax(0,661.414px); gap:70px; align-items:start; margin-top:125px; }
 .arch-icon-row + .arch-icon-row { margin-top:97px; }
 .arch-icon-row > p { margin-top:14px; font-size:23.678px; line-height:1.95; }
-.arch-icon-grid { display:grid; align-items:center; justify-items:center; }
-.arch-icon-grid-flat { grid-template-columns:repeat(4,minmax(0,1fr)); row-gap:36px; }
-.arch-icon-grid-flat > img { width:65.51px; height:65.51px; border-block:.5px solid rgba(255,255,255,.16); }
-.arch-icon-grid-glass { grid-template-columns:repeat(3,minmax(0,1fr)); gap:41px 0; }
-.arch-icon-grid-glass > span { position:relative; width:78.928px; height:78.928px; display:grid; place-items:center; border-block:.5px solid rgba(255,255,255,.16); }
+.arch-icon-grid { position:relative; display:grid; align-items:center; justify-items:center; grid-template-rows:repeat(2,var(--icon-line-row)); }
+.arch-icon-grid::before,.arch-icon-grid::after { content:""; position:absolute; left:0; right:0; height:var(--icon-line-row); background:url("assets/architecture-v2/icon-row-divider.svg") left top/100% .5px no-repeat,url("assets/architecture-v2/icon-row-divider.svg") left bottom/100% .5px no-repeat; pointer-events:none; }
+.arch-icon-grid::before { top:0; }
+.arch-icon-grid::after { bottom:0; }
+.arch-icon-grid-flat { --icon-line-row:66px; grid-template-columns:repeat(4,minmax(0,1fr)); row-gap:36px; }
+.arch-icon-grid-flat > img { width:65.51px; height:65.51px; }
+.arch-icon-grid-glass { --icon-line-row:79px; grid-template-columns:repeat(3,minmax(0,1fr)); gap:41px 0; }
+.arch-icon-grid-glass > span { position:relative; width:78.928px; height:78.928px; display:grid; place-items:center; }
 .arch-icon-grid-glass img { max-width:86%; max-height:82%; }
 .arch-more { min-height:1777px; }
 .arch-more-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin-top:41px; margin-inline:-5px; }
@@ -299,6 +308,7 @@ html:lang(zh-CN) .arch-goal-circle h3 { width:83px; }
   .arch-swatch-caption h3 { font-size:14px; line-height:20px; }
   .arch-swatch-caption p { font-size:10px; }
   .arch-icon-grid-flat > img { width:50px; height:50px; }
+  .arch-icon-grid-flat { --icon-line-row:50px; }
   .arch-more-grid { grid-template-columns:repeat(2,minmax(0,1fr)); align-items:start; }
   .arch-more-home { grid-column:1 / -1; width:70%; margin:16px auto 0; }
   .arch-mood figcaption { font-size:26px; }
