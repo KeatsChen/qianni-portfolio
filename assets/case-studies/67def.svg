@@ -1,0 +1,21 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="122.798" height="44.258" viewBox="0 0 122.798 44.258" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<foreignObject x="-6.32333" y="-6.32333" width="135.444" height="56.9046"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(3.16px);clip-path:url(#bgblur_0_0_9_clip_path);height:100%;width:100%"></div></foreignObject><g id="Rectangle 1610" data-figma-bg-blur-radius="6.32333">
+<use xlink:href="#stroke0_0_9" fill="url(#paint0_linear_0_9)" fill-opacity="0.3"/>
+<mask id="stroke1_0_9" fill="white">
+<use xlink:href="#stroke0_0_9"/>
+</mask>
+<path d="M7.22666 44.258H115.571C119.562 44.258 122.798 41.0225 122.798 37.0313V7.22667C122.798 3.23549 119.562 0 115.571 0H7.22667C3.23549 0 0 3.23549 0 7.22667V37.0313C0 41.0225 3.23548 44.258 7.22666 44.258Z" stroke-width="1.20444" stroke="url(#paint1_linear_0_9)" mask="url(#stroke1_0_9)"/>
+</g>
+<defs>
+<clipPath id="bgblur_0_0_9_clip_path" transform="translate(6.32333 6.32333)"><path d="M7.22656 0.300781H115.571C119.396 0.300888 122.497 3.4018 122.497 7.22656V37.0312C122.497 40.8561 119.396 43.9569 115.571 43.957H7.22656C3.40173 43.957 0.300781 40.8561 0.300781 37.0312V7.22656C0.300839 3.40177 3.40177 0.300838 7.22656 0.300781Z"/>
+</clipPath><linearGradient id="paint0_linear_0_9" x1="46.1886" y1="-0.12366" x2="46.1121" y2="44.2356" gradientUnits="userSpaceOnUse">
+<stop stop-color="#782CFF"/>
+<stop offset="1" stop-color="#782CFF" stop-opacity="0.44"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_9" x1="13.3476" y1="1.92426" x2="30.8221" y2="64.669" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0.81"/>
+<stop offset="1" stop-color="white" stop-opacity="0.05"/>
+</linearGradient>
+<path id="stroke0_0_9" d="M0 7.22667C0 3.23549 3.23549 0 7.22667 0H115.571C119.562 0 122.798 3.23549 122.798 7.22667V37.0313C122.798 41.0225 119.562 44.258 115.571 44.258H7.22666C3.23548 44.258 0 41.0225 0 37.0313V7.22667Z"/>
+</defs>
+</svg>

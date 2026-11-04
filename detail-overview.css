@@ -1,0 +1,91 @@
+/* Shared, extensible detail-page information block. */
+.detail-overview { --detail-label:#8c8c8c; width:min(1240px,calc(100% - 200px)); margin:144px auto 55px; display:grid; grid-template-columns:minmax(0,1fr) 100px; gap:29px 67px; position:relative; color:inherit; font-family:"PingFang SC","Helvetica Neue",Arial,sans-serif; }
+.detail-overview-title { display:flex; align-items:center; gap:24px; min-width:0; min-height:54px; }
+.detail-overview-title h1 { margin:0; max-width:none; font:400 30px/1.6 "Test Signifier",Georgia,"Songti SC",serif; letter-spacing:-.6px; }
+.detail-overview-back { position:relative; display:grid; place-items:center; flex:0 0 51px; width:51px; height:51px; border:1px solid rgba(128,128,140,.25); border-radius:50%; background:rgba(128,128,140,.08); transition:transform .3s; }
+.detail-overview-back:hover { transform:translateX(-3px); }
+.detail-overview-back:focus-visible { outline:2px solid currentColor; outline-offset:4px; }
+.detail-overview-back img { display:block; width:14.366px; height:14.366px; max-width:none; }
+.detail-overview-fields { grid-column:1; margin-left:78px; display:grid; align-content:start; gap:24px; min-width:0; }
+.detail-overview-field { margin:0; min-width:0; font-size:14px; line-height:20px; }
+.detail-overview-field dt,.detail-overview-field dd,.detail-overview-facts dt,.detail-overview-facts dd { margin:0; }
+.detail-overview-field dt,.detail-overview-facts dt { color:var(--detail-label); font-weight:400; }
+.detail-overview-field dd { margin-top:4px; overflow-wrap:anywhere; }
+.detail-overview-field ul { padding-left:13px; margin:0; line-height:26px; }
+html:lang(en) .detail-overview-field ul { line-height:20px; }
+.detail-overview-field p { margin:0; }
+.detail-overview-facts { grid-column:2; grid-row:1 / span 2; display:grid; align-content:start; gap:12px; margin:11px 0 0; text-align:right; font-size:12px; line-height:12px; }
+.detail-overview-facts dd { margin-top:4px; line-height:1.4; overflow-wrap:anywhere; }
+.detail-overview-facts > dl { margin:0; }
+:is(.sports-page,.bim-page,.sustainability-page,.community-page) .detail-overview-facts,:is(.sports-page,.bim-page,.sustainability-page,.community-page) .detail-overview-facts > dl { grid-template-columns:minmax(0,1fr); min-width:0; }
+:is(.sports-page,.bim-page,.sustainability-page,.community-page) .detail-overview-facts > dl { display:grid; }
+:is(.sports-page,.bim-page,.sustainability-page,.community-page) .detail-overview-facts dd { white-space:nowrap; width:max-content; justify-self:end; overflow-wrap:normal; }
+body:is(.chatbot-detail-page,.okr-detail-page) .detail-overview-facts { align-self:start; }
+body:is(.chatbot-detail-page,.okr-detail-page) .detail-overview-facts dd { color:#c8c8c8; line-height:12px; }
+@media(min-width:761px) {
+  :is(.research-page,.cozyup-page,.materials-page) .detail-overview { grid-template-rows:54px auto; align-items:start; }
+  :is(.research-page,.cozyup-page,.materials-page) :is(.detail-overview-title,.detail-overview-fields,.detail-overview-facts) { align-self:start; }
+  html:lang(en) .chatbot-detail-page .detail-overview-field ul { line-height:26px; }
+  html:lang(en) .okr-detail-page .detail-overview-field ul { line-height:26px; }
+}
+.detail-overview-fields:empty { display:none; }
+.detail-overview:not(.has-fields) { row-gap:0; }
+.detail-overview-fields .detail-overview-field > dd { margin-left:0; }
+.detail-overview-tools { display:flex; justify-content:flex-end; gap:10px; }
+.detail-overview-tools img { width:30px; height:30px; object-fit:contain; }
+.detail-overview.has-standard-tools .detail-overview-tools img[alt="Figma"] { border-radius:6px; }
+.detail-overview-tools .arch-ps { position:static; display:block; width:30px; height:30px; overflow:hidden; }
+.detail-overview-tools .arch-ps img { position:static; width:30px; height:30px; }
+.architecture-detail-page .detail-overview-field ul { width:min(100%,calc(57em + 13px)); }
+.research-page .detail-overview-back img,.materials-page .detail-overview-back img { filter:brightness(0); }
+:is(.research-page,.cozyup-page,.materials-page) .detail-overview-facts dd { line-height:12px; }
+:is(.research-page,.cozyup-page,.materials-page) :is(.detail-overview-facts,.detail-overview-facts > dl) { min-width:0; }
+:is(.research-page,.cozyup-page,.materials-page) .detail-overview-facts { grid-template-columns:minmax(0,1fr); }
+/* The trimmed artwork wrapper extends above its section. Keep the real
+   header above that transparent hit area, without moving any artwork. */
+:is(.research-page,.cozyup-page,.materials-page) .detail-overview { z-index:1; }
+.research-page .mountain-wash { pointer-events:none; user-select:none; }
+:is(.research-page,.cozyup-page,.materials-page) .detail-overview-tools img[alt="Figma"] { border-radius:6px; }
+html:lang(en) .research-page .detail-overview-facts dd[data-en="Research & Academia"] {
+  white-space:nowrap; overflow-wrap:normal; width:max-content;
+  position:relative; left:100%; translate:-100% 0;
+}
+.architecture-detail-page .detail-overview { width:100%; margin:0 0 0; }
+body.has-unified-overview .project-page { padding-top:0; }
+body.has-unified-overview .project-sidebar { display:none; }
+body.has-unified-overview .project-gallery { margin-top:0; }
+body:is(.chatbot-detail-page,.okr-detail-page) .project-gallery { width:min(1084px,calc(100% - 48px)); max-width:none; gap:24px; }
+html:lang(zh-CN) :is(.chatbot-detail-page,.okr-detail-page) .detail-overview-title h1 { font-family:MiSans,"PingFang SC",sans-serif; font-size:32px; line-height:54px; letter-spacing:.64px; }
+.case-overview-inner { position:relative; }
+@media(prefers-reduced-motion:no-preference) {
+  .detail-overview-title,.detail-overview-fields,.detail-overview-facts { animation:detail-overview-enter .75s cubic-bezier(.22,1,.36,1) both; }
+  .detail-overview-fields { animation-delay:.14s; }
+  .detail-overview-facts { animation-delay:.28s; }
+  @keyframes detail-overview-enter { from { opacity:0; filter:blur(5px); translate:0 20px; } to { opacity:1; filter:none; translate:0 0; } }
+}
+@media(max-width:1100px) {
+  .detail-overview { width:calc(100% - 96px); gap:29px 32px; }
+}
+@media(max-width:760px) {
+  :is(.sports-page,.bim-page,.sustainability-page,.community-page) .detail-overview-facts dd { justify-self:start; }
+  html:lang(en) .research-page .detail-overview-facts dd[data-en="Research & Academia"] { left:0; translate:none; }
+  .detail-overview { width:calc(100% - 48px); margin-top:20px; grid-template-columns:minmax(0,1fr); gap:24px; }
+  .detail-overview-title { gap:16px; }
+  .detail-overview-title h1 { font-size:24px; line-height:1.4; }
+  .detail-overview-back { flex-basis:40px; width:40px; height:40px; }
+  .detail-overview-fields { margin-left:56px; }
+  .detail-overview-facts { grid-column:1; grid-row:auto; margin:0 0 0 56px; text-align:left; }
+  .detail-overview-tools { justify-content:flex-start; }
+}
+@media(max-width:560px) {
+  .detail-overview { width:calc(100% - 32px); margin-bottom:24px; }
+  .detail-overview-title { gap:12px; }
+  .detail-overview-title h1 { font-size:20px; }
+  html:lang(zh-CN) :is(.chatbot-detail-page,.okr-detail-page) .detail-overview-title h1 { font-size:24px; line-height:1.4; }
+  .detail-overview-back { flex-basis:32px; width:32px; height:32px; }
+  .detail-overview-fields,.detail-overview-facts { margin-left:44px; }
+  .detail-overview-field { font-size:12px; line-height:18px; }
+  .detail-overview-field ul { line-height:22px; }
+  html:lang(en) .detail-overview-field ul { line-height:14.6667px; }
+  body:is(.chatbot-detail-page,.okr-detail-page) .project-gallery { width:calc(100% - 32px); gap:24px; }
+}

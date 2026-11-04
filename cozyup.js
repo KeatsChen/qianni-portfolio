@@ -2,7 +2,7 @@
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const items = [...document.querySelectorAll('.reveal-item')];
-  const heroText = document.querySelector(matchMedia('(max-width: 560px)').matches ? '.mobile-overview-meta' : '.case-facts');
+  const heroText = document.querySelector('.detail-overview') || document.querySelector(matchMedia('(max-width: 560px)').matches ? '.mobile-overview-meta' : '.case-facts');
   const heroImage = document.querySelector('.landing-page');
   const observedItems = items.filter((item) => item !== heroImage);
 
@@ -28,6 +28,7 @@
   }, { threshold: 0.09, rootMargin: '0px 0px -7% 0px' });
 
   observedItems.forEach((item) => observer.observe(item));
+  if (heroText && !observedItems.includes(heroText)) observer.observe(heroText);
 
   // Mobile browsers may delay the hero image or its observer callback.
   // Keep the reveal, but never leave the image permanently transparent.

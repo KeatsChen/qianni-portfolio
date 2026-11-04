@@ -36,6 +36,7 @@ html:lang(en) .arch-section-heading h2 { font-family:"Architecture Test Signifie
    English copy within that same text measure, plus the 13px bullet gutter. */
 .arch-responsibilities { width:min(100%,calc(57em + 13px)); margin-top:24px; }
 .arch-responsibilities ul { margin:4px 0 0; padding-left:13px; line-height:26px; }
+html:lang(en) .arch-responsibilities ul { line-height:20px; }
 .arch-responsibilities li { padding-left:0; }
 .arch-facts { position:absolute; right:0; top:11px; width:116px; font-family:"PingFang SC","Helvetica Neue",Arial,sans-serif; font-size:12px; line-height:12px; text-align:right; }
 .arch-tools { display:flex; justify-content:flex-end; gap:10px; margin-bottom:12px; }
@@ -88,19 +89,28 @@ html:lang(en) .arch-rich { letter-spacing:-.01em; word-spacing:0; }
 .arch-quote figcaption span { color:#c1cccd; font-size:20px; line-height:21px; }
 .arch-quote figcaption small { color:#8d9899; opacity:.8; font-size:15px; line-height:1.4; }
 .arch-quote + .arch-quote { margin-top:89px; }
-.arch-goals { min-height:1079px; }
+.arch-goals { min-height:973px; }
 .arch-goal-list { width:min(991px,100%); margin:131px 0 0 7.59%; display:grid; gap:83px; }
 .arch-goal-row { display:grid; grid-template-columns:minmax(0,293fr) minmax(0,91fr) minmax(0,162fr) minmax(0,91fr) minmax(0,217fr); gap:34px; align-items:center; }
 .arch-problems,.arch-solutions { display:grid; gap:14px; }
 .arch-problems > div,.arch-solutions > p { padding:20px 22px; background:rgba(255,255,255,.01); border:.5px solid rgba(255,255,255,.37); border-radius:12px; }
 .arch-problems h3 { font-size:17px; font-weight:400; line-height:1.2; }
 .arch-problems p { margin-top:12px; font-size:13px; line-height:1.2; color:rgba(255,255,255,.5); }
-.arch-solutions > p { padding:18px 14px; font-size:17px; line-height:1.2; text-align:center; }
+.arch-solutions > p { padding:18px 14px; min-height:55.472px; display:grid; place-items:center; font-size:17px; line-height:18px; text-align:center; }
 .arch-flow-arrow { width:auto; height:auto; }
 .arch-goal-circle { position:relative; aspect-ratio:1; display:grid; place-items:center; }
 .arch-goal-circle > img { position:absolute; inset:0; width:100%; height:100%; }
 .arch-goal-circle h3 { position:relative; width:80%; font-size:20px; font-weight:500; line-height:1.46; text-align:center; }
 html:lang(zh-CN) .arch-goal-circle h3 { width:83px; }
+.arch-information-architecture { min-height:1105px; }
+.arch-information-body { display:grid; grid-template-columns:minmax(0,408fr) minmax(0,697fr); column-gap:130px; margin-top:64px; margin-left:5px; }
+.arch-information-copy { min-width:0; display:flex; flex-direction:column; justify-content:space-between; }
+.arch-information-copy > p { font-size:20px; line-height:1.65; }
+.arch-information-specs { margin:40px 0 0; padding-left:18px; font-size:16px; line-height:1.68; }
+.arch-information-wireframes { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:25.6px; align-self:start; }
+.arch-information-frame { position:relative; overflow:hidden; aspect-ratio:335.71048 / 629; }
+.architecture-detail-page .arch-information-frame > img { width:100%; height:auto; max-width:none; }
+.arch-information-frame--lower > img { transform:translateY(-48.4413%); }
 .arch-visual-direction { min-height:932px; }
 .arch-research-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:54px; margin-top:89px; }
 .arch-research-card h3 { display:flex; align-items:center; gap:3px; font-size:24.754px; font-weight:500; line-height:31px; }
@@ -186,6 +196,9 @@ html:lang(zh-CN) .arch-goal-circle h3 { width:83px; }
   .arch-comparison-grid { gap:50px; }
   .arch-goal-list { margin-left:0; width:100%; }
   .arch-goal-row { gap:14px; }
+  .arch-information-body { column-gap:40px; }
+  .arch-information-copy > p { font-size:20px; }
+  .arch-information-specs { font-size:16px; }
   .arch-problems > div { padding:18px 14px; }
   .arch-goal-circle h3 { font-size:16px; }
   .arch-research-grid { gap:28px; }
@@ -239,6 +252,10 @@ html:lang(zh-CN) .arch-goal-circle h3 { width:83px; }
   .arch-problems h3,.arch-solutions > p { font-size:14px; line-height:1.4; }
   .arch-problems p { font-size:12px; line-height:1.5; }
   .arch-goal-circle h3 { font-size:15px; }
+  .arch-information-body { grid-template-columns:1fr; gap:32px; margin:40px 0 0; }
+  .arch-information-copy { gap:24px; }
+  .arch-information-specs { margin-top:0; }
+  .arch-information-wireframes { gap:16px; }
   .arch-research-grid { gap:32px; grid-template-columns:1fr; margin-top:40px; }
   .arch-research-card > p { min-height:0; font-size:16px; }
   .arch-down-arrow { width:40px; height:5.565px; margin:37.218px auto; }
@@ -275,6 +292,7 @@ html:lang(zh-CN) .arch-goal-circle h3 { width:83px; }
   .arch-role { margin:18px 0 0 44px; font-size:12px; line-height:18px; }
   .arch-responsibilities { margin-top:18px; }
   .arch-responsibilities ul { line-height:22px; }
+  html:lang(en) .arch-responsibilities ul { line-height:14.6667px; }
   .arch-facts { margin-left:44px; gap:18px; flex-wrap:wrap; }
   .arch-tools > img,.arch-ps { width:24px; height:24px; }
   .arch-ps img { width:28px; height:28px; top:-2px; left:-2px; }

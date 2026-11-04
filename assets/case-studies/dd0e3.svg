@@ -1,0 +1,27 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="169.225" height="16.1987" viewBox="0 0 169.225 16.1987" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Group 35831">
+<g id="&#231;&#159;&#169;&#229;&#189;&#162;">
+<use xlink:href="#stroke0_0_64" fill="#25314B" fill-opacity="0.08"/>
+<mask id="stroke1_0_64" fill="white">
+<use xlink:href="#stroke0_0_64"/>
+</mask>
+<path d="M1.95723 9.4429H167.267C168.348 9.4429 169.224 8.56662 169.224 7.48568C169.224 6.40473 168.348 5.52845 167.267 5.52845H1.95722C0.876278 5.52845 0 6.40473 0 7.48568C0 8.56662 0.876283 9.4429 1.95723 9.4429Z" stroke-width="0.602222" stroke="#979797" stroke-opacity="0.0828507" mask="url(#stroke1_0_64)"/>
+</g>
+<path id="&#231;&#159;&#169;&#229;&#189;&#162;&#229;&#164;&#135;&#228;&#187;&#189;" d="M0 7.48568C0 6.40473 0.876278 5.52845 1.95722 5.52845H100.119C101.2 5.52845 102.077 6.40473 102.077 7.48568C102.077 8.56662 101.2 9.4429 100.119 9.4429H1.95722C0.876278 9.4429 0 8.56662 0 7.48568Z" fill-rule="evenodd" clip-rule="evenodd" fill="#7C3AED"/>
+<g id="&#230;&#164;&#173;&#229;&#156;&#134;&#229;&#189;&#162;" filter="url(#filter0_d_0_64)">
+<circle cx="96.7325" cy="7.63651" r="6.24806" fill="white"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_d_0_64" x="88.6332" y="-2.10421e-08" width="16.1987" height="16.1987" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="0.462819"/>
+<feGaussianBlur stdDeviation="0.925638"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.166057 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_64"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_64" result="shape"/>
+</filter>
+<path id="stroke0_0_64" d="M0 7.48568C0 6.40473 0.876278 5.52845 1.95722 5.52845H167.267C168.348 5.52845 169.224 6.40473 169.224 7.48568C169.224 8.56662 168.348 9.4429 167.267 9.4429H1.95723C0.876283 9.4429 0 8.56662 0 7.48568Z" fill-rule="evenodd" clip-rule="evenodd"/>
+</defs>
+</svg>

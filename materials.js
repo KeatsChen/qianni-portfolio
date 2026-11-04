@@ -3,7 +3,7 @@
 
   const items = [...document.querySelectorAll('.reveal-item')];
   const isMobile = matchMedia('(max-width: 560px)').matches;
-  const heroText = document.querySelector(isMobile ? '.mobile-overview-meta' : '.case-facts');
+  const heroText = document.querySelector('.detail-overview') || document.querySelector(isMobile ? '.mobile-overview-meta' : '.case-facts');
   const heroScreens = [...document.querySelectorAll('.hero-phones > .reveal-item')];
   const observedItems = items.filter((item) => !heroScreens.includes(item));
 
@@ -35,5 +35,6 @@
   }, { threshold: 0.09, rootMargin: '0px 0px -7% 0px' });
 
   observedItems.forEach((item) => observer.observe(item));
+  if (heroText && !observedItems.includes(heroText)) observer.observe(heroText);
   if (isMobile) window.setTimeout(showHeroScreens, 2200);
 })();

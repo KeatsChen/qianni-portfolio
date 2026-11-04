@@ -1,0 +1,26 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="87.9237" height="51.7909" viewBox="0 0 87.9237 51.7909" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Union" filter="url(#filter0_ddd_0_9)">
+<path d="M68.6532 11.4422C69.9834 11.4424 71.0613 12.5202 71.0614 13.8504V24.6903C71.0614 26.0206 69.9835 27.0993 68.6532 27.0994H45.9677L43.9599 29.5086L41.9521 27.0994H19.2704C17.9402 27.0993 16.8622 26.0205 16.8622 24.6903V13.8504C16.8624 12.5203 17.9403 11.4424 19.2704 11.4422H68.6532Z" fill="black" fill-opacity="0.75"/>
+</g>
+<defs>
+<filter id="filter0_ddd_0_9" x="0" y="0" width="87.9237" height="51.7909" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="5.42"/>
+<feGaussianBlur stdDeviation="8.43111"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_9"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="3.61333"/>
+<feGaussianBlur stdDeviation="4.81778"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0"/>
+<feBlend mode="normal" in2="effect1_dropShadow_0_9" result="effect2_dropShadow_0_9"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="1.80667"/>
+<feGaussianBlur stdDeviation="1.80667"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.12 0"/>
+<feBlend mode="normal" in2="effect2_dropShadow_0_9" result="effect3_dropShadow_0_9"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect3_dropShadow_0_9" result="shape"/>
+</filter>
+</defs>
+</svg>

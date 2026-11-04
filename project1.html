@@ -7,34 +7,28 @@
   <meta name="description" content="Architectural Assets Platform Redesign: research, brand direction, interaction design and a new visual system by Qianni Zhong." />
   <title>Architectural Assets Platform Redesign — Qianni Zhong</title>
   <link rel="canonical" href="https://qianni.space/project1.html" />
-  <script>
-    // Set the initial animation state before styles or page content can paint.
-    if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      document.documentElement.classList.add('arch-motion-ready');
-      window.archRevealFallback = setTimeout(() => {
-        document.documentElement.classList.remove('arch-motion-ready');
-      }, 4000);
-    }
-  </script>
   <link rel="stylesheet" href="portfolio-nav.css?v=11" />
   <link rel="stylesheet" href="back-to-top.css?v=15" />
   <link rel="preload" href="assets/fonts/TestSignifier-Regular.otf" as="font" type="font/otf" crossorigin />
-  <link rel="stylesheet" href="architecture-detail.css?v=22" />
-  <link rel="stylesheet" href="architecture-navigation.css?v=2" />
-  <link rel="stylesheet" href="project-pagination.css?v=9" />
+  <link rel="stylesheet" href="architecture-detail.css?v=25" />
+  <link rel="stylesheet" href="architecture-navigation.css?v=3" />
+  <link rel="stylesheet" href="project-pagination.css?v=64060797f3" />
+  <link rel="stylesheet" href="detail-overview.css?v=c45b0d0adb" />
+  <link rel="stylesheet" href="detail-motion.css?v=2" />
+  <script src="detail-motion.js?v=2"></script>
 </head>
 <body class="has-site-nav architecture-detail-page">
   <div class="arch-backdrop" aria-hidden="true"></div>
   <nav class="site-nav" aria-label="Portfolio navigation">
-    <a class="site-nav-link" href="index.html#engagements"><span data-en="Recent engagements" data-zh="近期经历">Recent engagements</span><img src="assets/architecture-v2/nav-first-arrow.svg" alt="" /></a>
-    <a class="site-nav-link" href="content.html?v=20261103-entry-1"><span data-en="My Works" data-zh="我的作品">My Works</span><img src="assets/architecture-v2/nav-arrow.svg" alt="" /></a>
-    <a class="site-nav-link" href="index.html#connect"><span data-en="Contact me" data-zh="联系我">Contact me</span><img src="assets/architecture-v2/nav-arrow.svg" alt="" /></a>
+    <a class="site-nav-link" href="index.html?v=20261104-latest-19#engagements"><span data-en="Recent engagements" data-zh="近期经历">Recent engagements</span><img src="assets/architecture-v2/nav-first-arrow.svg" alt="" /></a>
+    <a class="site-nav-link" href="content.html?v=20261104-latest-19"><span data-en="My Works" data-zh="我的作品">My Works</span><img src="assets/architecture-v2/nav-arrow.svg" alt="" /></a>
+    <a class="site-nav-link" href="index.html?v=20261104-latest-19#connect"><span data-en="Contact me" data-zh="联系我">Contact me</span><img src="assets/architecture-v2/nav-arrow.svg" alt="" /></a>
     <div class="site-nav-language" role="group" aria-label="Language"><button type="button" data-lang="zh">中</button><button type="button" data-lang="en">En</button></div>
   </nav>
   <main class="arch-case">
     <header class="arch-overview">
       <div class="arch-title-row arch-reveal">
-        <a class="arch-back" href="content.html?v=20261103-entry-1#architecture" aria-label="Back to projects"><img src="assets/project1/back-circle.svg" alt="" /><img src="assets/project1/back-arrow.svg" alt="" /></a>
+        <a class="arch-back" href="content.html?v=20261104-latest-19#architecture" aria-label="Back to projects"><img src="assets/project1/back-circle.svg" alt="" /><img src="assets/project1/back-arrow.svg" alt="" /></a>
         <h1 data-en="Architectural Assets Platform Redesign" data-zh="建筑素材平台官网体验升级">Architectural Assets Platform Redesign</h1>
       </div>
       <div class="arch-role arch-reveal">
@@ -92,14 +86,28 @@
           <img class="arch-flow-arrow" src="assets/architecture-v2/arrow-in.svg" alt="" />
           <div class="arch-goal-circle"><img src="assets/architecture-v2/goal-circle.svg" alt="" /><h3 data-en="Improve Brand Perception" data-zh="品牌感知优化">Improve Brand Perception</h3></div>
           <img class="arch-flow-arrow" src="assets/architecture-v2/arrow-out.svg" alt="" />
-          <div class="arch-solutions"><p data-en="Refine the visual direction" data-zh="视觉方向调整">Refine the visual direction</p><p data-en="Integrate the brand throughout" data-zh="全局品牌融入">Integrate the brand throughout</p></div>
+          <div class="arch-solutions"><p data-en="Refine the visual direction" data-zh="视觉方向调整">Refine the visual direction</p><p data-en="Unify the brand language throughout" data-zh="品牌语言全局统一">Unify the brand language throughout</p></div>
         </div>
         <div class="arch-goal-row arch-reveal">
           <div class="arch-problems"><div><h3 data-en="Confusing architecture and hierarchy" data-zh="信息架构混乱，视觉层次不清">Confusing architecture and hierarchy</h3><p data-en="“The page feels cluttered.”" data-zh="“页面看着有点乱”">“The page feels cluttered.”</p></div><div><h3 data-en="Tools offer no clear advantage" data-zh="工具失效，未形成替代优势">Tools offer no clear advantage</h3><p data-en="“I’d rather use my own folders.”" data-zh="“不如用自己文件夹”">“I’d rather use my own folders.”</p></div></div>
           <img class="arch-flow-arrow" src="assets/architecture-v2/arrow-in.svg" alt="" />
           <div class="arch-goal-circle"><img src="assets/architecture-v2/goal-circle.svg" alt="" /><h3 data-en="Improve the Interaction Experience" data-zh="交互体验优化">Improve the Interaction Experience</h3></div>
           <img class="arch-flow-arrow" src="assets/architecture-v2/arrow-out.svg" alt="" />
-          <div class="arch-solutions"><p data-en="Layout" data-zh="布局">Layout</p><p data-en="Design standards" data-zh="规范">Design standards</p></div>
+          <div class="arch-solutions"><p data-en="Restructure the information architecture" data-zh="信息架构重构">Restructure the information architecture</p><p data-en="Standardize the visual design throughout" data-zh="全局视觉规范化">Standardize the visual design throughout</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="arch-section arch-information-architecture" aria-labelledby="arch-information-title">
+      <header class="arch-section-heading arch-reveal"><h2 id="arch-information-title" data-en="Information Architecture Restructuring" data-zh="信息架构重构">Information Architecture Restructuring</h2><p>Project Background</p></header>
+      <div class="arch-information-body">
+        <div class="arch-information-copy arch-reveal">
+          <p class="arch-rich" data-rich-zh="**调整页面布局以满足秩序感**，需建立如建筑制图般严谨的视觉系统：实施模块化卡片形成稳定节奏，并通过清晰的信息层级引导视线。这种系统性约束能创造出理性、可预测的界面结构，直接**传递专业与信任**。" data-rich-en="**A more orderly page layout** calls for a visual system as precise as an architectural drawing: modular cards establish a steady rhythm, while a clear information hierarchy guides the eye. These systematic constraints create a rational, predictable interface that **conveys professionalism and trust**.">A more orderly page layout calls for a visual system as precise as an architectural drawing: modular cards establish a steady rhythm, while a clear information hierarchy guides the eye. These systematic constraints create a rational, predictable interface that conveys professionalism and trust.</p>
+          <ul class="arch-information-specs"><li data-en="Page width: 1440px" data-zh="页面宽度：1440px">Page width: 1440px</li><li data-en="Content width: 1170px" data-zh="内容区宽：1170px">Content width: 1170px</li><li data-en="Margins: 135px" data-zh="边距：135px">Margins: 135px</li></ul>
+        </div>
+        <div class="arch-information-wireframes arch-reveal">
+          <figure class="arch-information-frame"><img src="assets/architecture-v2/information-architecture-wireframe.png" width="1127" height="4096" alt="Page wireframe, upper section" loading="lazy" decoding="async" /></figure>
+          <figure class="arch-information-frame arch-information-frame--lower"><img src="assets/architecture-v2/information-architecture-wireframe.png" width="1127" height="4096" alt="Page wireframe, lower section" loading="lazy" decoding="async" /></figure>
         </div>
       </div>
     </section>
@@ -149,14 +157,15 @@
     <nav id="project-navigation" class="project-pagination" aria-label="Project navigation">
       <img class="project-pagination-divider" src="assets/architecture-v2/project-switch-divider.svg" width="1240" height="1" alt="" />
       <div class="project-pagination-row">
-        <a class="project-pagination-link" href="okr.html?v=20261102-pagination-3" rel="next"><span class="project-pagination-label" data-en="OKR System Design" data-zh="OKR 系统设计">OKR System Design</span><span class="project-pagination-arrow" aria-hidden="true"><img class="project-pagination-default" src="assets/architecture-v2/project-next-arrow.svg" width="16" height="16" alt="" /><img class="project-pagination-hover" src="assets/architecture-v2/project-switch-hover-arrow.svg" width="16" height="16" alt="" /></span></a>
+        <a class="project-pagination-link" href="okr.html?v=20261104-latest-19" rel="next"><span class="project-pagination-label" data-en="OKR System Design" data-zh="OKR 系统设计">OKR System Design</span><span class="project-pagination-arrow" aria-hidden="true"><img class="project-pagination-default" src="assets/architecture-v2/project-next-arrow.svg" width="16" height="16" alt="" /><img class="project-pagination-hover" src="assets/architecture-v2/project-switch-hover-arrow.svg" width="16" height="16" alt="" /></span></a>
       </div>
     </nav>
   </main>
   <button class="back-to-top" type="button" aria-label="Back to top"><img src="assets/back-to-top.svg?v=2" alt="" /></button>
+    <script src="detail-overview.js?v=873f1b6140"></script>
   <script src="portfolio-nav.js?v=7"></script>
-  <script src="architecture-detail.js?v=6"></script>
-  <script src="architecture-background.js?v=1"></script>
+  <script src="architecture-detail.js?v=7"></script>
+  <script src="architecture-background.js?v=2"></script>
   <script src="back-to-top.js?v=7"></script>
 </body>
 </html>

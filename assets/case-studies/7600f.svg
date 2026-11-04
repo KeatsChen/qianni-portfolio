@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="609.812" height="415.154" viewBox="0 0 609.812 415.154" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Rectangle 1397">
+<use xlink:href="#stroke0_0_43" fill="#030A17"/>
+<mask id="stroke1_0_43" fill="white">
+<use xlink:href="#stroke0_0_43"/>
+</mask>
+<path d="M25.3593 415.154H584.452C598.458 415.154 609.812 403.8 609.812 389.794V25.3594C609.812 11.3538 598.458 0 584.452 0H25.3594C11.3538 0 0 11.3538 0 25.3594V389.794C0 403.8 11.3537 415.154 25.3593 415.154Z" stroke-width="2.30553" stroke="white" stroke-opacity="0.21" mask="url(#stroke1_0_43)"/>
+</g>
+<defs>
+<path id="stroke0_0_43" d="M0 25.3594C0 11.3538 11.3538 0 25.3594 0H584.452C598.458 0 609.812 11.3538 609.812 25.3594V389.794C609.812 403.8 598.458 415.154 584.452 415.154H25.3593C11.3537 415.154 0 403.8 0 389.794V25.3594Z"/>
+</defs>
+</svg>

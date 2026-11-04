@@ -1,6 +1,88 @@
 /assets/*
   Cache-Control: public, max-age=604800
 
+/index
+  Cache-Control: no-cache
+
+/project1.html
+  Cache-Control: no-cache
+
+/project1
+  Cache-Control: no-cache
+
+/okr.html
+  Cache-Control: no-cache
+
+/okr
+  Cache-Control: no-cache
+
+/chatbot.html
+  Cache-Control: no-cache
+
+/chatbot
+  Cache-Control: no-cache
+
+/research
+  Cache-Control: no-cache
+
+/cozyup
+  Cache-Control: no-cache
+
+/food.html
+  Cache-Control: no-cache
+
+/food
+  Cache-Control: no-cache
+
+
+/research.html
+  Cache-Control: no-cache
+
+/cozyup.html
+  Cache-Control: no-cache
+
+/materials.html
+  Cache-Control: no-cache
+
+/content.html
+  Cache-Control: no-cache
+
+/content
+  Cache-Control: no-cache
+
+/
+  Cache-Control: no-cache
+
+/index.html
+  Cache-Control: no-cache
+
+/sports.html
+  Cache-Control: no-cache
+
+/sports
+  Cache-Control: no-cache
+
+/bim.html
+  Cache-Control: no-cache
+
+/bim
+  Cache-Control: no-cache
+
+/sustainability.html
+  Cache-Control: no-cache
+
+/sustainability
+  Cache-Control: no-cache
+
+/community.html
+  Cache-Control: no-cache
+
+/community
+  Cache-Control: no-cache
+
+/materials
+  Cache-Control: no-cache
+
 /*.css
   Cache-Control: public, max-age=86400
 

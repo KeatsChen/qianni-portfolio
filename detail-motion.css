@@ -1,0 +1,24 @@
+/* Fail open without JavaScript; establish the hidden state before first paint. */
+.detail-motion-pending main,.detail-motion-pending .site-nav,
+.detail-motion-pending .project-pagination,.detail-motion-pending .site-copyright { visibility:hidden; }
+.detail-motion-pending .detail-overview-title,.detail-motion-pending .detail-overview-fields,
+.detail-motion-pending .detail-overview-facts,.detail-motion-ready .detail-overview-title,
+.detail-motion-ready .detail-overview-fields,.detail-motion-ready .detail-overview-facts,
+.detail-motion-pending .site-nav > *,.detail-motion-ready .site-nav > *,
+.detail-motion-pending .site-nav::before,.detail-motion-ready .site-nav::before { animation:none !important; }
+@media(prefers-reduced-motion:no-preference) {
+  html.detail-motion-pending [data-detail-enter],
+  html.detail-motion-ready [data-detail-enter] {
+    opacity:0; translate:0 20px; filter:blur(5px);
+    /* Establish the hidden state instantly; never animate visible content out. */
+    transition:none; animation:none !important;
+  }
+  html.detail-motion-ready [data-detail-enter][data-detail-shown] {
+    opacity:1; translate:0 0; filter:none;
+    transition:opacity .75s cubic-bezier(.22,1,.36,1),translate .75s cubic-bezier(.22,1,.36,1),filter .75s cubic-bezier(.22,1,.36,1);
+    transition-delay:0s;
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  html [data-detail-enter] { opacity:1; translate:none; filter:none; transition:none; animation:none; }
+}

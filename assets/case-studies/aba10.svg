@@ -1,0 +1,13 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="375.914" height="242.873" viewBox="0 0 375.914 242.873" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Rectangle 1333">
+<use xlink:href="#stroke0_0_5" fill="black"/>
+<mask id="stroke1_0_5" maskUnits="userSpaceOnUse" x="-0.0193542" y="-0.0193542" width="376" height="243" fill="black">
+<rect fill="white" x="-0.0193542" y="-0.0193542" width="376" height="243"/>
+<use xlink:href="#stroke0_0_5"/>
+</mask>
+<path d="M16.6697 241.893H359.244C367.909 241.893 374.934 234.868 374.934 226.204V16.6697C374.934 8.00489 367.909 0.980646 359.244 0.980646H16.6697C8.00489 0.980646 0.980646 8.00488 0.980646 16.6697L0.980646 226.204C0.980646 234.868 8.00489 241.893 16.6697 241.893Z" stroke-width="1.96129" stroke="#2C2C2C" mask="url(#stroke1_0_5)"/>
+</g>
+<defs>
+<path id="stroke0_0_5" d="M0.980646 16.6697C0.980646 8.00488 8.00489 0.980646 16.6697 0.980646H359.244C367.909 0.980646 374.934 8.00489 374.934 16.6697V226.204C374.934 234.868 367.909 241.893 359.244 241.893H16.6697C8.00489 241.893 0.980646 234.868 0.980646 226.204L0.980646 16.6697Z"/>
+</defs>
+</svg>

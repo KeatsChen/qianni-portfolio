@@ -56,6 +56,7 @@ if ('ResizeObserver' in window) {
 }
 document.fonts.ready.then(preserveRevisedCopyLayout);
 
+if (!window.detailMotionManaged) {
 const archRevealTargets = [...document.querySelectorAll('.arch-reveal')];
 clearTimeout(window.archRevealFallback);
 if (!document.documentElement.classList.contains('arch-motion-ready')) {
@@ -94,4 +95,5 @@ if (!document.documentElement.classList.contains('arch-motion-ready')) {
     if (pending.size && revealTimer === null) revealTimer = setTimeout(revealNext, 0);
   }, { threshold:0, rootMargin:'0px 0px 60px 0px' });
   archRevealTargets.forEach((element) => observer.observe(element));
+}
 }

@@ -1,0 +1,21 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="108.57" height="44.258" viewBox="0 0 108.57 44.258" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<foreignObject x="-6.32333" y="-6.32333" width="121.217" height="56.9046"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(3.16px);clip-path:url(#bgblur_0_0_5_clip_path);height:100%;width:100%"></div></foreignObject><g id="Rectangle 1609" data-figma-bg-blur-radius="6.32333">
+<use xlink:href="#stroke0_0_5" fill="url(#paint0_linear_0_5)" fill-opacity="0.3"/>
+<mask id="stroke1_0_5" fill="white">
+<use xlink:href="#stroke0_0_5"/>
+</mask>
+<path d="M7.22667 44.258H101.344C105.335 44.258 108.57 41.0225 108.57 37.0313V7.22667C108.57 3.23549 105.335 0 101.344 0H7.22667C3.23549 0 0 3.23549 0 7.22667V37.0313C0 41.0225 3.23549 44.258 7.22667 44.258Z" stroke-width="1.20444" stroke="url(#paint1_linear_0_5)" mask="url(#stroke1_0_5)"/>
+</g>
+<defs>
+<clipPath id="bgblur_0_0_5_clip_path" transform="translate(6.32333 6.32333)"><path d="M7.22656 0.300781H101.344C105.169 0.300852 108.269 3.40178 108.27 7.22656V37.0312C108.27 40.8561 105.169 43.957 101.344 43.957H7.22656C3.40173 43.957 0.300781 40.8561 0.300781 37.0312V7.22656C0.300839 3.40177 3.40177 0.300837 7.22656 0.300781Z"/>
+</clipPath><linearGradient id="paint0_linear_0_5" x1="40.8371" y1="-0.12366" x2="40.7507" y2="44.2356" gradientUnits="userSpaceOnUse">
+<stop stop-color="#782CFF"/>
+<stop offset="1" stop-color="#782CFF" stop-opacity="0.44"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_5" x1="11.8011" y1="1.92426" x2="31.1761" y2="63.4327" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0.81"/>
+<stop offset="1" stop-color="white" stop-opacity="0.05"/>
+</linearGradient>
+<path id="stroke0_0_5" d="M0 7.22667C0 3.23549 3.23549 0 7.22667 0H101.344C105.335 0 108.57 3.23549 108.57 7.22667V37.0313C108.57 41.0225 105.335 44.258 101.344 44.258H7.22667C3.23549 44.258 0 41.0225 0 37.0313V7.22667Z"/>
+</defs>
+</svg>

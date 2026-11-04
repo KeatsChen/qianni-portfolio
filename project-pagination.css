@@ -2,7 +2,7 @@
 .project-pagination {
   --switch-ink:#fff; --switch-hover:rgba(255,255,255,.15);
   position:relative; width:min(1240px,calc(100% - 200px));
-  margin:5px auto 0; padding-bottom:192px; color:var(--switch-ink); box-sizing:border-box;
+  margin:5px auto 0; padding-bottom:128px; color:var(--switch-ink); box-sizing:border-box;
 }
 .architecture-detail-page .project-pagination { width:100%; }
 /* Continue each bespoke closing section through the whole pagination band. */
@@ -41,13 +41,13 @@
 .research-page .project-pagination { border-top-color:#b5b5c3; }
 .project-pagination--light .project-pagination-arrow img { filter:brightness(0); }
 .project-pagination--light .project-pagination-divider { display:none; }
-.research-page .project-pagination-link { --switch-hover:#000; }
-.research-page .project-pagination-link:is(:hover,:focus-visible,:active) { color:#fff; }
-.research-page .project-pagination-link:is(:hover,:focus-visible,:active) .project-pagination-arrow img { filter:none; }
+:is(.research-page,.materials-page) .project-pagination-link { --switch-hover:#000; }
+:is(.research-page,.materials-page) .project-pagination-link:is(:hover,:focus-visible,:active) { color:#fff; }
+:is(.research-page,.materials-page) .project-pagination-link:is(:hover,:focus-visible,:active) .project-pagination-arrow img { filter:none; }
 @media(max-width:1100px) { .project-pagination { width:calc(100% - 96px); } :is(.research-page,.materials-page,.cozyup-page) { --closing-gutter:48px; } }
 @media(max-width:760px) { .project-pagination { width:calc(100% - 48px); } :is(.research-page,.materials-page,.cozyup-page) { --closing-gutter:24px; } }
 @media(max-width:560px) {
-  .project-pagination { width:calc(100% - 32px); padding-bottom:128px; }
+  .project-pagination { width:calc(100% - 32px); padding-bottom:calc(128px * 2 / 3); }
   .project-pagination-row { column-gap:24px; }
   .project-pagination-label { min-width:0; }
   :is(.research-page,.materials-page,.cozyup-page) { --closing-gutter:16px; }
