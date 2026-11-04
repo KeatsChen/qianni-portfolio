@@ -15,10 +15,18 @@
   };
   const candidates=[...gallery.querySelectorAll('[data-case-text-width]:not([data-case-preserve-font])')];
   // Fit a rich-text block once, so nested highlighted spans keep its scale.
-  const texts=candidates.filter(e=>!e.parentElement.closest('[data-case-text-width]'));
+  const allTexts=candidates.filter(e=>!e.parentElement.closest('[data-case-text-width]'));
+  const slides=[...gallery.querySelectorAll('.case-native-slide')];
   let frame=0;
   const fitEnglish=()=>{
     frame=0;
+    // Measure only nearby sections. Offscreen diagrams need not block the
+    // first paint with hundreds of text writes and synchronous layout reads.
+    const nearby=new Set(slides.filter(slide=>{
+      const rect=slide.getBoundingClientRect();
+      return rect.bottom>-500&&rect.top<innerHeight+500;
+    }));
+    const texts=allTexts.filter(e=>nearby.has(e.closest('.case-native-slide')));
     // Fit using the original line boxes, then tighten just the introduction.
     // Otherwise the extra room would cause the fitter to enlarge its type.
     if(intro)intro.style.setProperty('--case-intro-leading-factor','1');
@@ -58,12 +66,24 @@
     bounds.forEach(b=>b.e.style.setProperty('--case-copy-scale',String(b.low)));
   };
   const queueFit=()=>{if(!frame)frame=requestAnimationFrame(fitEnglish);};
-  const resize=()=>{gallery.style.setProperty('--case-scale',String(gallery.clientWidth/1084));queueFit();};
+  let previousWidth=-1;
+  const resize=()=>{
+    const width=gallery.clientWidth;
+    if(width===previousWidth)return;
+    previousWidth=width;
+    gallery.style.setProperty('--case-scale',String(width/1084));queueFit();
+  };
   resize();
   if('ResizeObserver' in window)new ResizeObserver(resize).observe(gallery);
   else window.addEventListener('resize',resize,{passive:true});
   new MutationObserver(queueFit).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
   document.fonts.ready.then(queueFit);
+  if('IntersectionObserver' in window){
+    const fittingObserver=new IntersectionObserver(entries=>{
+      if(entries.some(entry=>entry.isIntersecting))queueFit();
+    },{rootMargin:'500px 0px'});
+    slides.forEach(slide=>fittingObserver.observe(slide));
+  }else window.addEventListener('scroll',queueFit,{passive:true});
   if(!window.detailMotionManaged&&'IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
     gallery.classList.add('is-enhanced');
     const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{

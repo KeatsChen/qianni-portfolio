@@ -278,13 +278,11 @@ window.addEventListener('pageshow', (event) => {
   document.documentElement.style.removeProperty('scroll-behavior');
   releaseMobileHomeTopLock();
 });
-window.addEventListener('load', () => {
-  const fontsReady = document.fonts?.ready || Promise.resolve();
-  fontsReady.then(() => {
-    releaseHomeAtTop();
-    settleFirstMobileHomeAtTop();
-  });
-}, { once: true });
+// Reveal the first screen without waiting for unrelated images/fonts below it.
+// Existing scroll restoration and the one-time entrance remain unchanged.
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', releaseHomeAtTop, { once: true });
+} else releaseHomeAtTop();
 const concealHomeBeforeLeaving = () => {
   homeBootReleased = false;
   const root = document.documentElement;

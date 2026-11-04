@@ -258,7 +258,7 @@ const illustrationGrid = () => `<section class="illustration-editorial-layout" a
 const motionFiles = ['motion-design.mp4', ...Array.from({ length: 8 }, (_, i) => `motion-design-${i + 2}.mp4`)];
 const motionBackgrounds = ['#030314', '#030314', '#05040f', '#09090d', '#06080b', '#050508', '#08060d', '#01010b', '#e6f3ff'];
 const motionTools = (index) => `<span class="motion-card-tools" aria-label="Created with Rive and Figma"><img src="assets/motion-tools/rive.png?v=1" alt="Rive" /><img src="assets/motion-tools/figma.png?v=1" alt="Figma" /></span>`;
-const motionShowcase = () => `<section class="motion-showcase" aria-label="Motion design experiments"><div class="motion-intro"><p class="motion-loading-note"><span data-en="If loading is slow, click to view it on " data-zh="如果加载速度慢的话，可以点击跳转到">If loading is slow, click to view it on </span><span class="motion-rednote-cta"><span data-en="my" data-zh="我的">my</span><img src="assets/motion-tools/rednote-link.svg?v=2" alt="" /><a class="motion-rednote-link" href="https://xhslink.cn/o/9QMA9D6YP4C" target="_blank" rel="noopener noreferrer" data-en="RedNote" data-zh="小红书" aria-label="Open Qianni Zhong's RedNote profile">RedNote</a></span><span data-en=" profile." data-zh="查看"> profile.</span></p><dl><div><dt data-en="Motion Design" data-zh="动效设计">Motion Design</dt></div><div><dt data-en="Interaction" data-zh="交互">Interaction</dt></div><div class="category-date"><span aria-hidden="true">/</span><dt>2026</dt></div></dl></div><div class="motion-showcase-list">${motionFiles.map((file, index) => `<article class="motion-showcase-card${index === 7 ? ' is-portrait' : ''}" style="--motion-bg:${motionBackgrounds[index]}" role="button" tabindex="0" aria-label="Play Motion Study ${String(index + 1).padStart(2, '0')} with sound"><header><span data-en="Motion Study ${String(index + 1).padStart(2, '0')}" data-zh="动效练习 ${String(index + 1).padStart(2, '0')}">Motion Study ${String(index + 1).padStart(2, '0')}</span>${motionTools(index)}</header><div class="motion-showcase-media"><video muted loop playsinline preload="metadata" aria-label="Motion design work ${index + 1}" src="assets/${file}"></video></div></article>`).join('')}</div></section><div class="motion-lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Motion work player"><div class="motion-lightbox-card"><header><span></span>${motionTools(0)}</header><div class="motion-lightbox-media"><video loop playsinline preload="auto"></video></div></div></div>`;
+const motionShowcase = () => `<section class="motion-showcase" aria-label="Motion design experiments"><div class="motion-intro"><p class="motion-loading-note"><span data-en="If loading is slow, click to view it on " data-zh="如果加载速度慢的话，可以点击跳转到">If loading is slow, click to view it on </span><span class="motion-rednote-cta"><span data-en="my" data-zh="我的">my</span><img src="assets/motion-tools/rednote-link.svg?v=2" alt="" /><a class="motion-rednote-link" href="https://xhslink.cn/o/9QMA9D6YP4C" target="_blank" rel="noopener noreferrer" data-en="RedNote" data-zh="小红书" aria-label="Open Qianni Zhong's RedNote profile">RedNote</a></span><span data-en=" profile." data-zh="查看"> profile.</span></p><dl><div><dt data-en="Motion Design" data-zh="动效设计">Motion Design</dt></div><div><dt data-en="Interaction" data-zh="交互">Interaction</dt></div><div class="category-date"><span aria-hidden="true">/</span><dt>2026</dt></div></dl></div><div class="motion-showcase-list">${motionFiles.map((file, index) => `<article class="motion-showcase-card${index === 7 ? ' is-portrait' : ''}" style="--motion-bg:${motionBackgrounds[index]}" role="button" tabindex="0" aria-label="Play Motion Study ${String(index + 1).padStart(2, '0')} with sound"><header><span data-en="Motion Study ${String(index + 1).padStart(2, '0')}" data-zh="动效练习 ${String(index + 1).padStart(2, '0')}">Motion Study ${String(index + 1).padStart(2, '0')}</span>${motionTools(index)}</header><div class="motion-showcase-media"><video muted loop playsinline preload="none" aria-label="Motion design work ${index + 1}" data-video-src="assets/${file}"></video></div></article>`).join('')}</div></section><div class="motion-lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Motion work player"><div class="motion-lightbox-card"><header><span></span>${motionTools(0)}</header><div class="motion-lightbox-media"><video loop playsinline preload="auto"></video></div></div></div>`;
 
 const graphicPosters = [3, 7, 5, 8, 6, 2];
 const graphicPoster = (poster, index) => `<button class="graphic-grid-poster" type="button" data-poster-src="assets/posters/poster-${String(poster).padStart(2, '0')}.png?v=8" aria-label="View Graphic Design poster ${index + 1}"><img src="assets/posters/poster-${String(poster).padStart(2, '0')}.png?v=8" alt="Graphic Design poster ${index + 1}" loading="lazy" decoding="async" /></button>`;
@@ -510,6 +510,12 @@ const setupGallery = () => {
     const showcase = projectGallery.querySelector('.motion-showcase');
     const cards = [...showcase.querySelectorAll('.motion-showcase-card')];
     const videos = [...showcase.querySelectorAll('video')];
+    const ensureVideoSource = video => {
+      if (!video.hasAttribute('src') && video.dataset.videoSrc) {
+        video.src = video.dataset.videoSrc;
+        video.load();
+      }
+    };
     const lightbox = projectGallery.querySelector('.motion-lightbox');
     const lightboxCard = lightbox.querySelector('.motion-lightbox-card');
     const lightboxTitle = lightbox.querySelector('header > span');
@@ -526,7 +532,10 @@ const setupGallery = () => {
     } else cards.forEach((card) => card.classList.add('is-visible'));
     observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
       if (lightbox.classList.contains('is-open')) return;
-      if (entry.isIntersecting && entry.intersectionRatio > .35) entry.target.play().catch(() => {});
+      if (entry.isIntersecting && entry.intersectionRatio > .35) {
+        ensureVideoSource(entry.target);
+        entry.target.play().catch(() => {});
+      }
       else entry.target.pause();
     }), { threshold: [.1, .35, .7] });
     videos.forEach((video) => observer.observe(video));
@@ -535,7 +544,7 @@ const setupGallery = () => {
       lightboxTitle.textContent = card.querySelector('header > span').textContent;
       lightboxCard.style.setProperty('--motion-bg', card.style.getPropertyValue('--motion-bg'));
       lightboxCard.classList.toggle('is-portrait', card.classList.contains('is-portrait'));
-      lightboxVideo.src = sourceVideo.currentSrc || sourceVideo.src;
+      lightboxVideo.src = sourceVideo.dataset.videoSrc || sourceVideo.currentSrc || sourceVideo.src;
       lightboxVideo.currentTime = sourceVideo.currentTime || 0;
       lightboxVideo.muted = false;
       lightboxVideo.volume = 1;
@@ -557,7 +566,10 @@ const setupGallery = () => {
         const rect = video.getBoundingClientRect();
         return rect.top < innerHeight * .8 && rect.bottom > innerHeight * .2;
       });
-      visibleVideo?.play().catch(() => {});
+      if (visibleVideo) {
+        ensureVideoSource(visibleVideo);
+        visibleVideo.play().catch(() => {});
+      }
     };
     const onCardClick = (event) => { const card = event.target.closest('.motion-showcase-card'); if (card) openLightbox(card); };
     const onCardKeydown = (event) => {
@@ -577,6 +589,7 @@ const setupGallery = () => {
       revealObserver?.disconnect();
       videos.forEach((video) => video.pause());
       lightboxVideo.pause();
+      [...videos, lightboxVideo].forEach(video => { video.removeAttribute('src'); video.load(); });
       showcase.removeEventListener('click', onCardClick);
       cards.forEach((card) => card.removeEventListener('keydown', onCardKeydown));
       lightbox.removeEventListener('click', onLightboxClick);

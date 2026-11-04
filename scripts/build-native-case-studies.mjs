@@ -5,6 +5,8 @@ import path from 'node:path';
 import vm from 'node:vm';
 import {fileURLToPath} from 'node:url';
 import {spawn} from 'node:child_process';
+import {prepareProgressiveMedia} from './prepare-progressive-media.mjs';
+import {createHash} from 'node:crypto';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;').replaceAll('>','&gt;');
 const decode=s=>s.replaceAll('&amp;','&').replaceAll('&lt;','<').replaceAll('&gt;','>').replaceAll('&quot;','"').replaceAll('&#39;',"'");
@@ -324,9 +326,11 @@ for(const name of ['chatbot','okr']){
   const file=path.join(root,name+'.html');let page=fs.readFileSync(file,'utf8');page=page.replace(/<(?:section|div) class="(?:project-gallery|native-case-gallery)"[\s\S]*?(?=\n    <\/main>)/,`<div class="native-case-gallery" aria-label="${name==='okr'?'OKR System Design':'AI Mental Health Chatbot'} 项目详情">\n${html}\n</div>`);
   if(!page.includes('native-case-studies.css'))page=page.replace('</head>','  <link rel="stylesheet" href="native-case-studies.css?v=1" />\n</head>');
   if(!page.includes('native-case-studies.js'))page=page.replace('</body>','  <script src="native-case-studies.js?v=1"></script>\n</body>');
-  const version=name==='okr'?78:28;
-  page=page.replace(/native-case-studies\.(css|js)\?v=\d+/g,`native-case-studies.$1?v=${version}`);
-  fs.writeFileSync(file,page);
+  page=page.replace(/native-case-studies\.(css|js)\?v=[^" ]+/g,(_,ext)=>{
+    const version=createHash('sha256').update(fs.readFileSync(path.join(root,`native-case-studies.${ext}`))).digest('hex').slice(0,10);
+    return `native-case-studies.${ext}?v=${version}`;
+  });
+  fs.writeFileSync(file,prepareProgressiveMedia(page));
 }
 fs.writeFileSync(path.join(root,'design/case-studies/untranslated.json'),JSON.stringify([...chinese].filter(t=>!translations[t]),null,2)+'\n');
 fs.writeFileSync(path.join(root,'design/case-studies/assets.json'),JSON.stringify(Object.fromEntries(assets),null,2)+'\n');
