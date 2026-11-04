@@ -26,6 +26,10 @@ Home and Work List already request comparatively small first-screen assets and w
 
 ## Verification
 
+### Deployment-path fix
+
+The original detail header adapter identified OKR/Chatbot only by `.html` URLs. Cloudflare Pages' extensionless `/okr` and `/chatbot` paths skipped the dedicated body classes and header data, disabling their scoped layout/typography. The failure was reproduced locally on `/okr` (implementation row changed from flex to block; characteristic text changed from 10px to 16.862px). Both HTML files now declare their identity statically and the adapter accepts extensionless, `.html`, and trailing-slash paths. Local previews did not exercise this deployment-specific behavior originally; it must be part of regression testing.
+
 - Existing 11 detail headers and page/gallery bounds compared with baseline at 1440px and 390px: unchanged.
 - Original asset files are untouched.
 - Scroll-loading, media playback, language/navigation interactions and delayed-resource home visibility are checked locally before handoff.

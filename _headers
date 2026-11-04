@@ -83,6 +83,36 @@
 /materials
   Cache-Control: no-cache
 
+/graphic.html
+  Cache-Control: no-cache
+
+/graphic
+  Cache-Control: no-cache
+
+/motion.html
+  Cache-Control: no-cache
+
+/motion
+  Cache-Control: no-cache
+
+/illustration.html
+  Cache-Control: no-cache
+
+/illustration
+  Cache-Control: no-cache
+
+/personal.html
+  Cache-Control: no-cache
+
+/personal
+  Cache-Control: no-cache
+
+/more.html
+  Cache-Control: no-cache
+
+/more
+  Cache-Control: no-cache
+
 /*.css
   Cache-Control: public, max-age=86400
 

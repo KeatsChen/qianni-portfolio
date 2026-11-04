@@ -22,6 +22,11 @@ function initDownloadMenu() {
     setOpen(!download.classList.contains('is-open'));
   });
   trigger.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      setOpen(false);
+      return;
+    }
     if (event.key !== 'ArrowDown') return;
     event.preventDefault();
     setOpen(true, true);

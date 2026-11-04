@@ -6,8 +6,10 @@
   const heading = old.querySelector('h1');
   const back = old.querySelector('a');
   if (!heading || !back) return;
-  const isChatbot = location.pathname.endsWith('/chatbot.html');
-  const isOkr = location.pathname.endsWith('/okr.html');
+  // Cloudflare Pages canonicalizes /okr.html to /okr. Page identity must
+  // survive both URLs (and be available before deferred media/layout work).
+  const isChatbot = document.body.classList.contains('chatbot-detail-page') || /\/chatbot(?:\.html)?\/?$/.test(location.pathname);
+  const isOkr = document.body.classList.contains('okr-detail-page') || /\/okr(?:\.html)?\/?$/.test(location.pathname);
   const isResearch = document.body.classList.contains('research-page');
   const isCompanion = document.body.classList.contains('cozyup-page');
   const isMaterials = document.body.classList.contains('materials-page');
