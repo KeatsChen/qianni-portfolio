@@ -1,0 +1,28 @@
+/* app/work detail, 375px: 16px margins, 69px facts + 21px gap + 253px copy.
+ * Keep the live Web data and allow either column to grow without clipping. */
+@media(max-width:760px){
+  .mobile-detail-scaled > .detail-overview { width:calc(100% - 32px); margin:80px auto 20px; padding-bottom:32px; border-bottom:1px solid rgba(128,128,140,.3); grid-template-columns:69px minmax(0,1fr); grid-template-rows:auto auto; column-gap:21px; row-gap:34px; align-items:start; }
+  .detail-overview-title { grid-column:1 / -1; grid-row:1; align-items:flex-start; gap:10px; min-height:0; }
+  .detail-overview-title h1 { min-width:0; margin:2px 0 0; font-size:18px; line-height:23px; letter-spacing:-.36px; }
+  html:lang(zh-CN) :is(.chatbot-detail-page,.okr-detail-page) .detail-overview-title h1 { font-size:18px; line-height:23px; letter-spacing:-.36px; }
+  .detail-overview-back { width:30px; height:30px; flex-basis:30px; }
+  .detail-overview-back img { width:12px; height:12px; }
+  .detail-overview-fields { grid-column:2; grid-row:2; margin:0; gap:20px; }
+  .detail-overview-field { font-size:13px; line-height:22px; }
+  .detail-overview-field dt { font-size:13px; line-height:13px; }
+  .detail-overview-field dd { margin-top:6px; overflow-wrap:break-word; }
+  .detail-overview-field ul { width:auto; margin:0; padding-left:10px; line-height:22px; }
+  html:lang(en) .detail-overview-field ul { line-height:22px; }
+  .architecture-detail-page .detail-overview-field ul { width:auto; }
+  .detail-overview-facts { grid-column:1; grid-row:2; margin:0; gap:10px; text-align:left; grid-template-columns:minmax(0,1fr); font-size:11px; line-height:11px; }
+  .detail-overview-facts dt { font-size:11px; line-height:11px; }
+  body .detail-overview-facts dd { position:static; translate:none; margin:4px 0 0; width:auto; max-width:100%; justify-self:start; font-size:11px; line-height:18px; white-space:normal; overflow-wrap:break-word; }
+  html:lang(en) .research-page .detail-overview-facts dd[data-en="Research & Academia"] { position:static; left:auto; translate:none; width:auto; white-space:normal; }
+  :is(.sports-page,.bim-page,.sustainability-page,.community-page) .detail-overview-facts dd { width:auto; white-space:normal; overflow-wrap:break-word; }
+  body:is(.chatbot-detail-page,.okr-detail-page) .detail-overview-facts dd,
+  :is(.research-page,.cozyup-page,.materials-page) .detail-overview-facts dd { line-height:18px; }
+  .detail-overview-facts .detail-overview-field dd { color:inherit; }
+  .detail-overview-tools { justify-content:flex-start; gap:8px; }
+  .detail-overview-tools img,.detail-overview-tools .arch-ps,.detail-overview-tools .arch-ps img { width:24px; height:24px; }
+  .detail-overview:not(.has-fields) { row-gap:34px; }
+}

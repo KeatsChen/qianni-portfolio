@@ -156,6 +156,16 @@
     overview.classList.add('has-standard-tools');
   }
   overview.append(title,fields,facts);
+  // Mobile board app/work detail: tools and metadata on the left, editable
+  // responsibilities on the right. Move the same role node, never copy data.
+  const roleField=[...fields.children].find(dl=>dl.querySelector('dt')?.dataset.en==='Role');
+  if(roleField){
+    const position=document.createComment('desktop role position');
+    roleField.before(position);
+    const mobileHeader=matchMedia('(max-width:760px)');
+    const placeRole=()=>{if(mobileHeader.matches)facts.append(roleField);else position.after(roleField);};
+    placeRole();mobileHeader.addEventListener('change',placeRole);
+  }
   overview.classList.toggle('has-fields', fields.childElementCount > 0);
   document.body.classList.add('has-unified-overview');
   if (isArchitecture) {

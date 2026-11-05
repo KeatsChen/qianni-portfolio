@@ -19,13 +19,13 @@ for(const name of names){
     const mobile=await sample();
     assert.equal(mobile.length,desktop.length);
     desktop.forEach((box,i)=>box.forEach((value,j)=>assert.ok(Math.abs(value*width/1440-mobile[i][j])<2,`${name}: ${width}px artwork ${i} dimension ${j}`)));
-    assert.equal(await page.locator('.detail-overview').evaluate(element=>getComputedStyle(element).gridTemplateColumns.includes(' ')),false,'overview stays single-column');
+    assert.equal(await page.locator('.detail-overview').evaluate(element=>getComputedStyle(element).gridTemplateColumns.split(' ')[0]),'69px','overview uses the Figma metadata column');
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'no horizontal overflow');
   }
   await page.setViewportSize({width:1440,height:900});await page.waitForTimeout(120);
   const restored=await sample();desktop.forEach((box,i)=>box.forEach((value,j)=>assert.ok(Math.abs(value-restored[i][j])<2,`${name}: desktop restored`)));
   assert.equal(errors.length,0,errors.join('\n'));
-  console.log(`PASS ${name}: desktop composition scales at 320/390/760px, vertical header, desktop restored`);
+  console.log(`PASS ${name}: desktop composition scales at 320/390/760px, mobile header columns, desktop restored`);
   await page.close();
 }
 }finally{await browser.close();await server.close();}
