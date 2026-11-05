@@ -6,4 +6,9 @@
   .mobile-detail-scaled .scaled-detail-body .project-page { padding-top:0; }
   .mobile-detail-scaled .scaled-detail-body .native-case-gallery { width:1084px; max-width:none; }
   .mobile-detail-scaled .scaled-detail-body .project-gallery { width:1240px; max-width:none; }
+  /* app/work detail-chatboot and app/work detail-okr: 345px artwork at
+     a 377px viewport, 24px after the header and 40px before pagination.
+     Existing 1084x650.4 canvases and their original media stay untouched. */
+  body.mobile-detail-native .project-page { width:100%; min-height:0; padding:24px 0 40px; }
+  body.mobile-detail-native .native-case-gallery { width:calc(100% - 32px); max-width:none; margin:0 auto; gap:calc((100vw - 32px) * 24 / 1084); }
 }

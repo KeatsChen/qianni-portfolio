@@ -38,6 +38,9 @@ const chatbotEnglishWidths={
   '5103:4103':476.962,'5103:4106':476.962,'5103:4109':476.962,'5103:4112':476.36
 };
 function declarations(token){
+  if(token==='h-px')return 'height:1px';
+  if(token==='left-1/2')return 'left:50%';
+  if(/^p-\[[\d.]+px\]$/.test(token))return 'padding:'+token.slice(3,-1);
   const fixed={absolute:'position:absolute',relative:'position:relative',contents:'display:contents',block:'display:block',flex:'display:flex','inline-grid':'display:inline-grid','flex-col':'flex-direction:column','flex-none':'flex:none','shrink-0':'flex-shrink:0','content-stretch':'align-content:stretch','items-center':'align-items:center','items-start':'align-items:flex-start','items-end':'align-items:flex-end','justify-center':'justify-content:center','justify-end':'justify-content:flex-end','place-items-start':'place-items:start','size-full':'width:100%;height:100%','w-full':'width:100%','min-w-full':'min-width:100%','max-w-none':'max-width:none','h-0':'height:0','w-0':'width:0','inset-0':'inset:0','left-0':'left:0','right-0':'right:0','top-0':'top:0','ml-0':'margin-left:0','mt-0':'margin-top:0','mb-0':'margin-bottom:0','row-1':'grid-row:1','col-1':'grid-column:1','overflow-hidden':'overflow:hidden','overflow-clip':'overflow:clip','object-cover':'object-fit:cover','pointer-events-none':'pointer-events:none','not-italic':'font-style:normal','font-normal':'font-weight:400','font-medium':'font-weight:500','font-semibold':'font-weight:600','font-bold':'font-weight:700','whitespace-nowrap':'white-space:nowrap','text-center':'text-align:center','text-right':'text-align:right','text-white':'color:#fff','text-black':'color:#000','bg-white':'background-color:#fff','from-white':'--from:#fff','to-white':'--to:#fff','border-white':'border-color:#fff','border-solid':'border-style:solid','border-dashed':'border-style:dashed','border':'border-width:1px','list-disc':'list-style-type:disc',capitalize:'text-transform:capitalize','mask-alpha':'mask-mode:alpha','mask-luminance':'mask-mode:luminance','mask-intersect':'mask-composite:intersect','mask-no-clip':'mask-clip:no-clip','mask-no-repeat':'mask-repeat:no-repeat','bg-clip-text':'background-clip:text;-webkit-background-clip:text','bottom-1/4':'bottom:25%'};
   if(fixed[token])return fixed[token];
   if(token==='bg-black')return 'background-color:#000';
@@ -68,7 +71,7 @@ function declarations(token){
   m=token.match(/^(-?)(translate-[xy]|scale-[xy]|rotate)-(1\/2|full|[\d.]+)$/);if(m){const sign=m[1]?'-':'';const value=m[3]==='1/2'?'50%':m[3]==='full'?'100%':m[2].startsWith('scale')?String(Number(m[3])/100):m[3]+'deg';const key=m[2]==='rotate'?'rot':m[2].startsWith('translate')?'t'+m[2].slice(-1):'s'+m[2].slice(-1);return `--${key}:${sign}${value};transform:translate(var(--tx,0px),var(--ty,0px)) rotate(var(--rot,0deg)) scale(var(--sx,1),var(--sy,1))`;}
   unknown.add(token);return '';
 }
-function parse(code, sectionKey){
+export function parse(code, sectionKey){
   const split=code.indexOf('export default function');if(split<0)throw Error('Missing design context '+sectionKey);
   const env=vm.createContext({});vm.runInContext(code.slice(0,split),env,{timeout:1000});
   const evalExpr=e=>vm.runInContext('('+e+')',env,{timeout:1000});
@@ -81,6 +84,10 @@ function parse(code, sectionKey){
     const children=[];while(pos<code.length){if(code.startsWith('</',pos)){pos=code.indexOf('>',pos)+1;return {tag,attrs,children}}if(code[pos]==='<')children.push(node());else if(code[pos]==='{')children.push(String(braces()));else{const p=pos;while(pos<code.length&&code[pos]!=='<'&&code[pos]!=='{')pos++;const t=code.slice(p,pos).split('\n').map(l=>l.trim()).filter(Boolean).join(' ');if(t)children.push(decode(t));}}throw Error('Unclosed tag '+tag);
   }
   const tree=node();
+  if(sectionKey==='architecture-mobile'){
+    const bodyIds=new Set(['5191:4096','5168:2334','5168:2361','5183:2856','5183:2857','5186:3347','5186:3444','5186:3464','5186:3514','5186:3525','5186:3445','5186:3460','5186:3502','5186:3524']);
+    tree.children=tree.children.filter(n=>typeof n!=='string'&&bodyIds.has(n.attrs['data-node-id']));
+  }
   if(sectionKey==='okr-28'||sectionKey==='okr-29'){
     const annotations=sectionKey==='okr-28'?[
       [7334,7332,69,208.794921875],[7335,7333,69.25,383.01],
@@ -176,6 +183,24 @@ function parse(code, sectionKey){
   }
   function html(n){if(typeof n==='string'){if(/[\u3400-\u9fff]/.test(n)){chinese.add(n);if(translations[n])return `<span data-zh="${esc(n)}" data-en="${esc(translations[n])}">${esc(n)}</span>`;}return esc(n)}
     const a=n.attrs;
+    if(sectionKey==='architecture-mobile'){
+      const headings=new Set(['项目背景','改版前后','用户访谈','设计目标推导','信息架构重构','视觉方向调整','字体规范','色彩规范','Icon规范','更多页面','设计小结']);
+      const plain=node=>node.children.filter(c=>typeof c==='string').join('');
+      const isHeading=node=>node.tag==='p'&&headings.has(plain(node))&&/text-\[1[45]px\]/.test(node.attrs.className||'');
+      if(isHeading(n))a['data-arch-mobile-heading']='';
+      if(n.children.some(c=>typeof c!=='string'&&isHeading(c))){
+        a['data-arch-mobile-heading-group']='';
+        if((a.className||'').split(' ').includes('left-1/2'))a['data-arch-mobile-centered-heading']='';
+      }
+    }
+    // English role copy already includes its full stop; retain the Figma
+    // Chinese punctuation only in Chinese rather than rendering both.
+    if(sectionKey==='okr-7'&&['5103:8852','5103:8858'].includes(a['data-node-id'])){
+      const mark=n.children.at(-1);
+      if(mark?.children?.length===1&&mark.children[0]==='。'){
+        mark.attrs['data-zh']='。';mark.attrs['data-en']='';
+      }
+    }
     if(sectionKey==='okr-18'&&['5103:6059','5103:6066'].includes(a['data-node-id']))a['data-case-preserve-font']='';
     if(sectionKey==='okr-4'&&a['data-node-id']==='5103:8678'){
       const steps=n.children.slice(0,6),arrows=n.children.slice(6);
@@ -309,6 +334,8 @@ function parse(code, sectionKey){
   }
   return html(tree);
 }
+export {assets,unknown,chinese,translations,textBoxes};
+if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
 for(const name of ['chatbot','okr']){
   const data=JSON.parse(fs.readFileSync(path.join(root,'design/case-studies/'+name+'.json'),'utf8'));
   const html=data.sections.map((s,i)=>{
@@ -339,4 +366,5 @@ if(process.argv.includes('--download')){
   const folder=path.join(root,'assets/case-studies');fs.mkdirSync(folder,{recursive:true});const queue=[...assets];
   await Promise.all(Array.from({length:8},async()=>{while(queue.length){const [name,url]=queue.shift(),file=path.join(folder,name);if(fs.existsSync(file)&&fs.statSync(file).size)continue;if(!url.startsWith('https://'))throw Error('Missing local design asset '+name+'; refresh its Figma snapshot before downloading.');await new Promise((resolve,reject)=>{const child=spawn('curl',['-fsSL','--retry','2','--max-time','60',url,'-o',file]);child.on('exit',code=>code===0?resolve():reject(Error('Asset download failed '+name)));});}}));
   console.log('Downloaded '+assets.size+' design assets');
+}
 }

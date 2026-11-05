@@ -156,6 +156,26 @@
     overview.classList.add('has-standard-tools');
   }
   overview.append(title,fields,facts);
+  const toggle=document.createElement('button');
+  toggle.type='button';toggle.className='detail-overview-toggle';
+  fields.id='detail-overview-contributions';facts.id='detail-overview-metadata';
+  toggle.setAttribute('aria-controls',`${fields.id} ${facts.id}`);
+  const label=document.createElement('span');
+  const arrow=document.createElement('img');arrow.src='assets/case-studies/7ff9d.svg';arrow.alt='';
+  toggle.append(label,arrow);overview.append(toggle);
+  const mobile=matchMedia('(max-width:760px)');let expanded=false;
+  const updateDisclosure=()=>{
+    overview.classList.toggle('is-expanded',expanded);
+    toggle.setAttribute('aria-expanded',String(!mobile.matches||expanded));
+    label.dataset.en=expanded?'Show less':'Show more';label.dataset.zh=expanded?'收起':'展开';
+    label.textContent=document.documentElement.lang==='zh-CN'?label.dataset.zh:label.dataset.en;
+    overview.style.setProperty('--overview-title-height',`${title.getBoundingClientRect().height}px`);
+  };
+  toggle.addEventListener('click',()=>{expanded=!expanded;updateDisclosure();});
+  mobile.addEventListener('change',updateDisclosure);
+  new ResizeObserver(updateDisclosure).observe(title);
+  new MutationObserver(updateDisclosure).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+  updateDisclosure();
   // Mobile board app/work detail: tools and metadata on the left, editable
   // responsibilities on the right. Move the same role node, never copy data.
   const roleField=[...fields.children].find(dl=>dl.querySelector('dt')?.dataset.en==='Role');
