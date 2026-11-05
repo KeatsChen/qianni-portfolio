@@ -35,6 +35,7 @@
     loading.classList.add('is-active');
     // Intentionally no preventDefault, requestAnimationFrame or location.assign.
   });
-  window.addEventListener('pagehide',hide);
+  // Do not reveal the outgoing page during the document handoff. Reset only
+  // when this page is shown again (including browser Back / bfcache restore).
   window.addEventListener('pageshow',hide);
 })();

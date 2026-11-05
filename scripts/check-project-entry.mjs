@@ -43,16 +43,23 @@ try{
       },selector);
       await page.locator(selector).click();
       assert.equal((await page.evaluate(()=>window.entryCheck)).cancelled,false);
-      await page.waitForTimeout(400);
+      await page.waitForTimeout(150);
+      assert.equal(await page.locator('.project-entry-loading').evaluate(element=>getComputedStyle(element).visibility),'hidden','fast requests must not flash');
+      await page.waitForTimeout(450);
       const feedback=await page.locator('.project-entry-loading').evaluate(element=>({text:element.textContent,opacity:getComputedStyle(element).opacity,pointer:getComputedStyle(element).pointerEvents}));
       assert.ok(feedback.text.includes(lang==='zh'?'正在打开项目':'Opening project'));
       assert.ok(Number(feedback.opacity)>0);
       assert.equal(feedback.pointer,'none');
+      await page.evaluate(()=>window.dispatchEvent(new PageTransitionEvent('pagehide')));
+      assert.equal(await page.locator('.project-entry-loading').evaluate(element=>getComputedStyle(element).opacity),'1','document handoff must not expose outgoing page');
       console.log(`PASS ${width}px ${lang} ${source}: shared feedback, native link not cancelled`);
     }
     // Fail-open visibility must work even without the JS animationend cleanup.
     await page.evaluate(()=>window.addEventListener('animationend',event=>event.stopImmediatePropagation(),true));
     await page.waitForTimeout(4200);
+    assert.equal(await page.locator('.project-entry-loading').evaluate(element=>getComputedStyle(element).opacity),'1','must not fade back to the source page at four seconds');
+    await page.evaluate(()=>document.querySelector('.project-entry-loading').style.animationDuration='.01s');
+    await page.waitForTimeout(80);
     assert.equal(await page.locator('.project-entry-loading').evaluate(element=>getComputedStyle(element).visibility),'hidden');
     await page.close();
   }
