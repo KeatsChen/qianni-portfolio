@@ -13,6 +13,11 @@
 .native-case-gallery { width:min(1084px,calc(100% - 48px)); margin:0 auto; display:grid; gap:24px; }
 .case-native-slide { position:relative; width:100%; aspect-ratio:1084/650.4; overflow:hidden; isolation:isolate; }
 .case-native-canvas { position:absolute; left:0; top:0; width:1084px; height:650.4px; transform:scale(var(--case-scale,1)); transform-origin:top left; }
+@media(max-width:760px){
+  /* The fixed-aspect section remains as a scroll placeholder. Removing only
+     its paint tree releases offscreen masks, blur and compositor surfaces. */
+  .okr-detail-page .case-native-slide[data-okr-resource-suspended] > .case-native-canvas { display:none; }
+}
 .case-native-canvas,.case-native-canvas * { box-sizing:border-box; border:0 solid; margin:0; padding:0; --tx:0px;--ty:0px;--rot:0deg;--sx:1;--sy:1; }
 .case-native-canvas { color:#141414; font-family:Arial,"PingFang SC",sans-serif; font-size:16px; line-height:1.5; }
 .case-native-canvas img { display:block; max-width:100%; height:auto; background:transparent; }

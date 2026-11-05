@@ -14,12 +14,20 @@ try{
       assert.equal(await button.getAttribute('aria-expanded'),'false');
       const closed=await header.evaluate(e=>e.getBoundingClientRect().height);
       await button.click();assert.equal(await button.getAttribute('aria-expanded'),'true');
+      assert.equal(await button.isVisible(),true,'Show less remains available after expansion');
+      assert.ok(await button.locator('img').evaluate(e=>new DOMMatrixReadOnly(getComputedStyle(e).transform).b<0),'expanded arrow points up');
       assert.ok(await header.evaluate((e,closed)=>e.getBoundingClientRect().height>=closed,closed));
       assert.equal(await header.evaluate(e=>getComputedStyle(e).maxHeight),'none');
       assert.equal(await page.locator('.project-pagination').evaluate(e=>!!e.closest('.scaled-detail-body')),false);
       for(const lang of ['en','zh']){
         await page.locator(`[data-lang="${lang}"]`).evaluate(e=>e.click());
         await page.waitForTimeout(80);
+        assert.equal(await button.locator('span').textContent(),lang==='en'?'Show less':'收起');
+        assert.ok(await button.evaluate(e=>{
+          const root=e.closest('.detail-overview');
+          const bottom=Math.max(...[...root.querySelectorAll('.detail-overview-fields,.detail-overview-facts')].map(n=>n.getBoundingClientRect().bottom));
+          return e.getBoundingClientRect().top>=bottom+10;
+        }),'collapse button has its own space below both information columns');
         if(name==='project1'){
           const copy=await page.locator('.arch-mobile-case').evaluate(root=>{
             const targets=[...root.querySelectorAll('[data-arch-copy-source]')];
@@ -39,7 +47,7 @@ try{
           });
           assert.ok(metrics.difference<1,'icon centered on multi-line project label');
           assert.equal(Math.round(metrics.icon),14);assert.ok(metrics.label<=113.1);assert.equal(metrics.overflow,false);
-          assert.match(metrics.href,/\?v=20261105-(?:app-detail-11|app-copy-12|app-presentations-13)$/);
+          assert.match(metrics.href,/\?v=20261105-(?:app-disclosure-14|okr-memory-15)$/);
         }
       }
       if(name==='project1'){
@@ -47,6 +55,12 @@ try{
         assert.ok(await page.locator('.arch-mobile-case [data-node-id="5186:3502"]').count(),'Figma color section exists');
         assert.equal(await page.locator('.project-pagination-link[rel="prev"]').count(),0,'first project has no previous project');
       }
+      await button.click();
+      assert.equal(await button.getAttribute('aria-expanded'),'false');
+      assert.equal(await button.locator('span').textContent(),'展开');
+      assert.ok(await button.locator('img').evaluate(e=>new DOMMatrixReadOnly(getComputedStyle(e).transform).b>0),'collapsed arrow points down');
+      assert.notEqual(await header.evaluate(e=>getComputedStyle(e).maxHeight),'none');
+      await button.click();assert.equal(await button.getAttribute('aria-expanded'),'true','can expand again');
       await page.setViewportSize({width:1440,height:900});await page.waitForTimeout(80);
       assert.equal(await button.isVisible(),false,'no mobile disclosure on desktop');
       assert.equal(await header.evaluate(e=>getComputedStyle(e).maxHeight),'none');

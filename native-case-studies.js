@@ -23,6 +23,7 @@
     // Measure only nearby sections. Offscreen diagrams need not block the
     // first paint with hundreds of text writes and synchronous layout reads.
     const nearby=new Set(slides.filter(slide=>{
+      if(slide.hasAttribute('data-okr-resource-suspended'))return false;
       const rect=slide.getBoundingClientRect();
       return rect.bottom>-500&&rect.top<innerHeight+500;
     }));
@@ -66,6 +67,7 @@
     bounds.forEach(b=>b.e.style.setProperty('--case-copy-scale',String(b.low)));
   };
   const queueFit=()=>{if(!frame)frame=requestAnimationFrame(fitEnglish);};
+  window.addEventListener('native-case-resume',queueFit);
   let previousWidth=-1;
   const resize=()=>{
     const width=gallery.clientWidth;

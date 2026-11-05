@@ -13,8 +13,8 @@
   .detail-overview-toggle img { width:10px;height:10px;transform:rotate(90deg); }
   :is(.research-page,.materials-page) .detail-overview-toggle img { filter:brightness(0); }
   .detail-overview-toggle:focus-visible { outline:1px solid currentColor; outline-offset:3px; }
-  :is(.mobile-detail-scaled,.mobile-detail-editorial,.mobile-detail-native) > .detail-overview.is-expanded { max-height:none; }
-  .detail-overview.is-expanded .detail-overview-toggle { display:none; }
+  :is(.mobile-detail-scaled,.mobile-detail-editorial,.mobile-detail-native) > .detail-overview.is-expanded { max-height:none; padding-bottom:50px; }
+  .detail-overview.is-expanded .detail-overview-toggle img { transform:rotate(-90deg); }
   .detail-overview-title { grid-column:1 / -1; grid-row:1; align-items:flex-start; gap:10px; min-height:0; }
   .detail-overview-title h1 { min-width:0; margin:2px 0 0; font-size:18px; line-height:23px; letter-spacing:-.36px; }
   html:lang(zh-CN) :is(.chatbot-detail-page,.okr-detail-page) .detail-overview-title h1 { font-size:18px; line-height:23px; letter-spacing:-.36px; }

@@ -1,6 +1,8 @@
 /* Fetch original artwork shortly before it enters the viewport, not pages ahead. */
 (() => {
-  const images = [...document.querySelectorAll('img[data-media-src]')];
+  // The OKR working-set controller owns its original image sources across
+  // suspend/resume. A second one-shot observer must not reload released images.
+  const images = [...document.querySelectorAll('img[data-media-src]')].filter(image=>!image.closest('[data-okr-resource-managed]'));
   if (!images.length) return;
   const load = (image, priority = 'low') => {
     image.loading = 'eager';
