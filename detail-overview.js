@@ -182,12 +182,13 @@
       const sectionBox=section.getBoundingClientRect();
       const media=inner.querySelector('.desktop-pair,.hero-phones,.landing-page');
       if (!media) return;
-      const height=sectionBox.height;
+      const scale=Number(section.closest('.scaled-detail-body')?.dataset.detailScale)||1;
+      const height=sectionBox.height/scale;
       // The first picture may still be translated by its entrance animation;
       // measure its resting position so that the final gap does not shrink.
       const transform=getComputedStyle(media).transform;
       const animatedY=transform === 'none' ? 0 : new DOMMatrixReadOnly(transform).m42;
-      const trim=Math.max(0,media.getBoundingClientRect().top-sectionBox.top-animatedY);
+      const trim=Math.max(0,(media.getBoundingClientRect().top-sectionBox.top)/scale-animatedY);
       inner.style.height=height+'px';inner.style.top=-trim+'px';
       section.style.height=Math.max(0,height-trim)+'px';
     };

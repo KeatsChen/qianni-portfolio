@@ -22,15 +22,6 @@ a { color: inherit; }
 .list-skeleton-gallery i { position:relative; display:block; width:100%; aspect-ratio:816/447; overflow:hidden; border-radius:2px; background:rgba(255,255,255,.08); }
 .list-skeleton-back::after,.list-skeleton-rows i::after,.list-skeleton-gallery i::after { content:""; position:absolute; inset:0; background:linear-gradient(105deg,transparent 25%,rgba(255,255,255,.11) 42%,rgba(255,255,255,.2) 50%,rgba(255,255,255,.11) 58%,transparent 75%); transform:translateX(-100%); animation:list-skeleton-shimmer 1.35s ease-in-out infinite; }
 @keyframes list-skeleton-shimmer { to { transform:translateX(100%); } }
-.project-transition { position: fixed; z-index: 10000; inset: 0; display: grid; place-items: center; padding: 32px; visibility: hidden; opacity: 0; pointer-events: none; background: #01010b; transition: opacity .28s ease, visibility .28s ease; }
-.project-transition.is-active { visibility: visible; opacity: 1; pointer-events: auto; }
-.project-detail-frame { position:fixed; z-index:9500; inset:0; width:100%; height:100%; border:0; background:#01010b; visibility:hidden; opacity:0; pointer-events:none; }
-.project-detail-frame.is-visible { visibility:visible; opacity:1; pointer-events:auto; }
-.project-transition-inner { display: grid; place-items: center; }
-.project-transition-grid { display: grid; grid-template-columns: repeat(3,10px); gap: 6px; }
-.project-transition-grid i { width: 10px; height: 10px; display: block; border-radius: 50%; background: #fff; animation: project-grid-dot 1.5s ease-in-out var(--dot-delay) infinite; }
-.project-transition-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-@keyframes project-grid-dot { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .3; transform: scale(.5); } }
 .work-type-header {
   --nav-hide-progress: 0;
   position: fixed;
@@ -474,7 +465,6 @@ body.secondary-entry.tab-has-switched .content-page.tab-changing .project-index 
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .work-type-header, .work-type-header > * { transition: none; animation: none; } .gallery-card.reveal, .gallery-card.reveal.deferred-reveal { visibility: visible; opacity: 1; transform: none; transition: none; } .illustration-drift-plane,.illustration-drift-track { will-change: auto; } }
 @media (prefers-reduced-motion: reduce) { .list-skeleton-back::after,.list-skeleton-rows i::after,.list-skeleton-gallery i::after { animation:none; } }
-@media (prefers-reduced-motion: reduce) { .project-transition { transition: none; } .project-transition-grid i { animation: none; opacity: .65; transform: none; } }
 
 /* Graphic Design — Figma 1-6, two-screen stepped reveal */
 body.graphic-sequence-active { overflow: hidden; }

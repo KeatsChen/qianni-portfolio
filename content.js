@@ -8,10 +8,8 @@ const uiuxIndexHTML = projectIndex.innerHTML;
 const uiuxGalleryHTML = projectGallery.innerHTML;
 const languageKey = 'qianni-portfolio-language';
 const languageSessionKey = 'qianni-portfolio-language-initialized';
-const projectTransition = document.querySelector('.project-transition');
 const listSkeleton = document.querySelector('.list-skeleton');
 const listSkeletonSessionKey = 'qianni-work-list-skeleton-seen';
-let projectNavigationStarted = false;
 
 const hideListSkeleton = () => {
   if (!listSkeleton || listSkeleton.classList.contains('is-hidden')) return;
@@ -41,13 +39,6 @@ if (listSkeletonSeen) {
   window.setTimeout(hideListSkeleton, 1800);
 }
 
-const resetProjectTransition = () => {
-  projectNavigationStarted = false;
-  projectTransition?.classList.remove('is-active');
-  projectTransition?.setAttribute('aria-hidden', 'true');
-};
-window.addEventListener('pagehide', resetProjectTransition);
-window.addEventListener('pageshow', resetProjectTransition);
 let deferredImageObserver = null;
 
 const loadDeferredGalleryImages = () => {
@@ -77,23 +68,8 @@ const loadDeferredGalleryImages = () => {
   images.forEach((image) => deferredImageObserver.observe(image));
 };
 
-document.addEventListener('click', (event) => {
-  const projectCard = event.target.closest('.gallery-card[href]');
-  if (!projectCard || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || projectCard.target === '_blank') return;
-  event.preventDefault();
-  event.stopImmediatePropagation();
-  if (projectNavigationStarted) return;
-  projectNavigationStarted = true;
-  projectTransition?.classList.add('is-active');
-  projectTransition?.setAttribute('aria-hidden', 'false');
-  window.requestAnimationFrame(() => {
-    window.requestAnimationFrame(() => {
-      window.setTimeout(() => {
-        window.location.assign(projectCard.href);
-      }, 120);
-    });
-  });
-});
+// Project covers use native anchors. Navigation must not depend on animation
+// frames, manual location assignment, iframes or a blocking loading overlay.
 
 if (sessionStorage.getItem(languageSessionKey) !== '1') {
   localStorage.setItem(languageKey, 'en');

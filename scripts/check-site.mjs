@@ -13,7 +13,8 @@ for(const file of fs.readdirSync(root).filter(file=>/\.(html|css)$/.test(file)))
   for(const match of source.matchAll(pattern)){
     const asset=match[1].split(/[?#]/)[0];
     if(!asset||/^(?:[a-z]+:|\/\/|%23)/i.test(asset))continue;
-    assert.ok(fs.existsSync(path.resolve(root,path.dirname(file),asset)),`${file}: missing ${asset}`);
+    const resolved=path.resolve(root,path.dirname(file),asset);
+    assert.ok(fs.existsSync(resolved)||(!path.extname(resolved)&&fs.existsSync(resolved+'.html')),`${file}: missing ${asset}`);
   }
 }
 console.log('PASS static HTML/CSS local asset references');
@@ -117,11 +118,11 @@ try{
     console.log(`PASS ${width}px image lightboxes, Escape, deferred motion/player, personal scrolling/footer`);
     // Actual cover clicks, project previous/next links and footer anchors.
     await page.goto(`${preview.origin}/content`,{waitUntil:'load'});
-    const projects=await page.locator('.gallery-card[href*=".html"]').evaluateAll(cards=>cards.map(card=>({id:card.id,href:card.getAttribute('href')})));
+    const projects=await page.locator('.gallery-card[href]').evaluateAll(cards=>cards.map(card=>({id:card.id,href:card.getAttribute('href')})));
     assert.equal(projects.length,11);
     for(const project of projects){
       await page.locator(`#${project.id}.gallery-card`).click();
-      await page.waitForURL(url=>url.pathname.endsWith(project.href.split('.html')[0]));
+      await page.waitForURL(url=>url.pathname===new URL(project.href,preview.origin+'/content').pathname.replace(/\.html$/,''));
       await page.locator('.detail-overview').waitFor();
       const next=page.locator('.project-pagination-link[rel="next"]');
       if(await next.count()){

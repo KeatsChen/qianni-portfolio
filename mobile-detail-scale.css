@@ -1,0 +1,9 @@
+@media(max-width:760px){
+  .scaled-detail-body { width:1440px; max-width:none; position:relative; }
+  .scaled-detail-body > main { width:1440px; max-width:none; }
+  .mobile-detail-scaled > .detail-overview { width:calc(100% - 32px); margin:20px auto 24px; }
+  .mobile-detail-scaled .scaled-detail-body .arch-case { padding-top:0; }
+  .mobile-detail-scaled .scaled-detail-body .project-page { padding-top:0; }
+  .mobile-detail-scaled .scaled-detail-body .native-case-gallery { width:1084px; max-width:none; }
+  .mobile-detail-scaled .scaled-detail-body .project-gallery { width:1240px; max-width:none; }
+}

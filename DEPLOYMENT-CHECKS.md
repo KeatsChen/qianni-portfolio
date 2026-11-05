@@ -23,3 +23,11 @@ The narrower `scripts/check-deployment-paths.mjs` also compares clean and `.html
 Use `node scripts/cloudflare-preview.mjs --port 4175` for a deployment-style manual preview. It preserves query strings and anchors while canonicalizing `.html` URLs. This simulates static routing, **not** the live CDN, account-level redirects, cache rules or remote browser conditions.
 
 Repository `AGENTS.md` requires these checks before future deliveries. Production still requires publishing and then checking the real website; unavailable online access must never be reported as a production pass.
+
+## Navigation stall follow-up
+
+## Mobile detail composition
+
+All 11 project detail pages retain a readable single-column overview on mobile. The rest of the case-study composition uses the 1440px Web layout, scaled uniformly with CSS zoom (editable DOM, not screenshots). The shared adapter evaluates component stylesheet width breakpoints at the design width and preserves motion preference rules; the original desktop sheets and header position are restored above 760px. Artwork picture sources use the Web image rather than a separate mobile crop. `scripts/check-mobile-detail-scale.mjs` checks composition ratios at 320/390/760px, horizontal overflow, single-column headers and rotation back to desktop. Floating navigation/back-to-top controls retain their mobile behavior.
+
+The Work List intercepted cover links and waited for two animation frames and a timer before navigation. This gate is removed: project covers use native anchors, while detail-page entrance animations remain. The subsequent user request adds shared loading feedback for Home covers, Work List covers and project pagination, using `project-entry.js`/`.css`. All three sources use the same canonical clean URL and release parameter per project. Feedback never prevents navigation or captures input; it appears only after a short delay and CSS hides it after four seconds independently of JS cleanup. `scripts/check-navigation-stall.mjs` tests delayed native navigation with animation callbacks paused, and `scripts/check-project-entry.mjs` verifies URL identity, all three feedback sources, language and CSS fail-open behavior. Production response issues still require online verification.

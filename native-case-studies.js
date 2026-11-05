@@ -32,7 +32,7 @@
     if(intro)intro.style.setProperty('--case-intro-leading-factor','1');
     texts.forEach(e=>e.style.setProperty('--case-copy-scale',document.documentElement.lang==='en'?(e.dataset.caseMaxScale||'1'):'1'));
     if(document.documentElement.lang!=='en'){tightenReflectionGaps();return;}
-    const scale=gallery.clientWidth/1084;
+    const scale=gallery.getBoundingClientRect().width/1084;
     const fits=e=>{
       const range=document.createRange();range.selectNodeContents(e);
       const rect=range.getBoundingClientRect();
