@@ -31,6 +31,15 @@ body:is(.chatbot-detail-page,.okr-detail-page) .detail-overview-facts dd { color
 .detail-overview-fields:empty { display:none; }
 .detail-overview:not(.has-fields) { row-gap:0; }
 .detail-overview-fields .detail-overview-field > dd { margin-left:0; }
+/* Fixed column limits for the five standard studies; long bilingual copy
+   grows vertically instead of reaching into the metadata column. */
+@media(min-width:761px){
+  .detail-overview.has-standard-tools { grid-template-columns:minmax(0,1fr) 200px; column-gap:80px; align-items:start; }
+  .has-standard-tools .detail-overview-title { grid-column:1; }
+  .has-standard-tools .detail-overview-fields { width:min(862px,calc(100% - 78px)); }
+  .has-standard-tools .detail-overview-facts { width:200px; }
+  .has-standard-tools .detail-overview-facts dd { width:auto; max-width:200px; white-space:normal; overflow-wrap:break-word; }
+}
 .detail-overview-tools { display:flex; justify-content:flex-end; gap:10px; }
 .detail-overview-tools img { width:30px; height:30px; object-fit:contain; }
 .detail-overview.has-standard-tools .detail-overview-tools img[alt="Figma"] { border-radius:6px; }

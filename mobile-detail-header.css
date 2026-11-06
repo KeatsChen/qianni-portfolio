@@ -38,4 +38,10 @@
   .detail-overview-tools { justify-content:flex-start; gap:8px; }
   .detail-overview-tools img,.detail-overview-tools .arch-ps,.detail-overview-tools .arch-ps img { width:24px; height:24px; }
   .detail-overview:not(.has-fields) { row-gap:34px; }
+  /* app hk / hanxi / food / Sustainability / Community: stable 69px facts,
+     21px gutter and 253px copy at the 375px design size. */
+  .has-standard-tools .detail-overview-fields { width:min(253px,100%); }
+  .has-standard-tools .detail-overview-facts { width:69px; }
+  .has-standard-tools .detail-overview-facts dd { line-height:14px; }
+  .mobile-detail-scaled > .detail-overview.has-standard-tools { margin-bottom:24px; }
 }

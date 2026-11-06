@@ -111,6 +111,9 @@
     document.body.classList.add(isOkr ? 'okr-detail-page' : 'chatbot-detail-page');
   } else {
     old.querySelectorAll('.project-meta > div, .heading-meta > div').forEach(fact);
+    // Standard case studies supply their bilingual copy as real HTML, shared
+    // by desktop and mobile rather than maintaining separate text versions.
+    old.querySelectorAll('.project-contributions > dl').forEach(dl=>fields.append(dl.cloneNode(true)));
     if (isEditorial) {
       const section=old.closest('.case-overview');
       if (hasEditorialContributions) {
@@ -191,7 +194,12 @@
     const position=document.createComment('desktop role position');
     roleField.before(position);
     const mobileHeader=matchMedia('(max-width:760px)');
-    const placeRole=()=>{if(mobileHeader.matches)facts.append(roleField);else position.after(roleField);};
+    const placeRole=()=>{
+      if(mobileHeader.matches){
+        const tools=facts.querySelector('.detail-overview-tools');
+        if(tools)tools.after(roleField);else facts.prepend(roleField);
+      }else position.after(roleField);
+    };
     placeRole();mobileHeader.addEventListener('change',placeRole);
   }
   overview.classList.toggle('has-fields', fields.childElementCount > 0);
