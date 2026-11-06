@@ -1,0 +1,34 @@
+/* app、work detail_Philippine — 4936:6081. Keep the Web body intact. */
+@media(max-width:760px){
+  .materials-page main{padding-top:24px;overflow:hidden}
+  .materials-page .case-overview{width:100%;height:auto!important;padding:0 0 46.666px;background:#f5f7fc}
+  .materials-page .case-overview-inner{top:auto!important;height:auto!important}
+  .materials-page .hero-phones{position:relative;inset:auto;width:246.12px;max-width:calc(100% - 32px);margin:0 auto;display:flex;flex-direction:column;gap:24px;transform:none}
+  .materials-page .hero-phones .phone{width:231.563px;max-width:calc(100% - 14.56px);height:auto;margin:0 0 0 7.28px;border:0;border-radius:29.617px;overflow:visible;box-shadow:0 8px 15px rgba(14,31,72,.12)}
+  .materials-page .hero-phones .hero-home{aspect-ratio:231.563/688.074}
+  .materials-page .hero-phones .hero-profile{aspect-ratio:231.563/838.26}
+  .materials-page .hero-phones .phone::after{top:7.76px;width:66.991px;height:19.745px;border-radius:26.796px}
+  .materials-page .hero-phones .phone::before{content:"";position:absolute;left:-7.28px;top:54.3px;width:3.702px;height:103px;background:url('assets/philippine-v2/side-short.svg') no-repeat 0 0,url('assets/philippine-v2/side-long.svg') no-repeat 0 30.32px,url('assets/philippine-v2/side-long.svg') no-repeat 0 71.22px}
+  .materials-page .hero-phones img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:29.617px;outline:5.641px solid #010610;outline-offset:-5.641px}
+  .materials-page .more-pages{width:100%;height:auto;padding:43px 16px 54px;background:#fff;overflow:hidden}
+  .materials-page .more-heading{position:relative;inset:auto;width:211px;margin:0 auto;text-align:center;transform:none!important}
+  .materials-page .more-heading h2{margin:0;font-size:24px;line-height:24px;letter-spacing:-.48px}
+  .materials-page .more-heading p{width:173px;margin:11px auto 0;font-size:11px;line-height:14px;letter-spacing:0}
+  .materials-page .phone-gallery{display:none}
+  .materials-page .phone-gallery-mobile{position:relative;inset:auto;width:100%;max-width:339.806px;margin:34px auto 0;display:grid;grid-template-columns:minmax(0,163.237fr) minmax(0,162.806fr);gap:13.763px;align-items:start}
+  .materials-page .mobile-phone-column{min-width:0;display:flex;flex-direction:column;gap:15.416px}
+  .materials-page .mobile-right-column{padding-top:49px}
+  .materials-page .phone-gallery-mobile .phone{position:relative;width:calc(100% - 4.8px);height:auto;margin:0 0 0 4.8px;border:0;border-radius:20.171px;overflow:visible;box-shadow:0 6px 12px rgba(14,31,72,.12)}
+  .materials-page .phone-gallery-mobile .gallery-home{aspect-ratio:158.073/468.367}
+  .materials-page .phone-gallery-mobile .gallery-contact,.materials-page .phone-gallery-mobile .gallery-community{aspect-ratio:158.073/336.326}
+  .materials-page .phone-gallery-mobile .gallery-company{aspect-ratio:158.073/561.229}
+  .materials-page .phone-gallery-mobile .gallery-marketplace{aspect-ratio:158.073/489.554}
+  .materials-page .phone-gallery-mobile .gallery-membership,.materials-page .phone-gallery-mobile .gallery-request,.materials-page .phone-gallery-mobile .gallery-news{aspect-ratio:158.073/336.178}
+  .materials-page .phone-gallery-mobile .phone::after{top:5.28px;width:45.624px;height:13.447px;border-radius:18.25px}
+  .materials-page .phone-gallery-mobile .phone::before{content:"";position:absolute;left:-4.8px;top:36.98px;width:2.521px;height:70.2px;background:url('assets/philippine-v2/side-short-small.svg') no-repeat 0 0,url('assets/philippine-v2/side-long-small.svg') no-repeat 0 20.65px,url('assets/philippine-v2/side-long-small.svg') no-repeat 0 48.51px}
+  .materials-page .phone-gallery-mobile img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:20.171px;outline:3.842px solid #010610;outline-offset:-3.842px}
+  .materials-page .case-closing{width:100%;height:auto;min-height:154px;padding:42px 16px;background:#f5f7fc;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px 10px;align-items:end}
+  .materials-page .closing-eyebrow{position:static;grid-column:1/-1;margin:0;font-size:12px;line-height:12px;overflow-wrap:anywhere}
+  .materials-page .case-closing h2{position:static;width:auto;margin:0;font-size:30px;line-height:40px;white-space:normal}
+  .materials-page .case-closing time{position:static;font-size:12px;line-height:12px;align-self:end;margin-bottom:4px}
+}

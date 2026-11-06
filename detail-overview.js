@@ -117,20 +117,24 @@
         const role=document.createElement('span');
         role.dataset.zh='产品经理、交互设计、视觉设计';
         role.dataset.en='Product Manager · Interaction Designer · Visual Designer';
+        if(isResearch){role.dataset.zh='原型设计、交互设计、视觉设计';role.dataset.en='Prototyping · Interaction Design · Visual Design';}
+        if(isCompanion){role.dataset.zh='交互设计、视觉设计';role.dataset.en='Interaction Design · Visual Design';}
+        if(isMaterials){role.dataset.zh='交互设计、视觉设计';role.dataset.en='Interaction Design · Visual Design';}
         role.textContent=role.dataset.en;
         fields.append(field('角色','Role',role));
         const responsibilities=isResearch ? [
-          ['与项目负责人沟通，梳理机构介绍、研究内容和活动信息等展示需求，明确网站目标与整体设计方向。','Worked with the project lead to clarify how the institute, its research and events should be presented, and define the website’s goals and overall design direction.'],
-          ['规划网站的信息架构、页面布局与原型，理清栏目层级和页面间的访问路径，让学术内容更便于浏览和查找。','Planned the information architecture, page layouts and prototypes, clarifying the content hierarchy and navigation paths to make academic content easier to browse and find.'],
-          ['负责网站的交互与视觉设计，统一字体、色彩、组件及交互状态，在保持学术气质的同时兼顾阅读体验与多端一致性。','Designed the website’s interactions and visual interfaces, defining typography, colors, components and interaction states to balance an academic character with readability and consistency across devices.']
+          ['视觉方向探索：结合项目需求探索网站的视觉方向，与负责人沟通并确认整体设计风格。','Visual Direction: Explored visual directions based on the project requirements and agreed on the overall design style with the project lead.'],
+          ['视觉规范制定：统一字体、颜色、间距、按钮及图标样式，为页面设计建立一致的视觉规范。','Visual Guidelines: Defined consistent typography, colors, spacing, button styles and icons to guide page design.'],
+          ['原型设计与确认：基于负责人提供的内容结构完成页面原型，通过沟通确认页面布局与交互方式。','Prototyping: Created page prototypes based on the content structure supplied by the project lead, and confirmed layouts and interactions through discussion.'],
+          ['视觉与响应式设计：完成电脑端与手机端的视觉设计及响应式布局，兼顾不同屏幕下的内容展示与使用体验。','Visual & Responsive Design: Designed the desktop and mobile interfaces and responsive layouts, considering content presentation and usability across screen sizes.']
         ] : isCompanion ? [
-          ['与项目负责人沟通，梳理虚拟陪伴平台的功能需求、用户使用场景与关键流程，明确产品目标及整体设计方向。','Worked with the project lead to clarify the virtual companion platform’s requirements, user scenarios and key flows, defining the product goals and overall design direction.'],
-          ['规划平台的信息架构、页面布局与原型，理清角色浏览、创建与聊天等核心功能的操作路径。','Planned the platform’s information architecture, page layouts and prototypes, mapping out the core flows for browsing characters, creating a character and chatting.'],
-          ['负责平台的交互体验与视觉设计，统一字体、色彩、组件及交互状态，兼顾沉浸感、易用性与界面一致性。','Designed the platform’s interactions and visual interfaces, defining typography, colors, components and interaction states to balance immersion, usability and visual consistency.']
+          ['交互体验设计：基于已确定的产品功能与流程，设计电脑端页面的操作方式与交互反馈，重点完善聊天界面的使用体验。','Interaction Design: Designed desktop interactions and feedback based on the established product features and flows, with particular attention to the chat experience.'],
+          ['整体视觉设计：负责平台全部页面的视觉设计，结合虚拟伴侣产品的定位，建立统一的界面风格。','Visual Design: Designed every page of the platform, establishing a consistent interface style suited to the virtual companion product.'],
+          ['视觉规范制定：明确字体、颜色、按钮及图标的设计规范，保持不同页面与功能模块之间的视觉一致性。','Visual Guidelines: Defined typography, colors, button styles and icons to maintain visual consistency across pages and features.']
         ] : [
-          ['与项目负责人沟通，梳理建材供应商与采购方的使用需求，明确 App 的功能范围、核心流程及整体设计方向。','Worked with the project lead to understand the needs of building material suppliers and buyers, defining the App’s scope, core flows and overall design direction.'],
-          ['规划 App 的信息架构、页面布局与原型，理清商品浏览、采购需求发布和供应商联系等核心功能的操作路径。','Planned the App’s information architecture, page layouts and prototypes, mapping out the core flows for browsing products, posting purchase requests and contacting suppliers.'],
-          ['负责 App 的交互体验与视觉设计，统一字体、色彩、组件及交互状态，兼顾移动端的阅读体验、操作效率与界面一致性。','Designed the App’s interactions and visual interfaces, defining typography, colors, components and interaction states with attention to mobile readability, efficient use and visual consistency.']
+          ['交互优化与状态完善：基于产品提供的原型，对操作步骤、页面跳转、按钮反馈及弹窗交互提出调整建议，补充加载、空白和错误等状态，完善操作流程与反馈。','Interaction Refinement & States: Reviewed the prototypes supplied by the product team and suggested improvements to task steps, navigation, button feedback and dialogs. Added loading, empty and error states to complete the flows and feedback.'],
+          ['App 视觉设计：负责供应商端 App 全部页面的视觉设计，将产品原型转化为清晰、统一的界面，兼顾内容展示与操作体验。','App Visual Design: Designed every page of the supplier-side App, translating the product prototypes into clear, consistent interfaces with attention to content presentation and usability.'],
+          ['视觉规范制定：制定并统一 App 的视觉规范，为各页面及组件的设计提供一致依据。','Visual Guidelines: Established consistent visual guidelines for the App to guide the design of its pages and components.']
         ];
         const list=document.createElement('ul');
         responsibilities.forEach(([zh,en])=>{
@@ -145,6 +149,10 @@
         fields.append(field('项目概述','Project Overview',copy));
       }
       section.querySelectorAll('.case-facts > div').forEach(fact);
+      if(isMaterials){
+        const location=document.createElement('span');location.dataset.zh='菲律宾';location.dataset.en='Philippines';location.textContent='Philippines';
+        facts.append(field('地区','Location',location));
+      }
     }
   }
   // The final five case studies use the same tools and metadata placement.
@@ -209,6 +217,8 @@
     const align=()=>{
       queued=false;
       section.style.height='';inner.style.top='';inner.style.height='';
+      // These updated app boards use normal-flow content, not a trimmed Web shell.
+      if ((isResearch || isCompanion || isMaterials) && matchMedia('(max-width:760px)').matches) return;
       const sectionBox=section.getBoundingClientRect();
       const media=inner.querySelector('.desktop-pair,.hero-phones,.landing-page');
       if (!media) return;
