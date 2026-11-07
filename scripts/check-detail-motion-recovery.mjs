@@ -11,7 +11,8 @@ try {
   for(const source of ['/', '/content', '/okr']) {
     const page=await browser.newPage({viewport:{width:1440,height:900}});
     await page.goto(server.origin+source,{waitUntil:'load'});
-    await page.locator('a[href^="project1?"]').first().click();
+    const entry=source==='/okr'?'.project-pagination-link[rel="prev"]':'a[href^="project1?"]';
+    await page.locator(entry).first().click();
     await page.waitForURL(url=>url.pathname==='/project1');
     await page.waitForFunction(()=>!document.documentElement.classList.contains('detail-motion-pending')&&getComputedStyle(document.querySelector('.detail-overview-title')).opacity==='1');
     for(let i=0;i<8;i++) {
