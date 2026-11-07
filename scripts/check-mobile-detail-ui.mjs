@@ -47,7 +47,7 @@ try{
           });
           assert.ok(metrics.difference<1,'icon centered on multi-line project label');
           assert.equal(Math.round(metrics.icon),14);assert.ok(metrics.label<=113.1);assert.equal(metrics.overflow,false);
-          assert.match(metrics.href,/\?v=(?:20261105-(?:app-disclosure-14|okr-memory-15)|20261106-(?:editorial-mobile-16|philippine-mobile-17|project-info-18)|20261107-architecture-entry-19)$/);
+          assert.match(metrics.href,/\?v=20261107-detail-loading-20$/);
         }
       }
       if(name==='project1'){

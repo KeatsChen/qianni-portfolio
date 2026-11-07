@@ -1,0 +1,14 @@
+<!-- detail-loading:start -->
+<style data-detail-loading>
+html.detail-motion-pending::before{content:"";position:fixed;inset:0;z-index:10000;background:#01010b;pointer-events:none;animation:detail-boot-exit 0s 8s forwards}
+html.detail-motion-pending::after{content:"";position:fixed;z-index:10001;left:calc(50% - 21px);top:calc(50% - 21px);width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:16px 0 #fff,32px 0 #fff,0 16px #fff,16px 16px #fff,32px 16px #fff,0 32px #fff,16px 32px #fff,32px 32px #fff;pointer-events:none;animation:detail-boot-pulse 1.5s ease-in-out infinite,detail-boot-exit 0s 8s forwards}
+html.detail-motion-pending main,html.detail-motion-pending .site-nav,html.detail-motion-pending .project-pagination,html.detail-motion-pending .detail-overview{visibility:hidden;animation:detail-boot-content 0s 8s forwards}
+@keyframes detail-boot-exit{to{visibility:hidden}}
+@keyframes detail-boot-content{to{visibility:visible}}
+@keyframes detail-boot-pulse{50%{opacity:.3;transform:scale(.75)}}
+@media(prefers-reduced-motion:reduce){html.detail-motion-pending::after{animation:detail-boot-exit 0s 8s forwards}}
+</style>
+<script>
+(()=>{const root=document.documentElement;window.detailLoadingStarted=performance.now();root.classList.add('detail-motion-pending');const release=()=>{if(root.classList.contains('detail-motion-pending'))root.classList.remove('detail-motion-pending','detail-motion-ready');};setTimeout(release,8000);window.addEventListener('pageshow',event=>{if(event.persisted)release();});})();
+</script>
+<!-- detail-loading:end -->

@@ -13,7 +13,7 @@ try {
     await page.goto(server.origin+source,{waitUntil:'load'});
     await page.locator('a[href^="project1?"]').first().click();
     await page.waitForURL(url=>url.pathname==='/project1');
-    await page.waitForFunction(()=>getComputedStyle(document.querySelector('.detail-overview-title')).opacity==='1');
+    await page.waitForFunction(()=>!document.documentElement.classList.contains('detail-motion-pending')&&getComputedStyle(document.querySelector('.detail-overview-title')).opacity==='1');
     for(let i=0;i<8;i++) {
       assert.equal(await page.locator('.detail-overview-title').evaluate(e=>getComputedStyle(e).opacity),'1','shown header must never disappear again');
       await page.waitForTimeout(100);
@@ -28,7 +28,7 @@ try {
     await page.addInitScript(missingObserver);
     const errors=[];page.on('pageerror',e=>errors.push(e.message));
     await page.goto(server.origin+'/project1',{waitUntil:'domcontentloaded'});
-    await page.waitForFunction(()=>getComputedStyle(document.querySelector('.detail-overview-title')).opacity==='1');
+    await page.waitForFunction(()=>!document.documentElement.classList.contains('detail-motion-pending')&&getComputedStyle(document.querySelector('.detail-overview-title')).opacity==='1');
     assert.equal(await page.locator('.detail-overview-title').getAttribute('data-detail-shown'),'');
     await page.evaluate(()=>window.scrollTo(0,2000));
     await page.waitForTimeout(1000);
@@ -49,7 +49,7 @@ try {
     });
     const navigation=page.goto(server.origin+'/project1',{waitUntil:'domcontentloaded'});
     await page.waitForSelector('.arch-title-row, .detail-overview-title',{state:'attached'});
-    await page.waitForTimeout(4500);
+    await page.waitForTimeout(8500);
     assert.ok(await page.locator('h1').first().evaluate(e=>{
       for(let p=e;p;p=p.parentElement){const s=getComputedStyle(p);if(s.visibility==='hidden'||Number(s.opacity)===0)return false;}return true;
     }),'CSS alone must expose the article even if JS timers and animation frames stop');

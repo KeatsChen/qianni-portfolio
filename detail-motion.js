@@ -3,18 +3,34 @@
   const root=document.documentElement;
   window.detailMotionManaged=true;
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-  if(reduced.matches||!('IntersectionObserver' in window))return;
-  const startedAt=performance.now();
+  const animate=!reduced.matches&&('IntersectionObserver' in window);
+  const startedAt=window.detailLoadingStarted??performance.now();
+  if(performance.now()-startedAt>=8000){root.classList.remove('detail-motion-pending','detail-motion-ready');return;}
   root.classList.add('detail-motion-pending');
   const failOpen=()=>root.classList.remove('detail-motion-pending','detail-motion-ready');
-  const fallback=setTimeout(failOpen,5000);
-  const start=()=>{
+  const remaining=()=>Math.max(0,8000-(performance.now()-startedAt));
+  const fallback=setTimeout(failOpen,remaining());
+  const start=async()=>{
     // If the fail-open timeout already exposed the page, leave it visible.
     if(!root.classList.contains('detail-motion-pending'))return;
     // The CSS safety exit may already have painted the page while external
     // scripts were downloading. Never hide that visible content a second time.
-    if(performance.now()-startedAt>=4000){failOpen();return;}
+    if(!remaining()){failOpen();return;}
     try {
+      // Load behind the transition. Wait only for fonts and original artwork
+      // already in the first viewport, never for the whole long case study.
+      document.dispatchEvent(new Event('detail:prepare-first-paint'));
+      const firstImages=[...document.querySelectorAll('main img')].filter(image=>{
+        const r=image.getBoundingClientRect();
+        return (image.currentSrc||image.getAttribute('src'))&&r.width>=80&&r.height>=80&&r.bottom>0&&r.top<innerHeight;
+      }).slice(0,4);
+      const firstPaint=Promise.allSettled([
+        document.fonts.ready,
+        ...firstImages.map(image=>image.decode())
+      ]);
+      await Promise.race([firstPaint,new Promise(resolve=>setTimeout(resolve,Math.min(2500,remaining())))]);
+      if(!root.classList.contains('detail-motion-pending')||!remaining()){failOpen();return;}
+      if(!animate){clearTimeout(fallback);failOpen();return;}
       const selector=[
         '.site-nav > *','.detail-overview-title','.detail-overview-fields > dl',
         '.detail-overview-facts','.arch-reveal','.project-gallery > img',
@@ -29,6 +45,7 @@
       // scheduling the first entrance. Otherwise browsers can transition
       // from the element's previous opacity:1 down to 0 first.
       targets.forEach(e=>getComputedStyle(e).opacity);
+      root.style.setProperty('--detail-enter-recovery-delay',`${Math.min(3000,remaining())}ms`);
       root.classList.remove('detail-motion-pending');
       const pending=new Set();
       let timer=null;
@@ -80,7 +97,7 @@
       setTimeout(()=>{
         const visible=targets.filter(e=>{const r=e.getBoundingClientRect();return r.width&&r.height&&r.bottom>0&&r.top<innerHeight;});
         if(visible.some(e=>!e.hasAttribute('data-detail-shown')))finish();
-      },3000);
+      },Math.min(3000,remaining()));
       clearTimeout(fallback);
       const finish=()=>{if(timer!==null)clearTimeout(timer);timer=null;targets.forEach(show);observer.disconnect();};
       reduced.addEventListener('change',e=>{if(e.matches)finish();});

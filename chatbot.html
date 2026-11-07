@@ -5,6 +5,20 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-z-32.png?v=4" />
     <link rel="shortcut icon" type="image/png" href="assets/favicon-z-32.png?v=4" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- detail-loading:start -->
+<style data-detail-loading>
+html.detail-motion-pending::before{content:"";position:fixed;inset:0;z-index:10000;background:#01010b;pointer-events:none;animation:detail-boot-exit 0s 8s forwards}
+html.detail-motion-pending::after{content:"";position:fixed;z-index:10001;left:calc(50% - 21px);top:calc(50% - 21px);width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:16px 0 #fff,32px 0 #fff,0 16px #fff,16px 16px #fff,32px 16px #fff,0 32px #fff,16px 32px #fff,32px 32px #fff;pointer-events:none;animation:detail-boot-pulse 1.5s ease-in-out infinite,detail-boot-exit 0s 8s forwards}
+html.detail-motion-pending main,html.detail-motion-pending .site-nav,html.detail-motion-pending .project-pagination,html.detail-motion-pending .detail-overview{visibility:hidden;animation:detail-boot-content 0s 8s forwards}
+@keyframes detail-boot-exit{to{visibility:hidden}}
+@keyframes detail-boot-content{to{visibility:visible}}
+@keyframes detail-boot-pulse{50%{opacity:.3;transform:scale(.75)}}
+@media(prefers-reduced-motion:reduce){html.detail-motion-pending::after{animation:detail-boot-exit 0s 8s forwards}}
+</style>
+<script>
+(()=>{const root=document.documentElement;window.detailLoadingStarted=performance.now();root.classList.add('detail-motion-pending');const release=()=>{if(root.classList.contains('detail-motion-pending'))root.classList.remove('detail-motion-pending','detail-motion-ready');};setTimeout(release,8000);window.addEventListener('pageshow',event=>{if(event.persisted)release();});})();
+</script>
+<!-- detail-loading:end -->
     <script src="entry-guard.js?v=7"></script>
     <meta name="description" content="AI Mental Health Chatbot App — prototyping, interaction design and visual design by Qianni Zhong." />
     <title>AI Mental Health Chatbot App — Qianni Zhong</title>
@@ -17,9 +31,9 @@
   <link rel="stylesheet" href="detail-overview.css?v=94b77cef17" />
   <link rel="stylesheet" href="architecture-navigation.css?v=3" />
   <link rel="stylesheet" href="native-case-studies.css?v=52b671ad82" />
-  <link rel="stylesheet" href="detail-motion.css?v=4af88a0edc" />
-  <script src="detail-motion.js?v=00d3b75b47"></script>
-  <script defer src="progressive-media.js?v=9ca8254174"></script>
+  <link rel="stylesheet" href="detail-motion.css?v=8ee8d33561" />
+  <script src="detail-motion.js?v=ebaaf07c73"></script>
+  <script defer src="progressive-media.js?v=a07c954599"></script>
   <link rel="stylesheet" href="project-entry.css?v=b82cfe850b" />
   <script defer src="project-entry.js?v=2b9573d270"></script>
   <link rel="stylesheet" href="mobile-detail-scale.css?v=0b325236ba" />
@@ -67,8 +81,8 @@
     <nav id="project-navigation" class="project-pagination" aria-label="Project navigation">
       <img class="project-pagination-divider" src="assets/architecture-v2/project-switch-divider.svg" width="1240" height="1" alt="" />
       <div class="project-pagination-row">
-        <a class="project-pagination-link" href="okr?v=20261105-okr-memory-15" rel="prev"><span class="project-pagination-arrow" aria-hidden="true"><img class="project-pagination-default" src="assets/architecture-v2/project-next-arrow.svg" width="16" height="16" alt="" /><img class="project-pagination-hover" src="assets/architecture-v2/project-switch-hover-arrow.svg" width="16" height="16" alt="" /></span><span class="project-pagination-label" data-en="OKR System Design" data-zh="OKR 系统设计">OKR System Design</span></a>
-        <a class="project-pagination-link" href="research?v=20261106-editorial-mobile-16" rel="next"><span class="project-pagination-label" data-en="Academic Research Institute Website" data-zh="法国学术官网">Academic Research Institute Website</span><span class="project-pagination-arrow" aria-hidden="true"><img class="project-pagination-default" src="assets/architecture-v2/project-next-arrow.svg" width="16" height="16" alt="" /><img class="project-pagination-hover" src="assets/architecture-v2/project-switch-hover-arrow.svg" width="16" height="16" alt="" /></span></a>
+        <a class="project-pagination-link" href="okr?v=20261107-detail-loading-20" rel="prev"><span class="project-pagination-arrow" aria-hidden="true"><img class="project-pagination-default" src="assets/architecture-v2/project-next-arrow.svg" width="16" height="16" alt="" /><img class="project-pagination-hover" src="assets/architecture-v2/project-switch-hover-arrow.svg" width="16" height="16" alt="" /></span><span class="project-pagination-label" data-en="OKR System Design" data-zh="OKR 系统设计">OKR System Design</span></a>
+        <a class="project-pagination-link" href="research?v=20261107-detail-loading-20" rel="next"><span class="project-pagination-label" data-en="Academic Research Institute Website" data-zh="法国学术官网">Academic Research Institute Website</span><span class="project-pagination-arrow" aria-hidden="true"><img class="project-pagination-default" src="assets/architecture-v2/project-next-arrow.svg" width="16" height="16" alt="" /><img class="project-pagination-hover" src="assets/architecture-v2/project-switch-hover-arrow.svg" width="16" height="16" alt="" /></span></a>
       </div>
     </nav>
     <button class="back-to-top" type="button" aria-label="回到顶部"><img loading="lazy" decoding="async" src="assets/back-to-top.svg?v=2" alt="" /></button>

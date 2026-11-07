@@ -5,6 +5,7 @@
   const images = [...document.querySelectorAll('img[data-media-src]')].filter(image=>!image.closest('[data-okr-resource-managed]'));
   if (!images.length) return;
   const load = (image, priority = 'low') => {
+    if (!image.dataset.mediaSrc) return;
     image.loading = 'eager';
     image.fetchPriority = priority;
     image.closest('picture')?.querySelectorAll('source[data-media-srcset]').forEach(source => {
@@ -22,6 +23,12 @@
     load(entry.target);
     observer.unobserve(entry.target);
   }), { rootMargin: '500px 0px' });
+  // Mobile layout runs after this deferred script. A detail transition can
+  // request its newly positioned first viewport without fetching later slides.
+  document.addEventListener('detail:prepare-first-paint',()=>images.forEach(image=>{
+    const rect=image.getBoundingClientRect();
+    if(rect.width&&rect.height&&rect.bottom>0&&rect.top<innerHeight)load(image,'high');
+  }));
   images.forEach(image => {
     const rect = image.getBoundingClientRect();
     if (rect.width && rect.height && rect.bottom > 0 && rect.top < innerHeight) load(image, 'high');
