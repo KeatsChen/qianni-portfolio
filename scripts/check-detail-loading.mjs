@@ -6,13 +6,14 @@ const browser=await chromium.launch({headless:true,...(process.env.BROWSER_PATH?
 try {
   for(const width of [1440,390]){
     const page=await browser.newPage({viewport:{width,height:900}});
-    let mediaRequested=false;
-    await page.route('**/assets/architecture-v2/home-screen.png',async route=>{
-      mediaRequested=true;
+    const heroURL=/\/assets\/architecture-v2\/home-screen-hero-\d+\.webp$/;
+    await page.route(heroURL,async route=>{
       await new Promise(resolve=>setTimeout(resolve,1800));await route.continue();
     });
-    await page.goto(server.origin+'/project1',{waitUntil:'domcontentloaded'});
-    assert.ok(mediaRequested,'artwork downloads while loading animation is shown');
+    await Promise.all([
+      page.waitForRequest(heroURL),
+      page.goto(server.origin+'/project1',{waitUntil:'domcontentloaded'})
+    ]);
     assert.equal(await page.locator('.detail-boot').evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(1, 1, 11)');
     assert.deepEqual(await page.locator('.detail-boot i').evaluateAll(dots=>dots.map(e=>getComputedStyle(e).animationDelay)),['0s','0.2s','0.4s','0.2s','0.4s','0.6s','0.4s','0.6s','0.8s']);
     assert.ok(await page.evaluate(()=>document.documentElement.classList.contains('detail-motion-pending')));

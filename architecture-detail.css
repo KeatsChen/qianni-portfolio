@@ -48,6 +48,7 @@ html:lang(en) .arch-responsibilities ul { line-height:20px; }
 .arch-hero { position:relative; isolation:isolate; height:808px; margin-top:83px; overflow:visible; }
 .arch-window { position:relative; overflow:hidden; }
 .arch-window > img { width:100%; height:auto; }
+.arch-window > picture > img { display:block; width:100%; height:auto; }
 .arch-hero .arch-window { position:absolute; width:35.1613%; border-radius:var(--arch-window-radius); }
 /* Figma group effects sit outside the image's clipped rectangle. */
 .arch-hero-home { --arch-window-radius:13.603px; z-index:1; left:15.8871%; top:0; height:739px; box-shadow:6px 4px 63.3px rgba(10.586,102.858,122.946,.37); }

@@ -23,13 +23,30 @@
     load(entry.target);
     observer.unobserve(entry.target);
   }), { rootMargin: '500px 0px' });
+  const scrollImages=images.filter(image=>image.hasAttribute('data-media-scroll'));
+  const normalImages=images.filter(image=>!image.hasAttribute('data-media-scroll'));
+  if(scrollImages.length){
+    const scrollObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+      if(!entry.isIntersecting)return;
+      load(entry.target);
+      scrollObserver.unobserve(entry.target);
+    }),{rootMargin:'0px 0px -96px 0px'});
+    const observeScrollImages=()=>scrollImages.forEach(image=>scrollObserver.observe(image));
+    if(document.documentElement.classList.contains('detail-motion-pending')){
+      const ready=new MutationObserver(()=>{
+        if(document.documentElement.classList.contains('detail-motion-pending'))return;
+        ready.disconnect();observeScrollImages();
+      });
+      ready.observe(document.documentElement,{attributes:true,attributeFilter:['class']});
+    }else observeScrollImages();
+  }
   // Mobile layout runs after this deferred script. A detail transition can
   // request its newly positioned first viewport without fetching later slides.
-  document.addEventListener('detail:prepare-first-paint',()=>images.forEach(image=>{
+  document.addEventListener('detail:prepare-first-paint',()=>normalImages.forEach(image=>{
     const rect=image.getBoundingClientRect();
     if(rect.width&&rect.height&&rect.bottom>0&&rect.top<innerHeight)load(image,'high');
   }));
-  images.forEach(image => {
+  normalImages.forEach(image => {
     const rect = image.getBoundingClientRect();
     if (rect.width && rect.height && rect.bottom > 0 && rect.top < innerHeight) load(image, 'high');
     else observer.observe(image);

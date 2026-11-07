@@ -16,7 +16,8 @@
       document.dispatchEvent(new Event('detail:prepare-first-paint'));
       const firstImages=[...document.querySelectorAll('main img')].filter(image=>{
         const r=image.getBoundingClientRect();
-        return (image.currentSrc||image.getAttribute('src'))&&r.width>=80&&r.height>=80&&r.bottom>0&&r.top<innerHeight;
+        const hasSource=image.currentSrc||image.getAttribute('src')||image.closest('picture')?.querySelector('source[srcset]');
+        return hasSource&&r.width>=80&&r.height>=80&&r.bottom>0&&r.top<innerHeight;
       }).slice(0,4);
       const firstPaint=Promise.allSettled([
         document.fonts.ready,
