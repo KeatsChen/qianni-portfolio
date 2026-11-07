@@ -104,5 +104,7 @@
       window.addEventListener('pageshow',e=>{if(e.persisted)finish();});
     }catch(error){clearTimeout(fallback);failOpen();console.error('Detail entrance disabled:',error);}
   };
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+  // A deferred controller executes before later deferred mobile/layout scripts.
+  // Start only after those scripts finish; the parser itself is never blocked.
+  if(document.readyState==='loading'||document.currentScript?.defer)document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();

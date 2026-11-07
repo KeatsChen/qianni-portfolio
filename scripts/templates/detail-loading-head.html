@@ -9,6 +9,6 @@ html.detail-motion-pending main,html.detail-motion-pending .site-nav,html.detail
 @media(prefers-reduced-motion:reduce){html.detail-motion-pending::after{animation:detail-boot-exit 0s 8s forwards}}
 </style>
 <script>
-(()=>{const root=document.documentElement;window.detailLoadingStarted=performance.now();root.classList.add('detail-motion-pending');const release=()=>{if(root.classList.contains('detail-motion-pending'))root.classList.remove('detail-motion-pending','detail-motion-ready');};setTimeout(release,8000);window.addEventListener('pageshow',event=>{if(event.persisted)release();});})();
+(()=>{const root=document.documentElement;window.detailMotionManaged=true;window.detailLoadingStarted=performance.now();root.classList.add('detail-motion-pending');const release=()=>{if(root.classList.contains('detail-motion-pending'))root.classList.remove('detail-motion-pending','detail-motion-ready');};setTimeout(release,8000);window.addEventListener('pageshow',event=>{if(event.persisted)release();});})();
 </script>
 <!-- detail-loading:end -->
