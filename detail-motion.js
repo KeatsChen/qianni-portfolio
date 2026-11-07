@@ -4,12 +4,16 @@
   window.detailMotionManaged=true;
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   if(reduced.matches||!('IntersectionObserver' in window))return;
+  const startedAt=performance.now();
   root.classList.add('detail-motion-pending');
   const failOpen=()=>root.classList.remove('detail-motion-pending','detail-motion-ready');
   const fallback=setTimeout(failOpen,5000);
   const start=()=>{
     // If the fail-open timeout already exposed the page, leave it visible.
     if(!root.classList.contains('detail-motion-pending'))return;
+    // The CSS safety exit may already have painted the page while external
+    // scripts were downloading. Never hide that visible content a second time.
+    if(performance.now()-startedAt>=4000){failOpen();return;}
     try {
       const selector=[
         '.site-nav > *','.detail-overview-title','.detail-overview-fields > dl',
@@ -26,10 +30,9 @@
       // from the element's previous opacity:1 down to 0 first.
       targets.forEach(e=>getComputedStyle(e).opacity);
       root.classList.remove('detail-motion-pending');
-      clearTimeout(fallback);
       const pending=new Set();
       let timer=null;
-      const show=e=>{e.setAttribute('data-detail-shown','');pending.delete(e);observer.unobserve(e);};
+      const show=e=>{e.setAttribute('data-detail-shown','');e.removeAttribute('data-detail-recovery');pending.delete(e);observer.unobserve(e);};
       const tick=()=>{
         timer=null;
         const ordered=[...pending].filter(e=>{
@@ -48,7 +51,10 @@
         if(e.hasAttribute('data-detail-shown'))return;
         const r=e.getBoundingClientRect();
         if(r.bottom<0){show(e);return;}
-        if(r.width&&r.height&&r.top<=innerHeight+40){pending.add(e);if(timer===null)timer=setTimeout(tick,0);}
+        if(r.width&&r.height&&r.top<=innerHeight+40){
+          e.setAttribute('data-detail-recovery','');
+          pending.add(e);if(timer===null)timer=setTimeout(tick,0);
+        }
       };
       const observer=new IntersectionObserver(entries=>{
         entries.forEach(entry=>{
@@ -61,6 +67,21 @@
         observer.observe(e);
         if(e.tagName==='IMG')e.addEventListener('load',()=>enqueue(e),{once:true});
       });
+      // First paint must not depend on the observer's first callback. Some
+      // restored/backgrounded tabs deliver it late or not at all. The same
+      // position-sorted queue handles both observers and direct viewport scans.
+      const scan=()=>targets.forEach(enqueue);
+      scan();
+      window.addEventListener('scroll',scan,{passive:true});
+      window.addEventListener('resize',scan,{passive:true});
+      document.addEventListener('visibilitychange',()=>{if(!document.hidden)scan();});
+      // Retain the startup watchdog until the visible content actually shows,
+      // rather than cancelling it as soon as the observer is constructed.
+      setTimeout(()=>{
+        const visible=targets.filter(e=>{const r=e.getBoundingClientRect();return r.width&&r.height&&r.bottom>0&&r.top<innerHeight;});
+        if(visible.some(e=>!e.hasAttribute('data-detail-shown')))finish();
+      },3000);
+      clearTimeout(fallback);
       const finish=()=>{if(timer!==null)clearTimeout(timer);timer=null;targets.forEach(show);observer.disconnect();};
       reduced.addEventListener('change',e=>{if(e.matches)finish();});
       window.addEventListener('pageshow',e=>{if(e.persisted)finish();});

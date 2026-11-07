@@ -1,6 +1,12 @@
 /* Fail open without JavaScript; establish the hidden state before first paint. */
 .detail-motion-pending main,.detail-motion-pending .site-nav,
-.detail-motion-pending .project-pagination,.detail-motion-pending .site-copyright { visibility:hidden; }
+.detail-motion-pending .project-pagination,.detail-motion-pending .site-copyright {
+  visibility:hidden;
+  /* CSS-only escape if parsing, a network-dependent script or JS timers stall. */
+  animation:detail-pending-recovery 0s 4s forwards;
+}
+@keyframes detail-pending-recovery { to { visibility:visible; } }
+@keyframes detail-enter-recovery { to { opacity:1; translate:0 0; filter:none; } }
 .detail-motion-pending .detail-overview-title,.detail-motion-pending .detail-overview-fields,
 .detail-motion-pending .detail-overview-facts,.detail-motion-ready .detail-overview-title,
 .detail-motion-ready .detail-overview-fields,.detail-motion-ready .detail-overview-facts,
@@ -17,6 +23,10 @@
     opacity:1; translate:0 0; filter:none;
     transition:opacity .75s cubic-bezier(.22,1,.36,1),translate .75s cubic-bezier(.22,1,.36,1),filter .75s cubic-bezier(.22,1,.36,1);
     transition-delay:0s;
+  }
+  html.detail-motion-ready [data-detail-enter][data-detail-recovery]:not([data-detail-shown]) {
+    /* Only queued viewport content gets this fallback; preserve scroll reveals. */
+    animation:detail-enter-recovery 0s 3s forwards !important;
   }
 }
 @media(prefers-reduced-motion:reduce) {
