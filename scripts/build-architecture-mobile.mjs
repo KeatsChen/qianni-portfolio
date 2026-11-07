@@ -6,7 +6,7 @@ import {fileURLToPath} from 'node:url';
 import {spawn} from 'node:child_process';
 import {parse,assets,unknown,chinese,translations,textBoxes} from './build-native-case-studies.mjs';
 import {prepareProgressiveMedia} from './prepare-progressive-media.mjs';
-import {optimizeMobileHero} from './architecture-hero-media.mjs';
+import {optimizeMobileHero,optimizeArchitectureArtwork} from './architecture-hero-media.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const snapshot=JSON.parse(fs.readFileSync(path.join(root,'design/case-studies/architecture-mobile.json'),'utf8'));
 const copyFile=path.join(root,'design/case-studies/architecture-mobile-translations.json');
@@ -18,7 +18,7 @@ const aliases=JSON.parse(fs.readFileSync(path.join(root,'design/case-studies/arc
 for(const [from,to] of Object.entries(aliases)){
   artwork=artwork.replaceAll(from,to);assets.delete(path.basename(from));
 }
-const markup=optimizeMobileHero(prepareProgressiveMedia(`<div class="arch-mobile-case" aria-label="Architectural Assets Platform mobile case study"><div class="arch-mobile-canvas">${artwork}</div></div>`));
+const markup=optimizeArchitectureArtwork(optimizeMobileHero(prepareProgressiveMedia(`<div class="arch-mobile-case" aria-label="Architectural Assets Platform mobile case study"><div class="arch-mobile-canvas">${artwork}</div></div>`)));
 const file=path.join(root,'project1.html');let page=fs.readFileSync(file,'utf8');
 const fragment=`<!-- architecture-mobile:start -->\n${markup}\n<!-- architecture-mobile:end -->`;
 if(page.includes('<!-- architecture-mobile:start -->'))page=page.replace(/<!-- architecture-mobile:start -->[\s\S]*?<!-- architecture-mobile:end -->/,fragment);

@@ -18,13 +18,13 @@ try{
     assert.equal(sources.length,2);
     sources.forEach(src=>assert.match(src,new RegExp(`-hero-${variant}\\.webp$`)));
     assert.equal(requests.filter(p=>/-screen-hero-\d+\.webp$/.test(p)).length,2,'one preview per visible hero, not both layouts');
-    assert.equal(requests.some(p=>/\/architecture-v2\/(?:home|enterprise)-screen\.png$/.test(p)),false,'originals are not fetched for the first viewport');
-    const original=page.locator(width>760?'.arch-after-grid img[data-media-src$="home-screen.png"]':'[data-node-id="5168:2414"] > img');
+    assert.equal(requests.some(p=>/\/architecture-v2\/(?:home|enterprise)-screen(?:\.png|-full\.webp)$/.test(p)),false,'full-size artwork is not fetched for the first viewport');
+    const original=page.locator(width>760?'.arch-after-grid img[data-media-src$="home-screen-full.webp"]':'[data-node-id="5168:2414"] > img');
     await Promise.all([
-      page.waitForRequest(r=>r.url().endsWith('/home-screen.png')),
+      page.waitForRequest(r=>r.url().endsWith('/home-screen-full.webp')),
       original.scrollIntoViewIfNeeded()
     ]);
     await page.close();
-    console.log(`PASS ${width}px @${dpr}x: only ${variant}w previews at entry, original retained below`);
+    console.log(`PASS ${width}px @${dpr}x: only ${variant}w previews at entry, full-resolution image retained below`);
   }
 }finally{await browser.close();await preview.close();}

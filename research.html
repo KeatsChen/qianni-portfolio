@@ -10,10 +10,6 @@
 .detail-boot{display:none}
 .detail-motion-pending body > :not(.detail-boot){visibility:hidden}
 .detail-motion-pending .detail-boot{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;background:#01010b;color:#fff;pointer-events:none}
-.detail-boot-nav{position:absolute;top:max(16px,env(safe-area-inset-top));inset-inline:16px;display:flex;justify-content:center;flex-wrap:wrap;gap:8px;font:14px/1.2 system-ui,sans-serif}
-.detail-boot-nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1px solid #ffffff40;border-radius:999px;background:#ffffff0d;color:inherit;text-decoration:none;pointer-events:auto}
-.detail-boot-nav a:hover{background:#ffffff20}
-.detail-boot-nav a:focus-visible{outline:2px solid #fff;outline-offset:3px}
 .detail-boot .project-entry-grid{display:grid;grid-area:1/1;grid-template-columns:repeat(3,10px);gap:6px;animation:detail-boot-exit 0s 8s forwards}
 .detail-boot .project-entry-grid i{display:block;width:10px;height:10px;border-radius:50%;background:#fff;animation:project-entry-dot 1.5s ease-in-out var(--dot-delay) infinite}
 .detail-boot-recovery{grid-area:1/1;visibility:hidden;text-align:center;padding:24px;font:16px/1.6 system-ui,sans-serif;animation:detail-boot-recover 0s 8s forwards}
@@ -58,12 +54,6 @@ document.documentElement.classList.add('detail-motion-pending');
 <body class="has-site-nav secondary-entry research-page light-detail-nav">
 <!-- detail-loading-body:start -->
 <div class="detail-boot">
-  <nav class="detail-boot-nav" aria-label="Project navigation while loading">
-    <a href="content"><span lang="en">Back to work</span><span lang="zh">返回作品列表</span></a>
-    <a href="./"><span lang="en">Home</span><span lang="zh">首页</span></a>
-    <a href="chatbot?v=20261107-loading-nav-25" rel="prev"><span lang="en">Previous project</span><span lang="zh">上一个项目</span></a>
-    <a href="cozyup?v=20261107-loading-nav-25" rel="next"><span lang="en">Next project</span><span lang="zh">下一个项目</span></a>
-  </nav>
   <div class="project-entry-grid" aria-hidden="true"><i style="--dot-delay:0ms"></i><i style="--dot-delay:200ms"></i><i style="--dot-delay:400ms"></i><i style="--dot-delay:200ms"></i><i style="--dot-delay:400ms"></i><i style="--dot-delay:600ms"></i><i style="--dot-delay:400ms"></i><i style="--dot-delay:600ms"></i><i style="--dot-delay:800ms"></i></div>
   <div class="detail-boot-recovery">
     <div lang="en"><p role="status">This project is taking longer than expected.</p><a href="">Retry</a></div>
@@ -146,8 +136,8 @@ document.documentElement.classList.add('detail-motion-pending');
     <nav id="project-navigation" class="project-pagination project-pagination--light" aria-label="Project navigation">
       <img class="project-pagination-divider" src="assets/architecture-v2/project-switch-divider.svg" width="1240" height="1" alt="" />
       <div class="project-pagination-row">
-        <a class="project-pagination-link" href="chatbot?v=20261107-loading-nav-25" rel="prev"><span class="project-pagination-arrow" aria-hidden="true"><img class="project-pagination-default" src="assets/architecture-v2/project-next-arrow.svg" width="16" height="16" alt="" /><img class="project-pagination-hover" src="assets/architecture-v2/project-switch-hover-arrow.svg" width="16" height="16" alt="" /></span><span class="project-pagination-label" data-en="AI Mental Health Chatbot App" data-zh="心理健康 AI 聊天机器人">AI Mental Health Chatbot App</span></a>
-        <a class="project-pagination-link" href="cozyup?v=20261107-loading-nav-25" rel="next"><span class="project-pagination-label" data-en="AI Virtual Companion Platform" data-zh="AI 虚拟伴侣平台">AI Virtual Companion Platform</span><span class="project-pagination-arrow" aria-hidden="true"><img class="project-pagination-default" src="assets/architecture-v2/project-next-arrow.svg" width="16" height="16" alt="" /><img class="project-pagination-hover" src="assets/architecture-v2/project-switch-hover-arrow.svg" width="16" height="16" alt="" /></span></a>
+        <a class="project-pagination-link" href="chatbot?v=20261107-loading-clean-27" rel="prev"><span class="project-pagination-arrow" aria-hidden="true"><img class="project-pagination-default" src="assets/architecture-v2/project-next-arrow.svg" width="16" height="16" alt="" /><img class="project-pagination-hover" src="assets/architecture-v2/project-switch-hover-arrow.svg" width="16" height="16" alt="" /></span><span class="project-pagination-label" data-en="AI Mental Health Chatbot App" data-zh="心理健康 AI 聊天机器人">AI Mental Health Chatbot App</span></a>
+        <a class="project-pagination-link" href="cozyup?v=20261107-loading-clean-27" rel="next"><span class="project-pagination-label" data-en="AI Virtual Companion Platform" data-zh="AI 虚拟伴侣平台">AI Virtual Companion Platform</span><span class="project-pagination-arrow" aria-hidden="true"><img class="project-pagination-default" src="assets/architecture-v2/project-next-arrow.svg" width="16" height="16" alt="" /><img class="project-pagination-hover" src="assets/architecture-v2/project-switch-hover-arrow.svg" width="16" height="16" alt="" /></span></a>
       </div>
     </nav>
   </div>
