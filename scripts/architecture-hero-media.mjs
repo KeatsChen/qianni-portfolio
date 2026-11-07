@@ -25,11 +25,25 @@ const deliveryAssets={
   'portfolio-screen.png':'portfolio-screen-full.webp',
   'help-screen.png':'help-screen-full.webp',
   'portrait.jpg':'portrait-240.webp',
-  'mood-tech.jpg':'mood-tech-1200.webp'
+  'mood-tech.jpg':'mood-tech-1200.webp',
+  'portrait-alternate.jpg':'portrait-alternate-240.webp',
+  'mood-order.png':'mood-order.webp',
+  'mood-glass.png':'mood-glass.webp',
+  'mood-premium.png':'mood-premium.webp',
+  'before-panel.png':'before-panel.webp',
+  'before-assets.png':'before-assets.webp',
+  'before-home.png':'before-home.webp',
+  'information-architecture-wireframe.png':'information-architecture-wireframe.webp',
+  'photoshop.png':'photoshop.webp',
+  'figma.png':'figma.webp'
 };
 export function optimizeArchitectureArtwork(markup){
   for(const [source,delivery] of Object.entries(deliveryAssets)){
     markup=markup.replaceAll(`${folder}/${source}"`,`${folder}/${delivery}"`);
   }
-  return markup;
+  // The mobile Figma export references duplicate portrait bytes under
+  // different filenames. Reuse the same right-sized files as desktop.
+  return markup
+    .replaceAll('assets/case-studies/3afed.png"',`${folder}/portrait-240.webp"`)
+    .replaceAll('assets/case-studies/c287d.png"',`${folder}/portrait-alternate-240.webp"`);
 }

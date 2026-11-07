@@ -9,6 +9,10 @@ try{
     const requests=[];
     page.on('request',r=>requests.push(new URL(r.url()).pathname));
     await page.goto(preview.origin+'/project1',{waitUntil:'domcontentloaded'});
+    const legacyImages=await page.locator('main img,.detail-overview img').evaluateAll(imgs=>imgs
+      .flatMap(img=>[img.getAttribute('src'),img.getAttribute('data-media-src')])
+      .filter(src=>src&&/\.(?:png|jpe?g)(?:\?|$)/i.test(src)));
+    assert.deepEqual(legacyImages,[],'architecture artwork uses WebP or SVG on both layouts');
     const images=page.locator(width>760?'.arch-hero img':'[data-node-id="5168:2337"] > img,[data-node-id="5168:2340"] > img');
     await images.first().waitFor({state:'visible'});
     const sources=await images.evaluateAll(async imgs=>{
