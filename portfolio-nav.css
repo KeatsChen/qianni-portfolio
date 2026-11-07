@@ -130,14 +130,17 @@
 .site-nav-music[aria-pressed="true"] img { filter: sepia(1) saturate(6) hue-rotate(350deg) drop-shadow(0 0 5px rgba(255,216,77,.8)); }
 .site-nav-spacer { width: 24px; pointer-events: none; }
 
-/* Figma 2-2: navigation used only by light-background case studies. */
+/* ISNS / Philippine: match the shared content edges; Figma has 20px inner gutters. */
 .light-detail-nav .site-nav,
 .materials-page .site-nav {
-  top: 29px;
-  left: 48px;
-  right: 48px;
+  top: 30px;
+  left: 0;
+  right: 0;
+  width: min(1240px, calc(100% - 200px));
+  margin-inline: auto;
   height: 64px;
-  padding: 0 52px;
+  grid-template-columns: 289fr 476fr 289fr 99fr;
+  padding: 0 20px;
 }
 .light-detail-nav .site-nav::before,
 .materials-page .site-nav::before {
@@ -156,6 +159,11 @@
   .site-nav-music:hover { background: rgba(255,255,255,.18); }
 }
 
+@media (max-width: 1100px) {
+  .light-detail-nav .site-nav,
+  .materials-page .site-nav { width: calc(100% - 96px); }
+}
+
 @media (max-width: 800px) {
   .site-nav {
     height: 60px;
@@ -168,9 +176,14 @@
   .site-nav > :nth-child(5) { display: none; }
   .site-nav::before { inset: 7px 10px; border-radius: 14px; }
   .light-detail-nav .site-nav,
-  .materials-page .site-nav { top: 7px; left: 10px; right: 10px; height: 50px; padding: 0 18px; }
+  .materials-page .site-nav { top: 7px; left: 10px; right: 10px; width: auto; height: 50px; padding: 0 18px; grid-template-columns: minmax(0, 1fr) 99px; }
   .light-detail-nav .site-nav::before,
   .materials-page .site-nav::before { inset: 0; border-radius: 14px; }
+}
+
+@media (min-width: 761px) and (max-width: 800px) {
+  .light-detail-nav .site-nav,
+  .materials-page .site-nav { left: 48px; right: 48px; padding-inline: 20px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
