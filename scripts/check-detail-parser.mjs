@@ -10,7 +10,7 @@ try {
     const nav=page.goto(server.origin+'/project1',{waitUntil:'domcontentloaded'});
     await page.waitForFunction(()=>!!document.body&&!!document.querySelector('h1'),{},{timeout:4000});
     assert.equal(await page.locator('script[src]:not([defer]):not([async])').count(),0);
-    assert.equal(await page.evaluate(()=>getComputedStyle(document.documentElement,'::after').content),'""');
+    await page.locator('.detail-boot .project-entry-grid').waitFor();
     release();await nav;
     await page.waitForFunction(()=>!document.documentElement.classList.contains('detail-motion-pending'));
     await page.locator('.detail-overview-title').waitFor();

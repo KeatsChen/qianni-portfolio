@@ -13,7 +13,8 @@ try {
     });
     await page.goto(server.origin+'/project1',{waitUntil:'domcontentloaded'});
     assert.ok(mediaRequested,'artwork downloads while loading animation is shown');
-    assert.equal(await page.evaluate(()=>getComputedStyle(document.documentElement,'::before').backgroundColor),'rgb(1, 1, 11)');
+    assert.equal(await page.locator('.detail-boot').evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(1, 1, 11)');
+    assert.deepEqual(await page.locator('.detail-boot i').evaluateAll(dots=>dots.map(e=>getComputedStyle(e).animationDelay)),['0s','0.2s','0.4s','0.2s','0.4s','0.6s','0.4s','0.6s','0.8s']);
     assert.ok(await page.evaluate(()=>document.documentElement.classList.contains('detail-motion-pending')));
     assert.equal(await page.locator('.detail-overview-title').evaluate(e=>getComputedStyle(e).visibility),'hidden');
     await page.waitForFunction(()=>!document.documentElement.classList.contains('detail-motion-pending'));
@@ -29,8 +30,7 @@ try {
     await new Promise(resolve=>setTimeout(resolve,2000));await route.continue();
   });
   const navigation=page.goto(server.origin+'/project1',{waitUntil:'domcontentloaded'});
-  await page.waitForFunction(()=>window.detailLoadingStarted!==undefined);
-  assert.equal(await page.evaluate(()=>getComputedStyle(document.documentElement,'::after').content),'""','loader does not wait for external motion JS');
+  await page.locator('.detail-boot .project-entry-grid').waitFor();
   await navigation;
   await page.waitForFunction(()=>!document.documentElement.classList.contains('detail-motion-pending'));
   await page.close();

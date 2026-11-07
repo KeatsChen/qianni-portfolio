@@ -1,14 +1,30 @@
 <!-- detail-loading:start -->
 <style data-detail-loading>
-html.detail-motion-pending::before{content:"";position:fixed;inset:0;z-index:10000;background:#01010b;pointer-events:none;animation:detail-boot-exit 0s 8s forwards}
-html.detail-motion-pending::after{content:"";position:fixed;z-index:10001;left:calc(50% - 21px);top:calc(50% - 21px);width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:16px 0 #fff,32px 0 #fff,0 16px #fff,16px 16px #fff,32px 16px #fff,0 32px #fff,16px 32px #fff,32px 32px #fff;pointer-events:none;animation:detail-boot-pulse 1.5s ease-in-out infinite,detail-boot-exit 0s 8s forwards}
-html.detail-motion-pending main,html.detail-motion-pending .site-nav,html.detail-motion-pending .project-pagination,html.detail-motion-pending .detail-overview{visibility:hidden;animation:detail-boot-content 0s 8s forwards}
+.detail-boot{display:none}
+.detail-motion-pending body > :not(.detail-boot){visibility:hidden}
+.detail-motion-pending .detail-boot{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;background:#01010b;color:#fff;pointer-events:none}
+.detail-boot .project-entry-grid{display:grid;grid-area:1/1;grid-template-columns:repeat(3,10px);gap:6px;animation:detail-boot-exit 0s 8s forwards}
+.detail-boot .project-entry-grid i{display:block;width:10px;height:10px;border-radius:50%;background:#fff;animation:project-entry-dot 1.5s ease-in-out var(--dot-delay) infinite}
+.detail-boot-recovery{grid-area:1/1;visibility:hidden;text-align:center;padding:24px;font:16px/1.6 system-ui,sans-serif;animation:detail-boot-recover 0s 8s forwards}
+.detail-boot-recovery a{pointer-events:auto;color:inherit;margin:0 10px}
+.detail-boot-recovery [lang=zh],html:lang(zh) .detail-boot-recovery [lang=en]{display:none}
+html:lang(zh) .detail-boot-recovery [lang=zh]{display:block}
 @keyframes detail-boot-exit{to{visibility:hidden}}
-@keyframes detail-boot-content{to{visibility:visible}}
-@keyframes detail-boot-pulse{50%{opacity:.3;transform:scale(.75)}}
-@media(prefers-reduced-motion:reduce){html.detail-motion-pending::after{animation:detail-boot-exit 0s 8s forwards}}
+@keyframes detail-boot-recover{to{visibility:visible}}
+@keyframes project-entry-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.5)}}
+@media(prefers-reduced-motion:reduce){.detail-boot .project-entry-grid i{animation:none;opacity:.65}}
 </style>
 <script>
-(()=>{const root=document.documentElement;window.detailMotionManaged=true;window.detailLoadingStarted=performance.now();root.classList.add('detail-motion-pending');const release=()=>{if(root.classList.contains('detail-motion-pending'))root.classList.remove('detail-motion-pending','detail-motion-ready');};setTimeout(release,8000);window.addEventListener('pageshow',event=>{if(event.persisted)release();});})();
+window.detailMotionManaged=true;
+document.documentElement.classList.add('detail-motion-pending');
 </script>
 <!-- detail-loading:end -->
+<!-- detail-loading-body:start -->
+<div class="detail-boot">
+  <div class="project-entry-grid" aria-hidden="true">{{dots}}</div>
+  <div class="detail-boot-recovery">
+    <div lang="en"><p role="status">This project is taking longer than expected.</p><a href="">Retry</a><a href="content">Back to work</a></div>
+    <div lang="zh"><p role="status">项目加载时间比预期长。</p><a href="">重试</a><a href="content">返回作品列表</a></div>
+  </div>
+</div>
+<!-- detail-loading-body:end -->

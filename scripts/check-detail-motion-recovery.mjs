@@ -39,25 +39,37 @@ try {
   }
   for(const slowParser of [false,true]) {
     const page=await browser.newPage({viewport:{width:1440,height:900}});
+    let navigations=0;
+    page.on('request',request=>{if(request.isNavigationRequest()&&request.frame()===page.mainFrame())navigations++;});
     await page.addInitScript(()=>{
       window.IntersectionObserver=class {observe(){}unobserve(){}disconnect(){}};
       window.setTimeout=()=>0;
       window.requestAnimationFrame=()=>0;
     });
-    if(slowParser) await page.route('**/detail-overview.js?*',async route=>{
-      await new Promise(resolve=>setTimeout(resolve,6500));await route.continue();
-    });
+    let resume;
+    if(slowParser) {
+      const stalled=new Promise(resolve=>resume=resolve);
+      await page.route('**/detail-overview.js?*',async route=>{await stalled;await route.continue();});
+    }
     const navigation=page.goto(server.origin+'/project1',{waitUntil:'domcontentloaded'});
     await page.waitForSelector('.arch-title-row, .detail-overview-title',{state:'attached'});
-    await page.waitForTimeout(8500);
-    assert.ok(await page.locator('h1').first().evaluate(e=>{
-      for(let p=e;p;p=p.parentElement){const s=getComputedStyle(p);if(s.visibility==='hidden'||Number(s.opacity)===0)return false;}return true;
-    }),'CSS alone must expose the article even if JS timers and animation frames stop');
+    if(slowParser) {
+      const retry=page.getByRole('link',{name:'Retry',exact:true});
+      await retry.waitFor({timeout:12000});
+      await retry.click({trial:true});
+      assert.equal(await page.locator('h1').first().evaluate(e=>getComputedStyle(e).visibility),'hidden','a stalled startup must never expose the noninteractive article');
+      resume();
+    }
     await navigation;
-    await page.waitForTimeout(500);
-    assert.ok(await page.locator('h1').first().evaluate(e=>{
+    const isPainted=()=>page.locator('h1').first().evaluate(e=>{
       for(let p=e;p;p=p.parentElement){const s=getComputedStyle(p);if(s.visibility==='hidden'||Number(s.opacity)===0)return false;}return true;
-    }),'late startup must not hide content again');
+    });
+    for(let i=0;i<60&&!(await isPainted());i++)await page.waitForTimeout(100);
+    assert.ok(await isPainted(),'CSS reveal still completes with the browser timers paused');
+    assert.equal(await page.locator('.detail-boot').isVisible(),false);
+    await page.locator('.site-nav button[data-lang="zh"]').click();
+    assert.equal(await page.locator('html').getAttribute('lang'),'zh-CN');
+    assert.equal(navigations,1,'recovery reveals the existing document, without reloading it');
     await page.close();
     console.log(`PASS CSS-only recovery: timers/frames paused, ${slowParser?'slow':'normal'} parser`);
   }

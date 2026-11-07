@@ -1,11 +1,4 @@
 /* Fail open without JavaScript; establish the hidden state before first paint. */
-.detail-motion-pending main,.detail-motion-pending .site-nav,
-.detail-motion-pending .project-pagination,.detail-motion-pending .site-copyright {
-  visibility:hidden;
-  /* CSS-only escape if parsing, a network-dependent script or JS timers stall. */
-  animation:detail-pending-recovery 0s 8s forwards;
-}
-@keyframes detail-pending-recovery { to { visibility:visible; } }
 @keyframes detail-enter-recovery { to { opacity:1; translate:0 0; filter:none; } }
 .detail-motion-pending .detail-overview-title,.detail-motion-pending .detail-overview-fields,
 .detail-motion-pending .detail-overview-facts,.detail-motion-ready .detail-overview-title,

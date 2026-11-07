@@ -5,16 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 <!-- detail-loading:start -->
 <style data-detail-loading>
-html.detail-motion-pending::before{content:"";position:fixed;inset:0;z-index:10000;background:#01010b;pointer-events:none;animation:detail-boot-exit 0s 8s forwards}
-html.detail-motion-pending::after{content:"";position:fixed;z-index:10001;left:calc(50% - 21px);top:calc(50% - 21px);width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:16px 0 #fff,32px 0 #fff,0 16px #fff,16px 16px #fff,32px 16px #fff,0 32px #fff,16px 32px #fff,32px 32px #fff;pointer-events:none;animation:detail-boot-pulse 1.5s ease-in-out infinite,detail-boot-exit 0s 8s forwards}
-html.detail-motion-pending main,html.detail-motion-pending .site-nav,html.detail-motion-pending .project-pagination,html.detail-motion-pending .detail-overview{visibility:hidden;animation:detail-boot-content 0s 8s forwards}
+.detail-boot{display:none}
+.detail-motion-pending body > :not(.detail-boot){visibility:hidden}
+.detail-motion-pending .detail-boot{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;background:#01010b;color:#fff;pointer-events:none}
+.detail-boot .project-entry-grid{display:grid;grid-area:1/1;grid-template-columns:repeat(3,10px);gap:6px;animation:detail-boot-exit 0s 8s forwards}
+.detail-boot .project-entry-grid i{display:block;width:10px;height:10px;border-radius:50%;background:#fff;animation:project-entry-dot 1.5s ease-in-out var(--dot-delay) infinite}
+.detail-boot-recovery{grid-area:1/1;visibility:hidden;text-align:center;padding:24px;font:16px/1.6 system-ui,sans-serif;animation:detail-boot-recover 0s 8s forwards}
+.detail-boot-recovery a{pointer-events:auto;color:inherit;margin:0 10px}
+.detail-boot-recovery [lang=zh],html:lang(zh) .detail-boot-recovery [lang=en]{display:none}
+html:lang(zh) .detail-boot-recovery [lang=zh]{display:block}
 @keyframes detail-boot-exit{to{visibility:hidden}}
-@keyframes detail-boot-content{to{visibility:visible}}
-@keyframes detail-boot-pulse{50%{opacity:.3;transform:scale(.75)}}
-@media(prefers-reduced-motion:reduce){html.detail-motion-pending::after{animation:detail-boot-exit 0s 8s forwards}}
+@keyframes detail-boot-recover{to{visibility:visible}}
+@keyframes project-entry-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.5)}}
+@media(prefers-reduced-motion:reduce){.detail-boot .project-entry-grid i{animation:none;opacity:.65}}
 </style>
 <script>
-(()=>{const root=document.documentElement;window.detailMotionManaged=true;window.detailLoadingStarted=performance.now();root.classList.add('detail-motion-pending');const release=()=>{if(root.classList.contains('detail-motion-pending'))root.classList.remove('detail-motion-pending','detail-motion-ready');};setTimeout(release,8000);window.addEventListener('pageshow',event=>{if(event.persisted)release();});})();
+window.detailMotionManaged=true;
+document.documentElement.classList.add('detail-motion-pending');
 </script>
 <!-- detail-loading:end -->
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-z-32.png?v=4" />
@@ -28,13 +35,13 @@ html.detail-motion-pending main,html.detail-motion-pending .site-nav,html.detail
   <link rel="stylesheet" href="architecture-navigation.css?v=3" />
   <link rel="stylesheet" href="project-pagination.css?v=b644be2ea8" />
   <link rel="stylesheet" href="detail-overview.css?v=94b77cef17" />
-  <link rel="stylesheet" href="detail-motion.css?v=8ee8d33561" />
+  <link rel="stylesheet" href="detail-motion.css?v=3c6c5eed5a" />
   <script defer src="detail-overview.js?v=513eabe02e"></script>
 <script defer src="portfolio-nav.js?v=7"></script>
 <script defer src="architecture-detail.js?v=7"></script>
 <script defer src="architecture-background.js?v=2"></script>
 <script defer src="back-to-top.js?v=2126825d33"></script>
-<script defer src="detail-motion.js?v=4a4e2edd5d"></script>
+<script defer src="detail-motion.js?v=7185e3bd0d"></script>
   <script defer src="progressive-media.js?v=a07c954599"></script>
   <link rel="stylesheet" href="project-entry.css?v=b82cfe850b" />
   <script defer src="project-entry.js?v=2b9573d270"></script>
@@ -46,6 +53,15 @@ html.detail-motion-pending main,html.detail-motion-pending .site-nav,html.detail
   <link rel="stylesheet" href="architecture-mobile.css?v=587a69526f" />
 </head>
 <body class="has-site-nav architecture-detail-page">
+<!-- detail-loading-body:start -->
+<div class="detail-boot">
+  <div class="project-entry-grid" aria-hidden="true"><i style="--dot-delay:0ms"></i><i style="--dot-delay:200ms"></i><i style="--dot-delay:400ms"></i><i style="--dot-delay:200ms"></i><i style="--dot-delay:400ms"></i><i style="--dot-delay:600ms"></i><i style="--dot-delay:400ms"></i><i style="--dot-delay:600ms"></i><i style="--dot-delay:800ms"></i></div>
+  <div class="detail-boot-recovery">
+    <div lang="en"><p role="status">This project is taking longer than expected.</p><a href="">Retry</a><a href="content">Back to work</a></div>
+    <div lang="zh"><p role="status">项目加载时间比预期长。</p><a href="">重试</a><a href="content">返回作品列表</a></div>
+  </div>
+</div>
+<!-- detail-loading-body:end -->
   <div class="arch-backdrop" aria-hidden="true"></div>
   <nav class="site-nav" aria-label="Portfolio navigation">
     <a class="site-nav-link" href="index.html?v=20261105-site-audit-3#engagements"><span data-en="Recent engagements" data-zh="近期经历">Recent engagements</span><img src="assets/architecture-v2/nav-first-arrow.svg" alt="" /></a>
@@ -188,7 +204,7 @@ html.detail-motion-pending main,html.detail-motion-pending .site-nav,html.detail
     <nav id="project-navigation" class="project-pagination" aria-label="Project navigation">
       <img class="project-pagination-divider" src="assets/architecture-v2/project-switch-divider.svg" width="1240" height="1" alt="" />
       <div class="project-pagination-row">
-        <a class="project-pagination-link" href="okr?v=20261107-parser-21" rel="next"><span class="project-pagination-label" data-en="OKR System Design" data-zh="OKR 系统设计">OKR System Design</span><span class="project-pagination-arrow" aria-hidden="true"><img class="project-pagination-default" src="assets/architecture-v2/project-next-arrow.svg" width="16" height="16" alt="" /><img class="project-pagination-hover" src="assets/architecture-v2/project-switch-hover-arrow.svg" width="16" height="16" alt="" /></span></a>
+        <a class="project-pagination-link" href="okr?v=20261107-detail-ready-22" rel="next"><span class="project-pagination-label" data-en="OKR System Design" data-zh="OKR 系统设计">OKR System Design</span><span class="project-pagination-arrow" aria-hidden="true"><img class="project-pagination-default" src="assets/architecture-v2/project-next-arrow.svg" width="16" height="16" alt="" /><img class="project-pagination-hover" src="assets/architecture-v2/project-switch-hover-arrow.svg" width="16" height="16" alt="" /></span></a>
       </div>
     </nav>
   </main>

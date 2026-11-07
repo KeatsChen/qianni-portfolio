@@ -4,18 +4,12 @@
   window.detailMotionManaged=true;
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   const animate=!reduced.matches&&('IntersectionObserver' in window);
-  const startedAt=window.detailLoadingStarted??performance.now();
-  if(performance.now()-startedAt>=8000){root.classList.remove('detail-motion-pending','detail-motion-ready');return;}
   root.classList.add('detail-motion-pending');
   const failOpen=()=>root.classList.remove('detail-motion-pending','detail-motion-ready');
-  const remaining=()=>Math.max(0,8000-(performance.now()-startedAt));
-  const fallback=setTimeout(failOpen,remaining());
   const start=async()=>{
-    // If the fail-open timeout already exposed the page, leave it visible.
-    if(!root.classList.contains('detail-motion-pending'))return;
-    // The CSS safety exit may already have painted the page while external
-    // scripts were downloading. Never hide that visible content a second time.
-    if(!remaining()){failOpen();return;}
+    // A failed layout script must not expose the uninitialized page. The
+    // independent loader instead offers Retry and Back until startup succeeds.
+    if(!document.querySelector('.detail-overview-title'))return;
     try {
       // Load behind the transition. Wait only for fonts and original artwork
       // already in the first viewport, never for the whole long case study.
@@ -28,9 +22,8 @@
         document.fonts.ready,
         ...firstImages.map(image=>image.decode())
       ]);
-      await Promise.race([firstPaint,new Promise(resolve=>setTimeout(resolve,Math.min(2500,remaining())))]);
-      if(!root.classList.contains('detail-motion-pending')||!remaining()){failOpen();return;}
-      if(!animate){clearTimeout(fallback);failOpen();return;}
+      await Promise.race([firstPaint,new Promise(resolve=>setTimeout(resolve,2500))]);
+      if(!animate){failOpen();return;}
       const selector=[
         '.site-nav > *','.detail-overview-title','.detail-overview-fields > dl',
         '.detail-overview-facts','.arch-reveal','.project-gallery > img',
@@ -45,7 +38,6 @@
       // scheduling the first entrance. Otherwise browsers can transition
       // from the element's previous opacity:1 down to 0 first.
       targets.forEach(e=>getComputedStyle(e).opacity);
-      root.style.setProperty('--detail-enter-recovery-delay',`${Math.min(3000,remaining())}ms`);
       root.classList.remove('detail-motion-pending');
       const pending=new Set();
       let timer=null;
@@ -97,12 +89,11 @@
       setTimeout(()=>{
         const visible=targets.filter(e=>{const r=e.getBoundingClientRect();return r.width&&r.height&&r.bottom>0&&r.top<innerHeight;});
         if(visible.some(e=>!e.hasAttribute('data-detail-shown')))finish();
-      },Math.min(3000,remaining()));
-      clearTimeout(fallback);
+      },3000);
       const finish=()=>{if(timer!==null)clearTimeout(timer);timer=null;targets.forEach(show);observer.disconnect();};
       reduced.addEventListener('change',e=>{if(e.matches)finish();});
       window.addEventListener('pageshow',e=>{if(e.persisted)finish();});
-    }catch(error){clearTimeout(fallback);failOpen();console.error('Detail entrance disabled:',error);}
+    }catch(error){failOpen();console.error('Detail entrance disabled:',error);}
   };
   // A deferred controller executes before later deferred mobile/layout scripts.
   // Start only after those scripts finish; the parser itself is never blocked.
