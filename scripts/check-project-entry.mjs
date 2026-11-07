@@ -60,6 +60,15 @@ try{
     await page.evaluate(()=>window.addEventListener('animationend',event=>event.stopImmediatePropagation(),true));
     await page.waitForTimeout(4200);
     assert.equal(await page.locator('.project-entry-loading').evaluate(element=>getComputedStyle(element).opacity),'1','must not fade back to the source page at four seconds');
+    const stalled=await page.locator('.project-entry-loading').evaluate(element=>{
+      for(const animation of element.getAnimations({subtree:true})){
+        if(animation.animationName?.startsWith('project-entry-')&&animation.animationName.endsWith('visibility'))animation.currentTime=26000;
+      }
+      return {width:element.offsetWidth,viewport:innerWidth,pointer:getComputedStyle(element).pointerEvents,label:getComputedStyle(element.querySelector('.project-entry-status')).clipPath};
+    });
+    assert.ok(stalled.width>0&&stalled.width<stalled.viewport,'long stalls must shrink to a compact status');
+    assert.equal(stalled.pointer,'none');
+    assert.equal(stalled.label,'none','compact feedback must visibly explain that navigation is still pending');
     await page.evaluate(()=>document.querySelector('.project-entry-loading').style.animationDuration='.01s');
     await page.waitForTimeout(80);
     assert.equal(await page.locator('.project-entry-loading').evaluate(element=>getComputedStyle(element).visibility),'hidden');
