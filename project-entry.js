@@ -35,7 +35,7 @@
     loading.classList.add('is-active');
     // Intentionally no preventDefault, requestAnimationFrame or location.assign.
   });
-  // Do not reveal the outgoing page during the document handoff. Reset only
-  // when this page is shown again (including browser Back / bfcache restore).
-  window.addEventListener('pageshow',hide);
+  // Initial pageshow can arrive after the user has already clicked a project
+  // while list images are loading. Only a restored document needs a reset.
+  window.addEventListener('pageshow',event=>{if(event.persisted)hide();});
 })();

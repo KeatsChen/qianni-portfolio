@@ -43,6 +43,8 @@ try{
       },selector);
       await page.locator(selector).click();
       assert.equal((await page.evaluate(()=>window.entryCheck)).cancelled,false);
+      await page.evaluate(()=>window.dispatchEvent(new PageTransitionEvent('pageshow',{persisted:false})));
+      assert.ok(await page.locator('.project-entry-loading.is-active').count(),'first pageshow must not clear a pending project click');
       await page.waitForTimeout(150);
       assert.equal(await page.locator('.project-entry-loading').evaluate(element=>getComputedStyle(element).visibility),'hidden','fast requests must not flash');
       await page.waitForTimeout(450);
@@ -61,6 +63,11 @@ try{
     await page.evaluate(()=>document.querySelector('.project-entry-loading').style.animationDuration='.01s');
     await page.waitForTimeout(80);
     assert.equal(await page.locator('.project-entry-loading').evaluate(element=>getComputedStyle(element).visibility),'hidden');
+    await page.evaluate(()=>{
+      document.querySelector('.project-entry-loading').classList.add('is-active');
+      window.dispatchEvent(new PageTransitionEvent('pageshow',{persisted:true}));
+    });
+    assert.equal(await page.locator('.project-entry-loading.is-active').count(),0,'history restore clears stale feedback');
     await page.close();
   }
 }finally{await browser.close();await server.close();}
