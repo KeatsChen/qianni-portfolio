@@ -853,9 +853,26 @@ revealGroups.forEach(([selector, step, maxDelay = 360]) => {
 });
 
 if ('IntersectionObserver' in window) {
+  const mobileWorks = window.matchMedia('(max-width: 560px)');
+  const workTiles = [...document.querySelectorAll('.paper-strip .work-card, .works .capabilities-showcase')];
+  let nextTileStart = 0;
   const revealObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
+      if (!entry.isIntersecting) return;
+      const index = mobileWorks.matches ? workTiles.indexOf(entry.target) : -1;
+      if (index >= 0) {
+        // The sixth tile is separate markup, but shares the mobile grid.
+        // An observer can report it first, especially after a fast scroll.
+        const now = performance.now();
+        workTiles.slice(0, index + 1).forEach((tile) => {
+          if (tile.classList.contains('is-visible')) return;
+          const start = Math.max(now, nextTileStart);
+          tile.style.setProperty('--reveal-delay', `${start - now}ms`);
+          tile.classList.add('is-visible');
+          observer.unobserve(tile);
+          nextTileStart = start + 110;
+        });
+      } else {
         entry.target.classList.add('is-visible');
         observer.unobserve(entry.target);
       }
