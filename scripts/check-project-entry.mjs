@@ -27,7 +27,7 @@ const browser=await chromium.launch({headless:true,...(process.env.BROWSER_PATH?
 try{
   for(const width of [1440,390])for(const lang of ['en','zh']){
     const page=await browser.newPage({viewport:{width,height:900}});
-    for(const [source,selector] of [['/','a.project-deck-card[href^="okr?"]'],['/content','#okr.gallery-card'],['/project1','.project-pagination-link[rel="next"]']]){
+    for(const [source,selector] of [['/','a.project-deck-card[href^="okr?"]'],['/project1','.project-pagination-link[rel="next"]'],['/content','#okr.gallery-card']]){
       await page.goto(server.origin+source,{waitUntil:'load'});
       if(source==='/')await page.waitForFunction(()=>!document.documentElement.classList.contains('home-booting'));
       await page.locator(`button[data-lang="${lang}"]`).first().evaluate(button=>button.click());
@@ -45,13 +45,21 @@ try{
       assert.equal((await page.evaluate(()=>window.entryCheck)).cancelled,false);
       await page.evaluate(()=>window.dispatchEvent(new PageTransitionEvent('pageshow',{persisted:false})));
       assert.ok(await page.locator('.project-entry-loading.is-active').count(),'first pageshow must not clear a pending project click');
-      await page.waitForTimeout(150);
-      assert.equal(await page.locator('.project-entry-loading').evaluate(element=>getComputedStyle(element).visibility),'hidden','fast requests must not flash');
-      await page.waitForTimeout(450);
-      const feedback=await page.locator('.project-entry-loading').evaluate(element=>({text:element.textContent,opacity:getComputedStyle(element).opacity,pointer:getComputedStyle(element).pointerEvents}));
+      const at150ms=await page.locator('.project-entry-loading').evaluate(element=>{
+        const animation=element.getAnimations().find(a=>a.animationName?.endsWith('visibility'));
+        animation.pause();
+        animation.currentTime=150;
+        const visibility=getComputedStyle(element).visibility;
+        animation.currentTime=600;
+        animation.play();
+        return visibility;
+      });
+      assert.equal(at150ms,'hidden','fast requests must not flash');
+      const feedback=await page.locator('.project-entry-loading').evaluate(element=>({text:element.textContent,opacity:getComputedStyle(element).opacity,pointer:getComputedStyle(element).pointerEvents,compact:element.offsetWidth<innerWidth}));
       assert.ok(feedback.text.includes(lang==='zh'?'正在打开项目':'Opening project'));
       assert.ok(Number(feedback.opacity)>0);
       assert.equal(feedback.pointer,'none');
+      assert.equal(feedback.compact,source==='/project1','only detail links immediately use compact feedback');
       await page.evaluate(()=>window.dispatchEvent(new PageTransitionEvent('pagehide')));
       assert.equal(await page.locator('.project-entry-loading').evaluate(element=>getComputedStyle(element).opacity),'1','document handoff must not expose outgoing page');
       console.log(`PASS ${width}px ${lang} ${source}: shared feedback, native link not cancelled`);

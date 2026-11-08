@@ -14,9 +14,9 @@ try {
     const entry=source==='/okr'?'.project-pagination-link[rel="prev"]':'a[href^="project1?"]';
     await page.locator(entry).first().click();
     await page.waitForURL(url=>url.pathname==='/project1');
-    await page.waitForFunction(()=>!document.documentElement.classList.contains('detail-motion-pending')&&getComputedStyle(document.querySelector('.detail-overview-title')).opacity==='1');
+    await page.waitForFunction(()=>!document.documentElement.classList.contains('detail-motion-pending')&&getComputedStyle(document.querySelector('.detail-overview-title h1')).opacity==='1');
     for(let i=0;i<8;i++) {
-      assert.equal(await page.locator('.detail-overview-title').evaluate(e=>getComputedStyle(e).opacity),'1','shown header must never disappear again');
+      assert.equal(await page.locator('.detail-overview-title h1').evaluate(e=>getComputedStyle(e).opacity),'1','shown header must never disappear again');
       await page.waitForTimeout(100);
     }
     await page.goBack({waitUntil:'load'});
@@ -29,8 +29,8 @@ try {
     await page.addInitScript(missingObserver);
     const errors=[];page.on('pageerror',e=>errors.push(e.message));
     await page.goto(server.origin+'/project1',{waitUntil:'domcontentloaded'});
-    await page.waitForFunction(()=>!document.documentElement.classList.contains('detail-motion-pending')&&getComputedStyle(document.querySelector('.detail-overview-title')).opacity==='1');
-    assert.equal(await page.locator('.detail-overview-title').getAttribute('data-detail-shown'),'');
+    await page.waitForFunction(()=>!document.documentElement.classList.contains('detail-motion-pending')&&getComputedStyle(document.querySelector('.detail-overview-title h1')).opacity==='1');
+    assert.equal(await page.locator('.detail-overview-title h1').getAttribute('data-detail-shown'),'');
     await page.evaluate(()=>window.scrollTo(0,2000));
     await page.waitForTimeout(1000);
     assert.equal(await page.locator('[data-detail-enter]:not([data-detail-shown])').evaluateAll(nodes=>nodes.some(e=>{const r=e.getBoundingClientRect();return r.width&&r.height&&r.bottom>0&&r.top<innerHeight;})),false,'scroll reveals also work without observer callbacks');

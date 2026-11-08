@@ -9,10 +9,13 @@ const bodySnippet='<!-- detail-loading-body:start -->'+bodyMarkup.replace('{{dot
 for(const file of fs.readdirSync(root).filter(f=>f.endsWith('.html'))){
   const target=path.join(root,file),html=fs.readFileSync(target,'utf8');
   if(!html.includes('src="detail-motion.js?'))continue;
+  const backHref=html.match(/<a class="(?:arch-back|case-back|back-button)" href="([^"]+)"/)?.[1];
+  if(!backHref)throw new Error(`Missing project return link in ${file}`);
+  const pageBodySnippet=bodySnippet.replace('{{backHref}}',()=>backHref);
   const pattern=/<!-- detail-loading:start -->[\s\S]*?<!-- detail-loading:end -->/;
   let next=pattern.test(html)?html.replace(pattern,snippet):html.replace(/(<meta name="viewport"[^>]*>)/,`$1\n${snippet}`);
   const bodyPattern=/<!-- detail-loading-body:start -->[\s\S]*?<!-- detail-loading-body:end -->/;
-  next=bodyPattern.test(next)?next.replace(bodyPattern,bodySnippet):next.replace(/(<body\b[^>]*>)/i,`$1\n${bodySnippet}`);
+  next=bodyPattern.test(next)?next.replace(bodyPattern,()=>pageBodySnippet):next.replace(/(<body\b[^>]*>)/i,(_,body)=>`${body}\n${pageBodySnippet}`);
   // Former body-end classics must still execute before mobile/deferred setup,
   // but must not stop the parser while their network requests are pending.
   const end=next.indexOf('</head>');

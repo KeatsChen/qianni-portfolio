@@ -7,24 +7,31 @@ try {
   for(const width of [1440,390]){
     const page=await browser.newPage({viewport:{width,height:900}});
     const heroURL=/\/assets\/architecture-v2\/home-screen-hero-\d+\.webp$/;
-    await page.route(heroURL,async route=>{
-      await new Promise(resolve=>setTimeout(resolve,1800));await route.continue();
-    });
-    await Promise.all([
-      page.waitForRequest(heroURL),
-      page.goto(server.origin+'/project1',{waitUntil:'domcontentloaded'})
-    ]);
-    assert.equal(await page.locator('.detail-boot').evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(1, 1, 11)');
-    assert.deepEqual(await page.locator('.detail-boot i').evaluateAll(dots=>dots.map(e=>getComputedStyle(e).animationDelay)),['0s','0.2s','0.4s','0.2s','0.4s','0.6s','0.4s','0.6s','0.8s']);
-    assert.ok(await page.evaluate(()=>document.documentElement.classList.contains('detail-motion-pending')));
-    assert.equal(await page.locator('.detail-overview-title').evaluate(e=>getComputedStyle(e).visibility),'hidden');
-    await page.waitForFunction(()=>!document.documentElement.classList.contains('detail-motion-pending'));
-    await page.waitForFunction(()=>getComputedStyle(document.querySelector('.detail-overview-title')).opacity==='1');
-    assert.ok(await page.evaluate(()=>document.documentElement.classList.contains('detail-motion-ready')),'normal visit preserves entrance animations');
-    const sequence=await page.locator('.site-nav > *, .detail-overview-title, .detail-overview-facts, .detail-overview-fields > dl').evaluateAll(nodes=>nodes.filter(e=>e.getBoundingClientRect().width).map(e=>({top:e.getBoundingClientRect().top,shown:e.hasAttribute('data-detail-shown')})).sort((a,b)=>a.top-b.top));
-    assert.ok(sequence.some(e=>e.shown),'entrance begins once the loader exits');
-    await page.close();
-    console.log(`PASS ${width}px: loading transition downloads first artwork, then entrance begins`);
+    let release;
+    const pending=new Promise(resolve=>release=resolve);
+    await page.route(heroURL,async route=>{await pending;await route.continue().catch(()=>{});});
+    try{
+      await Promise.all([
+        page.waitForRequest(heroURL),
+        page.goto(server.origin+'/project1',{waitUntil:'domcontentloaded'})
+      ]);
+      assert.equal(await page.locator('.detail-boot').isVisible(),false,'artwork must not hold the startup overlay');
+      assert.ok(await page.evaluate(()=>document.documentElement.classList.contains('detail-motion-ready')),'content still animates in');
+      await page.locator('.detail-overview-back').click({trial:true});
+      if(width<760){
+        const toggle=page.locator('.detail-overview-toggle');
+        await toggle.click();
+        assert.equal(await toggle.getAttribute('aria-expanded'),'true');
+      }else{
+        await page.locator('.site-nav button[data-lang="zh"]').click();
+        assert.match(await page.locator('html').getAttribute('lang'),/^zh/);
+      }
+      await Promise.all([
+        page.waitForURL(url=>url.pathname==='/okr',{waitUntil:'commit'}),
+        page.locator('.project-pagination-link[rel="next"]').click()
+      ]);
+      console.log(`PASS ${width}px: return, page controls and next project are usable with first artwork still pending`);
+    }finally{release();await page.close();}
   }
   const page=await browser.newPage({viewport:{width:1440,height:900}});
   await page.route('**/detail-motion.js?*',async route=>{

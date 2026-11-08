@@ -6,31 +6,23 @@
   const animate=!reduced.matches&&('IntersectionObserver' in window);
   root.classList.add('detail-motion-pending');
   const failOpen=()=>root.classList.remove('detail-motion-pending','detail-motion-ready');
-  const start=async()=>{
+  const start=()=>{
     // A failed layout script must not expose the uninitialized page. The
     // independent loader instead offers Retry and Back until startup succeeds.
     if(!document.querySelector('.detail-overview-title'))return;
     try {
-      // Load behind the transition. Wait only for fonts and original artwork
-      // already in the first viewport, never for the whole long case study.
+      // Start first-viewport media without tying navigation or controls to it.
       document.dispatchEvent(new Event('detail:prepare-first-paint'));
-      const firstImages=[...document.querySelectorAll('main img')].filter(image=>{
-        const r=image.getBoundingClientRect();
-        const hasSource=image.currentSrc||image.getAttribute('src')||image.closest('picture')?.querySelector('source[srcset]');
-        return hasSource&&r.width>=80&&r.height>=80&&r.bottom>0&&r.top<innerHeight;
-      }).slice(0,4);
-      const firstPaint=Promise.allSettled([
-        document.fonts.ready,
-        ...firstImages.map(image=>image.decode())
-      ]);
-      await Promise.race([firstPaint,new Promise(resolve=>setTimeout(resolve,2500))]);
       if(!animate){failOpen();return;}
       const selector=[
-        '.site-nav > *','.detail-overview-title','.detail-overview-fields > dl',
+        '.detail-overview-title h1','.detail-overview-fields > dl',
         '.detail-overview-facts','.arch-reveal','.project-gallery > img',
-        '.case-native-slide','.reveal-item','.project-pagination','.site-copyright'
+        '.case-native-slide','.reveal-item','.site-copyright'
       ].join(',');
-      const candidates=[...document.querySelectorAll(selector)].filter(e=>e.getClientRects().length&&getComputedStyle(e).display!=='none');
+      const controls='a[href],button,input,select,textarea,summary,[role="button"]';
+      const candidates=[...document.querySelectorAll(selector)].filter(e=>
+        !e.matches(controls)&&!e.querySelector(controls)&&e.getClientRects().length&&getComputedStyle(e).display!=='none'
+      );
       const selected=new Set(candidates);
       const targets=candidates.filter(e=>{for(let p=e.parentElement;p;p=p.parentElement)if(selected.has(p))return false;return true;});
       targets.forEach(e=>e.setAttribute('data-detail-enter',''));

@@ -256,6 +256,7 @@ export function parse(code, sectionKey){
       if(['5103:3533','5103:3534','5103:3535','5103:3540','5103:3541','5103:3542','5103:3547','5103:3548','5103:3549','5103:3554','5103:3555','5103:3556'].includes(a['data-node-id']))a['data-case-preserve-font']='';
     }
     if(sectionKey==='chatbot-5'&&['5103:3644','5103:3645'].includes(a['data-node-id']))a['data-case-preserve-font']='';
+    if(sectionKey==='chatbot-6'&&a['data-node-id']==='5103:3704')a['data-case-preserve-font']='';
     if(sectionKey==='chatbot-8'&&['5103:4036','5103:4039','5103:4042','5103:4045'].includes(a['data-node-id'])){
       a['data-chat-component-point']='';a['data-case-preserve-font']='';
     }
@@ -347,6 +348,12 @@ for(const name of ['chatbot','okr']){
       if(name==='okr'&&p.id==='5103:6233')return '<img data-okr-component-artwork src="assets/case-studies/okr-component-showcase.png" alt="OKR component library examples" width="2892" height="1355" loading="lazy" decoding="async" style="position:absolute;left:65.041015625px;top:198.7333984375px;width:963.916015625px;height:451.6666259765625px;max-width:none" />';
       return `<div style="position:absolute;left:${p.x||0}px;top:${p.y||0}px;width:${p.width||1084}px;height:${p.height||650.4}px">${parse(p.code,name+'-'+i+'-'+j)}</div>`;
     }).join('');else content=parse(s.code,name+'-'+i);
+    // Use right-sized WebP portraits only in the OKR interview artwork.
+    // Keep the design snapshots and shared originals unchanged.
+    if(name==='okr'&&i===27)content=content.replace(
+      /assets\/case-studies\/(60d03|77657|4708c|bdb24|7b18b|fd27e|c287d)\.png(?=")/g,
+      'assets/case-studies/$1-okr-avatar.webp'
+    );
     const heading=detectedHeading||(name==='okr'?'OKR System Design':'AI Mental Health Chatbot');
     return `<section class="case-native-slide" aria-labelledby="${name}-section-${i}"${name==='okr'?' style="background:#10051a"':''}><h2 class="case-native-label" id="${name}-section-${i}" data-zh="${esc(heading)}" data-en="${esc(translations[heading]||heading)}">${esc(heading)}</h2><div class="case-native-canvas">${content}</div></section>`;
   }).join('\n');

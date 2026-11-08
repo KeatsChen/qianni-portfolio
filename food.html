@@ -10,6 +10,9 @@
 .detail-boot{display:none}
 .detail-motion-pending body > :not(.detail-boot){visibility:hidden}
 .detail-motion-pending .detail-boot{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;background:#01010b;color:#fff;pointer-events:none}
+.detail-boot-back{position:absolute;top:max(16px,env(safe-area-inset-top));left:max(16px,env(safe-area-inset-left));display:grid;place-items:center;box-sizing:border-box;width:44px;height:44px;border:1px solid rgba(128,128,140,.35);border-radius:50%;background:rgba(128,128,140,.12);color:inherit;pointer-events:auto}
+.detail-boot-back:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+.detail-boot-back span{position:absolute;clip-path:inset(50%);width:1px;height:1px;overflow:hidden;white-space:nowrap}
 .detail-boot .project-entry-grid{display:grid;grid-area:1/1;grid-template-columns:repeat(3,10px);gap:6px;animation:detail-boot-exit 0s 8s forwards}
 .detail-boot .project-entry-grid i{display:block;width:10px;height:10px;border-radius:50%;background:#fff;animation:project-entry-dot 1.5s ease-in-out var(--dot-delay) infinite}
 .detail-boot-recovery{grid-area:1/1;visibility:hidden;text-align:center;padding:24px;font:16px/1.6 system-ui,sans-serif;animation:detail-boot-recover 0s 8s forwards}
@@ -41,9 +44,9 @@ document.documentElement.classList.add('detail-motion-pending');
 <script defer src="portfolio-nav.js?v=6"></script>
 <script defer src="back-to-top.js?v=2126825d33"></script>
 <script defer src="music.js?v=d1bc4ac8d5"></script>
-<script defer src="detail-motion.js?v=8a13745447"></script>
+<script defer src="detail-motion.js?v=28691e5b4a"></script>
   <script defer src="progressive-media.js?v=b4929072a3"></script>
-  <link rel="stylesheet" href="project-entry.css?v=348d619c4d" />
+  <link rel="stylesheet" href="project-entry.css?v=c10bd18816" />
   <script defer src="project-entry.js?v=28a97ebad9"></script>
   <link rel="stylesheet" href="mobile-detail-scale.css?v=0b325236ba" />
   <script defer src="mobile-detail-scale.js?v=c3e799f72a"></script>
@@ -53,6 +56,7 @@ document.documentElement.classList.add('detail-motion-pending');
   <body class="has-site-nav secondary-entry">
 <!-- detail-loading-body:start -->
 <div class="detail-boot">
+  <a class="detail-boot-back" href="content.html?v=20261105-nav-recovery-4#food"><svg aria-hidden="true" width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M9 2.5 4 7.5 9 12.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span lang="en">Back to projects</span><span lang="zh">返回项目列表</span></a>
   <div class="project-entry-grid" aria-hidden="true"><i style="--dot-delay:0ms"></i><i style="--dot-delay:200ms"></i><i style="--dot-delay:400ms"></i><i style="--dot-delay:200ms"></i><i style="--dot-delay:400ms"></i><i style="--dot-delay:600ms"></i><i style="--dot-delay:400ms"></i><i style="--dot-delay:600ms"></i><i style="--dot-delay:800ms"></i></div>
   <div class="detail-boot-recovery">
     <div lang="en"><p role="status">This project is taking longer than expected.</p><a href="">Retry</a></div>
@@ -98,8 +102,8 @@ document.documentElement.classList.add('detail-motion-pending');
     <nav id="project-navigation" class="project-pagination" aria-label="Project navigation">
       <img class="project-pagination-divider" src="assets/architecture-v2/project-switch-divider.svg" width="1240" height="1" alt="" />
       <div class="project-pagination-row">
-        <a class="project-pagination-link" href="bim?v=20261107-entry-handoff-29" rel="prev"><span class="project-pagination-arrow" aria-hidden="true"><img class="project-pagination-default" src="assets/architecture-v2/project-next-arrow.svg" width="16" height="16" alt="" /><img class="project-pagination-hover" src="assets/architecture-v2/project-switch-hover-arrow.svg" width="16" height="16" alt="" /></span><span class="project-pagination-label" data-en="HanXi BIM Mini Program" data-zh="涵熙 BIM 小程序">HanXi BIM Mini Program</span></a>
-        <a class="project-pagination-link" href="sustainability?v=20261107-entry-handoff-29" rel="next"><span class="project-pagination-label" data-en="Sustainability Mini App Design" data-zh="可持续发展小程序设计">Sustainability Mini App Design</span><span class="project-pagination-arrow" aria-hidden="true"><img class="project-pagination-default" src="assets/architecture-v2/project-next-arrow.svg" width="16" height="16" alt="" /><img class="project-pagination-hover" src="assets/architecture-v2/project-switch-hover-arrow.svg" width="16" height="16" alt="" /></span></a>
+        <a class="project-pagination-link" href="bim?v=20261108-detail-controls-33" rel="prev"><span class="project-pagination-arrow" aria-hidden="true"><img class="project-pagination-default" src="assets/architecture-v2/project-next-arrow.svg" width="16" height="16" alt="" /><img class="project-pagination-hover" src="assets/architecture-v2/project-switch-hover-arrow.svg" width="16" height="16" alt="" /></span><span class="project-pagination-label" data-en="HanXi BIM Mini Program" data-zh="涵熙 BIM 小程序">HanXi BIM Mini Program</span></a>
+        <a class="project-pagination-link" href="sustainability?v=20261108-detail-controls-33" rel="next"><span class="project-pagination-label" data-en="Sustainability Mini App Design" data-zh="可持续发展小程序设计">Sustainability Mini App Design</span><span class="project-pagination-arrow" aria-hidden="true"><img class="project-pagination-default" src="assets/architecture-v2/project-next-arrow.svg" width="16" height="16" alt="" /><img class="project-pagination-hover" src="assets/architecture-v2/project-switch-hover-arrow.svg" width="16" height="16" alt="" /></span></a>
       </div>
     </nav>
     <button class="back-to-top" type="button" aria-label="回到顶部"><img loading="lazy" decoding="async" src="assets/back-to-top.svg?v=2" alt="" /></button>

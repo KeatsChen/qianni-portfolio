@@ -51,12 +51,12 @@ try{
     },13200),{once:true});
     setTimeout(()=>link.click(),0);
   });
-  assert.equal((await pending).text(),'handoff:["/project1","1",true]','the source must still be covered past the old timeout');
+  assert.equal((await pending).text(),'handoff:["/project1","1",false]','compact feedback must remain visible without covering the source controls');
   await page.waitForURL(url=>url.pathname==='/okr',{timeout:15000});
   await page.locator('.detail-overview-title').waitFor();
   assert.ok(requested,'the architecture footer must issue an actual OKR request');
   await page.goBack({waitUntil:'load'});
   assert.equal(new URL(page.url()).pathname,'/project1');
   assert.equal(await page.locator('.project-entry-loading.is-active').count(),0);
-  console.log('PASS architecture → OKR: 16-second response, no flash past the old timeout, Back clears feedback');
+  console.log('PASS architecture → OKR: compact feedback throughout a 16-second response, Back clears feedback');
 }finally{await browser.close();await server.close();}
