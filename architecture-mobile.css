@@ -12,13 +12,12 @@
   .arch-mobile-canvas [data-arch-copy-source] strong { color:#fff; font-weight:400; }
   html:lang(en) .arch-mobile-canvas [data-case-text-width] { white-space:normal!important; overflow-wrap:break-word; word-break:normal!important; }
   html:lang(en) .arch-mobile-canvas :is([data-arch-mobile-heading],[data-arch-mobile-centered-heading]) { width:max-content!important; max-width:343px; white-space:nowrap!important; }
-  /* Keep the original Figma glow, with a clean edge above the filtered SVG. */
-  .arch-mobile-canvas :is([data-node-id="5183:2957"],[data-node-id="5186:3383"]) { border-radius:50%; }
-  .arch-mobile-canvas :is([data-node-id="5183:2957"],[data-node-id="5186:3383"]) img { clip-path:circle(calc(50% - .65px)); }
-  .arch-mobile-canvas :is([data-node-id="5183:2957"],[data-node-id="5186:3383"])::after {
-    content:""; position:absolute; inset:0; border:0.65px solid rgba(214,246,245,.56);
-    border-radius:inherit; pointer-events:none;
+  /* The original Figma SVG supplies the inner shadows. Its embedded blur
+     cannot sample the page through an <img>, so apply it to the circle. */
+  .arch-mobile-canvas :is([data-node-id="5183:2957"],[data-node-id="5186:3383"]) {
+    border-radius:50%; -webkit-backdrop-filter:blur(3.88px); backdrop-filter:blur(3.88px);
   }
+  .arch-mobile-canvas :is([data-node-id="5183:2958"],[data-node-id="5186:3384"]) { font-size:11px!important; }
   /* Reflow the English labels instead of fitting each one at a different size. */
   html:lang(en) .arch-mobile-canvas [data-node-id="5186:3443"] [data-case-text-width] { --case-copy-scale:1!important; }
   html:lang(en) .arch-mobile-canvas :is([data-node-id="5183:2958"],[data-node-id="5186:3384"]) {
