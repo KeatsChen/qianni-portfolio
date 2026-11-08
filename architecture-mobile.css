@@ -12,10 +12,20 @@
   .arch-mobile-canvas [data-arch-copy-source] strong { color:#fff; font-weight:400; }
   html:lang(en) .arch-mobile-canvas [data-case-text-width] { white-space:normal!important; overflow-wrap:break-word; word-break:normal!important; }
   html:lang(en) .arch-mobile-canvas :is([data-arch-mobile-heading],[data-arch-mobile-centered-heading]) { width:max-content!important; max-width:343px; white-space:nowrap!important; }
-  /* The original Figma SVG supplies the inner shadows. Its embedded blur
-     cannot sample the page through an <img>, so apply it to the circle. */
+  /* Figma Ellipse 468: render its three directional inner shadows directly
+     on the circle. The exported SVG's hard-alpha filter aliases at this size.
+     Keep the unmodified export as the fallback. */
   .arch-mobile-canvas :is([data-node-id="5183:2957"],[data-node-id="5186:3383"]) {
     border-radius:50%; -webkit-backdrop-filter:blur(3.88px); backdrop-filter:blur(3.88px);
+  }
+  @supports (box-shadow:inset .178px .178px .178px #fff) {
+    .arch-mobile-canvas :is([data-node-id="5183:2957"],[data-node-id="5186:3383"]) {
+      background:rgba(255,255,255,.01);
+      box-shadow:inset .178px .178px .178px #fff,
+                 inset -.178px -.178px .713px rgba(1,255,225,.35),
+                 inset .357px .357px .713px rgba(255,255,255,.68);
+    }
+    .arch-mobile-canvas :is([data-node-id="5183:2957"],[data-node-id="5186:3383"]) img { visibility:hidden; }
   }
   .arch-mobile-canvas :is([data-node-id="5183:2958"],[data-node-id="5186:3384"]) { font-size:11px!important; }
   /* Reflow the English labels instead of fitting each one at a different size. */
