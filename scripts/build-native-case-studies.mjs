@@ -183,6 +183,21 @@ export function parse(code, sectionKey){
   }
   function html(n){if(typeof n==='string'){if(/[\u3400-\u9fff]/.test(n)){chinese.add(n);if(translations[n])return `<span data-zh="${esc(n)}" data-en="${esc(translations[n])}">${esc(n)}</span>`;}return esc(n)}
     const a=n.attrs;
+    // Figma 2-3 updated the inactive tab instances. Keep the existing icon
+    // slots and position the three new SVG exports at their design insets.
+    if(sectionKey==='chatbot-8'){
+      const tabs={
+        'I5103:3997;542:3271':['00f47.svg','inset:12.5% 6.61% 8.93% 7.14%'],
+        'I5103:3998;542:3271':['7768f.svg','left:2.73px;top:1.87px;width:12.024px;height:13.742px'],
+        'I5103:3999;542:3271':['b0cae.svg','left:1.87px;top:1.87px;width:13.742px;height:13.742px']
+      };
+      const tab=tabs[a['data-node-id']];
+      if(tab){
+        const [file,geometry]=tab,src='assets/case-studies/'+file;
+        assets.set(file,src);
+        return `<div data-node-id="${a['data-node-id']}" style="position:relative;flex-shrink:0;width:17.49px;height:17.49px"><span style="position:absolute;${geometry}"><img alt="" src="${src}" loading="lazy" decoding="async" style="position:absolute;display:block;inset:0;max-width:none;width:100%;height:100%"></span></div>`;
+      }
+    }
     if(sectionKey==='architecture-mobile'){
       const headings=new Set(['项目背景','改版前后','用户访谈','设计目标推导','信息架构重构','视觉方向调整','字体规范','色彩规范','Icon规范','更多页面','设计小结']);
       const plain=node=>node.children.filter(c=>typeof c==='string').join('');

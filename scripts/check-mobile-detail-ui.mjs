@@ -47,7 +47,7 @@ try{
           });
           assert.ok(metrics.difference<1,'icon centered on multi-line project label');
           assert.equal(Math.round(metrics.icon),14);assert.ok(metrics.label<=113.1);assert.equal(metrics.overflow,false);
-          assert.match(metrics.href,/\?v=20261108-(?:detail-controls-33|architecture-effects-36)$/);
+          assert.match(metrics.href,/\?v=(?:20261108-(?:detail-controls-33|architecture-effects-36)|20261115-chatbot-icons-39)$/);
         }
       }
       if(name==='project1'){
