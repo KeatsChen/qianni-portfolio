@@ -279,6 +279,7 @@ export function parse(code, sectionKey){
       }
     }
     if(sectionKey==='chatbot-1'){
+      if(a['data-node-id']==='5103:3535')return '';
       if(['5103:3530','5103:3537','5103:3544','5103:3551'].includes(a['data-node-id']))a['data-chat-flow-card']='';
       if(['5103:3531','5103:3538','5103:3545','5103:3552'].includes(a['data-node-id']))a['data-chat-flow-title']='';
       if(['5103:3532','5103:3539','5103:3546','5103:3553'].includes(a['data-node-id']))a['data-chat-flow-terms']='';
