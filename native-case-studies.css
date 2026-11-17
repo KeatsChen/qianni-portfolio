@@ -312,18 +312,24 @@ html:lang(en) .okr-detail-page [data-okr-score-after] { width:220px !important; 
 .chatbot-detail-page [data-node-id="5103:3643"] { width:166.213px !important; }
 .chatbot-detail-page :is([data-node-id="5103:3644"],[data-node-id="5103:3645"]) { white-space:nowrap; word-break:normal !important; }
 html:lang(en) .chatbot-detail-page [data-node-id="5103:4033"] {
-  width:260px !important;
-  /* Retain the Chinese title-to-list gap after the three-line English title. */
-  top:499.983px !important;
+  width:max-content !important;
+  top:460px !important;
+  gap:10px !important;
 }
 html:lang(en) .chatbot-detail-page [data-chat-component-point] {
-  /* Match the third line's previously rendered size, without per-line fitting. */
-  font-size:11.5568px !important; line-height:11.5568px !important;
+  white-space:nowrap !important;
+}
+.chatbot-detail-page .case-native-canvas p:has(> span:is(
+  [data-zh="视觉语言/"], [data-zh="视觉方案/"], [data-zh="项目背景/"], [data-zh="用户画像/"]
+)) {
+  font-family:MiSans,CaseMiSansSemibold,"PingFang SC",Roboto,Arial,sans-serif !important;
+  font-size:16px !important;
+  font-weight:600 !important;
 }
 html:lang(en) .chatbot-detail-page [data-node-id="5103:4032"] {
   /* Keep the English heading in the free left column above its bullets. */
-  width:280px; top:330.24px !important; white-space:normal !important;
-  font-size:37px !important; line-height:45px !important;
+  width:302px; top:300px !important; white-space:normal !important;
+  line-height:45px !important;
   word-break:normal !important; overflow-wrap:normal;
 }
 html:not(:lang(en)) .chatbot-detail-page [data-node-id="5103:4032"] { top:330.24px !important; }
@@ -331,10 +337,14 @@ html:not(:lang(en)) .chatbot-detail-page [data-node-id="5103:4033"] { top:402.51
 /* Preserve the original green line artwork, compensating for the browser's
    stronger subpixel SVG stroke coverage compared with the Figma render. */
 .chatbot-detail-page .case-native-canvas img[data-case-grid-line] { opacity:.666667; }
-/* Keep each reflection title and paragraph together. The shared gap is
-   one third of the previous evenly distributed spacing in either language. */
+/* Pair each title with its paragraph and keep the updated board's gap. */
+.chatbot-detail-page [data-node-id="5103:4046"] :is(
+  [data-node-id="5103:4099"], [data-node-id="5103:4100"]
+) {
+  translate:0 -20px;
+}
 .chatbot-detail-page [data-node-id="5103:4100"] {
-  height:auto; justify-content:flex-start; gap:var(--case-reflection-gap,0px) !important;
+  height:auto; justify-content:flex-start;
 }
 .chatbot-detail-page [data-node-id="5103:4100"] > div {
   display:flex !important; flex-direction:column; align-items:stretch;
@@ -344,14 +354,41 @@ html:not(:lang(en)) .chatbot-detail-page [data-node-id="5103:4033"] { top:402.51
 .chatbot-detail-page [data-node-id="5103:4100"] [data-case-fit-list] {
   order:1; height:auto; margin-top:0 !important;
 }
-html:lang(en) .chatbot-detail-page [data-node-id="5103:4100"] [data-case-fit-list] > li {
-  line-height:calc(26.498px * var(--case-copy-scale,1) * 2 / 3) !important;
-}
-.chatbot-detail-page [data-node-id="5103:4100"] [data-case-fit-list] span[style*="color:#000"] {
-  font-weight:500;
+html:lang(en) .chatbot-detail-page [data-node-id="5103:3567"] {
+  width:490px !important;
+  height:auto !important;
 }
 html:lang(en) .chatbot-detail-page [data-node-id="5103:3567"] > span {
-  line-height:calc(80.698px * var(--case-copy-scale,1) * var(--case-intro-leading-factor,1)) !important;
+  line-height:38px !important;
+}
+/* Match the visible soft green depth of the User Profile card group in Figma. */
+.chatbot-detail-page [data-node-id="5103:3566"] :is(
+  [data-node-id="5263:4957"], [data-node-id="5263:4837"], [data-node-id="5263:4851"],
+  [data-node-id="5263:4933"], [data-node-id="5263:4943"]
+) {
+  box-shadow:1.167px 1.167px 20.602px rgba(13,35,87,.03), 0 5px 19px rgba(38,117,76,.085) !important;
+}
+.chatbot-detail-page [data-node-id="5266:5105"] :is(
+  [data-node-id="5266:5217"], [data-node-id="5266:5229"], [data-node-id="5266:5233"],
+  [data-node-id="5266:5181"], [data-node-id="5266:5185"], [data-node-id="5266:5189"]
+) {
+  box-shadow:1.167px 1.167px 20.602px rgba(13,35,87,.03), 0 5px 19px rgba(38,117,76,.085) !important;
+}
+/* Reserve more room for the English row titles without changing type size. */
+html:lang(en) .chatbot-detail-page [data-node-id="5266:5105"] :is(
+  [data-node-id="5266:5217"], [data-node-id="5266:5229"], [data-node-id="5266:5233"],
+  [data-node-id="5266:5181"], [data-node-id="5266:5185"], [data-node-id="5266:5189"],
+  [data-node-id="5266:5219"], [data-node-id="5266:5231"], [data-node-id="5266:5235"],
+  [data-node-id="5266:5183"], [data-node-id="5266:5187"], [data-node-id="5266:5191"]
+) {
+  translate:42px 0;
+}
+/* Keep all three prompt-step titles on one line in both languages. */
+.chatbot-detail-page [data-node-id="5103:3647"] :is(
+  [data-node-id="5103:3700"], [data-node-id="5103:3703"], [data-node-id="5103:3705"]
+) {
+  font-size:14.5px !important;
+  white-space:nowrap !important;
 }
 /* English workflow: wider centered pills, with left-aligned single-line copy. */
 html:lang(en) .chatbot-detail-page [data-chat-flow-card] {
@@ -366,7 +403,7 @@ html:lang(en) .chatbot-detail-page [data-chat-flow-terms] {
 }
 html:lang(en) .chatbot-detail-page [data-chat-flow-terms] > p {
   min-width:0; max-width:100%; white-space:nowrap;
-  font-size:10.84px; line-height:19.271px; text-align:left;
+  text-align:left;
   word-break:normal; overflow-wrap:normal;
 }
 .case-native-canvas [data-node-id="5103:6183"] img:not([src$="/okr-pending-review.svg"]) { filter:brightness(0) invert(1); }
@@ -381,11 +418,44 @@ html:lang(en) .chatbot-detail-page [data-chat-flow-terms] > p {
   -webkit-mask-composite:xor; mask-composite:exclude;
 }
 .case-native-label { position:absolute; width:1px; height:1px; padding:0; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
-/* Match the fitted middle English prompt and keep its neighbor's images clear. */
-html:lang(en) .chatbot-detail-page [data-node-id="5103:3704"] { --case-copy-scale:.8515625; }
-html:lang(en) .chatbot-detail-page :is([data-node-id="5103:3706"],[data-node-id="5103:3707"]) { translate:0 16px; }
+/* Allow the translated caption to keep its full size above the two images. */
+html:lang(en) .chatbot-detail-page :is([data-node-id="5103:3706"],[data-node-id="5103:3707"]) { translate:0 28px; }
 @media(prefers-reduced-motion:no-preference) {
   .native-case-gallery.is-enhanced .case-native-slide { opacity:0; translate:0 24px; filter:blur(5px); transition:opacity .75s cubic-bezier(.22,1,.36,1),translate .75s cubic-bezier(.22,1,.36,1),filter .75s cubic-bezier(.22,1,.36,1); }
   .native-case-gallery.is-enhanced .case-native-slide.is-visible { opacity:1; translate:0 0; filter:none; }
 }
 @media(max-width:560px) { .native-case-gallery { width:calc(100% - 32px); } }
+:lang(en) .chatbot-detail-page :is(
+  [data-node-id="5266:5183"], [data-node-id="5266:5187"], [data-node-id="5266:5191"],
+  [data-node-id="5266:6186"], [data-node-id="5266:6190"], [data-node-id="5266:6194"]
+) {
+  margin-left: -28px;
+  width: 112px;
+  text-align: center;
+  mask-image: none !important;
+}
+html:lang(en) .chatbot-detail-page :is(
+  [data-node-id="5266:5219"], [data-node-id="5266:5231"], [data-node-id="5266:5235"]
+) {
+  width:149px;
+  margin-left:-28px;
+  text-align:center;
+  mask-image:none !important;
+}
+html:lang(en) .chatbot-detail-page [data-node-id="5266:5235"] { width:191px; }
+/* The Icon slide exports icon layers separately from their rounded cards. */
+.chatbot-detail-page [data-node-id="5270:6597"] :is(
+  [data-node-id="5270:6978"], [data-node-id="5270:7000"], [data-node-id="5270:7015"]
+) {
+  display:block !important;
+  inset:0 !important;
+  width:auto !important;
+  height:auto !important;
+}
+.chatbot-detail-page [data-node-id="5270:6978"] { clip-path:inset(222.2px 818px 282.658px 81px round 18px); }
+.chatbot-detail-page [data-node-id="5270:7000"] { clip-path:inset(222.2px 612px 282.658px 287px round 18px); }
+.chatbot-detail-page [data-node-id="5270:7015"] { clip-path:inset(387.68px 612px 110.2px 81px round 17.809px); }
+.chatbot-detail-page [data-node-id="5270:6597"] :is([data-node-id="5270:6895"], [data-node-id="5270:6950"]) {
+  mask-image:none !important;
+  box-shadow:0 3px 18px rgba(28,100,70,.07);
+}

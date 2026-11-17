@@ -39,6 +39,8 @@ const chatbotEnglishWidths={
 };
 function declarations(token){
   if(token==='h-px')return 'height:1px';
+  if(token==='bottom-0')return 'bottom:0';
+  if(token==='whitespace-pre')return 'white-space:pre';
   if(token==='left-1/2')return 'left:50%';
   if(/^p-\[[\d.]+px\]$/.test(token))return 'padding:'+token.slice(3,-1);
   const fixed={absolute:'position:absolute',relative:'position:relative',contents:'display:contents',block:'display:block',flex:'display:flex','inline-grid':'display:inline-grid','flex-col':'flex-direction:column','flex-none':'flex:none','shrink-0':'flex-shrink:0','content-stretch':'align-content:stretch','items-center':'align-items:center','items-start':'align-items:flex-start','items-end':'align-items:flex-end','justify-center':'justify-content:center','justify-end':'justify-content:flex-end','place-items-start':'place-items:start','size-full':'width:100%;height:100%','w-full':'width:100%','min-w-full':'min-width:100%','max-w-none':'max-width:none','h-0':'height:0','w-0':'width:0','inset-0':'inset:0','left-0':'left:0','right-0':'right:0','top-0':'top:0','ml-0':'margin-left:0','mt-0':'margin-top:0','mb-0':'margin-bottom:0','row-1':'grid-row:1','col-1':'grid-column:1','overflow-hidden':'overflow:hidden','overflow-clip':'overflow:clip','object-cover':'object-fit:cover','pointer-events-none':'pointer-events:none','not-italic':'font-style:normal','font-normal':'font-weight:400','font-medium':'font-weight:500','font-semibold':'font-weight:600','font-bold':'font-weight:700','whitespace-nowrap':'white-space:nowrap','text-center':'text-align:center','text-right':'text-align:right','text-white':'color:#fff','text-black':'color:#000','bg-white':'background-color:#fff','from-white':'--from:#fff','to-white':'--to:#fff','border-white':'border-color:#fff','border-solid':'border-style:solid','border-dashed':'border-style:dashed','border':'border-width:1px','list-disc':'list-style-type:disc',capitalize:'text-transform:capitalize','mask-alpha':'mask-mode:alpha','mask-luminance':'mask-mode:luminance','mask-intersect':'mask-composite:intersect','mask-no-clip':'mask-clip:no-clip','mask-no-repeat':'mask-repeat:no-repeat','bg-clip-text':'background-clip:text;-webkit-background-clip:text','bottom-1/4':'bottom:25%'};
@@ -231,6 +233,8 @@ export function parse(code, sectionKey){
     }
     // Removed from both languages at the designer's request.
     if(sectionKey==='chatbot-4'&&a['data-node-id']==='5103:3605')return '';
+    // The board contains identical stacked title layers in Type & Color.
+    if(sectionKey==='chatbot-5'&&['5266:6174','5266:6175'].includes(a['data-node-id']))return '';
     if(sectionKey==='chatbot-8'&&a['data-node-id']==='5103:3865'){
       // The green shadow belongs to the combined component silhouettes,
       // not the rectangular bounds or the grid behind the presentation.
@@ -264,6 +268,16 @@ export function parse(code, sectionKey){
       return `<div data-node-id="5103:3885" style="position:absolute;left:378.8px;top:403.97px;width:118.621px;height:135.389px;overflow:hidden;mask-image:${esc(maskImage)};mask-size:100% 100%;mask-repeat:no-repeat"><div style="position:absolute;left:-378.8px;top:-403.97px;width:1084px;height:650.4px">${n.children.map(html).join('')}</div></div>`;
     }
     let styles=(a.className||'').split(/\s+/).map(declarations).filter(Boolean);if(a.style)styles.push(...Object.entries(a.style).map(([k,v])=>k.replace(/[A-Z]/g,c=>'-'+c.toLowerCase())+':'+v));
+    if(sectionKey==='chatbot-12'){
+      // These Figma layers combine rotation and skew on the same icon wrapper.
+      // Keep both transforms instead of allowing the skew to overwrite rotation.
+      const skew=styles.findIndex(style=>style.startsWith('transform:skewX('));
+      const rotation=styles.findIndex(style=>style.startsWith('--rot:'));
+      if(skew!==-1&&rotation!==-1){
+        styles[rotation]+=' '+styles[skew].slice('transform:'.length);
+        styles.splice(skew,1);
+      }
+    }
     if(sectionKey==='chatbot-1'){
       if(['5103:3530','5103:3537','5103:3544','5103:3551'].includes(a['data-node-id']))a['data-chat-flow-card']='';
       if(['5103:3531','5103:3538','5103:3545','5103:3552'].includes(a['data-node-id']))a['data-chat-flow-title']='';
@@ -355,14 +369,16 @@ if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.ur
 for(const name of ['chatbot','okr']){
   const data=JSON.parse(fs.readFileSync(path.join(root,'design/case-studies/'+name+'.json'),'utf8'));
   const html=data.sections.map((s,i)=>{
+    // Preserve per-slide rendering adjustments when a board is reordered.
+    const sectionKey=name+'-'+(s.renderIndex??i);
     detectedHeading='';
     let content;if(s.parts)content=s.parts.map((p,j)=>{
       // User-requested raster artwork: preserve Figma's clipped render bounds,
       // rather than translating and independently positioning each specimen.
       // The source layers remain in the snapshot for a reversible replacement.
       if(name==='okr'&&p.id==='5103:6233')return '<img data-okr-component-artwork src="assets/case-studies/okr-component-showcase.png" alt="OKR component library examples" width="2892" height="1355" loading="lazy" decoding="async" style="position:absolute;left:65.041015625px;top:198.7333984375px;width:963.916015625px;height:451.6666259765625px;max-width:none" />';
-      return `<div style="position:absolute;left:${p.x||0}px;top:${p.y||0}px;width:${p.width||1084}px;height:${p.height||650.4}px">${parse(p.code,name+'-'+i+'-'+j)}</div>`;
-    }).join('');else content=parse(s.code,name+'-'+i);
+      return `<div style="position:absolute;left:${p.x||0}px;top:${p.y||0}px;width:${p.width||1084}px;height:${p.height||650.4}px">${parse(p.code,sectionKey+'-'+j)}</div>`;
+    }).join('');else content=parse(s.code,sectionKey);
     // Use right-sized WebP portraits only in the OKR interview artwork.
     // Keep the design snapshots and shared originals unchanged.
     if(name==='okr'&&i===27)content=content.replace(

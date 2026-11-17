@@ -83,9 +83,10 @@
     fields.append(field('角色','Role',role));
     const list = document.createElement('ul');
     const responsibilities = isChatbot ? [
-      ['产品原型设计：基于产品需求，梳理核心功能与用户流程，完成产品原型设计；','Product Prototyping: Mapped out core features and user flows based on product requirements, and created product prototypes.'],
-      ['交互与视觉设计：负责 App 的交互体验与视觉界面设计，构建统一的视觉语言，提升产品的易用性与体验一致性。','Interaction & Visual Design: Designed the App’s interactions and visual interfaces, establishing a consistent visual language to improve usability and consistency across the product experience.'],
-      ['情感化设计：将情感化设计理念融入产品体验，设计具有亲和力与情感表达力的品牌 IP 形象，增强产品的情感连接与辨识度。','Emotional Design: Incorporated emotional design into the product experience and created an approachable, expressive brand character to strengthen emotional connection and brand recognition.']
+      ['与产品经理沟通，基于产品提出的需求与功能，完成产品原型设计；','Worked with the product manager to design prototypes based on the proposed requirements and features.'],
+      ['负责App的交互与视觉设计，分析用户人群与相关竞品，为团队提供视觉方案，基于视觉方案完善界面高保真视觉设计；','Led interaction and visual design for the app, studied its target users and competing products, proposed a visual direction to the team, and carried it through to high-fidelity screens.'],
+      ['将情感化设计理念融入产品，设计具有亲和力的品牌IP形象，增强产品的情感连接与辨识度。','Brought emotional design into the product by creating an approachable brand character to help users connect with the app and make it more recognizable.'],
+      ['*项目已进行脱敏处理','*Sensitive project details have been anonymized.']
     ] : [
       ['设计研究与分析：基于产品需求与业务场景，开展竞品分析、用户调研、信息架构梳理及用户流程分析，为设计方案提供依据。','Design Research & Analysis: Conducted competitor analysis, user research, information architecture planning and user flow analysis based on product requirements and business scenarios to inform design decisions.'],
       ['多端设计：负责 OKR 产品 Web 端与 App 端的UI/UX设计，结合业务特点与用户使用场景，输出兼顾易用性、视觉品质与跨端一致性的界面设计方案。','Cross-platform Design: Designed the UI/UX for the OKR product’s Web and App versions, balancing usability, visual quality and cross-platform consistency around business needs and usage scenarios.'],

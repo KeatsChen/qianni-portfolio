@@ -36,6 +36,7 @@ try{
       await page.evaluate(()=>document.fonts.ready);
       await page.waitForFunction(()=>!document.documentElement.classList.contains('home-booting'),{},{timeout:3000});
       if(await page.locator('button[data-lang="en"]').count()){
+        let chatbotChineseType;
         for(const lang of ['zh','en']){
           await page.locator(`button[data-lang="${lang}"]`).first().evaluate(button=>button.click());
           assert.equal(await page.locator('html').getAttribute('lang'),lang==='zh'?'zh-CN':'en',`${file}: language`);
@@ -46,7 +47,21 @@ try{
             assert.equal(await page.locator('[data-okr-implementation-row]').first().evaluate(element=>getComputedStyle(element).display),'flex');
             if(lang==='en')assert.equal(await page.locator('[data-okr-characteristic-label]').first().evaluate(element=>getComputedStyle(element).fontSize),'10px');
           }
-          if(file==='chatbot.html')assert.ok(await page.locator('body.chatbot-detail-page .detail-overview-field').count());
+          if(file==='chatbot.html'){
+            const items = page.locator('body.chatbot-detail-page .detail-overview-field li');
+            assert.equal(await items.count(),4);
+            assert.match(await items.first().textContent(),lang==='zh'?/^与产品经理沟通/:/^Worked with the product manager/);
+            assert.equal(await items.last().textContent(),lang==='zh'?'*项目已进行脱敏处理':'*Sensitive project details have been anonymized.');
+            await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+            const type = await page.locator('.native-case-gallery .case-native-canvas [data-en][data-zh]').evaluateAll(nodes=>nodes.map(node=>getComputedStyle(node).fontSize));
+            assert.ok(type.length>0,'Chatbot has bilingual body text');
+            if(lang==='zh')chatbotChineseType=type;
+            else assert.deepEqual(type,chatbotChineseType,'Chatbot body uses the same font sizes in both languages');
+            if(lang==='en'){
+              const lines=await page.locator('[data-node-id="5103:3567"]').evaluate(el=>el.clientHeight/parseFloat(getComputedStyle(el.firstElementChild).lineHeight));
+              assert.equal(lines,4,'Chatbot English introduction fits four lines');
+            }
+          }
         }
       }
       const before=await snapshot();

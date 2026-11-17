@@ -1,0 +1,18 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="68.3196" height="68.3196" viewBox="0 0 68.3196 68.3196" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Group 35375">
+<circle id="Ellipse 142" cx="34.1598" cy="34.1598" r="34.1598" fill="#EAFFE3"/>
+<g id="Group 35372">
+<rect id="Rectangle 38588" x="15.7157" y="17.7629" width="36.8926" height="36.8926" rx="8.06156" fill="url(#paint0_linear_0_176)"/>
+<circle id="Ellipse 151" cx="34.1627" cy="36.2098" r="13.3577" fill="#F4F9FF"/>
+<circle id="Ellipse 153" cx="34.1616" cy="36.2104" r="4.45272" fill="#5FCF5C"/>
+</g>
+<circle id="Ellipse 156" cx="48.5069" cy="11.6143" r="4.78237" fill="#EF97FE"/>
+<path id="Vector 217" d="M48.5069 12.2975L46.4573 22.5455L36.8926 27.3278" stroke-width="3.41598" stroke-linecap="round" stroke="#FEB243"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_176" x1="18.6504" y1="19.4398" x2="48.8352" y2="53.1881" gradientUnits="userSpaceOnUse">
+<stop stop-color="#8CDD84"/>
+<stop offset="1" stop-color="#1EBA21"/>
+</linearGradient>
+</defs>
+</svg>

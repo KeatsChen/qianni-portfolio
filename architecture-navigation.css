@@ -18,7 +18,23 @@
   width:5.196px; height:2.25px; bottom:0; clip-path:none; background:transparent url("assets/architecture-v2/nav-language-marker.svg") center/contain no-repeat;
 }
 @media(hover:hover) {
-  :is(.architecture-detail-page,.chatbot-detail-page,.okr-detail-page) .site-nav-link:hover { background:#f1f1f1; }
+  :is(.architecture-detail-page,.chatbot-detail-page,.okr-detail-page) {
+    --detail-nav-hover-surface:#f1f1f1;
+    --detail-nav-hover-ink:#01010b;
+  }
+  :is(.architecture-detail-page,.chatbot-detail-page,.okr-detail-page) .site-nav-link:hover {
+    background:var(--detail-nav-hover-surface);
+    color:var(--detail-nav-hover-ink);
+  }
+}
+@media(hover:hover) and (min-width:761px) {
+  .chatbot-detail-page .project-pagination-link:is(:hover,:focus-visible) {
+    --switch-hover:var(--detail-nav-hover-surface);
+    color:var(--detail-nav-hover-ink);
+  }
+  .chatbot-detail-page .project-pagination-link:is(:hover,:focus-visible) .project-pagination-hover {
+    filter:brightness(0);
+  }
 }
 @media(max-width:1100px) { :is(.architecture-detail-page,.chatbot-detail-page,.okr-detail-page) .site-nav { width:calc(100% - 96px); } }
 @media(max-width:760px) {
