@@ -57,9 +57,13 @@ try{
             assert.ok(type.length>0,'Chatbot has bilingual body text');
             if(lang==='zh')chatbotChineseType=type;
             else assert.deepEqual(type,chatbotChineseType,'Chatbot body uses the same font sizes in both languages');
+            const introduction=await page.locator('[data-node-id="5103:3567"]').textContent();
+            assert.equal(introduction,lang==='zh'
+              ? 'Chatbot是一款面向有情绪陪伴需求的年轻人的 AI 应用，通过聊天倾诉与愿望卡，帮助用户梳理当下情绪、建立对未来的期待。'
+              : 'Chatbot is an AI companion for young adults seeking emotional support, combining conversations and wish cards to help them make sense of their feelings and have something to look forward to.');
             if(lang==='en'){
               const lines=await page.locator('[data-node-id="5103:3567"]').evaluate(el=>el.clientHeight/parseFloat(getComputedStyle(el.firstElementChild).lineHeight));
-              assert.equal(lines,4,'Chatbot English introduction fits four lines');
+              assert.equal(lines,5,'Updated Chatbot English introduction fits five lines at its original type size');
             }
           }
         }
