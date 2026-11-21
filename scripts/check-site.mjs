@@ -158,6 +158,19 @@ try{
     assert.ok(await page.locator('#connect').evaluate(element=>element.getBoundingClientRect().top<innerHeight),'footer contact target');
     assert.equal(errors.length,0,errors.join('\n'));
     console.log(`PASS ${width}px all project covers, pagination, return links, footer anchor; no JS/resource errors`);
+    const github=page.locator('#connect a[href="https://github.com/KeatsChen"]');
+    assert.equal(await github.count(),1);
+    assert.equal(await github.getAttribute('target'),'_blank');
+    assert.equal(await page.locator('#connect .social-item').count(),5);
+    assert.ok(await github.locator('img').evaluate(image=>image.complete&&image.naturalWidth>0),'GitHub design asset decoded');
+    const contacts=await page.locator('#connect .social-links').evaluate(group=>{
+      const row=group.getBoundingClientRect();
+      return [...group.querySelectorAll('.social-control')].every(control=>{
+        const box=control.getBoundingClientRect();
+        return box.left>=row.left-1&&box.right<=row.right+1&&box.right<=innerWidth;
+      });
+    });
+    assert.ok(contacts,'All five contacts fit the row');
     for(const contact of ['wechat','email','phone']){
       const trigger=page.locator(`.contact-trigger[data-contact="${contact}"]`);
       if(!await trigger.count())continue;
